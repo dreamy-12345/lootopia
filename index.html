@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="build" content="20261021180607">
+<meta name="build" content="20261021180721">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <title>SHITCREW fucks your burn</title>
@@ -2048,7 +2048,7 @@ function drawHero(){
 })();
 drawHero();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!document.documentElement.dataset.theme)drawHero()});
-/* ---------- tally marks: every click anywhere scratches a mark on every cubicle door (this visit only, never saved) ---------- */
+/* ---------- tally marks: every click anywhere scratches a mark on every banner loo door (this visit only, never saved) ---------- */
 (function(){
   let n=0,last=0;const MAX=75;
   function marks(anim){
@@ -2061,13 +2061,11 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!do
   }
   function draw(anim){
     document.querySelectorAll(".tally").forEach(e=>e.remove());if(!n)return;
-    const m=marks(anim),fr=$("front");
-    document.querySelectorAll("#hills g[data-hero], #village g[data-s]").forEach(g=>g.insertAdjacentHTML("beforeend",m));
-    if(fr)fr.insertAdjacentHTML("beforeend",m);
+    const m=marks(anim);
+    document.querySelectorAll("#hills g[data-hero]").forEach(g=>g.insertAdjacentHTML("beforeend",m));
   }
   document.addEventListener("click",()=>{const now=performance.now();if(now-last<40)return;last=now;n++;draw(true);document.dispatchEvent(new CustomEvent("tally",{detail:n}))},true);
   document.addEventListener("herodrawn",()=>setTimeout(()=>draw(false),0));
-  const dc=drawCubicle;drawCubicle=function(){dc.apply(this,arguments);draw(false)};
   window.__tally=()=>n;
 })();
 /* ---------- banner loos the worm and Larry can visit (shake if both are in, green smoke on the way out) ---------- */
