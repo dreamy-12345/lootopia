@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="build" content="20261021180721">
+<meta name="build" content="20261021181057">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <title>SHITCREW fucks your burn</title>
@@ -57,6 +57,22 @@ nav .in{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;paddi
 nav button{flex:0 0 auto;border:2.5px solid var(--edge);background:var(--panel);color:var(--ink);padding:6px 14px;border-radius:999px;cursor:pointer;font-size:15.5px;font-weight:600;box-shadow:3px 3px 0 var(--edge);transition:transform .15s}
 nav button:hover{transform:translateY(-2px) rotate(-2deg)}
 nav button.on{background:var(--c);color:#2b2140;transform:rotate(-2deg)}
+.dd{position:relative}
+.ddb{display:inline-flex;align-items:center;gap:6px}
+.ddb .cur{font-family:"Nunito",sans-serif;font-weight:800;font-size:13px;opacity:.85}
+.ddb .cur:not(:empty)::before{content:"· "}
+.ddb .car{font-size:12px;transition:transform .15s}
+.ddb[aria-expanded="true"] .car{transform:rotate(180deg)}
+.dd.on>.ddb{background:var(--c);color:#2b2140;transform:rotate(-1.5deg)}
+.dd.ddright{margin-left:auto}
+nav .ddm{position:absolute;top:calc(100% + 8px);left:0;z-index:40;min-width:220px;background:var(--panel);border:2.5px solid var(--edge);border-radius:16px;box-shadow:4px 4px 0 var(--edge);padding:6px;display:flex;flex-direction:column;gap:3px}
+nav .ddm[hidden]{display:none}
+nav .ddm button{flex:none;width:100%;text-align:left;border:0;box-shadow:none;background:transparent;border-radius:10px;padding:9px 12px;font-size:15px;transform:none!important}
+nav .ddm button:hover,nav .ddm button:focus-visible{background:var(--chip)}
+nav .ddm button.on{background:var(--c);color:#2b2140}
+nav .ddm button[aria-pressed="true"]{background:var(--leaf);color:#13210f}
+nav .ddm .ddrow{display:flex;gap:4px;align-items:center}
+nav .ddm .ddrow button{width:auto;font-size:16px;font-weight:800;padding:8px 14px;background:var(--chip)}
 main{max-width:1100px;margin:0 auto;padding:22px 16px 40px}
 section{display:none}section.on{display:block;animation:pop .35s ease-out}
 @keyframes pop{from{opacity:0;transform:translateY(10px)}}
@@ -358,10 +374,13 @@ html.calm .cf{display:none}
 <div class="card">
   <h3 style="margin-top:0">Pick a character</h3>
   <p class="small muted">Every cubicle is the same cheap flat-pack box. The character is just <b>one extra ply sheet</b> (a false front) cut to shape and screwed onto the front wall. You can mix a whole village and swap the fronts each year.</p>
-  <div class="swatches" id="shapes"></div>
-  <div class="small muted" style="margin:12px 0 4px">Colours</div><div class="swatches" id="colours"></div>
-  <div class="small muted" style="margin:12px 0 4px">Pattern</div><div class="swatches" id="patterns"></div>
-  <div class="small muted" style="margin:12px 0 4px">Vent cut-outs (sides, and the front on classic &amp; chalet)</div><div class="swatches" id="motifs"></div>
+  <div class="form">
+  <label class="f">Design<select id="shapes"></select></label>
+  <label class="f">Colours<select id="colours"></select></label>
+  <label class="f">Pattern<select id="patterns"></select></label>
+  <label class="f">Vent cut-outs<select id="motifs"></select></label>
+  </div>
+  <p class="small muted" style="margin:6px 0 0">Vent cut-outs go on the sides, and on the front of the classic &amp; chalet designs.</p>
   <div style="display:flex;gap:8px;align-items:flex-end;margin-top:12px"><label class="f" style="flex:1">Door sign<input id="sign" value="Long Drop Deluxe" maxlength="22"></label><button class="btn" id="dice" title="Random name">🎲 Name</button></div>
   <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn" id="nightBtn">🌙 Night view</button><button class="btn" id="lightsBtn">✨ Fairy lights</button><button class="btn" id="mixBtn">🎪 Surprise me</button></div>
 </div>
@@ -972,8 +991,27 @@ const isDark=()=>{const t=document.documentElement.dataset.theme;return t?t==="d
 
 /* ---------- tabs ---------- */
 const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["access","♿ Accessible loo","#b9a6ff"],["wash","🚿 Bucket wash","#7ee0c8"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"],["team","🧹 Sanitation team","#ffb3c7"],["notes","📝 My notes","#ffe066"]];
-function showTab(id){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id));document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));store.set("tab",id);const b=document.querySelector(`#tabs button[data-t="${id}"]`),n=$("tabs");if(b&&n.scrollWidth>n.clientWidth)n.scrollLeft=b.offsetLeft-(n.clientWidth-b.offsetWidth)/2}
-TABS.forEach(([id,n,c])=>{const b=document.createElement("button");b.textContent=n;b.style.setProperty("--c",c);b.dataset.t=id;b.onclick=()=>{showTab(id);history.replaceState(null,"","#"+id)};$("tabs").appendChild(b)});
+function showTab(id){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id));document.querySelectorAll("#tabs [data-t]").forEach(b=>{b.classList.toggle("on",b.dataset.t===id);b.toggleAttribute("aria-current",b.dataset.t===id)});
+  document.querySelectorAll("#tabs .dd[data-g]").forEach(d=>{const has=!!d.querySelector(`[data-t="${id}"]`);d.classList.toggle("on",has);d.querySelector(".cur").textContent=has?(TABS.find(t=>t[0]===id)||[0,""])[1].replace(/^\S+\s/,""):""});store.set("tab",id)}
+/* ---------- tabs grouped into dropdown menus ---------- */
+const GROUPS=[["start","🏠 Start","#ffc93c",["overview","planner"]],["build","🔨 Build","#ff8fb1",["toilet","access","wash","trap"]],["compost","🪱 Compost","#ffa77a",["worms","calendar"]],["run","✅ Run it","#9be087",["checklists","issues","safety"]],["people","👥 Team","#ffb3c7",["team","notes"]]];
+const tabName=id=>(TABS.find(t=>t[0]===id)||[0,id])[1];
+function closeMenus(except){document.querySelectorAll("#tabs .dd").forEach(d=>{if(d===except)return;d.querySelector(".ddm").hidden=true;d.querySelector(".ddb").setAttribute("aria-expanded","false")})}
+function ddFix(dd){const m=dd.querySelector(".ddm");m.style.left="0";m.style.right="auto";const r=m.getBoundingClientRect();if(r.right>innerWidth-8){m.style.left="auto";m.style.right="0"}}
+function addMenu(key,label,color,inner){
+  const d=document.createElement("div");d.className="dd";d.dataset.g=key;d.style.setProperty("--c",color);
+  d.innerHTML=`<button class="ddb" aria-haspopup="true" aria-expanded="false"><span class="ddl">${label}</span><span class="cur"></span><span class="car" aria-hidden="true">▾</span></button><div class="ddm" role="menu" hidden>${inner}</div>`;
+  const b=d.querySelector(".ddb"),m=d.querySelector(".ddm");
+  b.onclick=e=>{e.stopPropagation();const open=m.hidden;closeMenus(d);m.hidden=!open;b.setAttribute("aria-expanded",open);if(open){ddFix(d);(m.querySelector(".on")||m.querySelector("button"))?.focus()}};
+  m.onkeydown=e=>{const it=[...m.querySelectorAll("button")],i=it.indexOf(document.activeElement);if(e.key==="ArrowDown"){e.preventDefault();it[(i+1)%it.length].focus()}if(e.key==="ArrowUp"){e.preventDefault();it[(i-1+it.length)%it.length].focus()}};
+  $("tabs").appendChild(d);return d;
+}
+GROUPS.forEach(([key,label,color,ids])=>{
+  const d=addMenu(key,label,color,ids.map(id=>`<button role="menuitem" data-t="${id}" style="--c:${(TABS.find(t=>t[0]===id)||[])[2]}">${tabName(id)}</button>`).join(""));
+  d.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{showTab(b.dataset.t);history.replaceState(null,"","#"+b.dataset.t);closeMenus();d.querySelector(".ddb").focus()});
+});
+document.addEventListener("click",e=>{if(!e.target.closest||!e.target.closest("#tabs .ddm"))closeMenus()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){const o=document.querySelector("#tabs .ddm:not([hidden])");if(o){closeMenus();o.parentNode.querySelector(".ddb").focus()}}});
 showTab((location.hash.slice(1)&&$(location.hash.slice(1)))?location.hash.slice(1):store.get("tab","overview"));
 
 MONTHS.forEach((m,i)=>{const o=document.createElement("option");o.value=i;o.textContent=m;$("month").appendChild(o)});
@@ -1222,12 +1260,13 @@ function renderSide(o){
 }
 function setStyle(k,v){if(k==="shape")shape=v;if(k==="colour")colour=v;if(k==="pattern")pattern=v;if(k==="motif")motif=v;store.set(k,v);swatches();drawCubicle();drawBom()}
 function swatches(){
-  const chip=c=>`<span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${c};vertical-align:-1px"></span>`;
-  $("shapes").innerHTML=Object.entries(SHAPES).map(([k,v])=>`<button class="sw${k===shape?" on":""}" data-k="shape" data-v="${k}">${v}</button>`).join("");
-  $("colours").innerHTML=Object.entries(COLOURS).map(([k,v])=>`<button class="sw${k===colour?" on":""}" data-k="colour" data-v="${k}">${chip(v[1])} ${chip(v[2])} ${v[0]}</button>`).join("");
-  $("patterns").innerHTML=Object.entries(PATTERNS).map(([k,v])=>`<button class="sw${k===pattern?" on":""}" data-k="pattern" data-v="${k}">${v}</button>`).join("");
-  $("motifs").innerHTML=Object.entries(MOTIFS).map(([k,v])=>`<button class="sw${k===motif?" on":""}" data-k="motif" data-v="${k}">${v.n}</button>`).join("");
-  document.querySelectorAll("#toilet .sw[data-k]").forEach(b=>b.onclick=()=>setStyle(b.dataset.k,b.dataset.v));
+  const opt=(k,v,cur)=>`<option value="${k}"${k===cur?" selected":""}>${v}</option>`;
+  const G=[["Classics",["classic","mushroom","rocket","castle","chalet","ginger","beach"]],["Kiwiburn",["can","moss"]],["Kitchen",["soup","pot"]],["Moss & Microchips (Kiwiburn 2027)",Object.keys(SHAPES).filter(k=>k.startsWith("mm_"))]];
+  $("shapes").innerHTML=G.map(([g,ks])=>`<optgroup label="${g}">${ks.filter(k=>SHAPES[k]).map(k=>opt(k,SHAPES[k].replace(/ \((Kiwiburn|M&M)[^)]*\)/,""),shape)).join("")}</optgroup>`).join("");
+  $("colours").innerHTML=Object.entries(COLOURS).map(([k,v])=>opt(k,v[0],colour)).join("");
+  $("patterns").innerHTML=Object.entries(PATTERNS).map(([k,v])=>opt(k,v,pattern)).join("");
+  $("motifs").innerHTML=Object.entries(MOTIFS).map(([k,v])=>opt(k,v.n,motif)).join("");
+  [["shapes","shape"],["colours","colour"],["patterns","pattern"],["motifs","motif"]].forEach(([id,k])=>$(id).onchange=e=>setStyle(k,e.target.value));
   $("nightBtn").classList.toggle("pri",night);$("lightsBtn").classList.toggle("pri",lights);
 }
 function drawCubicle(){
@@ -1912,9 +1951,9 @@ document.querySelectorAll(".pager [data-go]").forEach(b=>b.onclick=()=>{showTab(
   const TLDR={overview:"Poo + sawdust go in a bucket. Buckets rest 6–8 weeks, then feed the worms. Wee goes separately. The compost is for trees.",planner:"Put in your numbers and it tells you how many toilets, buckets, sawdust and worms you need.",toilet:"One cheap plywood box, with a fun fake front you can swap. The cost list is at the bottom.",access:"A bigger 2.4 m box with grab rails, a sliding door and a ramp, laid out to NZS 4121. Test it with real users.",wash:"The bucket goes upside down over a spinning nozzle. Waste goes into an IBC for the sucker truck.",worms:"Lined, lidded wooden bays with tiger worms. Feed thin layers and keep them shady and damp.",trap:"The kitchen sink drains into a blue barrel of sand strapped to a tree. Only clean water reaches the paddock.",calendar:"What to do each month, starting from the festival.",checklists:"Tick things off. Your ticks save on this device.",issues:"Search a problem to find its signs, cause and fix.",safety:"Gloves, hand-washing and time keep everyone safe. Check the council rules.",team:"The Kiwiburn Sanitation Co-Lead role: four shared areas and four portfolios.",notes:"Your private notes, saved on this device. Download them to keep them."};
   Object.entries(TLDR).forEach(([id,t])=>{const s=$(id),h=s&&s.querySelector("h2");if(h&&!s.querySelector(".tldr"))h.insertAdjacentHTML("afterend",`<p class="tldr">${t}</p>`)});
   const main=document.querySelector("main");
-  main.insertAdjacentHTML("afterbegin",`<div class="comfort noprint" role="group" aria-label="Comfort settings"><button class="btn" id="cDark" aria-pressed="false"></button><button class="btn" id="cCalm" aria-pressed="false">🧘 Calm mode</button><button class="btn" id="cSmall" aria-label="Smaller text">A−</button><button class="btn" id="cBig" aria-label="Bigger text">A+</button><span class="small muted">Calm mode stops things moving and turns off surprises.</span></div>`);
+  addMenu("comfort","⚙️ Comfort","#c3b3ff",`<button role="menuitem" id="cDark" aria-pressed="false"></button><button role="menuitem" id="cCalm" aria-pressed="false">🧘 Calm mode</button><div class="ddrow"><button role="menuitem" id="cSmall" aria-label="Smaller text">A−</button><button role="menuitem" id="cBig" aria-label="Bigger text">A+</button><span class="small muted">text size</span></div><p class="small muted" style="margin:4px 8px 6px;max-width:220px">Calm mode stops things moving and turns off surprises.</p>`).classList.add("ddright");
   main.id="content";document.body.insertAdjacentHTML("afterbegin",`<a class="skip" href="#content">Skip to content</a>`);
-  const paint=()=>{const d=isDark();$("cDark").textContent=d?"☀️ Light mode":"🌙 Dark mode";$("cDark").setAttribute("aria-pressed",d);$("cCalm").setAttribute("aria-pressed",root.classList.contains("calm"))};
+  const paint=()=>{const d=isDark();$("cDark").textContent=d?"🌙 Dark mode: on":"🌙 Dark mode: off";$("cCalm").textContent=root.classList.contains("calm")?"🧘 Calm mode: on":"🧘 Calm mode: off";$("cDark").setAttribute("aria-pressed",d);$("cCalm").setAttribute("aria-pressed",root.classList.contains("calm"))};
   window.toggleTheme=()=>{root.dataset.theme=isDark()?"light":"dark";store.set("theme",root.dataset.theme);drawHero();paint()};
   $("cDark").onclick=toggleTheme;
   const calm=on=>{root.classList.toggle("calm",on);store.set("calm",on);paint()};
