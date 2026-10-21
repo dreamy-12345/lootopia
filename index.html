@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="build" content="20261021181057">
+<meta name="build" content="20261021181312">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <title>SHITCREW fucks your burn</title>
@@ -279,6 +279,9 @@ html.calm .cf{display:none}
 .underground svg{width:100%;height:100%;display:block}
 .ugworm{animation:ugw .7s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
 @keyframes ugw{to{transform:scaleX(.86)}}
+.marchant{position:fixed;z-index:96;width:14px;height:10px;margin:-5px 0 0 -7px;pointer-events:none}
+.marchant svg{width:100%;height:100%;display:block}
+#newver{position:fixed;z-index:120;left:50%;transform:translateX(-50%);top:12px;font-size:15px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{nav,.noprint,.hero .hills,.bunting{display:none}section{display:block!important;page-break-after:always}body{background:#fff}.card,.stat,.issue,.mo{box-shadow:none}}
 </style>
@@ -2024,10 +2027,13 @@ function drawHero(){
   document.dispatchEvent(new Event("herodrawn"));
 }
 
-/* ---------- self-update: if a newer version is published, reload once ---------- */
+/* ---------- self-update: reload once on open if a newer version is published; later, offer a refresh ---------- */
 (function(){try{const mine=document.querySelector('meta[name="build"]').content;
-  fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{const m=t.match(/<meta name="build" content="(\d+)">/);
-    if(m&&m[1]>mine&&sessionStorage.getItem("reloadedFor")!==m[1]){sessionStorage.setItem("reloadedFor",m[1]);location.reload()}}).catch(()=>{})}catch(e){}})();
+  const check=first=>fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{const m=t.match(/<meta name="build" content="(\d+)">/);if(!m||!(m[1]>mine))return;
+    if(first&&sessionStorage.getItem("reloadedFor")!==m[1]){sessionStorage.setItem("reloadedFor",m[1]);return location.reload()}
+    if(!document.getElementById("newver")){const b=document.createElement("button");b.id="newver";b.className="btn pri";b.textContent="✨ New version ready – tap to update";b.onclick=()=>location.reload();document.body.appendChild(b)}}).catch(()=>{});
+  check(true);document.addEventListener("visibilitychange",()=>{if(!document.hidden)check(false)});setInterval(()=>check(false),180000);
+}catch(e){}})();
 /* ---------- soil background with hidden things ---------- */
 (function(){
   const R=seeded(42),W=720,H=720;
@@ -2128,6 +2134,28 @@ window.__loo=(function(){
   function enter(i,who){pending[i]&&pending[i].delete(who);(occ[i]=occ[i]||new Set).add(who);const g=gOf(i);if(g&&occ[i].size>=2)wrapOf(g).classList.add("looshake")}
   function leave(i,who){const s=occ[i];if(!s||!s.has(who))return;const was=s.size>=2;s.delete(who);const g=gOf(i);if(g&&s.size<2)wrapOf(g).classList.remove("looshake");smoke(i,was)}
   return {pick,door,enter,leave,expect,waiting,occ};
+})();
+/* ---------- now and then a line of ants marches out of the nest and into a banner loo ---------- */
+(function(){
+  const sv=$("ants");if(!sv||!window.__loo)return;
+  const ANT=`<svg viewBox="-9 -6 18 12"><circle cx="-5" r="2.6" fill="#120a05"/><circle cx="0" r="2" fill="#120a05"/><circle cx="4.5" r="2.2" fill="#120a05"/><path d="M-1 0 l-2 4 M-1 0 l-2 -4 M1 0 l2 4 M1 0 l2 -4 M0 0 l0 4.5 M0 0 l0 -4.5" stroke="#120a05" stroke-width=".9"/></svg>`;
+  function nest(){const r=sv.getBoundingClientRect(),k=Math.max(r.width/1200,r.height/130),oy=(r.height-130*k)/2;return {x:r.left+300*k,y:r.top+oy,vis:r.bottom>0&&r.top<innerHeight}}
+  function march(){
+    const calm=document.documentElement.classList.contains("calm")||matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const n=nest(),i=calm||!n.vis?null:__loo.pick(),d=i!==null&&__loo.door(i);
+    if(!d){schedule();return}
+    __loo.expect(i,"ants");
+    const ants=[...Array(6)].map((_,k)=>{const a=document.createElement("i");a.className="marchant";a.innerHTML=ANT;a.style.left=n.x+"px";a.style.top=n.y+"px";
+      const ang=Math.atan2(d.y-n.y,d.x-n.x)*180/Math.PI;a.style.transform=`rotate(${ang}deg)`;document.body.appendChild(a);
+      setTimeout(()=>{a.style.transition="left 3.2s linear,top 3.2s linear,opacity .3s";a.style.left=(d.x+(k%2?4:-4))+"px";a.style.top=(d.y+8)+"px"},60+k*380);return a});
+    const inAt=60+5*380+3300;
+    setTimeout(()=>{ants.forEach(a=>a.style.opacity="0");__loo.enter(i,"ants")},inAt);
+    setTimeout(()=>{__loo.leave(i,"ants");const back=nest();ants.forEach((a,k)=>{const ang=Math.atan2(back.y-d.y,back.x-d.x)*180/Math.PI;a.style.transform=`rotate(${ang}deg)`;
+      setTimeout(()=>{a.style.opacity="1";a.style.left=back.x+"px";a.style.top=back.y+"px"},k*380)});
+      setTimeout(()=>{ants.forEach(a=>a.remove());schedule()},6*380+3600)},inAt+4000+Math.random()*3000);
+  }
+  let t=0;function schedule(){clearTimeout(t);t=setTimeout(march,25000+Math.random()*30000)}
+  schedule();window.__antsMarch=march;
 })();
 /* ---------- hidden worm game ---------- */
 (function(){
