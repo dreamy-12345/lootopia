@@ -159,13 +159,20 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
 .eaten{transform:scale(0) rotate(200deg)!important;opacity:0!important;transition:transform .45s ease-in,opacity .45s!important;pointer-events:none}
 .puke{position:fixed;z-index:99;border-radius:50%;pointer-events:none;animation:puke 1.4s cubic-bezier(.2,.6,.4,1) forwards}
 @keyframes puke{100%{transform:translate(var(--dx),calc(var(--dy) + 260px)) scale(.6);opacity:0}}
-#flyspray{position:fixed;z-index:98;right:18px;bottom:18px;width:62px;height:118px;cursor:pointer;border:0;padding:0;background:none;animation:sprayw 1.1s ease-in-out infinite;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.4))}
+#flyspray{position:fixed;z-index:98;left:50%;margin-left:-31px;bottom:12px;width:62px;height:118px;cursor:pointer;border:0;padding:0;background:none;animation:sprayw 1.1s ease-in-out infinite;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.4))}
 #flyspray svg{width:100%;height:100%}
 @keyframes sprayw{50%{transform:rotate(-9deg) translateY(-4px)}}
-#flyspray .tip{position:absolute;right:66px;bottom:84px;background:var(--panel);color:var(--ink);border:2px solid var(--edge);border-radius:10px;padding:2px 8px;font:700 12px Fredoka,sans-serif;white-space:nowrap}
+#flyspray .tip{position:absolute;left:50%;transform:translateX(-50%);bottom:122px;background:var(--panel);color:var(--ink);border:2px solid var(--edge);border-radius:10px;padding:2px 8px;font:700 12px Fredoka,sans-serif;white-space:nowrap}
 .mist{position:fixed;z-index:99;width:16px;height:16px;border-radius:50%;background:rgba(220,240,255,.75);pointer-events:none;animation:mist .7s ease-out forwards}
 @keyframes mist{to{transform:translate(var(--dx),var(--dy)) scale(3.2);opacity:0}}
 #bigworm.dead{transition:transform 1s cubic-bezier(.5,0,.8,.4),opacity 1s .6s!important;transform:translateY(60vh) rotate(200deg) scale(.7)!important;opacity:0}
+#heroSpray .rise{animation:hrise .6s cubic-bezier(.3,1.6,.5,1) both,sprayh 1.1s .6s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes hrise{from{transform:translateY(70px)}}
+@keyframes sprayh{50%{transform:rotate(-8deg)}}
+#heroSpray .dirt{animation:dirt .8s ease-out forwards}
+@keyframes dirt{to{transform:translate(var(--dx),-40px);opacity:0}}
+.hills g.tipover{transform-box:fill-box;transform-origin:0% 100%;animation:tip .8s cubic-bezier(.5,0,.6,1.4) forwards}
+@keyframes tip{to{transform:rotate(-82deg) translateX(-6px)}}
 #wasted{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(0,0,0,.25);-webkit-backdrop-filter:grayscale(1) contrast(1.1);backdrop-filter:grayscale(1) contrast(1.1);animation:wfade .8s ease-out;pointer-events:none}
 @keyframes wfade{from{opacity:0}}
 #wasted .band{width:100%;text-align:center;background:linear-gradient(90deg,transparent,rgba(0,0,0,.75) 20%,rgba(0,0,0,.75) 80%,transparent);padding:6px 0}
@@ -228,6 +235,7 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
     <li><b>Year calendar</b>: what to do each month, starting from your festival month.</li>
     <li><b>Checklists</b>: build, pre-event, daily, post-event, worm care and harvest. Ticks are saved in this browser.</li>
     <li><b>Problems &amp; fixes</b>: every failure mode we could think of, searchable.</li>
+    <li><b>My notes</b>: your own notes, saved privately in your browser, with download and copy.</li>
     <li><b>Sanitation team</b>: the Kiwiburn Sanitation Co-Lead role, its four focus areas, the four Co-Lead portfolios, the time commitment, and the original documents.</li>
     <li><b>Safety &amp; rules</b>: hygiene, pathogens, council/regional consent and where the compost can go.</li>
   </ul>
@@ -794,6 +802,23 @@ Kitchen wash water counts as <b>greywater</b>. Under Horizons' One Plan, small g
 <p class="small muted" style="margin-bottom:0">To add another document, save it into Downloads and ask Claude to "add it to the Sanitation team documents". It gets copied into the site and listed here.</p></div>
 </section>
 
+<!-- ============ MY NOTES ============ -->
+<section id="notes">
+<h2><span class="hl">📝 My notes</span></h2>
+<div class="card tip"><h3 style="margin-top:0">Your own notes</h3>
+Write down measurements, ideas, shopping reminders, whatever you need. Notes are <b>saved on this device, in this browser only</b>, so nobody else can see them and you don't need an account. To keep a copy or share one, use <b>Download</b> or <b>Copy</b>. Clearing your browser data deletes them, so download anything important.</div>
+<div class="card">
+<div class="form">
+<label class="f">Title<input id="nTitle" maxlength="80" placeholder="e.g. Skid timber prices"></label>
+<label class="f">Topic<select id="nTopic"></select></label>
+</div>
+<label class="f" style="margin-top:12px">Note<textarea id="nBody" rows="6" placeholder="Type your note…" style="font:inherit;font-size:16px;padding:10px 12px;border:2.5px solid var(--edge);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical"></textarea></label>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center"><button class="btn pri" id="nSave">💾 Save note</button><button class="btn" id="nCancel" hidden>Cancel edit</button><span class="small muted" id="nStatus"></span></div>
+</div>
+<div class="noprint" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:flex-end"><label class="f" style="flex:1;min-width:180px">Search<input id="nQ" placeholder="search your notes…"></label><button class="btn" id="nDl">⬇️ Download all</button><button class="btn" id="nCopy">📋 Copy all</button></div>
+<div id="nList"></div>
+</section>
+
 <!-- ============ CALENDAR ============ -->
 <section id="calendar">
 <h2><span class="hl">📅 Year calendar</span></h2>
@@ -861,7 +886,7 @@ const CLIMATE=["Warm, dry spells, heat risk","Warmest, heat risk","Mild, good","
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 
 /* ---------- tabs ---------- */
-const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["access","♿ Accessible loo","#b9a6ff"],["wash","🚿 Bucket wash","#7ee0c8"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"],["team","🧹 Sanitation team","#ffb3c7"]];
+const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["access","♿ Accessible loo","#b9a6ff"],["wash","🚿 Bucket wash","#7ee0c8"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"],["team","🧹 Sanitation team","#ffb3c7"],["notes","📝 My notes","#ffe066"]];
 function showTab(id){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id));document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));store.set("tab",id);const b=document.querySelector(`#tabs button[data-t="${id}"]`),n=$("tabs");if(b&&n.scrollWidth>n.clientWidth)n.scrollLeft=b.offsetLeft-(n.clientWidth-b.offsetWidth)/2}
 TABS.forEach(([id,n,c])=>{const b=document.createElement("button");b.textContent=n;b.style.setProperty("--c",c);b.dataset.t=id;b.onclick=()=>{showTab(id);history.replaceState(null,"","#"+id)};$("tabs").appendChild(b)});
 showTab((location.hash.slice(1)&&$(location.hash.slice(1)))?location.hash.slice(1):store.get("tab","overview"));
@@ -1735,6 +1760,38 @@ function calcTrap(){
 }
 ["tPeople","tLpp","tSoil","tSink","tRun","tDrop","tPlinth"].forEach(id=>$(id).addEventListener("input",calcTrap));
 swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();calcTrap();drawAccess();calcRamp();drawFraming();drawTowing();calcWash();buildTeam();
+/* ---------- my notes (saved in this browser only) ---------- */
+(function(){
+  let editing=null;
+  const all=()=>store.get("myNotes",[]),put=n=>store.set("myNotes",n),esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  $("nTopic").innerHTML=`<option value="">General</option>`+TABS.filter(t=>t[0]!=="notes").map(([id,n])=>`<option value="${id}">${n}</option>`).join("");
+  const label=id=>(TABS.find(t=>t[0]===id)||[0,"📝 General"])[1];
+  const when=t=>new Date(t).toLocaleString(undefined,{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"});
+  function list(){
+    const q=$("nQ").value.toLowerCase(),n=all().filter(x=>!q||(x.title+" "+x.body).toLowerCase().includes(q)).sort((a,b)=>b.updated-a.updated);
+    $("nList").innerHTML=n.length?n.map(x=>`<div class="card" data-id="${x.id}"><h3 style="margin-top:0">${esc(x.title||"Untitled")} <span class="tag">${esc(label(x.topic))}</span></h3><div style="white-space:pre-wrap">${esc(x.body)}</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center" class="noprint"><button class="btn" data-a="edit">✏️ Edit</button><button class="btn" data-a="del">🗑️ Delete</button><span class="small muted">${when(x.updated)}</span></div></div>`).join(""):`<p class="muted">${all().length?"No notes match.":"No notes yet. Your first one goes above."}</p>`;
+    $("nList").querySelectorAll("button[data-a]").forEach(b=>b.onclick=()=>{const id=b.closest("[data-id]").dataset.id,x=all().find(n=>n.id===id);if(!x)return;
+      if(b.dataset.a==="edit"){editing=id;$("nTitle").value=x.title;$("nTopic").value=x.topic;$("nBody").value=x.body;$("nSave").textContent="💾 Save changes";$("nCancel").hidden=false;$("nBody").focus();$("nTitle").scrollIntoView({behavior:"smooth",block:"center"})}
+      else if(confirm("Delete this note?")){put(all().filter(n=>n.id!==id));if(editing===id)reset();list()}});
+  }
+  function reset(){editing=null;$("nTitle").value="";$("nBody").value="";$("nSave").textContent="💾 Save note";$("nCancel").hidden=true;store.set("noteDraft",null)}
+  $("nSave").onclick=()=>{const title=$("nTitle").value.trim(),body=$("nBody").value.trim(),topic=$("nTopic").value;
+    if(!title&&!body){$("nStatus").textContent="Write something first.";return}
+    const n=all(),now=Date.now();
+    if(editing){const x=n.find(v=>v.id===editing);if(x)Object.assign(x,{title,body,topic,updated:now})}
+    else n.push({id:now.toString(36)+Math.random().toString(36).slice(2,6),title,body,topic,created:now,updated:now});
+    put(n);$("nStatus").textContent=store.get("myNotes",null)?"✓ Saved on this device":"⚠️ This browser won't save notes (private mode?). Download them instead.";reset();list();
+    const r=$("nSave").getBoundingClientRect();if(typeof confetti==="function")confetti(r.left+40,r.top+10,16)};
+  $("nCancel").onclick=()=>{reset();$("nStatus").textContent=""};
+  // keep an unsaved draft so a reload doesn't lose it
+  ["nTitle","nBody","nTopic"].forEach(id=>$(id).addEventListener("input",()=>{if(!editing)store.set("noteDraft",{title:$("nTitle").value,body:$("nBody").value,topic:$("nTopic").value})}));
+  const d=store.get("noteDraft",null);if(d){$("nTitle").value=d.title||"";$("nBody").value=d.body||"";$("nTopic").value=d.topic||""}
+  const text=()=>all().sort((a,b)=>a.created-b.created).map(x=>`## ${x.title||"Untitled"}  [${label(x.topic).replace(/^\S+\s/,"")}]\n${when(x.updated)}\n\n${x.body}\n`).join("\n");
+  $("nDl").onclick=()=>{if(!all().length){$("nStatus").textContent="No notes to download yet.";return}const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text()],{type:"text/plain"}));a.download="my-sanitation-notes.txt";document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)};
+  $("nCopy").onclick=async()=>{try{await navigator.clipboard.writeText(text());$("nStatus").textContent="✓ Copied all notes"}catch(e){$("nStatus").textContent="Couldn't copy, try Download instead."}};
+  $("nQ").oninput=list;list();
+})();
+
 /* ---------- fun UI bits ---------- */
 const CF=["#ff5d8f","#ffc93c","#13b5a5","#7b5cff","#5cbf4a","#ff8a3d","#4cb8ff"];
 function confetti(x,y,n){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;for(let i=0;i<(n||24);i++){const e=document.createElement("i"),a=Math.random()*Math.PI*2,d=40+Math.random()*(n>40?220:90);e.className="cf";e.style.cssText=`left:${x}px;top:${y}px;background:${CF[i%7]};--dx:${(Math.cos(a)*d).toFixed(0)}px;--dy:${(Math.sin(a)*d-50).toFixed(0)}px;--r:${Math.random()*900|0}deg`;document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}}
@@ -1750,7 +1807,7 @@ function drawHero(){
   h+=`<path d="M0 120 C150 70 300 90 420 110 S700 60 860 95 S1100 80 1200 100 V190 H0Z" fill="var(--hill1)" stroke="#2b2140" stroke-width="3"/>`;
   h+=`<path d="M0 150 C200 110 380 160 560 140 S900 120 1200 140 V190 H0Z" fill="var(--hill2)" stroke="#2b2140" stroke-width="3"/>`;
   [["mushroom","candy","dots",600],["rocket","sky","none",690],["castle","sunset","none",780],["beach","teal","none",870]].forEach(([sh,co,pa,x],i)=>{const c=COLOURS[co];
-    h+=`<g transform="translate(${x},${158-455*.2}) scale(.2)">${renderCubicle({shape:sh,body:c[1],trim:c[2],pattern:pa,motif:"koru",night:dark,lights:true,uid:"h"+i,noSky:true})}</g>`});
+    h+=`<g data-hero="${i}" transform="translate(${x},${158-455*.2}) scale(.2)">${renderCubicle({shape:sh,body:c[1],trim:c[2],pattern:pa,motif:"koru",night:dark,lights:true,uid:"h"+i,noSky:true})}</g>`});
   h+=`<path d="M0 178 C300 152 500 186 700 170 S1000 152 1200 166 V190 H0Z" fill="var(--hill3)" stroke="#2b2140" stroke-width="3"/>`;
   h+=`<g class="worm">`;for(let i=0;i<8;i++)h+=`<circle cx="${i*10}" cy="174" r="${i===7?7:6}" fill="#ff8fb1" stroke="#2b2140" stroke-width="2" style="animation-delay:${i*.08}s"/>`;
   h+=`<circle cx="73" cy="172" r="1.6" fill="#2b2140"/></g>`;
@@ -1807,18 +1864,18 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
     if(document.getElementById("flyspray"))return;
     const b=document.createElement("button");b.id="flyspray";b.setAttribute("aria-label","fly spray");
     b.innerHTML=`<span class="tip">spray the worm!</span><svg viewBox="0 0 62 118"><rect x="22" y="2" width="14" height="10" rx="2" fill="#333"/><rect x="34" y="5" width="10" height="4" fill="#555"/><path d="M14 22 Q14 12 29 12 Q44 12 44 22Z" fill="#c9ced3" stroke="#2b2140" stroke-width="2"/><rect x="10" y="22" width="38" height="90" rx="6" fill="#e8473f" stroke="#2b2140" stroke-width="2.5"/><rect x="10" y="44" width="38" height="40" fill="#ffd04e"/><text x="29" y="60" text-anchor="middle" style="font:800 9px Fredoka,sans-serif;fill:#2b2140">FLY</text><text x="29" y="72" text-anchor="middle" style="font:800 9px Fredoka,sans-serif;fill:#2b2140">SPRAY</text><g transform="translate(29 98)"><ellipse rx="5" ry="3.4" fill="#2b2140"/><ellipse cx="-4" cy="-3" rx="3.5" ry="2" fill="#fff" opacity=".8"/><ellipse cx="4" cy="-3" rx="3.5" ry="2" fill="#fff" opacity=".8"/></g></svg>`;
-    b.onclick=e=>{e.stopPropagation();kill()};document.body.appendChild(b);
+    b.onclick=e=>{e.stopPropagation();kill(b)};document.body.appendChild(b);heroSpray();
   }
   function restore(){
     document.querySelectorAll(".eaten,.chaos").forEach(e=>{e.classList.remove("eaten","chaos");e.style.removeProperty("--chaos");e.style.removeProperty("--cx");e.style.removeProperty("--cy")});
-    document.getElementById("flyspray")?.remove();document.getElementById("wasted")?.remove();
+    document.getElementById("flyspray")?.remove();document.getElementById("wasted")?.remove();document.getElementById("heroSpray")?.remove();document.querySelector(".tipover")?.classList.remove("tipover");
     if(el){el.remove();el=null}stage=-1;document.querySelector(".hills .worm")?.style.removeProperty("visibility");scrollTo({top:0,behavior:"smooth"});
   }
-  function kill(){
+  function kill(src){
     if(!el||el.classList.contains("dead"))return;
-    const b=document.getElementById("flyspray"),r=b.getBoundingClientRect(),sx=r.left+8,sy=r.top+8,wx=pos.x+W/2,wy=pos.y+H/2;
+    const b=src||document.getElementById("flyspray"),r=b.getBoundingClientRect(),sx=r.left+8,sy=r.top+8,wx=pos.x+W/2,wy=pos.y+H/2;
     for(let i=0;i<26;i++){const m=document.createElement("i");m.className="mist";m.style.cssText=`left:${sx}px;top:${sy}px;--dx:${(wx-sx)*(.5+Math.random()*.6)+(Math.random()*60-30)}px;--dy:${(wy-sy)*(.5+Math.random()*.6)+(Math.random()*60-30)}px;animation-delay:${i*14}ms`;document.body.appendChild(m);setTimeout(()=>m.remove(),1200)}
-    b.remove();cancelAnimationFrame(raf);
+    document.getElementById("flyspray")?.remove();document.getElementById("heroSpray")?.remove();cancelAnimationFrame(raf);
     setTimeout(()=>{el.style.transition="";el.classList.add("dead")},350);
     setTimeout(()=>{
       const w=document.createElement("div");w.id="wasted";
@@ -1831,6 +1888,14 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
       setTimeout(restore,5300);
     },1100);
   }
+  // a second spray can bursts out of the hills and knocks the rocket loo over
+  function heroSpray(){
+    const hs=$("hills");if(!hs||hs.querySelector("#heroSpray"))return;
+    const rocket=hs.querySelector('g[data-hero="1"]');
+    hs.insertAdjacentHTML("beforeend",`<g id="heroSpray" style="cursor:pointer"><g class="rise"><rect x="752" y="118" width="26" height="54" rx="4" fill="#e8473f" stroke="#2b2140" stroke-width="2.5"/><rect x="752" y="132" width="26" height="22" fill="#ffd04e"/><text x="765" y="147" text-anchor="middle" style="font:800 7px Fredoka,sans-serif;fill:#2b2140">FLY</text><path d="M754 118 q11 -12 22 0z" fill="#c9ced3" stroke="#2b2140" stroke-width="2"/><rect x="760" y="100" width="10" height="8" rx="2" fill="#333"/></g>${[...Array(9)].map((_,i)=>`<circle class="dirt" cx="${750+i*4}" cy="172" r="${3+i%3}" fill="#6b4a2f" style="--dx:${(i-4)*9}px"/>`).join("")}</g>`);
+    const g=hs.querySelector("#heroSpray");g.onclick=e=>{e.stopPropagation();kill(g)};
+    if(rocket){let w=rocket.parentNode;if(!w.classList.contains("tipwrap")){w=document.createElementNS("http://www.w3.org/2000/svg","g");w.setAttribute("class","tipwrap");rocket.parentNode.insertBefore(w,rocket);w.appendChild(rocket)}setTimeout(()=>w.classList.add("tipover"),550)}
+  }
   function puke(){
     const mx=pos.x+(face>0?W*.85:W*.15),my=pos.y+H*.42,cols=["#7cc05a","#b5d84a","#e9d44c","#c8a45a","#ff8fb1","#ffd04e","#13b5a5"];
     for(let i=0;i<160;i++){const p=document.createElement("i"),a=(face>0?-.6:Math.PI-.6)+Math.random()*1.2*(face>0?1:-1),v=80+Math.random()*420,r=4+Math.random()*9;
@@ -1839,7 +1904,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
     const back=[...document.querySelectorAll(".eaten,.chaos")];
     back.forEach((e,i)=>setTimeout(()=>{e.classList.remove("eaten","chaos");e.style.removeProperty("--chaos");e.style.removeProperty("--cx");e.style.removeProperty("--cy")},300+Math.min(i*25,1200)));
     setTimeout(()=>{cancelAnimationFrame(raf);el.style.transition="transform .5s ease-in";el.style.transform="scale(0) rotate(360deg)";
-      setTimeout(()=>{el.remove();el=null;stage=-1;document.getElementById("flyspray")?.remove();document.querySelector(".hills .worm")?.style.removeProperty("visibility");scrollTo({top:0,behavior:"smooth"});burst(innerWidth/2,120,90)},520)},1500);
+      setTimeout(()=>{el.remove();el=null;stage=-1;document.getElementById("flyspray")?.remove();document.getElementById("heroSpray")?.remove();document.querySelector(".tipover")?.classList.remove("tipover");document.querySelector(".hills .worm")?.style.removeProperty("visibility");scrollTo({top:0,behavior:"smooth"});burst(innerWidth/2,120,90)},520)},1500);
   }
   function click(e){
     e.stopPropagation();
@@ -1853,7 +1918,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
       return}
     render();
     if(stage===2){meal=null;tgt={...pos}}
-    if(stage===3){document.getElementById("flyspray")?.remove();puke()}
+    if(stage===3){document.getElementById("flyspray")?.remove();document.getElementById("heroSpray")?.remove();puke()}
   }
   function hook(){const w=document.querySelector(".hills .worm");if(!w)return;w.setAttribute("role","button");w.setAttribute("tabindex","0");w.setAttribute("aria-label","a worm");
     w.onclick=click;w.onkeydown=k=>{if(k.key==="Enter"||k.key===" "){k.preventDefault();click(k)}};
