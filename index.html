@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="build" content="20261021174456">
+<meta name="build" content="20261021174922">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <title>SHITCREW fucks your burn</title>
@@ -146,7 +146,7 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
 /* hidden worm game */
 .hero-in{pointer-events:none}.hero-in *{pointer-events:auto}
 .hills .worm{cursor:pointer}
-#bigworm{position:fixed;z-index:98;width:150px;height:120px;left:0;top:0;cursor:pointer;touch-action:manipulation;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.35));transition:transform .2s}
+#bigworm{position:fixed;z-index:98;width:150px;height:120px;left:0;top:0;cursor:pointer;touch-action:manipulation;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.35));transition:transform .2s,opacity .4s}
 #bigworm svg{width:100%;height:100%;overflow:visible}
 #bigworm.grow{animation:wgrow .9s cubic-bezier(.3,1.6,.5,1)}
 @keyframes wgrow{from{transform:scale(.1) rotate(-40deg)}}
@@ -237,6 +237,11 @@ html.calm .stat{background:var(--soft)!important;color:var(--ink)!important}
 html.calm h2 span.hl{background:none;border-bottom:4px solid var(--sun)}
 html.calm h1 .wob{text-shadow:none}
 html.calm .cf{display:none}
+.hills g.loowrap{transform-box:fill-box;transform-origin:50% 100%}
+.hills g.loowrap.looshake{animation:looshake .18s ease-in-out infinite alternate}
+@keyframes looshake{from{transform:rotate(-4deg) translateX(-2px)}to{transform:rotate(4deg) translateX(2px)}}
+.loosmoke{position:fixed;z-index:96;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(140,215,70,.95),rgba(80,165,45,.6) 55%,transparent 72%);filter:blur(1px);animation:loosmoke 2.4s ease-out forwards}
+@keyframes loosmoke{from{transform:scale(.4);opacity:.9}to{transform:translate(var(--dx),var(--dy)) scale(2.2);opacity:0}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{nav,.noprint,.hero .hills,.bunting{display:none}section{display:block!important;page-break-after:always}body{background:#fff}.card,.stat,.issue,.mo{box-shadow:none}}
 </style>
@@ -1950,9 +1955,32 @@ function drawHero(){
 })();
 drawHero();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!document.documentElement.dataset.theme)drawHero()});
+/* ---------- banner loos the worm and Larry can visit (shake if both are in, green smoke on the way out) ---------- */
+window.__loo=(function(){
+  const occ={},pending={};
+  const gOf=i=>document.querySelector(`#hills g[data-hero="${i}"]`);
+  function box(i){const g=gOf(i);if(!g)return null;const r=g.getBoundingClientRect();if(!r.width||r.bottom<60||r.top>innerHeight-20||r.right<0||r.left>innerWidth)return null;return {g,r}}
+  function wrapOf(g){let w=g.parentNode;if(w&&w.classList&&w.classList.contains("tipwrap"))g=w,w=g.parentNode;
+    if(w&&w.classList&&w.classList.contains("loowrap"))return w;
+    const n=document.createElementNS("http://www.w3.org/2000/svg","g");n.setAttribute("class","loowrap");g.parentNode.insertBefore(n,g);n.appendChild(g);return n}
+  function pick(){const busy=Object.keys(occ).filter(k=>occ[k].size&&box(k));if(busy.length&&Math.random()<.7)return +busy[0];
+    const ids=[...document.querySelectorAll("#hills g[data-hero]")].map(g=>+g.dataset.hero).filter(i=>box(i)&&!document.querySelector(`#hills g[data-hero="${i}"]`).closest(".tipover"));
+    return ids.length?ids[Math.random()*ids.length|0]:null}
+  function door(i){const b=box(i);return b?{x:b.r.left+b.r.width*.55,y:b.r.top+b.r.height*.72}:null}
+  function smoke(i,big){const g=gOf(i);if(!g||document.documentElement.classList.contains("calm"))return;const r=g.getBoundingClientRect(),n=big?34:12;
+    for(let k=0;k<n;k++){const p=document.createElement("i"),sz=(big?18:12)+Math.random()*(big?30:14);p.className="loosmoke";
+      p.style.cssText=`left:${r.left+r.width*(.2+Math.random()*.6)}px;top:${r.top+r.height*(.15+Math.random()*.3)}px;width:${sz}px;height:${sz}px;--dx:${(Math.random()*2-1)*(big?90:40)|0}px;--dy:${-(big?120:70)-Math.random()*80|0}px;animation-delay:${k*(big?45:60)}ms`;
+      document.body.appendChild(p);setTimeout(()=>p.remove(),2600+k*60)}}
+  function expect(i,who){(pending[i]=pending[i]||new Set).add(who)}
+  function waiting(i){return !!(pending[i]&&pending[i].size)}
+  function enter(i,who){pending[i]&&pending[i].delete(who);(occ[i]=occ[i]||new Set).add(who);const g=gOf(i);if(g&&occ[i].size>=2)wrapOf(g).classList.add("looshake")}
+  function leave(i,who){const s=occ[i];if(!s||!s.has(who))return;const was=s.size>=2;s.delete(who);const g=gOf(i);if(g&&s.size<2)wrapOf(g).classList.remove("looshake");smoke(i,was)}
+  return {pick,door,enter,leave,expect,waiting,occ};
+})();
 /* ---------- hidden worm game ---------- */
 (function(){
-  let stage=-1,el=null,pos={x:0,y:0},tgt={x:0,y:0},face=1,raf=0,lastChaos=0,meal=null,mealT=0;
+  let stage=-1,el=null,pos={x:0,y:0},tgt={x:0,y:0},face=1,raf=0,lastChaos=0,meal=null,mealT=0,inLoo=null,looT=0,visiting=null;
+  function outOfLoo(){if(inLoo!==null){window.__loo.leave(inLoo,"worm");inLoo=null;if(el){el.style.opacity="";el.style.pointerEvents=""}}visiting=null}
   const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const W=150,H=120,vw=()=>innerWidth,vh=()=>innerHeight;
   function svg(){
@@ -1983,7 +2011,10 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!do
   function pick(){tgt={x:Math.random()*(vw()-W),y:60+Math.random()*(vh()-H-60)}}
   const chaosPool=()=>[...document.querySelectorAll("section.on .card,section.on .stat,section.on .step,section.on h2,nav button,.hero h1,.hero .kicker,.chipz span,section.on .issue,section.on .mo")].filter(e=>{const r=e.getBoundingClientRect();return r.bottom>0&&r.top<vh()&&!e.classList.contains("eaten")});
   function tick(t){
+    if(inLoo!==null){if(t>looT&&!window.__loo.waiting(inLoo)){outOfLoo();pick()}raf=requestAnimationFrame(tick);return}
     const dx=tgt.x-pos.x,dy=tgt.y-pos.y,d=Math.hypot(dx,dy),sp=stage===1?9:stage===2?6:5;
+    if(d<sp&&visiting!==null){inLoo=visiting;visiting=null;el.style.opacity="0";el.style.pointerEvents="none";window.__loo.enter(inLoo,"worm");looT=t+3500+Math.random()*3500;raf=requestAnimationFrame(tick);return}
+    if(d<sp&&stage===0&&window.__loo&&Math.random()<.2){const i=__loo.pick(),dr=i!==null&&__loo.door(i);if(dr){visiting=i;tgt={x:Math.max(0,Math.min(vw()-W,dr.x-W*.55)),y:Math.max(0,Math.min(vh()-H,dr.y-H*.6))};raf=requestAnimationFrame(tick);return}}
     if(d<sp){if(stage===2&&meal){meal.classList.add("eaten");burst(pos.x+W*.8,pos.y+H*.3,10);meal=null}
       if(stage===2){const pool=chaosPool();meal=pool.sort((a,b)=>dist(a)-dist(b))[0]||null;if(meal){const r=meal.getBoundingClientRect();tgt={x:Math.min(vw()-W,Math.max(0,r.left+r.width/2-W*.8)),y:Math.min(vh()-H,Math.max(0,r.top+r.height/2-H*.3))}}else pick()}else pick()}
     else{pos.x+=dx/d*sp;pos.y+=dy/d*sp;const f=dx<0?-1:1;if(f!==face){face=f;el.style.transform=`scaleX(${face})`}}
@@ -2002,12 +2033,14 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!do
     b.onclick=e=>{e.stopPropagation();kill(b)};document.body.appendChild(b);heroSpray();
   }
   function restore(quiet){
+    outOfLoo();
     document.querySelectorAll(".eaten,.chaos").forEach(e=>{e.classList.remove("eaten","chaos");e.style.removeProperty("--chaos");e.style.removeProperty("--cx");e.style.removeProperty("--cy")});
     document.getElementById("flyspray")?.remove();document.getElementById("wasted")?.remove();document.getElementById("heroSpray")?.remove();document.querySelector(".tipover")?.classList.remove("tipover");
     if(el){el.remove();el=null}stage=-1;document.querySelector(".hills .worm")?.style.removeProperty("visibility");if(!quiet)scrollTo({top:0,behavior:"smooth"});
   }
   function kill(src){
     if(!el||el.classList.contains("dead"))return;
+    outOfLoo();el.style.opacity="";
     const b=src||document.getElementById("flyspray"),r=b.getBoundingClientRect(),sx=r.left+8,sy=r.top+8,wx=pos.x+W/2,wy=pos.y+H/2;
     for(let i=0;i<26;i++){const m=document.createElement("i");m.className="mist";m.style.cssText=`left:${sx}px;top:${sy}px;--dx:${(wx-sx)*(.5+Math.random()*.6)+(Math.random()*60-30)}px;--dy:${(wy-sy)*(.5+Math.random()*.6)+(Math.random()*60-30)}px;animation-delay:${i*14}ms`;document.body.appendChild(m);setTimeout(()=>m.remove(),1200)}
     document.getElementById("flyspray")?.remove();document.getElementById("heroSpray")?.remove();cancelAnimationFrame(raf);
@@ -2060,7 +2093,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!do
     if(!w.querySelector("rect.hit"))w.insertAdjacentHTML("afterbegin",`<rect class="hit" x="-12" y="158" width="100" height="32" fill="transparent"/>`);
     if(stage>=0)w.style.visibility="hidden"}
   hook();
-  window.__worm={get el(){return el},get pos(){return pos},W,H,halt(){cancelAnimationFrame(raf)},reset:restore};
+  window.__worm={get el(){return el},get pos(){return pos},get inLoo(){return inLoo},W,H,halt(){cancelAnimationFrame(raf)},reset:restore,out:outOfLoo};
   document.addEventListener("herodrawn",()=>setTimeout(hook,0));
 })();
 /* ---------- stick insect: pops up, dances at the sun, eats the worm and fixes the damage ---------- */
@@ -2089,7 +2122,10 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!do
   function move(x,y,cb){if(!el)return;const cx=parseFloat(el.style.left)||0,cy=parseFloat(el.style.top)||0,d=Math.hypot(x-cx,y-cy),t=Math.max(.6,d/150);
     el.style.transition=`left ${t}s linear,top ${t}s linear,opacity .5s`;el.style.transform=x<cx?"scaleX(-1)":"";el.style.left=x+"px";el.style.top=y+"px";
     clearTimeout(moveT);moveT=setTimeout(()=>{if(el){el.style.transform="";el.style.transition=""}cb&&cb()},t*1000)}
-  function wander(n){if(!el||busy||booming)return;if(n<=0)return leave();
+  function wander(n,visit){if(!el||busy||booming)return;if(n<=0)return leave();
+    if(window.__loo&&(visit||Math.random()<.35)){const i=__loo.pick(),dr=i!==null&&__loo.door(i);
+      if(dr){__loo.expect(i,"larry");return move(Math.max(0,Math.min(innerWidth-W,dr.x-W*.5)),Math.max(0,Math.min(innerHeight-H,dr.y-H*.75)),()=>{if(!el)return;const e=el;e.style.opacity="0";e.style.pointerEvents="none";__loo.enter(i,"larry");
+        clearTimeout(leaveT);leaveT=setTimeout(()=>{__loo.leave(i,"larry");if(el!==e)return;e.style.opacity="";e.style.pointerEvents="";wander(n-1)},3500+Math.random()*3500)})}}
     const x=Math.random()*(innerWidth-W),y=Math.min(innerHeight-H-4,Math.max(70,innerHeight*(.4+Math.random()*.55)-H/2));
     move(x,y,()=>{clearTimeout(leaveT);leaveT=setTimeout(()=>wander(n-1),1800+Math.random()*2200)})}
   function appear(force){
@@ -2100,7 +2136,8 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!do
     el.onclick=click;el.onkeydown=k=>{if(k.key==="Enter"||k.key===" "){k.preventDefault();click(k)}};
     document.body.appendChild(el);
     const w=window.__worm;
-    if(w&&w.el&&!w.el.classList.contains("dead"))setTimeout(eatWorm,900);else{clearTimeout(leaveT);leaveT=setTimeout(()=>wander(3+Math.random()*3|0),1600)}
+    if(w&&w.el&&!w.el.classList.contains("dead")&&w.inLoo!==null){clearTimeout(leaveT);leaveT=setTimeout(()=>wander(3,true),1200)}
+    else if(w&&w.el&&!w.el.classList.contains("dead"))setTimeout(eatWorm,900);else{clearTimeout(leaveT);leaveT=setTimeout(()=>wander(3+Math.random()*3|0),1600)}
   }
   function stay(ms){clearTimeout(leaveT);leaveT=setTimeout(leave,ms)}
   function leave(){if(!el||busy)return;const e=el,cx=parseFloat(e.style.left)||0,out=cx<innerWidth/2?-W-20:innerWidth+20;move(out,parseFloat(e.style.top)||innerHeight-H,()=>{e.remove()});setTimeout(()=>{if(e.isConnected)e.remove()},9000);el=null;schedule()}
@@ -2112,7 +2149,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!do
   }
   function eatWorm(){
     const w=window.__worm;if(!el||!w||!w.el)return wander(3);
-    busy=true;w.halt();clearTimeout(moveT);clearTimeout(leaveT);el.style.transform="";el.style.transition="";
+    busy=true;w.out&&w.out();w.halt();clearTimeout(moveT);clearTimeout(leaveT);el.style.transform="";el.style.transition="";
     el.style.left=Math.max(0,Math.min(innerWidth-W,w.pos.x+w.W*.6))+"px";el.style.top=Math.max(0,Math.min(innerHeight-H,w.pos.y-30))+"px";
     setTimeout(()=>{if(!w.el){busy=false;return wander(3)}
       w.el.style.transition="transform .6s ease-in,opacity .6s";w.el.style.transform="scale(.05) rotate(-90deg)";w.el.style.opacity="0";
