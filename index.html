@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="build" content="20261021175259">
+<meta name="build" content="20261021180254">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <title>SHITCREW fucks your burn</title>
@@ -242,7 +242,7 @@ html.calm .cf{display:none}
 @keyframes looshake{from{transform:rotate(-4deg) translateX(-2px)}to{transform:rotate(4deg) translateX(2px)}}
 .loosmoke{position:fixed;z-index:96;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(140,215,70,.95),rgba(80,165,45,.6) 55%,transparent 72%);filter:blur(1px);animation:loosmoke 2.4s ease-out forwards}
 @keyframes loosmoke{from{transform:scale(.4);opacity:.9}to{transform:translate(var(--dx),var(--dy)) scale(2.2);opacity:0}}
-.hills .tally .scratch{stroke-dasharray:60;stroke-dashoffset:60;animation:scratch .35s ease-out forwards}
+.tally .scratch{stroke-dasharray:60;stroke-dashoffset:60;animation:scratch .35s ease-out forwards}
 @keyframes scratch{to{stroke-dashoffset:0}}
 #chook{position:fixed;z-index:99;width:120px;height:124px;cursor:pointer;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.35))}
 #chook svg{width:100%;height:100%;overflow:visible}
@@ -1871,8 +1871,8 @@ document.querySelectorAll(".pager [data-go]").forEach(b=>b.onclick=()=>{showTab(
   function bubble(host,text,cls){const b=document.createElement("div");b.className="speech "+(cls||"");b.textContent=text;host.appendChild(b);return b}
   function walk(e,x,y,ms,cb){const cx=parseFloat(e.style.left)||0;e.querySelector("svg").style.transform=x<cx?"scaleX(-1)":"";e.style.transition=`left ${ms}ms linear,top ${ms}ms linear`;e.style.left=x+"px";e.style.top=y+"px";setTimeout(cb,ms)}
   function peck(e,cb){e.classList.add("pecking");setTimeout(()=>{e.classList.remove("pecking");cb&&cb()},900)}
-  function chicken(){
-    if(ch||calm())return;
+  function chicken(force){
+    if(ch||(calm()&&force!==true))return;
     ch=document.createElement("div");ch.id="chook";ch.setAttribute("role","button");ch.setAttribute("aria-label","a chicken");ch.tabIndex=0;ch.innerHTML=CHICK;
     ch.style.left=(innerWidth+20)+"px";ch.style.top=(innerHeight-140)+"px";document.body.appendChild(ch);
     const say=bubble(ch,"Fuck your burn!");
@@ -1898,7 +1898,9 @@ document.querySelectorAll(".pager [data-go]").forEach(b=>b.onclick=()=>{showTab(
     setTimeout(()=>{e.style.transition="left 2.2s cubic-bezier(.4,0,.8,.6)";e.style.left=(innerWidth+40)+"px";setTimeout(()=>e.remove(),2300)},5200);
   }
   document.addEventListener("tally",ev=>{if(ev.detail>=50&&!done){done=true;chicken()}});
-  window.__chook=chicken;
+  window.__chook=()=>chicken(true);
+  // secret shortcut: click the gingerbread loo
+  document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest('#village g[data-s="ginger"],#village g[data-s="mm_ginger"],#front');if(!t)return;if(t.id==="front"&&!/ginger/.test(shape))return;setTimeout(()=>chicken(true),300)},true);
 })();
 /* ---------- comfort: dark mode (also the sun), calm mode, text size, quick summaries ---------- */
 (function(){
@@ -2011,24 +2013,26 @@ function drawHero(){
 })();
 drawHero();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!document.documentElement.dataset.theme)drawHero()});
-/* ---------- tally marks: every click scratches a mark on a banner loo door (this visit only, never saved) ---------- */
+/* ---------- tally marks: every click anywhere scratches a mark on every cubicle door (this visit only, never saved) ---------- */
 (function(){
-  let n=0,last=0;const PER=75;
-  function draw(anim){
-    document.querySelectorAll("#hills .tally").forEach(e=>e.remove());
-    let left=n,di=0;
-    while(left>0){const g=document.querySelector(`#hills g[data-hero="${di}"]`);if(!g)break;const cnt=Math.min(left,PER);
-      let s=`<g class="tally"><title>${n} click${n===1?"":"s"} this visit</title>`;
-      for(let k=0;k<cnt;k++){const grp=k/5|0,m=k%5,gx=141+(grp%3)*38,gy=180+(grp/3|0)*56;
-        const d=m<4?`M${gx+m*9} ${gy} l2 44`:`M${gx-5} ${gy+36} L${gx+33} ${gy+6}`,isNew=anim&&left===cnt&&k===cnt-1;
-        s+=`<path d="${d}" stroke="#2b2140" stroke-width="13" stroke-linecap="round" opacity=".55"${isNew?' class="scratch"':''}/><path d="${d}" stroke="#fff6dc" stroke-width="8" stroke-linecap="round"${isNew?' class="scratch"':''}/>`}
-      g.insertAdjacentHTML("beforeend",s+`</g>`);left-=cnt;di++}
+  let n=0,last=0;const MAX=75;
+  function marks(anim){
+    const cnt=Math.min(n,MAX);let s=`<g class="tally"><title>${n} click${n===1?"":"s"} this visit</title>`;
+    for(let k=0;k<cnt;k++){const grp=k/5|0,m=k%5,gx=141+(grp%3)*38,gy=180+(grp/3|0)*56;
+      const d=m<4?`M${gx+m*9} ${gy} l2 44`:`M${gx-5} ${gy+36} L${gx+33} ${gy+6}`,c=anim&&k===cnt-1&&n<=MAX?' class="scratch"':"";
+      s+=`<path d="${d}" stroke="#2b2140" stroke-width="13" stroke-linecap="round" opacity=".55"${c}/><path d="${d}" stroke="#fff6dc" stroke-width="8" stroke-linecap="round"${c}/>`}
+    if(n>MAX)s+=`<text x="193" y="452" text-anchor="middle" style="font:800 26px Fredoka,sans-serif;fill:#fff6dc;stroke:#2b2140;stroke-width:4px;paint-order:stroke">${n}</text>`;
+    return s+`</g>`;
   }
-  document.addEventListener("click",e=>{
-    const t=e.target.closest&&e.target.closest('button,a,input,select,summary,label,[role="button"],.sw,g[data-s]');
-    if(!t)return;const now=performance.now();if(now-last<40)return;last=now;n++;draw(true);document.dispatchEvent(new CustomEvent("tally",{detail:n}));
-  },true);
+  function draw(anim){
+    document.querySelectorAll(".tally").forEach(e=>e.remove());if(!n)return;
+    const m=marks(anim),fr=$("front");
+    document.querySelectorAll("#hills g[data-hero], #village g[data-s]").forEach(g=>g.insertAdjacentHTML("beforeend",m));
+    if(fr)fr.insertAdjacentHTML("beforeend",m);
+  }
+  document.addEventListener("click",()=>{const now=performance.now();if(now-last<40)return;last=now;n++;draw(true);document.dispatchEvent(new CustomEvent("tally",{detail:n}))},true);
   document.addEventListener("herodrawn",()=>setTimeout(()=>draw(false),0));
+  const dc=drawCubicle;drawCubicle=function(){dc.apply(this,arguments);draw(false)};
   window.__tally=()=>n;
 })();
 /* ---------- banner loos the worm and Larry can visit (shake if both are in, green smoke on the way out) ---------- */
