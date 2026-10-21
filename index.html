@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="build" content="20261021181312">
+<meta name="build" content="20261021182110">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <title>SHITCREW fucks your burn</title>
@@ -282,6 +282,19 @@ html.calm .cf{display:none}
 .marchant{position:fixed;z-index:96;width:14px;height:10px;margin:-5px 0 0 -7px;pointer-events:none}
 .marchant svg{width:100%;height:100%;display:block}
 #newver{position:fixed;z-index:120;left:50%;transform:translateX(-50%);top:12px;font-size:15px}
+#stick .footpoo{position:absolute;left:52px;bottom:-4px;font-size:20px;pointer-events:none;animation:footp .28s ease-in-out infinite alternate}
+@keyframes footp{to{transform:translateY(-3px) rotate(-10deg)}}
+.droppoo{position:fixed;z-index:96;font-size:22px;pointer-events:none;transition:top .6s cubic-bezier(.5,0,.7,1.4),transform .6s,opacity .5s}
+.droppoo.eaten-poo{transform:scale(.1) translateY(20px);opacity:0}
+#ants .root{fill:none;stroke:#e8d6a8;stroke-width:2.6;stroke-linecap:round;opacity:.85;stroke-dasharray:400;stroke-dashoffset:400;animation:rootgrow 4s ease-out forwards}
+#ants .root.thin{stroke-width:1.3;opacity:.7;animation-duration:5s}
+@keyframes rootgrow{to{stroke-dashoffset:0}}
+.hills .sprout .sgrow{transform-box:fill-box;transform-origin:50% 100%;animation:sprout 2.5s 2s ease-out both}
+@keyframes sprout{from{transform:scale(0)}}
+#rubber{position:fixed;z-index:97;width:90px;height:112px;cursor:pointer;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.35))}
+#rubber svg{width:100%;height:100%}
+#rubber .rc{animation:chbob .3s ease-in-out infinite alternate}
+#rubber .cream{display:none}#rubber.creamed .cream{display:inline}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{nav,.noprint,.hero .hills,.bunting{display:none}section{display:block!important;page-break-after:always}body{background:#fff}.card,.stat,.issue,.mo{box-shadow:none}}
 </style>
@@ -577,7 +590,8 @@ Plan on <b>at least one accessible cubicle per toilet bank</b> (more if you know
 <label class="f">Buckets washed per day<input id="wB" type="number" min="1" value="4"></label>
 <label class="f">Litres per wash (Kärcher ≈ 6–8 L/min)<input id="wL" type="number" step="0.5" min="1" value="5"></label>
 <label class="f">Festival days<input id="wD" type="number" min="1" value="30"></label>
-<label class="f">Getting waste to the IBC<select id="wMode"><option value="top">Plan 2: drum mounted on top of the IBC</option><option value="pump" selected>Flat ground: catchment tub + pump</option><option value="gravity">Slope: gravity straight to the IBC</option></select></label>
+<label class="f">Pick a plan<select id="wMode"><optgroup label="No pump (simplest)"><option value="top" selected>Plan 2: wash station on top of the IBC</option><option value="tip">Plan 5: tip &amp; rinse straight into the IBC</option><option value="bay">Plan 4: wash over the holding bay (no IBC)</option><option value="gravity">Plan 3: on a slope, gravity down to the IBC</option></optgroup><optgroup label="Optional"><option value="pump">Pump: catchment tub + float pump (shavings can block it)</option></optgroup></select></label>
+<label class="f">Water for the Kärcher<select id="wWater"><option value="mains" selected>Running water (hose from a tap)</option><option value="tank">Clean-water tank (suction kit)</option></select></label>
 <label class="f">Ground drop, drum → IBC site (mm)<input id="wDrop" type="number" step="50" min="0" value="1000"></label>
 <label class="f">Drain pipe run (m)<input id="wRun" type="number" step="0.5" min="0.5" value="3"></label>
 <label class="f">Waste IBC size (L)<select id="wI"><option value="1000" selected>1000 L</option><option value="640">640 L</option></select></label>
@@ -597,7 +611,7 @@ Plan on <b>at least one accessible cubicle per toilet bank</b> (more if you know
 </ul></div>
 <div class="card"><h3 style="margin-top:0">Plumbing the Kärcher</h3>
 <ul style="margin:0;padding-left:18px">
-<li><b>Water in:</b> there's no mains on a Kiwiburn paddock, so feed it from a <b>clean-water IBC</b> raised on a pallet. Kärcher K-series machines can draw from a tank using their <b>suction hose kit with filter</b>. The tank being higher helps the pump prime.</li>
+<li><b>Water in (running water):</b> run a garden hose from the tap to the Kärcher's inlet, with a <b>dual-check backflow valve</b> at the tap so wash water can never siphon back into the supply, and an inline filter. Turn the tap fully on: the Kärcher needs a steady flow. <b>No running water there?</b> Feed it from a <b>clean-water IBC</b> raised on a pallet instead. Kärcher K-series machines can draw from a tank using their <b>suction hose kit with filter</b>. The tank being higher helps the pump prime.</li>
 <li><b>High pressure out:</b> Kärcher gun → (zip-tied open) → <b>Kärcher-to-M22 or ¼" quick-connect adaptor</b> → high-pressure ball valve on the pedal → short extension → rotating nozzle. Buy the adaptor to match <i>your</i> model's gun connector (K-series guns use Kärcher's own click fitting).</li>
 <li><b>Power:</b> run it through an <b>RCD</b>, and put the machine on a shelf under a little roof, away from the drum and above any splash. Keep the lead off the wet ground.</li>
 <li><b>Hot water helps</b> but isn't needed. A squirt of biodegradable cleaner in the bucket before it goes in loosens stuck sawdust.</li>
@@ -606,7 +620,7 @@ Plan on <b>at least one accessible cubicle per toilet bank</b> (more if you know
 <ul style="margin:0;padding-left:18px">
 <li>A 1000 L IBC (ex-food or water only, never chemicals) on a <b>level, firm base</b>. Its <b>top inlet</b> must sit <b>below the drum drain</b>, with at least a 1:20 fall on the 100 mm pipe. The drum drains at about 350 mm and an IBC stands about 1160 mm tall, so on flat ground it <i>won't</i> drain. Choose one: <b>(1)</b> put the station at the top of a bank so the IBC sits about 1 m lower (best: the bottom valve stays easy to reach); <b>(2)</b> sit the IBC in a pit about 1 m deep (ask the farm, and backfill afterwards: Leave No Trace); or <b>(3)</b> use a smaller, low tank. The calculator checks the height.</li>
 <li>If the IBC sits in a pit, the truck can just <b>suck out through the lid</b> with its wand, so the bottom valve isn't needed.</li>
-<li><b>(4) Flat ground? Use a catchment tub and pump.</b> This is the easiest option when there's no slope. The drum drains a short way into a <b>low catchment tub</b> (a 90 L mortar tub or a cut-down drum about 250–300 mm tall) sitting on the ground under the drum outlet. A <b>submersible dirty-water pump with a float switch</b> sits in the tub: it switches on when the tub fills and lifts the waste up a hose into the IBC lid, which can sit on the <b>same ground</b>. There's no handling and no lifting.</li>
+<li><b>Optional pump (last resort).</b> <b>⚠️ Wood shavings and sawdust will block most pumps and small hoses</b>, so only use this if none of the no-pump plans fit. If you do, pick a <b>cutter/grinder (macerator) sewage pump</b>, keep a coarse basket screen you can lift out and empty, and keep a spare pump on site. <b>Flat ground? Use a catchment tub and pump.</b> This is the easiest option when there's no slope. The drum drains a short way into a <b>low catchment tub</b> (a 90 L mortar tub or a cut-down drum about 250–300 mm tall) sitting on the ground under the drum outlet. A <b>submersible dirty-water pump with a float switch</b> sits in the tub: it switches on when the tub fills and lifts the waste up a hose into the IBC lid, which can sit on the <b>same ground</b>. There's no handling and no lifting.</li>
 <li><b>Pump choice:</b> it must be a dirty-water or effluent pump rated for <b>solids of at least 25–35 mm</b> (vortex impeller), never a clear-water pump. Fit a <b>non-return valve</b> on the outlet so the hose doesn't drain back. Use 40–50 mm hose, keep the run short, and clip the outlet into the IBC lid so it can't jump out. Power it from the same RCD as the Kärcher.</li>
 <li>Put a lid with a hole for the pipe and hose on the tub, check the float isn't snagged each morning, and keep a <b>high-level mark</b> on the IBC, because the pump will happily keep filling a full IBC.</li>
 <li><b>Inlet:</b> a 100 mm hole cut in the top lid with a tank fitting. Add a <b>vent</b> pipe with fly mesh, and screw the lid tight (flies and smell).</li>
@@ -615,6 +629,23 @@ Plan on <b>at least one accessible cubicle per toilet bank</b> (more if you know
 <li>Mark a fill scale on the side every 100 L with a paint pen, and check it every morning.</li>
 </ul></div>
 </div>
+
+<div class="card tip"><h3 style="margin-top:0">Plan 5: tip &amp; rinse straight into the IBC (the simplest)</h3>
+<p style="margin-top:0">This plan skips the holding bay for the wash station altogether. The bucket goes in a <b>lever tipping cradle</b> on the IBC, gets tipped upside down over a <b>wide funnel</b> in the IBC's top opening (so the poo, sawdust and all fall straight in), and is <b>rinsed while it's still upside down</b>, with a nozzle pointing up out of the funnel. Nobody touches the inside of a bucket, and you need no pump, no pipes, no slope and no platform.</p>
+<ul style="margin:0;padding-left:18px">
+<li><b>The cradle:</b> a steel ring that clamps the bucket, on two flat-bar arms pivoting on a bolt through the IBC's top frame. Load it at waist height beside the IBC, pull the lever, and the bucket swings up and over, mouth-down onto the funnel's rubber skirt. Any local engineering shop can weld one from flat bar in an afternoon.</li>
+<li><b>The funnel:</b> 300–400 mm wide, sitting in the 150 mm top opening, with a rubber skirt so splashes stay in. The rotating nozzle comes up through the middle of it.</li>
+<li><b>⚠️ The trade-off:</b> everything in the bucket goes to the <b>sucker truck</b>, not to the worm farm. The IBC fills much faster (about 30 L per bucket, see the calculator), so you'll book more pump-outs. It's ideal if the compost side is too much work this year, or for overflow on the busiest days.</li>
+<li>As with every plan: keep the cradle closed while you blast, and wear a face shield and gloves.</li>
+</ul></div>
+
+<div class="card tip"><h3 style="margin-top:0">Plan 4: wash over the holding bay (no IBC, no pump, no truck)</h3>
+<p style="margin-top:0">The buckets are emptied into the holding bay anyway, so you can wash them right there. Set a <b>hatch in the holding bay's lid</b> with a bucket grid and a hinged splash hood (a cut-down drum). The rotating nozzle comes in through the bay wall and points up into the bucket. Rinse water and residue drop straight onto the sawdust and straw in the bay, so <b>there's no IBC, no truck and no pump.</b></p>
+<ul style="margin:0;padding-left:18px">
+<li>The bay's lid is about 1 m high, so the bucket sits at a comfortable height with no platform.</li>
+<li>Rinse water makes the bay wetter, so add <b>extra sawdust or straw</b> after each wash session (the calculator gives an amount) and make sure the bay's <b>liner and leachate tap</b> are working.</li>
+<li>Keep the hood shut while blasting, because the bay is full of fresh material.</li>
+</ul></div>
 
 <div class="card tip"><h3 style="margin-top:0">Plan 2: wash station on top of the IBC</h3>
 <p style="margin-top:0">This is the simplest plumbing of all. The washer drum sits <b>straight on top of the waste IBC</b> and drains down through the IBC's own <b>150 mm top opening</b>: no pipe, no pump and no slope needed. Choose it in the calculator's "Getting waste to the IBC" box to see the drawing.</p>
@@ -1586,7 +1617,7 @@ function drawTowing(){
 }
 /* ---------- bucket wash station ---------- */
 function drawWash(){
-  const mode=$("wMode").value,pump=mode==="pump",top=mode==="top",S=.2,g=330,g2=pump||top?g:g+Math.min(140,Math.max(0,num("wDrop"))*S),o=[];
+  const mode=$("wMode").value,pump=mode==="pump",top=mode==="top",tip=mode==="tip",bay=mode==="bay",mains=$("wWater").value==="mains",S=.2,g=330,g2=pump||top||tip||bay?g:g+Math.min(140,Math.max(0,num("wDrop"))*S),o=[];
   const L=(x1,y1,x2,y2,t,a)=>`<path class="lbl" d="M${x1} ${y1} L${x2} ${y2}"/><text x="${x2+(a==="end"?-4:4)}" y="${y2+4}" text-anchor="${a||"start"}">${t}</text>`;
   const gp=`0,${g} 640,${g} 680,${g2} 900,${g2}`;o.push(`<polygon points="${gp} 900,560 0,560" fill="var(--soil)" opacity=".55"/><polyline points="${gp}" fill="none" stroke="var(--hill2)" stroke-width="5"/>`);
   const IW=1200*S,ibc=(x,y,label,c)=>{let s=`<rect x="${x}" y="${y}" width="${IW}" height="${150*S}" fill="#a87b4a" stroke="#0005"/>`;const t=y-1000*S;
@@ -1595,36 +1626,49 @@ function drawWash(){
     for(let i=1;i<4;i++)s+=`<line x1="${x+4}" y1="${t+i*1000*S/4}" x2="${x+IW-4}" y2="${t+i*1000*S/4}" stroke="#888" stroke-width="2"/>`;
     s+=`<text x="${x+IW/2}" y="${t+1000*S/2}" text-anchor="middle" style="font-weight:800;fill:#2b2140">${label}</text>`;return s};
   // clean water IBC on a stand + Kärcher on a covered shelf
-  const cx0=20,cy=g-300*S;o.push(`<rect x="${cx0+10}" y="${cy}" width="${IW-20}" height="${300*S}" fill="none" stroke="var(--ply2)" stroke-width="6"/>`,ibc(cx0,cy,"clean water","#dcefff"),`<rect x="${cx0+IW/2-14}" y="${cy-1000*S-8}" width="28" height="8" fill="#555"/>`);
-  const kx=300,ky=g-900*S;
+  const cx0=20,cy=g-300*S;
+  if(mains)o.push(`<rect x="70" y="${g-190}" width="10" height="190" fill="var(--ply2)"/><path d="M80 ${g-176} h14 v8" stroke="#888" stroke-width="7" fill="none"/><rect x="76" y="${g-186}" width="14" height="8" rx="3" fill="#d33"/>`);
+  else o.push(`<rect x="${cx0+10}" y="${cy}" width="${IW-20}" height="${300*S}" fill="none" stroke="var(--ply2)" stroke-width="6"/>`,ibc(cx0,cy,"clean water","#dcefff"),`<rect x="${cx0+IW/2-14}" y="${cy-1000*S-8}" width="28" height="8" fill="#555"/>`);
+  const kx=$("wMode").value==="tip"?220:300,ky=g-900*S;
   o.push(`<rect x="${kx-10}" y="${ky}" width="120" height="6" fill="var(--ply2)"/><rect x="${kx-6}" y="${ky+6}" width="6" height="${g-ky-6}" fill="var(--ply2)"/><rect x="${kx+100}" y="${ky+6}" width="6" height="${g-ky-6}" fill="var(--ply2)"/><path d="M${kx-20} ${ky-70} L${kx+120} ${ky-84}" stroke="var(--edge)" stroke-width="4"/>`);
   o.push(`<rect x="${kx+10}" y="${ky-40}" width="70" height="40" rx="8" fill="#ffd200" stroke="#333"/><circle cx="${kx+22}" cy="${ky-2}" r="7" fill="#333"/><text x="${kx+45}" y="${ky-16}" text-anchor="middle" style="font-size:11px;font-weight:800;fill:#333">Kärcher</text>`);
-  o.push(`<path d="M${cx0+IW-4} ${cy-20} C${cx0+IW+30} ${cy-20} ${kx-10} ${ky-20} ${kx+10} ${ky-20}" fill="none" stroke="#3d8fe0" stroke-width="5"/>`);
+  if(mains)o.push(`<path d="M94 ${g-166} C110 ${g-40} 200 ${g-20} 230 ${g-60} S${kx-20} ${ky-20} ${kx+10} ${ky-20}" fill="none" stroke="#3f9a35" stroke-width="5"/><rect x="150" y="${g-36}" width="20" height="12" rx="3" fill="#2f6fd6" stroke="#222"/>`);
+  else o.push(`<path d="M${cx0+IW-4} ${cy-20} C${cx0+IW+30} ${cy-20} ${kx-10} ${ky-20} ${kx+10} ${ky-20}" fill="none" stroke="#3d8fe0" stroke-width="5"/>`);
   // layout per option
-  const ix=top?460:pump?650:690,iy=g2,itop=iy-1150*S,dw=580*S,dh=(top?500:650)*S;
-  const dx=top?ix+(IW-dw)/2:520,dB=top?itop-4:g-1000*S+dh,dTop=dB-dh,nx=dx+dw/2,pf=g-600*S,px=ix+IW+10,pw=140;
-  // waste IBC
-  o.push(ibc(ix,iy-150*S,"waste","#8a6440"));
+  const ix=top?460:tip?490:bay?480:pump?650:690,iy=g2,itop=iy-(bay?1000:1150)*S,dw=580*S,dh=(top||bay?500:650)*S;
+  const dx=top||bay?ix+(IW-dw)/2:520,dB=top||bay?itop-4:g-1000*S+dh,dTop=dB-dh,nx=tip?ix+IW/2:dx+dw/2,pf=g-600*S,px=ix+IW+10,pw=140;
+  // waste IBC (or the holding bay for Plan 4)
+  if(bay){o.push(`<rect x="${ix}" y="${itop}" width="${IW}" height="${g-itop}" fill="var(--ply)" stroke="var(--ply2)" stroke-width="5"/><rect x="${ix+6}" y="${itop+70}" width="${IW-12}" height="${g-itop-76}" fill="#c9a76b"/><rect x="${ix+6}" y="${itop+120}" width="${IW-12}" height="${g-itop-126}" fill="var(--soil2)"/><text x="${ix+IW/2}" y="${itop+150}" text-anchor="middle" style="font-weight:800;fill:#2b2140">holding bay</text>`)}
+  else o.push(ibc(ix,iy-150*S,"waste","#8a6440"));
   const cam=top?ix-26:ix+IW-6,cdir=top?-1:1;
-  o.push(`<rect x="${cam}" y="${iy-150*S-24}" width="22" height="12" fill="#444"/><rect x="${top?cam-14:cam+22}" y="${iy-150*S-26}" width="14" height="16" rx="3" fill="#ffc93c" stroke="#333"/>`);
-  o.push(`<path d="M${top?cam-14:cam+36} ${iy-150*S-18} q${30*cdir} 0 ${40*cdir} 30" fill="none" stroke="#333" stroke-width="7" stroke-dasharray="10 4"/>`);
-  const vtx=top?ix+30:ix+90;o.push(`<line x1="${vtx}" y1="${itop}" x2="${vtx}" y2="${itop-34}" stroke="#777" stroke-width="3"/><path d="M${vtx-6} ${itop-34} h12" stroke="#777" stroke-width="3"/>`);
-  if(!top)o.push(`<rect x="${ix+IW/2-14}" y="${itop-8}" width="28" height="8" fill="#555"/>`);
+  if(!bay)o.push(`<rect x="${cam}" y="${iy-150*S-24}" width="22" height="12" fill="#444"/><rect x="${top?cam-14:cam+22}" y="${iy-150*S-26}" width="14" height="16" rx="3" fill="#ffc93c" stroke="#333"/>`);
+  if(!bay)o.push(`<path d="M${top?cam-14:cam+36} ${iy-150*S-18} q${30*cdir} 0 ${40*cdir} 30" fill="none" stroke="#333" stroke-width="7" stroke-dasharray="10 4"/>`);
+  const vtx=tip?ix+IW-40:top?ix+30:ix+90;if(!bay)o.push(`<line x1="${vtx}" y1="${itop}" x2="${vtx}" y2="${itop-34}" stroke="#777" stroke-width="3"/><path d="M${vtx-6} ${itop-34} h12" stroke="#777" stroke-width="3"/>`);
+  if(!top&&!bay&&!tip)o.push(`<rect x="${ix+IW/2-14}" y="${itop-8}" width="28" height="8" fill="#555"/>`);
   // platform (Plan 2) or drum stand
   if(top){o.push(`<rect x="${px}" y="${pf}" width="${pw}" height="8" fill="var(--ply2)"/><rect x="${px+4}" y="${pf+8}" width="6" height="${g-pf-8}" fill="var(--ply2)"/><rect x="${px+pw-10}" y="${pf+8}" width="6" height="${g-pf-8}" fill="var(--ply2)"/>`);
     for(let k=1;k<4;k++)o.push(`<rect x="${px+pw-k*30}" y="${pf+k*(g-pf)/4}" width="30" height="6" fill="var(--ply2)" opacity=".9"/>`);
     o.push(`<path d="M${px+pw-6} ${pf} V${pf-180}" stroke="var(--edge)" stroke-width="4"/><path d="M${px+pw-6} ${pf-180} H${px+pw-60}" stroke="var(--edge)" stroke-width="4"/>`);
     o.push(`<rect x="${dx-12}" y="${dB-2}" width="${dw+24}" height="8" fill="#888" stroke="#555"/><rect x="${nx-15}" y="${dB}" width="30" height="10" fill="#555"/>`);}
-  else o.push(`<rect x="${dx-14}" y="${dB}" width="6" height="${g-dB}" fill="var(--ply2)"/><rect x="${dx+dw+8}" y="${dB}" width="6" height="${g-dB}" fill="var(--ply2)"/><rect x="${dx-20}" y="${dB}" width="${dw+40}" height="6" fill="var(--ply2)"/>`);
+  else if(bay)o.push(`<rect x="${dx-12}" y="${dB-2}" width="${dw+24}" height="8" fill="#888" stroke="#555"/>`);
+  else if(!tip)o.push(`<rect x="${dx-14}" y="${dB}" width="6" height="${g-dB}" fill="var(--ply2)"/><rect x="${dx+dw+8}" y="${dB}" width="6" height="${g-dB}" fill="var(--ply2)"/><rect x="${dx-20}" y="${dB}" width="${dw+40}" height="6" fill="var(--ply2)"/>`);
   // drum, lid, bucket, nozzle
-  o.push(`<rect x="${dx}" y="${dTop}" width="${dw}" height="${dh}" fill="#2f6fd6" stroke="#1d3f7a" stroke-width="2" opacity=".35"/><path d="M${dx} ${dTop} V${dB} H${dx+dw} V${dTop}" fill="none" stroke="#1d3f7a" stroke-width="3"/>`);
+  const bw=400*S,bh=450*S;let bx=dx+(dw-bw)/2,gy=dB-(top||bay?60:150)*S,ny=gy-100*S;
+  if(tip){const fx=nx,ft=itop-14;bx=fx-bw/2;gy=ft-2;ny=ft+4;
+    o.push(`<path d="M${fx-36} ${ft} L${fx+36} ${ft} L${fx+12} ${itop+2} L${fx-12} ${itop+2}Z" fill="#c9ced3" stroke="#555" stroke-width="2"/>`);
+    o.push(`<path d="M${ix-70} ${g-150} A120 120 0 0 1 ${fx-bw/2} ${ft-bh}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="6 5"/>`);
+    o.push(`<path d="M${ix-96} ${g-150} L${ix-90} ${g-150-bh} H${ix-90+bw-12} L${ix-84+bw-12} ${g-150}Z" fill="#c9ced3" stroke="#555" stroke-width="1.5" opacity=".45"/>`);
+    o.push(`<line x1="${ix+6}" y1="${itop-6}" x2="${fx-bw/2-4}" y2="${ft-bh/2}" stroke="#444" stroke-width="5"/><line x1="${ix+6}" y1="${itop-6}" x2="${ix-60}" y2="${itop-60}" stroke="#444" stroke-width="5"/><circle cx="${ix+6}" cy="${itop-6}" r="6" fill="#ffc93c" stroke="#222"/>`)}
+  if(!tip){o.push(`<rect x="${dx}" y="${dTop}" width="${dw}" height="${dh}" fill="#2f6fd6" stroke="#1d3f7a" stroke-width="2" opacity=".35"/><path d="M${dx} ${dTop} V${dB} H${dx+dw} V${dTop}" fill="none" stroke="#1d3f7a" stroke-width="3"/>`);
   o.push(`<path d="M${dx-6} ${dTop} L${dx-6+dw*.8} ${dTop-dw*.55}" stroke="var(--ply2)" stroke-width="7" stroke-linecap="round"/><circle cx="${dx-6}" cy="${dTop}" r="4" fill="#555"/>`);
-  const bw=400*S,bh=450*S,bx=dx+(dw-bw)/2,gy=dB-(top?60:150)*S,ny=gy-100*S;
-  o.push(`<line x1="${dx+3}" y1="${gy}" x2="${dx+dw-3}" y2="${gy}" stroke="#888" stroke-width="3" stroke-dasharray="4 3"/>`,`<path d="M${bx} ${gy} L${bx+6} ${gy-bh} H${bx+bw-6} L${bx+bw} ${gy}" fill="#c9ced3" stroke="#555" stroke-width="2"/>`);
+  o.push(`<line x1="${dx+3}" y1="${gy}" x2="${dx+dw-3}" y2="${gy}" stroke="#888" stroke-width="3" stroke-dasharray="4 3"/>`)}
+  o.push(`<path d="M${bx} ${gy} L${bx+6} ${gy-bh} H${bx+bw-6} L${bx+bw} ${gy}" fill="#c9ced3" stroke="#555" stroke-width="2"/>`);
   for(let a=-150;a<=-30;a+=20){const r=a*Math.PI/180;o.push(`<line x1="${nx}" y1="${ny}" x2="${nx+Math.cos(r)*30}" y2="${ny+Math.sin(r)*30}" stroke="var(--water)" stroke-width="2"/>`)}
   // high-pressure line + pedal valve
   let vx,vy,fy;
-  if(top){vx=px+50;vy=pf-26;fy=pf;
+  if(tip||bay){vx=ix-40;vy=g-60;fy=g;
+    o.push(`<path d="M${kx+80} ${ky-20} C${kx+140} ${ky-20} ${vx-30} ${vy} ${vx} ${vy} L${ix+14} ${tip?itop+30:itop+40} H${nx} V${ny}" fill="none" stroke="#222" stroke-width="3"/>`);}
+  else if(top){vx=px+50;vy=pf-26;fy=pf;
     o.push(`<path d="M${kx+80} ${ky-20} C${kx+130} ${ky-20} ${kx+130} ${g-6} ${kx+170} ${g-6} H${vx} V${vy} M${vx} ${vy} L${dx+dw+6} ${dB-12} H${nx} V${ny}" fill="none" stroke="#222" stroke-width="3"/>`);}
   else{vx=nx-40;vy=dB+40;fy=g;
     o.push(`<path d="M${kx+80} ${ky-20} C${kx+160} ${ky-20} ${vx-40} ${vy} ${vx} ${vy} H${nx} V${ny}" fill="none" stroke="#222" stroke-width="3"/>`);}
@@ -1635,29 +1679,32 @@ function drawWash(){
     o.push(`<rect x="${pxp}" y="${g-32}" width="24" height="28" rx="5" fill="#2f6fd6" stroke="#222"/><path d="M${pxp-4} ${g-18} q-10 -2 -12 -12" fill="none" stroke="#222" stroke-width="1.5"/><circle cx="${pxp-17}" cy="${g-32}" r="5" fill="#ffd04e" stroke="#222"/>`);
     o.push(`<path d="M${pxp+12} ${g-32} V${ty-20} Q${pxp+12} ${itop-40} ${ix+60} ${itop-40} V${itop-6}" fill="none" stroke="#3f9a35" stroke-width="6"/><rect x="${pxp+6}" y="${ty-40}" width="12" height="14" fill="#444"/>`);
     o.push(L(tx+12,ty+12,tx-50,g+52,"low catchment tub","end"),L(pxp-17,g-32,tx-50,g+78,"float switch","end"),L(pxp+12,g-14,tx-50,g+104,"dirty-water pump (≥ 25 mm solids)","end"),L(pxp+12,ty-34,ix+20,ty-6,"non-return valve → hose to IBC lid"));}
-  else if(!top)o.push(`<path d="M${dx+dw-10} ${dB} V${dB+10} L${ix+60} ${itop-8}" fill="none" stroke="#bbb" stroke-width="10"/><path d="M${dx+dw-10} ${dB} V${dB+10} L${ix+60} ${itop-8}" fill="none" stroke="#777" stroke-width="1"/>`);
+  else if(!top&&!tip&&!bay)o.push(`<path d="M${dx+dw-10} ${dB} V${dB+10} L${ix+60} ${itop-8}" fill="none" stroke="#bbb" stroke-width="10"/><path d="M${dx+dw-10} ${dB} V${dB+10} L${ix+60} ${itop-8}" fill="none" stroke="#777" stroke-width="1"/>`);
   // labels
-  o.push(L(cx0+60,cy-1000*S+10,cx0+40,top?-20:40,"clean-water IBC on a stand"));
-  o.push(L(cx0+IW+40,cy-30,cx0+IW+70,cy-70,"suction hose kit + filter"));
+  if(mains)o.push(L(84,g-182,60,top?-20:40,"tap + hose (running water)"),L(160,g-30,180,top?g-80:g+40,"dual-check backflow valve"));
+  else o.push(L(cx0+60,cy-1000*S+10,cx0+40,top?-20:40,"clean-water IBC on a stand"),L(cx0+IW+40,cy-30,cx0+IW+70,cy-70,"suction hose kit + filter"));
   o.push(L(kx+60,ky-40,kx+70,top?-40:60,"Kärcher under a little roof (RCD)"));
   o.push(L(kx+150,top?g-6:ky-6,kx+(top?120:170),top?g+70:ky+40,"gun zip-tied open + adaptor"));
-  o.push(top?L(vx,vy-6,vx-60,vy+30,"high-pressure ball valve","end"):L(vx,vy-6,vx-50,vy-60,"high-pressure ball valve","end"));
+  o.push(top?L(vx,vy-6,vx-60,vy+30,"high-pressure ball valve","end"):tip||bay?L(vx,vy-6,vx-40,vy-50,"high-pressure ball valve","end"):L(vx,vy-6,vx-50,vy-60,"high-pressure ball valve","end"));
   o.push(top?L(vx-30,fy-8,vx-60,fy+60,"foot pedal (on the platform)","end"):L(vx-40,fy-10,vx-110,fy+24,"foot pedal","end"));
-  o.push(L(dx+dw*.6,dTop-dw*.4,dx+dw+20,dTop-100,"hinged lid: shut before blasting"));
-  o.push(L(bx+bw-4,gy-bh/2,dx+dw+40,dTop-40,"50 L bucket, mouth-down on a grid"));
-  o.push(L(nx+4,ny,dx+dw+40,dTop-4,"360° rotating nozzle"));
-  if(top){o.push(L(dx+dw,dB-10,dx+dw+40,dB+22,"drum bolted to the IBC cage"),L(nx+10,dB+6,dx+dw+40,dB+44,"→ drains via the 150 mm top opening"),L(px+pw/2,pf+4,px+pw/2-20,pf+96,"platform 600 mm + steps + rail","end"));}
+  if(tip){o.push(L(ix-80,g-170,ix-150,g-230,"① load the bucket in the cradle","end"),L(nx+20,itop-60,ix+IW+20,itop-110,"② lever tips it: all falls in"),L(nx+4,ny,ix+IW+20,itop-78,"③ pedal: rinse upside down"),L(nx+30,itop-8,ix+IW+20,itop-46,"wide funnel + rubber skirt"),L(ix+6,itop-6,ix-40,itop-100,"cradle pivots on the IBC frame","end"))}
+  else{o.push(L(dx+dw*.6,dTop-dw*.4,dx+dw+20,dTop-100,bay?"hinged hood: shut first":"hinged lid: shut before blasting"));
+  o.push(L(bx+bw-4,gy-bh/2,dx+dw+40,dTop-40,bay?"bucket mouth-down on a grid":"50 L bucket, mouth-down on a grid"));
+  o.push(L(nx+4,ny,dx+dw+40,dTop-4,bay?"rotating nozzle":"360° rotating nozzle"))}
+  if(bay)o.push(L(dx+dw,dB-6,dx+dw+40,dB+26,"hood on a hatch in the lid"),L(ix+IW-20,itop+90,ix+IW+20,itop+130,"rinse falls on the sawdust"));
+  else if(tip){}
+  else if(top){o.push(L(dx+dw,dB-10,dx+dw+40,dB+22,"drum bolted to the IBC cage"),L(nx+10,dB+6,dx+dw+40,dB+44,"→ drains via the 150 mm top opening"),L(px+pw/2,pf+4,px+pw/2-20,pf+96,"platform 600 mm + steps + rail","end"));}
   else o.push(L(dx+dw/2-20,dB-4,dx+dw/2+(pump?70:10),g+(pump?120:44),"cut-down 200 L drum, top at 1000 mm"));
-  if(!pump&&!top)o.push(L((dx+dw+ix+60)/2,(dB+itop)/2,(dx+dw+ix+60)/2+40,(dB+itop)/2+40,"100 mm pipe, ≥ 1:20 fall"));
-  o.push(L(vtx,itop-34,vtx+(top?-20:20),itop-56,"vent + fly mesh",top?"end":"start"));
-  o.push(top?L(cam-7,iy-150*S-10,cam-30,g2+40,"camlock → truck hose","end"):L(ix+IW+22,iy-150*S-10,ix+IW-30,g2+30,"2\" valve → camlock → truck hose","end"));
-  if(!pump&&!top)o.push(`<text x="660" y="${g2+60}" text-anchor="middle" style="font-size:11px;fill:var(--muted)">bank / pit: ground drops ${Math.round(num("wDrop"))} mm</text>`);
-  $("washsvg").setAttribute("viewBox",top?"0 -130 900 600":pump?"0 0 900 470":"0 0 900 520");$("washsvg").innerHTML=o.join("");
+  if(!pump&&!top&&!tip&&!bay)o.push(L((dx+dw+ix+60)/2,(dB+itop)/2,(dx+dw+ix+60)/2+40,(dB+itop)/2+40,"100 mm pipe, ≥ 1:20 fall"));
+  if(!bay)o.push(L(vtx,itop-34,vtx+(top?-20:20),itop-56,"vent + fly mesh",top?"end":"start"));
+  if(!bay)o.push(top?L(cam-7,iy-150*S-10,cam-30,g2+40,"camlock → truck hose","end"):L(ix+IW+22,iy-150*S-10,ix+IW-30,g2+30,"2\" valve → camlock → truck hose","end"));
+  if(!pump&&!top&&!tip&&!bay)o.push(`<text x="660" y="${g2+60}" text-anchor="middle" style="font-size:11px;fill:var(--muted)">bank / pit: ground drops ${Math.round(num("wDrop"))} mm</text>`);
+  $("washsvg").setAttribute("viewBox",top?"0 -130 900 600":tip?"0 -40 900 480":bay?"0 -90 900 520":pump?"0 0 900 470":"0 0 900 520");$("washsvg").innerHTML=o.join("");
 }
 function calcWash(){
-  const B=Math.max(1,num("wB")),Lw=Math.max(1,num("wL")),D=Math.max(1,num("wD")),I=+$("wI").value,drop=Math.max(0,num("wDrop")),run=Math.max(.5,num("wRun")),mode=$("wMode").value,pump=mode==="pump",top=mode==="top",need=1160-350+run*50,short=pump||top?0:need-drop;
-  const perDay=B*Lw*1.1,total=perDay*D,clean=B*Lw*D,days=Math.floor(I*.8/perDay),pumps=Math.max(0,Math.ceil(total/(I*.8))-1);
-  $("wStats").innerHTML=[[Math.round(perDay)+" L","waste per day"],[Math.round(total)+" L","waste over the festival"],[days+" days","until the IBC is 80% full"],[pumps?pumps+"×":"none","truck pump-outs during the event (plus one at the end)"],[Math.round(clean)+" L","clean water for washing"],[Math.ceil(B*40/60)+" min","pedal time per day"],top?["⬇️ direct","drains straight into the IBC; bucket ≈ 1.05 m above the platform"]:pump?["🔌 pump","tub + float-switch pump lifts it into the IBC"]:[short>0?"✗ "+Math.round(short)+" mm short":"✓ OK","drain height check (needs "+Math.round(need)+" mm drop)"]].map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+  const B=Math.max(1,num("wB")),Lw=Math.max(1,num("wL")),D=Math.max(1,num("wD")),I=+$("wI").value,drop=Math.max(0,num("wDrop")),run=Math.max(.5,num("wRun")),mode=$("wMode").value,pump=mode==="pump",top=mode==="top",tip=mode==="tip",bay=mode==="bay",mains=$("wWater").value==="mains",need=1160-350+run*50,short=pump||top||tip||bay?0:need-drop;
+  const perDay=B*Lw*1.1+(tip?B*30:0),total=perDay*D,clean=B*Lw*D,days=Math.floor(I*.8/perDay),pumps=Math.max(0,Math.ceil(total/(I*.8))-1);
+  $("wStats").innerHTML=(bay?[[Math.round(B*Lw*1.1)+" L","rinse water into the bay per day"],[Math.round(B*Lw*1.6)+" L","extra sawdust/straw per day to soak it up"],["none","IBC, truck or pump needed"]]:[[Math.round(perDay)+" L",tip?"poo + rinse water per day":"waste per day"],[Math.round(total)+" L","waste over the festival"],[days+" days","until the IBC is 80% full"],[pumps?pumps+"×":"none","truck pump-outs during the event (plus one at the end)"]]).concat([[Math.round(clean)+" L",mains?"water from the tap for washing":"clean water for washing"],[Math.ceil(B*40/60)+" min","pedal time per day"],top?["⬇️ direct","drains straight into the IBC; bucket ≈ 1.05 m above the platform"]:tip?["🪣 tip","tips + rinses straight into the IBC, no pipes"]:bay?["🌾 bay","rinses straight onto the bay's sawdust"]:pump?["🔌 pump","tub + float-switch pump lifts it into the IBC"]:[short>0?"✗ "+Math.round(short)+" mm short":"✓ OK","drain height check (needs "+Math.round(need)+" mm drop)"]]).map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
   $("wWarn").innerHTML=short>0?`<div class="card warn" style="margin:12px 0 0;box-shadow:none"><h3 style="margin-top:0">It won't drain yet</h3>The IBC top needs to be ${Math.round(need)} mm below where the drum stands, and you have ${drop} mm. Find ${Math.round(short)} mm more: a steeper bank, a pit that deep for the IBC, a shorter pipe run, or a lower tank.</div>`:"";drawWash();
   const R=[
     ["200 L blue drum (for the splash drum)","1","Trade Me / local food factories, Bunnings, farm stores","$25–80"],
@@ -1674,11 +1721,15 @@ function calcWash(){
     ["Frame: 90 × 45 H3.2, 17 mm ply (top + lid + pedal), hinges, rubber seal","~12 m + 1 sheet","PlaceMakers, Bunnings, Mitre 10","$150–220"],
     ["Face shields, nitrile + heavy gloves, aprons, gumboots","per crew","Bunnings, Mitre 10, farm stores","$60–120"],
     ["Outdoor RCD lead","1","Bunnings, Mitre 10","$30–60"]];
+  if(mains)R.splice(2,1,["Garden hose (12 mm) + fittings + a dual-check backflow valve at the tap","1","Bunnings, Mitre 10, Chesters (backflow valve)","$40–90"]);
+  if(mains)R.splice(R.findIndex(r=>r[0].startsWith("Kärcher suction")),1);
+  if(bay)R.splice(1,1),R.splice(R.findIndex(r=>r[0].startsWith("100 mm DWV")),2,["Hatch frame in the holding-bay lid + hinged splash hood (cut drum)","1","PlaceMakers, Bunnings + a spare drum","$40–80"],["Extra sawdust / straw for the bay","~"+Math.round(B*Lw*1.6*D/1000*10)/10+" m³ over the festival","Local sawmill (untreated), farm stores","$0–150"]);
+  if(tip)R.splice(0,1),R.splice(R.findIndex(r=>r[0].startsWith("100 mm DWV")),1,["Bucket tipping cradle: 2 × 25 mm steel flat-bar arms, a bucket ring + clamp, a pivot bolt on the IBC frame (any engineering shop can weld it)","1","Local engineering/welding shop, Bunnings steel aisle","$80–200"],["Wide funnel 300–400 mm + rubber skirt for the 150 mm top opening","1","Farm stores, Bunnings, or cut down a drum top","$20–50"]);
   if(top)R.push(["Work platform 1.2 × 0.8 m at 600 mm: 90 × 45 frame, 17 mm ply deck, 3 steps, handrail","1","PlaceMakers, Bunnings, Mitre 10","$150–250"],["Galvanised U-bolts / cage clamps + 2 × 90 × 45 bearers to carry the drum on the IBC cage","1 set","Bunnings, Mitre 10, PlaceMakers","$40–80"],["Drum outlet collar to sit in the IBC's 150 mm top opening (rubber seal) + 50 mm vent hole + mesh","1","Chesters, Bunnings, irrigation shops","$25–50"]);
   if(pump)R.push(["Catchment tub ~90 L, low (mortar tub or cut-down drum) + lid","1","Bunnings, Mitre 10, farm stores","$25–60"],["Submersible dirty-water / effluent pump with float switch, ≥ 25 mm solids","1","Bunnings, Mitre 10 MEGA, Chesters, Hynds, pump shops in Palmy","$150–450"],["40–50 mm discharge hose (~3 m) + non-return valve + clamps","1 set","Bunnings, Mitre 10, irrigation/pump shops","$40–90"]);
   $("wBom").innerHTML=`<tr><th>Item</th><th>Qty</th><th>Where</th><th>Rough NZD</th></tr>`+R.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("");
 }
-["wB","wL","wD","wI","wDrop","wRun","wMode"].forEach(id=>$(id).addEventListener("input",calcWash));
+["wB","wL","wD","wI","wDrop","wRun","wMode","wWater"].forEach(id=>$(id).addEventListener("input",calcWash));
 /* ---------- sanitation team ---------- */
 const TEAM_DOCS=[
   ["Sanitation Team Co-Lead – Job Description 2026","docs/sanitation-co-lead-job-description-2026.pdf","PDF · 8 pages · Kiwiburn Infrastructure, rev. Sept 2026"],
@@ -2157,6 +2208,61 @@ window.__loo=(function(){
   let t=0;function schedule(){clearTimeout(t);t=setTimeout(march,25000+Math.random()*30000)}
   schedule();window.__antsMarch=march;
 })();
+/* ---------- poo on Larry's foot → dropped on the soil → a soil worm eats it → seeds → roots + tiny sprouts ---------- */
+window.__poo=(function(){
+  const NS="http://www.w3.org/2000/svg";
+  function stripMap(){const sv=$("ants");if(!sv)return null;const r=sv.getBoundingClientRect(),k=Math.max(r.width/1200,r.height/130),oy=(r.height-130*k)/2;
+    return {sv,r,k,toX:x=>(x-r.left)/k,vis:r.bottom>0&&r.top<innerHeight}}
+  function sprout(screenX){const hs=$("hills");if(!hs)return;const r=hs.getBoundingClientRect(),k=Math.max(r.width/1200,r.height/190),x=(screenX-r.left)/k;
+    const g=document.createElementNS(NS,"g");g.setAttribute("class","sprout");g.setAttribute("transform",`translate(${x.toFixed(1)} 189)`);
+    g.innerHTML=`<g class="sgrow"><path d="M0 0 C0 -6 1 -10 0 -14" stroke="#3f9a35" stroke-width="2" fill="none"/><path d="M0 -10 C-6 -14 -9 -10 -8 -7 C-5 -6 -2 -8 0 -10Z" fill="#5cbf4a"/><path d="M0 -12 C6 -17 9 -13 8 -10 C5 -9 2 -10 0 -12Z" fill="#7cd66b"/></g>`;hs.appendChild(g)}
+  function roots(sv,x,y){const R=()=>Math.random();
+    for(let b=0;b<3;b++){let px=x,py=y,d=`M${px.toFixed(1)} ${py.toFixed(1)}`;const steps=6+R()*5|0;
+      for(let i=0;i<steps;i++){const nx=px+(R()*44-22)+(b-1)*6,ny=Math.min(126,py+6+R()*12);d+=` Q${((px+nx)/2+(R()*14-7)).toFixed(1)} ${((py+ny)/2).toFixed(1)} ${nx.toFixed(1)} ${ny.toFixed(1)}`;px=nx;py=ny;
+        if(R()<.35){const bx=px+(R()*40-20),by=Math.min(128,py+10+R()*10);const br=document.createElementNS(NS,"path");br.setAttribute("d",`M${px.toFixed(1)} ${py.toFixed(1)} Q${((px+bx)/2).toFixed(1)} ${(py+4).toFixed(1)} ${bx.toFixed(1)} ${by.toFixed(1)}`);br.setAttribute("class","root thin");sv.appendChild(br)}}
+      const p=document.createElementNS(NS,"path");p.setAttribute("d",d);p.setAttribute("class","root");sv.appendChild(p)}
+    const up=document.createElementNS(NS,"path");up.setAttribute("d",`M${x.toFixed(1)} ${y.toFixed(1)} Q${(x+3).toFixed(1)} ${(y/2).toFixed(1)} ${x.toFixed(1)} 0`);up.setAttribute("class","root");sv.appendChild(up)}
+  function wormEats(poo,screenX){
+    const m=stripMap();if(!m||!m.vis){poo.style.opacity="0";setTimeout(()=>poo.remove(),500);return}
+    const x=m.toX(screenX),g=document.createElementNS(NS,"g");
+    g.innerHTML=`<g transform="rotate(-90)"><path d="M-22 0 q5 -6 10 0 t10 0 t10 0 t10 0" fill="none" stroke="#ff8fb1" stroke-width="7" stroke-linecap="round"/><circle cx="18" cy="-1.5" r="1.4" fill="#2b2140"/></g>`;m.sv.appendChild(g);
+    let y=124,phase=0;const step=()=>{
+      if(phase===0){y-=3;if(y<=24){phase=1;poo.classList.add("eaten-poo");setTimeout(()=>{poo.remove();phase=2},700)}}
+      else if(phase===2){y+=2.5;if(y>=96){phase=3;
+        [-10,2,12].forEach((dx,i)=>setTimeout(()=>{const sx=x+dx,sy=70+i*9,sd=document.createElementNS(NS,"ellipse");sd.setAttribute("cx",sx);sd.setAttribute("cy",sy);sd.setAttribute("rx",3);sd.setAttribute("ry",2);sd.setAttribute("fill","#e9d27a");m.sv.appendChild(sd);
+          setTimeout(()=>{roots(m.sv,sx,sy);sprout(m.r.left+sx*m.k)},900)},i*400));
+        setTimeout(()=>g.remove(),1600)}}
+      g.setAttribute("transform",`translate(${x.toFixed(1)} ${y.toFixed(1)})`);if(phase!==3&&g.isConnected)setTimeout(step,30)};
+    step();
+  }
+  function drop(fromX,fromY){
+    const m=stripMap(),p=document.createElement("div");p.className="droppoo";p.textContent="💩";p.style.left=fromX+"px";p.style.top=fromY+"px";document.body.appendChild(p);
+    const ty=m&&m.vis&&m.r.top>fromY?m.r.top-14:fromY+40;
+    requestAnimationFrame(()=>{p.style.top=ty+"px"});setTimeout(()=>wormEats(p,fromX),700);
+  }
+  return {drop};
+})();
+/* ---------- a rubber chicken pops in to use a banner loo and comes out with its face covered in white ---------- */
+(function(){
+  const SVG=`<svg viewBox="0 0 90 112" style="overflow:visible"><g class="rc"><path d="M22 70 q-14 -8 -12 -22 q8 6 16 8" fill="#ffd400" stroke="#2b2140" stroke-width="2.5"/><ellipse cx="40" cy="74" rx="24" ry="17" fill="#ffd400" stroke="#2b2140" stroke-width="2.5"/><path d="M54 66 C58 46 56 30 60 18" fill="none" stroke="#2b2140" stroke-width="13" stroke-linecap="round"/><path d="M54 66 C58 46 56 30 60 18" fill="none" stroke="#ffd400" stroke-width="9" stroke-linecap="round"/><circle cx="62" cy="16" r="10" fill="#ffd400" stroke="#2b2140" stroke-width="2.5"/><path d="M55 7 q2 -7 5 -1 q3 -7 6 0 q4 -5 4 3z" fill="#e8473f" stroke="#2b2140" stroke-width="1.5"/><path d="M71 13 l14 -2 l-3 4 l3 4 l-14 -1z" fill="#ff8a3d" stroke="#2b2140" stroke-width="1.5"/><path d="M60 8 l6 6 m0 -6 l-6 6" stroke="#2b2140" stroke-width="1.6"/><path d="M32 90 v14 l-5 4 m5 -4 l5 4 M46 90 v14 l-5 4 m5 -4 l5 4" fill="none" stroke="#ff8a3d" stroke-width="3" stroke-linecap="round"/>
+    <g class="cream"><path d="M50 10 C48 0 74 -2 76 10 C80 14 76 24 70 26 C68 32 66 22 64 27 C62 33 58 25 55 26 C50 24 47 18 50 10Z" fill="#fff" stroke="#2b2140" stroke-width="1.5"/><circle cx="58" cy="12" r="2.2" fill="#2b2140" opacity=".25"/></g></g></svg>`;
+  let el=null,t=0;
+  function walk(x,y,ms,cb){const cx=parseFloat(el.style.left)||0;el.querySelector("svg").style.transform=x<cx?"scaleX(-1)":"";el.style.transition=`left ${ms}ms linear,top ${ms}ms linear,opacity .4s`;el.style.left=x+"px";el.style.top=y+"px";setTimeout(cb,ms)}
+  function visit(){
+    if(el||document.documentElement.classList.contains("calm")||!window.__loo)return schedule();
+    const i=__loo.pick(),d=i!==null&&__loo.door(i);if(!d)return schedule();
+    __loo.expect(i,"rubber");
+    el=document.createElement("div");el.id="rubber";el.setAttribute("role","button");el.setAttribute("aria-label","a rubber chicken");el.innerHTML=SVG;
+    const fromLeft=d.x<innerWidth/2;el.style.left=(fromLeft?-100:innerWidth+10)+"px";el.style.top=(d.y-90)+"px";document.body.appendChild(el);
+    el.onclick=e=>{e.stopPropagation();squeak()};
+    walk(d.x-45,d.y-96,2600,()=>{el.style.opacity="0";__loo.enter(i,"rubber");
+      setTimeout(()=>{__loo.leave(i,"rubber");el.classList.add("creamed");el.style.opacity="1";squeak();
+        setTimeout(()=>walk(fromLeft?innerWidth+20:-110,d.y-96,3600,()=>{el.remove();el=null;schedule()}),1400)},4500+Math.random()*2500)});
+  }
+  function squeak(){if(!el)return;el.querySelector(".speech")?.remove();const b=document.createElement("div");b.className="speech";b.textContent="*SQUEAK*";el.appendChild(b);setTimeout(()=>b.remove(),1400)}
+  function schedule(){clearTimeout(t);t=setTimeout(visit,60000+Math.random()*60000)}
+  schedule();window.__rubber=visit;
+})();
 /* ---------- hidden worm game ---------- */
 (function(){
   let stage=-1,el=null,pos={x:0,y:0},tgt={x:0,y:0},face=1,raf=0,lastChaos=0,meal=null,mealT=0,inLoo=null,looT=0,visiting=null;
@@ -2305,7 +2411,9 @@ window.__loo=(function(){
   function wander(n,visit){if(!el||busy||booming)return;if(n<=0)return leave();
     if(window.__loo&&(visit||Math.random()<.35)){const i=__loo.pick(),dr=i!==null&&__loo.door(i);
       if(dr){__loo.expect(i,"larry");return move(Math.max(0,Math.min(innerWidth-W,dr.x-W*.5)),Math.max(0,Math.min(innerHeight-H,dr.y-H*.75)),()=>{if(!el)return;const e=el;e.style.opacity="0";e.style.pointerEvents="none";__loo.enter(i,"larry");
-        clearTimeout(leaveT);leaveT=setTimeout(()=>{__loo.leave(i,"larry");if(el!==e)return;e.style.opacity="";e.style.pointerEvents="";wander(n-1)},3500+Math.random()*3500)})}}
+        clearTimeout(leaveT);leaveT=setTimeout(()=>{__loo.leave(i,"larry");if(el!==e)return;e.style.opacity="";e.style.pointerEvents="";
+          if(window.__poo){e.insertAdjacentHTML("beforeend",`<span class="footpoo">💩</span>`);setTimeout(()=>{const f=e.querySelector(".footpoo");if(!f)return;const r=f.getBoundingClientRect();f.remove();__poo.drop(r.left,r.top)},1400)}
+          wander(n-1)},3500+Math.random()*3500)})}}
     const x=Math.random()*(innerWidth-W),y=Math.min(innerHeight-H-4,Math.max(70,innerHeight*(.4+Math.random()*.55)-H/2));
     move(x,y,()=>{clearTimeout(leaveT);leaveT=setTimeout(()=>wander(n-1),1800+Math.random()*2200)})}
   function appear(force){
