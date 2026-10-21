@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="build" content="20261021182931">
+<meta name="build" content="20261021185203">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <title>SHITCREW fucks your burn</title>
@@ -283,7 +283,7 @@ html.calm .cf{display:none}
 #eel.gulp .eelhead{transform-box:fill-box;transform-origin:0 50%;animation:gulp .25s ease-in-out 3}
 @keyframes gulp{50%{transform:scale(1.2)}}
 
-.underground{position:relative;height:clamp(84px,9vw,150px);overflow:hidden;border-bottom:3px solid #2b2140;background:#5e4128}
+.underground{position:relative;height:clamp(42px,4.5vw,75px);overflow:hidden;border-bottom:3px solid #2b2140;background:#5e4128}
 .underground svg{width:100%;height:100%;display:block}
 .ugworm{animation:ugw .7s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
 @keyframes ugw{to{transform:scaleX(.86)}}
@@ -297,6 +297,51 @@ html.calm .cf{display:none}
 #ants .root{fill:none;stroke:#e8d6a8;stroke-width:2.6;stroke-linecap:round;opacity:.85;stroke-dasharray:400;stroke-dashoffset:400;animation:rootgrow 4s ease-out forwards}
 #ants .root.thin{stroke-width:1.3;opacity:.7;animation-duration:5s}
 @keyframes rootgrow{to{stroke-dashoffset:0}}
+#ants .tun{cursor:pointer;transition:stroke 1s}
+#ants .tun.caved{stroke:#7a5634}
+#ants .tun.redig{stroke-dasharray:420;animation:redig 3s ease-out}
+@keyframes redig{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
+#ants .ugant{cursor:pointer;transition:opacity .6s}
+#ants .ugant.trapped{opacity:.12}
+#ants .abody{transform-box:fill-box;transform-origin:center}
+#ants .ahop{animation:ahop .5s ease-out}
+@keyframes ahop{40%{transform:translateY(-5px) scale(1.5)}}
+#ants .root{cursor:pointer}
+#ants .root.rotting{stroke:#4a3420;stroke-width:1.6;stroke-dasharray:3 2.5;stroke-dashoffset:0;animation:none;transition:stroke 2s,stroke-width 2s}
+#ants .fuzz{fill:#f3efe2;opacity:0;animation:fuzzin .7s forwards}
+@keyframes fuzzin{to{opacity:.9}}
+#ants .humus{fill:#2e1e12;opacity:.55;transition:opacity 3s}
+#ants .ugpop{pointer-events:none;animation:ugpop 1.3s ease-out forwards;paint-order:stroke;stroke:#2b2140;stroke-width:3px;fill:#fff6dc;font-family:Fredoka,Nunito,sans-serif;font-weight:700}
+@keyframes ugpop{from{transform:translateY(4px);opacity:0}20%{opacity:1}to{transform:translateY(-16px);opacity:0}}
+#ants [data-act]{cursor:pointer}
+#ants .bwob{animation:bwob .9s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+@keyframes bwob{to{transform:rotate(6deg) scale(1.06,.94)}}
+#ants .bact.born .bwob{animation:born .5s ease-out,bwob .9s .5s ease-in-out infinite alternate}
+@keyframes born{from{transform:scale(.2)}}
+#ants .fscale{transition:transform .5s,opacity .8s;transform-box:fill-box;transform-origin:center}
+#ants .fscale.drop{animation:fdrop .8s cubic-bezier(.5,0,.6,1.4)}
+@keyframes fdrop{from{transform:translateY(-90px)}}
+#ants .hypha{fill:none;stroke:#f4eedb;stroke-width:1.3;stroke-linecap:round;opacity:.85;pointer-events:none}
+#ants .hypha.grow{stroke-dasharray:200;stroke-dashoffset:200;animation:hgrow 2s ease-out forwards}
+@keyframes hgrow{to{stroke-dashoffset:0}}
+#ants .shroom{animation:shroom .6s cubic-bezier(.5,0,.6,1.6) both;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes shroom{from{transform:scale(0)}}
+#ants .spore{animation:spore 1.4s ease-out forwards}
+@keyframes spore{to{transform:translate(var(--dx),var(--dy));opacity:0}}
+#ants .mjig{animation:mjig .8s ease-in-out infinite alternate}
+@keyframes mjig{to{transform:translateY(-2px)}}
+#ants .heatpile.hot .mjig{animation-duration:.15s}
+#ants .heatpile.hot .mjig circle:first-child{fill:#ff7a59}
+#ants .wisp{fill:none;stroke:#f4eedb;stroke-width:2;stroke-linecap:round;opacity:0;animation:wisp 1.6s ease-out infinite}
+@keyframes wisp{0%{opacity:0;transform:translateY(6px)}30%{opacity:.8}100%{opacity:0;transform:translateY(-14px)}}
+#ants .sprt.boing{animation:boing .7s cubic-bezier(.3,0,.5,1)}
+@keyframes boing{50%{transform:translate(0,-28px) rotate(-180deg)}}
+#ants .tard{transition:transform .5s;transform-box:fill-box;transform-origin:center}
+#ants .tard.tun{transform:scale(.6,.8) rotate(-20deg)}
+#ants .tlegs{transition:opacity .4s}
+#ants .tard.tun .tlegs{opacity:0}
+html.calm #ants .hypha.grow,html.calm #ants .tun.redig,html.calm #ants .root{stroke-dashoffset:0}
+html.calm #ants .fuzz{opacity:.9}
 .hills .sprout .sgrow{transform-box:fill-box;transform-origin:50% 100%;animation:sprout 2.5s 2s ease-out both}
 @keyframes sprout{from{transform:scale(0)}}
 #rubber{position:fixed;z-index:97;width:90px;height:112px;cursor:pointer;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.35))}
@@ -318,7 +363,7 @@ html.calm .cf{display:none}
   </div>
   <svg class="hills" id="hills" viewBox="0 0 1200 190" preserveAspectRatio="xMinYMax slice"></svg>
 </header>
-<div class="underground" aria-hidden="true"><svg id="ants" viewBox="0 0 1200 130" preserveAspectRatio="xMinYMid slice"></svg></div>
+<div class="underground" aria-hidden="true"><svg id="ants" viewBox="0 0 2400 130" preserveAspectRatio="xMinYMid slice"></svg></div>
 <nav><div class="in" id="tabs"></div></nav>
 <main>
 
@@ -2123,16 +2168,16 @@ function drawHero(){
 })();
 /* ---------- underground strip under the banner: always soil, with an ant nest and a burrowing worm ---------- */
 (function(){
-  const sv=$("ants");if(!sv)return;const R=seeded(7),W=1200,H=130;
+  const sv=$("ants");if(!sv)return;const R=seeded(7),W=2400,H=130;
   let s=`<defs><linearGradient id="ugSoil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a5634"/><stop offset="1" stop-color="#46301e"/></linearGradient></defs>`;
   s+=`<rect width="${W}" height="${H}" fill="url(#ugSoil)"/>`;
-  for(let i=0;i<260;i++)s+=`<circle cx="${(R()*W)|0}" cy="${(R()*H)|0}" r="${(R()*1.5+.4).toFixed(1)}" fill="${R()<.6?"#000":"#e9d5b5"}" opacity="${(.08+R()*.12).toFixed(2)}"/>`;
-  for(let i=0;i<26;i++){const x=(R()*W)|0,y=(12+R()*(H-16))|0,rx=3+R()*8;s+=`<ellipse cx="${x}" cy="${y}" rx="${rx.toFixed(1)}" ry="${(rx*.6).toFixed(1)}" fill="#8f7a64" opacity=".55"/>`}
-  for(let i=0;i<5;i++){let x=(80+R()*1050)|0,y=0,p=`M${x} 0`;for(let j=0;j<3;j++){const nx=x+(R()*50-25),ny=y+18+R()*22;p+=` Q${((x+nx)/2+(R()*16-8))|0} ${((y+ny)/2)|0} ${nx|0} ${ny|0}`;x=nx;y=ny}s+=`<path d="${p}" fill="none" stroke="#2e1e12" stroke-width="2" opacity=".45" stroke-linecap="round"/>`}
+  for(let i=0;i<520;i++)s+=`<circle cx="${(R()*W)|0}" cy="${(R()*H)|0}" r="${(R()*1.5+.4).toFixed(1)}" fill="${R()<.6?"#000":"#e9d5b5"}" opacity="${(.08+R()*.12).toFixed(2)}"/>`;
+  for(let i=0;i<52;i++){const x=(R()*W)|0,y=(12+R()*(H-16))|0,rx=3+R()*8;s+=`<ellipse cx="${x}" cy="${y}" rx="${rx.toFixed(1)}" ry="${(rx*.6).toFixed(1)}" fill="#8f7a64" opacity=".55"/>`}
+  for(let i=0;i<10;i++){let x=(80+R()*2250)|0,y=0,p=`M${x} 0`;for(let j=0;j<3;j++){const nx=x+(R()*50-25),ny=y+18+R()*22;p+=` Q${((x+nx)/2+(R()*16-8))|0} ${((y+ny)/2)|0} ${nx|0} ${ny|0}`;x=nx;y=ny}s+=`<path d="${p}" fill="none" stroke="#2e1e12" stroke-width="2" opacity=".45" stroke-linecap="round"/>`}
   // the nest: tunnels + chambers
   const T="#3e2a19";
   const tunnels=["M300 0 C300 20 260 30 232 52","M300 0 C305 30 360 50 398 82","M398 82 C450 70 510 60 560 54","M232 52 C200 70 170 80 148 98","M560 54 C600 40 640 30 690 30"];
-  tunnels.forEach(d=>s+=`<path d="${d}" fill="none" stroke="${T}" stroke-width="11" stroke-linecap="round"/>`);
+  tunnels.forEach((d,i)=>s+=`<path class="tun" data-tun="${i}" d="${d}" fill="none" stroke="${T}" stroke-width="11" stroke-linecap="round"><title>Ant tunnel: click to cave it in</title></path>`);
   [[232,56,30,13],[398,86,34,14],[562,56,30,12],[146,102,36,15],[692,32,22,10]].forEach(([x,y,rx,ry])=>s+=`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${T}"/>`);
   s+=`<path d="M286 0 q14 -1 28 0" stroke="#24160c" stroke-width="5"/>`;
   // eggs in the nursery, corn in the pantry, the queen at home
@@ -2140,17 +2185,159 @@ function drawHero(){
   for(let i=0;i<4;i++)s+=`<ellipse cx="${548+i*8}" cy="${60-(i%2)*3}" rx="3.4" ry="4.4" fill="#f6c94a"/>`;
   s+=`<g transform="translate(146 104)"><ellipse cx="-12" cy="0" rx="12" ry="6" fill="#3a2414"/><circle cx="2" cy="0" r="4.5" fill="#1a0f08"/><circle cx="10" cy="0" r="4" fill="#1a0f08"/><path d="M-6 -5 l-4 -6 M0 -4 l2 -7 M-6 5 l-4 6 M0 4 l2 7" stroke="#1a0f08" stroke-width="1.4"/><path d="M8 -6 l3 -6 l4 4" fill="#ffd04e"/></g>`;
   // ants: each walks a loop (down a tunnel and back up the other side of it)
-  const ant=`<g transform="scale(1.7)"><circle cx="-5" r="2.6" fill="#120a05"/><circle cx="0" r="2" fill="#120a05"/><circle cx="4.5" r="2.2" fill="#120a05"/><path d="M-1 0 l-2 4 M-1 0 l-2 -4 M1 0 l2 4 M1 0 l2 -4 M0 0 l0 4.5 M0 0 l0 -4.5" stroke="#120a05" stroke-width=".9"/></g>`;
+  const ant=`<g transform="scale(1.7)"><g class="abody"><circle r="6" fill="transparent"/><circle cx="-5" r="2.6" fill="#120a05"/><circle cx="0" r="2" fill="#120a05"/><circle cx="4.5" r="2.2" fill="#120a05"/><path d="M-1 0 l-2 4 M-1 0 l-2 -4 M1 0 l2 4 M1 0 l2 -4 M0 0 l0 4.5 M0 0 l0 -4.5" stroke="#120a05" stroke-width=".9"/></g></g>`;
   const loops=["M300 0 C300 20 260 30 232 52 C200 70 170 80 150 98 C172 84 202 74 236 56 C264 34 304 22 304 0Z","M300 0 C305 30 360 50 398 82 C450 70 510 60 560 54 C512 64 452 74 400 86 C356 54 300 32 296 0Z","M560 54 C600 40 640 30 690 30 C640 34 602 44 562 58Z","M232 52 C250 58 230 62 214 58 C222 52 228 50 232 52Z"];
   for(let i=0;i<9;i++){const p=loops[i%loops.length],dur=(10+R()*12).toFixed(1);
-    s+=`<g>${ant}<animateMotion dur="${dur}s" begin="-${(R()*dur).toFixed(1)}s" repeatCount="indefinite" rotate="auto" path="${p}"/></g>`}
-  for(let i=0;i<3;i++){const dur=(18+R()*10).toFixed(1);s+=`<g transform="translate(0 0)">${ant}<animateMotion dur="${dur}s" begin="-${(R()*dur).toFixed(1)}s" repeatCount="indefinite" rotate="auto" path="M240 7 C340 4 460 9 620 6 C460 11 340 9 240 7Z"/></g>`}
+    s+=`<g class="ugant" data-loop="${i%loops.length}">${ant}<animateMotion dur="${dur}s" begin="-${(R()*dur).toFixed(1)}s" repeatCount="indefinite" rotate="auto" path="${p}"/></g>`}
+  for(let i=0;i<3;i++){const dur=(18+R()*10).toFixed(1);s+=`<g class="ugant" data-loop="9">${ant}<animateMotion dur="${dur}s" begin="-${(R()*dur).toFixed(1)}s" repeatCount="indefinite" rotate="auto" path="M240 7 C340 4 460 9 620 6 C460 11 340 9 240 7Z"/></g>`}
   // the extra worm, burrowing slowly through the soil
-  const wp="M820 40 C900 90 980 20 1060 70 S1160 110 1180 60 C1120 20 1040 110 960 80 S860 10 820 40Z";
+  const wp="M1270 40 C1350 90 1430 20 1510 70 S1610 110 1630 60 C1570 20 1490 110 1410 80 S1310 10 1270 40Z";
   s+=`<g><g class="ugworm"><path d="M-22 0 q5 -6 10 0 t10 0 t10 0 t10 0" fill="none" stroke="#ff8fb1" stroke-width="7" stroke-linecap="round"/><path d="M-22 0 q5 -6 10 0 t10 0 t10 0 t10 0" fill="none" stroke="#2b2140" stroke-width="1.2" opacity=".5"/><circle cx="18" cy="-1.5" r="1.4" fill="#2b2140"/></g><animateMotion dur="46s" repeatCount="indefinite" rotate="auto" path="${wp}"/></g>`;
   sv.innerHTML=s;
   const sync=()=>{try{document.documentElement.classList.contains("calm")||matchMedia("(prefers-reduced-motion: reduce)").matches?sv.pauseAnimations():sv.unpauseAnimations()}catch(e){}};
   new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:["class"]});sync();
+})();
+/* ---------- soil life: poke the ants, cave in tunnels, rot roots, and the bacteria / fungi / hot-compost microbe crews ---------- */
+(function(){
+  const sv=$("ants");if(!sv)return;const INK="#2b2140";
+  const calm=()=>document.documentElement.classList.contains("calm");
+  const rnd=(a,b)=>a+Math.random()*(b-a),f=v=>v.toFixed(1);
+  const add=(html,parent)=>{(parent||sv).insertAdjacentHTML("beforeend",html);return (parent||sv).lastElementChild};
+  const toSvg=(x,y)=>{const p=sv.createSVGPoint();p.x=x;p.y=y;return p.matrixTransform(sv.getScreenCTM().inverse())};
+  function pop(x,y,txt,size){const t=add(`<text class="ugpop" x="${f(x)}" y="${f(y)}" text-anchor="middle" font-size="${((size||16)*1.5).toFixed(0)}">${txt}</text>`);setTimeout(()=>t.remove(),1300)}
+
+  // ---------- roots hanging down from the plants above ----------
+  const rootSys=[];
+  function growRoots(x,id){
+    const g=add(`<g class="rootsys" data-root="${id}"></g>`);
+    for(let b=0;b<4;b++){let px=x+rnd(-6,6),py=0,p=`M${f(px)} 0`;const steps=4+(Math.random()*4|0);
+      for(let i=0;i<steps;i++){const nx=px+rnd(-18,18),ny=Math.min(124,py+rnd(10,22));p+=` Q${f((px+nx)/2+rnd(-6,6))} ${f((py+ny)/2)} ${f(nx)} ${f(ny)}`;px=nx;py=ny;
+        if(Math.random()<.4)add(`<path class="root thin" d="M${f(px)} ${f(py)} q${f(rnd(-12,12))} 4 ${f(rnd(-20,20))} ${f(rnd(8,16))}"/>`,g)}
+      add(`<path class="root" d="${p}"/>`,g)}
+    return g}
+  [[70,"a"],[760,"b"],[1185,"c"],[2050,"d"]].forEach(([x,id])=>rootSys.push({x,id,g:growRoots(x,id)}));
+  function rot(path){
+    const g=path.closest(".rootsys"),paths=g?[...g.querySelectorAll(".root")]:[path];
+    if(paths.some(p=>p.classList.contains("rotting")))return;
+    const fz=add(`<g class="fuzzg"></g>`);
+    paths.forEach(p=>{p.classList.add("rotting");const L=p.getTotalLength();
+      for(let l=3;l<L;l+=rnd(7,13)){const q=p.getPointAtLength(l);add(`<circle class="fuzz" cx="${f(q.x+rnd(-2.5,2.5))}" cy="${f(q.y+rnd(-2.5,2.5))}" r="${f(rnd(1,2.4))}" style="animation-delay:${(l/L*1.5).toFixed(2)}s"/>`,fz)}});
+    const b=(g||path).getBBox(),cx=b.x+b.width/2;pop(cx,Math.max(16,b.y+12),"🦠🍄",14);
+    setTimeout(()=>{[g||path,fz].forEach(e=>{e.style.transition="opacity 1.5s";e.style.opacity="0"});
+      const h=add(`<ellipse class="humus" cx="${f(cx)}" cy="${f(Math.min(118,b.y+b.height*.7))}" rx="${f(Math.max(12,b.width/2))}" ry="${f(Math.max(5,b.height/5))}"/>`);
+      pop(cx,Math.min(110,b.y+b.height*.6),"+ humus",13);setTimeout(()=>{h.style.opacity="0";setTimeout(()=>h.remove(),3000)},18000)},4200);
+    setTimeout(()=>{fz.remove();(g||path).remove();const s=g&&rootSys.find(r=>r.g===g);if(s)s.g=growRoots(s.x,s.id)},g?16000:5800);
+  }
+
+  // ---------- tunnels cave in; the ants dig them back out ----------
+  const LOOPS_OF=[[0,3],[1],[1],[0],[2]];
+  function collapse(tun){
+    if(tun.classList.contains("caved"))return;const i=+tun.dataset.tun,L=tun.getTotalLength();tun.classList.add("caved");
+    const rub=add(`<g class="rubble"></g>`);
+    for(let l=0;l<L;l+=4.5){const q=tun.getPointAtLength(l);add(`<circle cx="${f(q.x+rnd(-4,4))}" cy="${f(q.y+rnd(-4,4))}" r="${f(rnd(2,4.6))}" fill="${Math.random()<.5?"#6b4a2c":"#8a6440"}" stroke="#2e1e12" stroke-width=".6"/>`,rub)}
+    sv.querySelectorAll(".ugant").forEach(a=>{if(LOOPS_OF[i].includes(+a.dataset.loop))a.classList.add("trapped")});
+    const m=tun.getPointAtLength(L/2);pop(m.x,m.y-8,"💥",18);
+    setTimeout(()=>{pop(m.x,m.y-8,"⛏️",15);rub.style.transition="opacity 3s";rub.style.opacity="0";tun.classList.remove("caved");tun.classList.add("redig");
+      const stillShut=[...sv.querySelectorAll(".tun.caved")].flatMap(t=>LOOPS_OF[+t.dataset.tun]);
+      sv.querySelectorAll(".ugant.trapped").forEach(a=>{if(!stillShut.includes(+a.dataset.loop))a.classList.remove("trapped")});
+      setTimeout(()=>{rub.remove();tun.classList.remove("redig")},3100)},9000);
+  }
+
+  // ---------- poke an ant ----------
+  const MOOD=["👋","❤️","🍬","‼️","😤","🫡","💪","🤨"];let antPokes=0;
+  function poke(a){
+    const b=a.querySelector(".abody");if(b){b.classList.remove("ahop");void b.getBBox();b.classList.add("ahop")}
+    const r=a.getBoundingClientRect(),p=toSvg(r.left+r.width/2,r.top);pop(p.x,p.y-4,MOOD[Math.random()*MOOD.length|0],16);
+    if(++antPokes%5===0&&window.__antsMarch&&!calm()){pop(300,18,"📣",16);window.__antsMarch()}
+  }
+
+  // ---------- bacteria at work (the canteen: peel, apple core, poo) ----------
+  const hat=w=>`<path d="M${-w} -5 q${w} -11 ${2*w} 0z" fill="#ffd400" stroke="${INK}" stroke-width="1"/><rect x="${-w-2}" y="-5.6" width="${2*w+4}" height="2" rx="1" fill="#ffd400" stroke="${INK}" stroke-width=".7"/>`;
+  const face=`<circle cx="-3" cy="0" r="1.3" fill="${INK}"/><circle cx="3" cy="0" r="1.3" fill="${INK}"/><path d="M-2 3 q2 2 4 0" fill="none" stroke="${INK}" stroke-width=".9"/>`;
+  const HUES=["#7bd389","#ff9ec4","#8fd3ff","#c8a8ff","#ffd27a"];
+  function bacterium(x,y,rod,hue,born){
+    const body=rod?`<rect x="-12" y="-6.5" width="24" height="13" rx="6.5" fill="${hue}" stroke="${INK}" stroke-width="1.4"/><path d="M12 1 q4 -4 8 0 q4 4 8 0" fill="none" stroke="${INK}" stroke-width="1"/>`
+                  :`<circle r="7.5" fill="${hue}" stroke="${INK}" stroke-width="1.4"/>`;
+    return add(`<g class="bact${born?" born":""}" data-act="bact" data-rod="${rod?1:0}" data-hue="${hue}" transform="translate(${f(x)} ${f(y)})"><title>Bacteria at work: click one and it splits in two</title><g class="bwob" style="animation-delay:-${rnd(0,1).toFixed(2)}s">${body}${face}${hat(rod?6:5)}</g></g>`,canteen)}
+  const canteen=add(`<g class="canteen"></g>`);
+  const FOODS=[
+    {x:830,y:98,svg:`<path d="M-26 6 C-20 -14 4 -18 22 -6 C10 -10 -8 -8 -18 10Z" fill="#f6d33c" stroke="${INK}" stroke-width="1.5"/><path d="M-18 10 C-24 14 -30 10 -26 6" fill="#8a6a1f" stroke="${INK}" stroke-width="1.2"/><path d="M-12 2 l3 -1 M0 -4 l3 -1" stroke="#8a6a1f" stroke-width="1.2"/>`,name:"banana peel"},
+    {x:990,y:92,svg:`<path d="M-9 -14 C-16 -6 -16 6 -9 14 C-4 10 4 10 9 14 C16 6 16 -6 9 -14 C4 -10 -4 -10 -9 -14Z" fill="#fff4d6" stroke="${INK}" stroke-width="1.5"/><path d="M-9 -14 C-12 -16 -4 -18 0 -16 C4 -18 12 -16 9 -14" fill="#e34948" stroke="${INK}" stroke-width="1.2"/><path d="M0 -16 l1 -6" stroke="#6b4423" stroke-width="2"/><ellipse cx="-2" cy="0" rx="1.4" ry="2.2" fill="#3a2414"/><ellipse cx="3" cy="2" rx="1.4" ry="2.2" fill="#3a2414"/>`,name:"apple core"},
+    {x:1120,y:100,svg:`<path d="M-16 10 C-18 2 -10 0 -8 2 C-10 -6 -2 -10 2 -6 C2 -14 12 -14 10 -6 C18 -4 18 6 14 10Z" fill="#7a4e24" stroke="${INK}" stroke-width="1.5"/><path d="M-6 4 q4 -2 8 0 M2 -2 q3 -1 5 0" stroke="#5a3a1e" stroke-width="1.2" fill="none"/>`,name:"poo"}];
+  FOODS.forEach((fd,i)=>{fd.left=1;fd.el=add(`<g class="food" transform="translate(${fd.x} ${fd.y})"><title>${fd.name}: the bacteria are eating it</title><g class="fscale">${fd.svg}</g><circle class="co2" r="2" cx="0" cy="-12" fill="none" stroke="#e8f8ff" stroke-width="1"><animate attributeName="cy" from="-10" to="-60" dur="${(3+i).toFixed(1)}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;0" dur="${(3+i).toFixed(1)}s" repeatCount="indefinite"/></circle></g>`,canteen)});
+  [[800,84,1],[852,108,0],[968,108,1],[1012,78,0],[1098,84,1],[1146,108,0]].forEach(([x,y,rod],i)=>bacterium(x,y,rod,HUES[i%HUES.length]));
+  function split(b){
+    const n=canteen.querySelectorAll(".bact").length,m=b.transform.baseVal.consolidate().matrix,x=m.e,y=m.f;
+    if(n<18){const rod=b.dataset.rod==="1",hue=b.dataset.hue;
+      bacterium(Math.max(745,Math.min(1175,x+rnd(-26,26))),Math.max(20,Math.min(118,y+rnd(-18,18))),rod,hue,true);pop(x,y-14,"÷2",12)}
+    else pop(x,y-14,"full!",12);
+    // the nearest scrap gets eaten a bit
+    const fd=FOODS.reduce((a,c)=>Math.abs(c.x-x)<Math.abs(a.x-x)?c:a);if(!fd.left)return;
+    fd.left=Math.max(0,fd.left-.12);fd.el.querySelector(".fscale").style.transform=`scale(${Math.max(.15,fd.left)})`;
+    if(fd.left<.3){fd.left=0;pop(fd.x,fd.y-18,"nom ✔",13);fd.el.querySelector(".fscale").style.opacity="0";
+      setTimeout(()=>{fd.left=1;const s=fd.el.querySelector(".fscale");s.style.transform="";s.style.opacity="";s.classList.remove("drop");void s.getBBox();s.classList.add("drop");pop(fd.x,fd.y-22,"new scraps!",12)},7000)}
+  }
+
+  // ---------- fungi: a rotting log with its mycelium, mushrooms pop up at the surface ----------
+  const fungi=add(`<g class="fungi"></g>`),tips=[];
+  add(`<rect x="1700" y="14" width="330" height="112" fill="transparent" data-act="fungi"><title>Fungi at work: click to grow the mycelium (it rots wood and links up with roots)</title></rect>`,fungi);
+  function hypha(x,y,n,grow){let px=x,py=y,d=`M${f(px)} ${f(py)}`;for(let i=0;i<n;i++){const nx=Math.max(1704,Math.min(2026,px+rnd(4,16))),ny=Math.max(16,Math.min(124,py+rnd(-10,10)));d+=` Q${f((px+nx)/2+rnd(-4,4))} ${f((py+ny)/2+rnd(-4,4))} ${f(nx)} ${f(ny)}`;px=nx;py=ny}
+    tips.push([px,py]);if(tips.length>40)tips.splice(0,tips.length-40);return add(`<path class="hypha${grow?" grow":""}" d="${d}"/>`,fungi)}
+  const log=`<g transform="translate(1760 74)" data-act="fungi"><title>A rotting log: fungi are eating it</title><rect x="-46" y="-17" width="88" height="34" rx="13" fill="#8a5a3c" stroke="${INK}" stroke-width="1.6"/><ellipse cx="42" cy="0" rx="9" ry="17" fill="#c9966a" stroke="${INK}" stroke-width="1.4"/><ellipse cx="42" cy="0" rx="5" ry="10" fill="none" stroke="#8a5a3c" stroke-width="1"/><ellipse cx="42" cy="0" rx="2" ry="4" fill="none" stroke="#8a5a3c" stroke-width="1"/><path d="M-36 -6 h20 M-30 6 h26 M-6 -10 h14" stroke="#6b4423" stroke-width="1.5"/><circle cx="-24" cy="-4" r="4" fill="#f4eedb" opacity=".8"/><circle cx="2" cy="5" r="3" fill="#f4eedb" opacity=".8"/></g>`;
+  for(let k=0;k<7;k++)hypha(1800+rnd(0,8),62+rnd(0,24),6+(Math.random()*5|0));
+  add(log,fungi);
+  const shrooms=[];
+  function mushroom(x){const g=add(`<g transform="translate(${f(x)} 22)"><g class="shroom"><path d="M0 8 V-2" stroke="#f4eedb" stroke-width="3"/><path d="M-8 0 Q0 -12 8 0Z" fill="${Math.random()<.5?"#e34948":"#c98f4a"}" stroke="${INK}" stroke-width="1.2"/><circle cx="-3" cy="-4" r="1.3" fill="#fff"/><circle cx="3" cy="-3" r="1" fill="#fff"/></g></g>`,fungi);shrooms.push(g);if(shrooms.length>5)shrooms.shift().remove()}
+  mushroom(1900);
+  add(`<circle r="2" fill="#ffd400"><animateMotion dur="5s" repeatCount="indefinite" path="M1800 74 C1840 60 1880 90 1930 70"/></circle>`,fungi);
+  function grow(){
+    for(let k=0;k<3;k++){const t=tips[Math.random()*tips.length|0];hypha(t[0],t[1],3+(Math.random()*3|0),true)}
+    const t=tips[tips.length-1];
+    for(let k=0;k<7;k++){const s=add(`<circle class="spore" cx="${f(t[0])}" cy="${f(t[1])}" r="1.3" fill="#f4eedb" style="--dx:${f(rnd(-18,18))}px;--dy:${f(rnd(-24,-6))}px"/>`,fungi);setTimeout(()=>s.remove(),1400)}
+    mushroom(Math.max(1710,Math.min(2020,t[0])));pop(t[0],Math.max(18,t[1]-8),"🍄",14);
+    const hy=fungi.querySelectorAll(".hypha");if(hy.length>60)[...hy].slice(7,17).forEach(h=>h.remove());
+  }
+
+  // ---------- hot compost: microbes heat the pile ----------
+  const heat=add(`<g class="heatpile" data-act="heat"><title>Hot compost: busy microbes heat a pile to 55–65 °C, which kills weed seeds and germs. Click to heat it up</title>
+    <path d="M2090 126 Q2110 40 2215 34 Q2320 40 2340 126Z" fill="#5a3a1e" stroke="${INK}" stroke-width="1.8"/>
+    <path d="M2104 104 Q2215 84 2328 104" fill="none" stroke="#3f9a35" stroke-width="5" opacity=".8"/><path d="M2112 78 Q2215 58 2320 78" fill="none" stroke="#c9966a" stroke-width="5" opacity=".8"/><path d="M2124 56 Q2215 40 2306 56" fill="none" stroke="#3f9a35" stroke-width="4" opacity=".8"/>
+    <g class="steam"></g>
+    <rect x="2356" y="18" width="10" height="84" rx="5" fill="#fff" stroke="${INK}" stroke-width="1.4"/><circle cx="2361" cy="106" r="8" fill="#e34948" stroke="${INK}" stroke-width="1.4"/><rect class="merc" x="2358.5" y="70" width="5" height="34" fill="#e34948"/>
+    <path d="M2342 102 L2356 92" stroke="${INK}" stroke-width="1.4"/>
+    <text class="temp" x="2348" y="30" text-anchor="end" font-size="12" font-weight="700" fill="#fff6dc">20°C</text></g>`);
+  const mics=[];for(let k=0;k<10;k++){const x=2130+k*19+rnd(-5,5),y=72+rnd(-14,40)*(1-Math.abs(k-4.5)/9);
+    mics.push(add(`<g transform="translate(${f(x)} ${f(y)})"><g class="mjig" style="animation-delay:-${rnd(0,1).toFixed(2)}s"><circle r="4.5" fill="${HUES[k%5]}" stroke="${INK}" stroke-width="1"/><circle cx="-1.6" cy="-.6" r=".8" fill="${INK}"/><circle cx="1.6" cy="-.6" r=".8" fill="${INK}"/></g></g>`,heat))}
+  let temp=20,heating=0;
+  function setTemp(v){temp=v;const top=104-(v-10)/60*86;const m=heat.querySelector(".merc");m.setAttribute("y",f(top));m.setAttribute("height",f(104-top));heat.querySelector(".temp").textContent=`${Math.round(v)}°C`}
+  setTemp(20);
+  function heatUp(){
+    if(heating)return;heating=1;heat.classList.add("hot");
+    const st=heat.querySelector(".steam");st.innerHTML=[0,1,2,3].map(i=>`<path class="wisp" d="M${2160+i*36} 44 q-6 -10 0 -20 q6 -10 0 -20" style="animation-delay:${i*.35}s"/>`).join("");
+    const up=setInterval(()=>{if(temp>=65){clearInterval(up);pop(2215,30,"65°C 🔥",15);setTimeout(()=>{
+        const down=setInterval(()=>{if(temp<=22){clearInterval(down);heat.classList.remove("hot");st.innerHTML="";heating=0;return}setTemp(temp-1)},180)},6000);return}
+      setTemp(temp+1)},70);
+  }
+
+  // ---------- little extras: a springtail and a tardigrade ----------
+  add(`<g transform="translate(1235 52)" data-act="spring"><title>Springtail: a tiny soil hopper. Click it</title><g class="sprt"><ellipse rx="10" ry="5" fill="#9fb3c8" stroke="${INK}" stroke-width="1.2"/><circle cx="10" cy="-1" r="4" fill="#9fb3c8" stroke="${INK}" stroke-width="1.2"/><circle cx="11.5" cy="-2" r="1" fill="${INK}"/><path d="M12 -4 l6 -6 M10 -4 l3 -8" stroke="${INK}" stroke-width="1"/><path d="M-10 3 l-6 6" stroke="${INK}" stroke-width="1.4"/><path d="M-4 4 l-1 5 M2 4 l1 5 M6 3 l2 5" stroke="${INK}" stroke-width="1"/></g></g>`);
+  add(`<g transform="translate(1662 96)" data-act="tard"><title>Tardigrade (water bear): nearly indestructible. Click it</title><g class="tard"><ellipse rx="15" ry="8" fill="#e9c7a0" stroke="${INK}" stroke-width="1.3"/><g class="tlegs">${[-10,-3,4,11].map(x=>`<path d="M${x} 6 q-1 5 1 6" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>`).join("")}</g><circle cx="13" cy="-2" r="1.1" fill="${INK}"/><path d="M15 2 q2 1 3 -1" stroke="${INK}" fill="none"/><path d="M-12 -4 q4 -3 8 0 M-2 -6 q4 -3 8 0" stroke="#c99f78" fill="none"/></g></g>`);
+
+  // ---------- one click handler for the whole strip ----------
+  function inStroke(el,pt,w){const old=el.style.strokeWidth;el.style.strokeWidth=w;let hit=false;try{hit=el.isPointInStroke(pt)}catch(e){}el.style.strokeWidth=old;return hit}
+  sv.addEventListener("click",e=>{
+    const act=e.target.closest&&e.target.closest("[data-act]");
+    if(act){const k=act.dataset.act;
+      if(k==="bact")split(act);else if(k==="fungi")grow();else if(k==="heat")heatUp();
+      else if(k==="spring"){const g=act.querySelector(".sprt");g.classList.remove("boing");void g.getBBox();g.classList.add("boing");pop(1235,26,"boing!",12)}
+      else if(k==="tard"){const g=act.querySelector(".tard");if(g.classList.contains("tun"))return;g.classList.add("tun");pop(1662,78,"💤",13);setTimeout(()=>{g.classList.remove("tun");pop(1662,78,"👋",14)},3000)}
+      return}
+    const ant=e.target.closest&&e.target.closest(".ugant");if(ant){poke(ant);return}
+    const pt=toSvg(e.clientX,e.clientY);
+    const root=[...sv.querySelectorAll(".root:not(.rotting)")].find(p=>inStroke(p,pt,"14px"));if(root){rot(root);return}
+    const tun=[...sv.querySelectorAll(".tun:not(.caved)")].find(p=>inStroke(p,pt,"20px"));if(tun)collapse(tun);
+  });
+  window.__soil={rot:()=>rot(sv.querySelector(".rootsys .root")),collapse:i=>collapse(sv.querySelector(`.tun[data-tun="${i||0}"]`)),split:()=>split(canteen.querySelector(".bact")),grow,heatUp,poke:()=>poke(sv.querySelector(".ugant"))};
 })();
 drawHero();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!document.documentElement.dataset.theme)drawHero()});
@@ -2211,7 +2398,7 @@ window.__loo=(function(){
 (function(){
   const sv=$("ants");if(!sv||!window.__loo)return;
   const ANT=`<svg viewBox="-9 -6 18 12"><circle cx="-5" r="2.6" fill="#120a05"/><circle cx="0" r="2" fill="#120a05"/><circle cx="4.5" r="2.2" fill="#120a05"/><path d="M-1 0 l-2 4 M-1 0 l-2 -4 M1 0 l2 4 M1 0 l2 -4 M0 0 l0 4.5 M0 0 l0 -4.5" stroke="#120a05" stroke-width=".9"/></svg>`;
-  function nest(){const r=sv.getBoundingClientRect(),k=Math.max(r.width/1200,r.height/130),oy=(r.height-130*k)/2;return {x:r.left+300*k,y:r.top+oy,vis:r.bottom>0&&r.top<innerHeight}}
+  function nest(){const r=sv.getBoundingClientRect(),k=Math.max(r.width/2400,r.height/130),oy=(r.height-130*k)/2;return {x:r.left+300*k,y:r.top+oy,vis:r.bottom>0&&r.top<innerHeight}}
   function march(){
     const calm=document.documentElement.classList.contains("calm")||matchMedia("(prefers-reduced-motion: reduce)").matches;
     const n=nest(),i=calm||!n.vis?null:__loo.pick(),d=i!==null&&__loo.door(i);
@@ -2232,7 +2419,7 @@ window.__loo=(function(){
 /* ---------- poo on Larry's foot → dropped on the soil → a soil worm eats it → seeds → roots + tiny sprouts ---------- */
 window.__poo=(function(){
   const NS="http://www.w3.org/2000/svg";
-  function stripMap(){const sv=$("ants");if(!sv)return null;const r=sv.getBoundingClientRect(),k=Math.max(r.width/1200,r.height/130),oy=(r.height-130*k)/2;
+  function stripMap(){const sv=$("ants");if(!sv)return null;const r=sv.getBoundingClientRect(),k=Math.max(r.width/2400,r.height/130),oy=(r.height-130*k)/2;
     return {sv,r,k,toX:x=>(x-r.left)/k,vis:r.bottom>0&&r.top<innerHeight}}
   function sprout(screenX){const hs=$("hills");if(!hs)return;const r=hs.getBoundingClientRect(),k=Math.max(r.width/1200,r.height/190),x=(screenX-r.left)/k;
     const g=document.createElementNS(NS,"g");g.setAttribute("class","sprout");g.setAttribute("transform",`translate(${x.toFixed(1)} 189)`);
