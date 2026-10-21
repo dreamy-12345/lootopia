@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="build" content="20261021174456">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <title>SHITCREW fucks your burn</title>
@@ -1916,6 +1917,11 @@ function drawHero(){
   const sun=$("sun");if(sun){sun.onclick=e=>{e.stopPropagation();window.toggleTheme&&toggleTheme()};sun.onkeydown=k=>{if(k.key==="Enter"||k.key===" "){k.preventDefault();sun.onclick(k)}}}
   document.dispatchEvent(new Event("herodrawn"));
 }
+
+/* ---------- self-update: if a newer version is published, reload once ---------- */
+(function(){try{const mine=document.querySelector('meta[name="build"]').content;
+  fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{const m=t.match(/<meta name="build" content="(\d+)">/);
+    if(m&&m[1]>mine&&sessionStorage.getItem("reloadedFor")!==m[1]){sessionStorage.setItem("reloadedFor",m[1]);location.reload()}}).catch(()=>{})}catch(e){}})();
 /* ---------- soil background with hidden things ---------- */
 (function(){
   const R=seeded(42),W=720,H=720;
