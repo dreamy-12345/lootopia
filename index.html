@@ -8,7 +8,7 @@
 <title>SHITCREW fucks your burn</title>
 <style>
 :root{
-  --bg:#fff6e6;--dot:#f1dcb8;--panel:#ffffff;--ink:#2b2140;--muted:#6d6385;--line:#e8dcc6;--edge:#2b2140;
+  --bg:#cfb48e;--dot:#f1dcb8;--panel:#fffaf2;--ink:#2b2140;--muted:#4a3f60;--line:#e8dcc6;--edge:#2b2140;
   --soft:#f3ecff;--chip:#fbf1df;
   --pink:#ff5d8f;--teal:#13b5a5;--sun:#ffc93c;--purple:#7b5cff;--leaf:#5cbf4a;--orange:#ff8a3d;--sky:#4cb8ff;
   --accent:#13b5a5;--accent2:#ff8a3d;--warn:#e8473f;--ok:#3f9a35;
@@ -17,22 +17,22 @@
   --warnbg:#ffe8ea;--tipbg:#e2f8f4;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#1c192f;--dot:#26213f;--panel:#262139;--ink:#e7e2f1;--muted:#aaa2c2;--line:#3b3558;--edge:#0d0b1a;
+  --bg:#231a15;--dot:#26213f;--panel:#262139;--ink:#e7e2f1;--muted:#aaa2c2;--line:#3b3558;--edge:#0d0b1a;
   --soft:#2f2a4c;--chip:#2f2a4c;--accent:#62c8bb;--warn:#ff7a72;--ok:#7fd56f;--soil:#8a6440;--soil2:#a57d55;--ply:#b89b6c;--ply2:#9c8256;
   --sky1:#1b1640;--sky2:#2b1f5c;--sky3:#43307a;--sunc:#fff3c4;--hill1:#2f5d3a;--hill2:#244d2f;--hill3:#1a3b24;
   --warnbg:#3a1f33;--tipbg:#173a3a;}}
 :root[data-theme="dark"]{
-  --bg:#1c192f;--dot:#26213f;--panel:#262139;--ink:#e7e2f1;--muted:#aaa2c2;--line:#3b3558;--edge:#0d0b1a;
+  --bg:#231a15;--dot:#26213f;--panel:#262139;--ink:#e7e2f1;--muted:#aaa2c2;--line:#3b3558;--edge:#0d0b1a;
   --soft:#2f2a4c;--chip:#2f2a4c;--accent:#62c8bb;--warn:#ff7a72;--ok:#7fd56f;--soil:#8a6440;--soil2:#a57d55;--ply:#b89b6c;--ply2:#9c8256;
   --sky1:#1b1640;--sky2:#2b1f5c;--sky3:#43307a;--sunc:#fff3c4;--hill1:#2f5d3a;--hill2:#244d2f;--hill3:#1a3b24;
   --warnbg:#3a1f33;--tipbg:#173a3a;}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);background-image:radial-gradient(var(--dot) 1.3px,transparent 1.5px);background-size:22px 22px;color:var(--ink);font:16px/1.6 "Nunito",-apple-system,"Segoe UI",sans-serif}
+body{margin:0;background:var(--bg);background-image:var(--soilimg,none);background-size:720px 720px;color:var(--ink);font:16px/1.6 "Nunito",-apple-system,"Segoe UI",sans-serif}
 h1,h2,h3,h4,nav button,.btn,.sw,.stat b,.kicker,.chipz span{font-family:"Fredoka","Nunito",sans-serif}
 /* hero */
 .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--sky1),var(--sky2) 55%,var(--sky3));border-bottom:3px solid var(--edge);min-height:330px}
 .bunting{position:absolute;top:0;left:0;width:100%;height:46px}
-.hero-in{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:56px 16px 150px}
+.hero-in{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:56px 16px clamp(130px,13.5vw,280px)}
 .kicker{display:inline-block;background:var(--panel);border:2px solid var(--edge);border-radius:999px;padding:2px 12px;font-size:14px;box-shadow:3px 3px 0 var(--edge);transform:rotate(-2deg)}
 h1{margin:12px 0 4px;font-size:clamp(34px,6vw,58px);line-height:1.05;font-weight:700;letter-spacing:-.5px}
 h1 .wob{display:inline-block;color:var(--pink);text-shadow:3px 3px 0 var(--edge);animation:wob 3s ease-in-out infinite}
@@ -40,8 +40,10 @@ h1 .wob{display:inline-block;color:var(--pink);text-shadow:3px 3px 0 var(--edge)
 .hero p{margin:6px 0 0;max-width:640px;font-size:17px}
 .chipz{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .chipz span{background:var(--panel);border:2px solid var(--edge);border-radius:999px;padding:3px 12px;font-size:14.5px;box-shadow:3px 3px 0 var(--edge)}
-.hills{position:absolute;left:0;bottom:0;width:100%;height:190px;z-index:1}
-.sunrays{transform-origin:1060px 56px;animation:spin 40s linear infinite}
+.hills{position:absolute;left:0;bottom:0;width:100%;height:clamp(150px,15.8vw,320px);z-index:1}
+.sky{position:absolute;z-index:1;top:40px;right:max(16px,6vw);width:140px;height:140px;overflow:visible}
+@media (max-width:600px){.sky{width:62px;height:62px;top:36px;right:6px}}
+.sunrays{transform-origin:70px 70px;animation:spin 40s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .worm{animation:crawl 45s linear infinite}
 @keyframes crawl{from{transform:translateX(-120px)}to{transform:translateX(1320px)}}
@@ -49,7 +51,8 @@ h1 .wob{display:inline-block;color:var(--pink);text-shadow:3px 3px 0 var(--edge)
 @keyframes bob{to{transform:translateY(-4px)}}
 /* nav */
 nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:3px solid var(--edge)}
-nav .in{max-width:1100px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 16px}
+nav .in{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;padding:10px 16px}
+.pager{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:22px 0 4px}
 nav button{flex:0 0 auto;border:2.5px solid var(--edge);background:var(--panel);color:var(--ink);padding:6px 14px;border-radius:999px;cursor:pointer;font-size:15.5px;font-weight:600;box-shadow:3px 3px 0 var(--edge);transition:transform .15s}
 nav button:hover{transform:translateY(-2px) rotate(-2deg)}
 nav button.on{background:var(--c);color:#2b2140;transform:rotate(-2deg)}
@@ -123,10 +126,10 @@ svg text{fill:var(--ink);font:12px "Nunito",-apple-system,sans-serif}
 footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:700}
 /* phones */
 @media (max-width:600px){
-  .hero{min-height:0}.hero-in{padding:44px 16px 120px}.hero p{font-size:16px}
+  .hero{min-height:0}.hero-in{padding:44px 16px 128px}.hero p{font-size:16px}
   .chipz span{font-size:13px;padding:2px 10px}
-  nav .in{padding:8px 12px;gap:6px;scrollbar-width:none}nav .in::-webkit-scrollbar{display:none}
-  nav button{font-size:14px;padding:5px 11px}
+  nav{position:static}nav .in{padding:8px 12px;gap:6px}
+  nav button{font-size:13.5px;padding:5px 10px;box-shadow:2px 2px 0 var(--edge)}
   main{padding:16px 12px 32px}
   .card{padding:14px;border-radius:18px;box-shadow:4px 4px 0 var(--edge)}
   .grid{grid-template-columns:1fr;gap:14px}
@@ -240,11 +243,11 @@ html.calm .cf{display:none}
 <body>
 <header class="hero">
   <svg class="bunting" id="bunting" viewBox="0 0 1200 46" preserveAspectRatio="none"></svg>
+  <svg class="sky" id="sky" viewBox="0 0 140 140"></svg>
   <div class="hero-in">
     <span class="kicker">📍 Hunterville · Rangitīkei · Aotearoa</span>
     <h1>SHITCREW fucks your burn <span class="wob">🍄</span></h1>
     <p>Festival composting toilets that feed a worm farm. One month of loos, twelve months of happy worms, built from plywood and Mitre 10 bits.</p>
-    <div class="chipz"><span>🚽 1 month of loos</span><span>🪣 50 L buckets</span><span>🪱 12 months of worms</span><span>🌳 compost for trees</span></div>
   </div>
   <svg class="hills" id="hills" viewBox="0 0 1200 190" preserveAspectRatio="xMinYMax slice"></svg>
 </header>
@@ -1829,6 +1832,12 @@ function calcTrap(){
 }
 ["tPeople","tLpp","tSoil","tSink","tRun","tDrop","tPlinth"].forEach(id=>$(id).addEventListener("input",calcTrap));
 swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();calcTrap();drawAccess();calcRamp();drawFraming();drawTowing();calcWash();buildTeam();
+/* soil background */
+
+/* ---------- previous / next buttons at the end of every tab ---------- */
+TABS.forEach(([id],i)=>{const s=$(id);if(!s)return;const p=TABS[i-1],n=TABS[i+1];
+  s.insertAdjacentHTML("beforeend",`<div class="pager noprint">${p?`<button class="btn" data-go="${p[0]}">← ${p[1]}</button>`:"<span></span>"}${n?`<button class="btn pri" data-go="${n[0]}">${n[1]} →</button>`:""}</div>`)});
+document.querySelectorAll(".pager [data-go]").forEach(b=>b.onclick=()=>{showTab(b.dataset.go);history.replaceState(null,"","#"+b.dataset.go);document.querySelector("nav").scrollIntoView({block:"start"})});
 /* ---------- comfort: dark mode (also the sun), calm mode, text size, quick summaries ---------- */
 (function(){
   const root=document.documentElement;
@@ -1887,8 +1896,13 @@ function drawHero(){
   for(let i=0;i<30;i++){const x=i*40+20,t=x/1200,y=6+56*t*(1-t);b+=`<polygon points="${x-14},${y} ${x+14},${y} ${x},${y+22}" fill="${CF[i%7]}" stroke="#2b2140" stroke-width="1.5"/>`}
   $("bunting").innerHTML=b;
   const dark=isDark();
-  let h=`<g id="sun" role="button" tabindex="0" aria-label="${dark?"Moon: switch to light mode":"Sun: switch to dark mode"}"><title>${dark?"Click the moon for light mode":"Click the sun for dark mode"}</title><circle cx="1060" cy="56" r="56" fill="transparent"/>`+(dark?"":`<g class="sunrays">`);if(!dark)for(let i=0;i<12;i++){const a=i*Math.PI/6;h+=`<line x1="${1060+36*Math.cos(a)}" y1="${56+36*Math.sin(a)}" x2="${1060+50*Math.cos(a)}" y2="${56+50*Math.sin(a)}" stroke="var(--sunc)" stroke-width="6" stroke-linecap="round"/>`}
-  h+=dark?`<circle cx="1060" cy="56" r="44" fill="#f4ecc8" opacity=".10"/><circle cx="1060" cy="56" r="36" fill="#f4ecc8" opacity=".14"/><circle cx="1060" cy="56" r="28" fill="#f1e8c4" stroke="#2b2140" stroke-width="3"/><circle cx="1051" cy="48" r="6" fill="#ddd2a6"/><circle cx="1070" cy="64" r="4.5" fill="#ddd2a6"/><circle cx="1067" cy="43" r="3" fill="#ddd2a6"/><circle cx="1049" cy="67" r="2.6" fill="#ddd2a6"/><circle cx="1078" cy="52" r="2.2" fill="#ddd2a6"/></g>`:`</g><circle cx="1060" cy="56" r="40" fill="var(--sunc)" opacity=".18"/><circle cx="1060" cy="56" r="28" fill="var(--sunc)" stroke="#2b2140" stroke-width="3"/></g>`;
+  // sun / moon live in their own corner svg so the hills crop can never cut them
+  let k=`<g id="sun" role="button" tabindex="0" aria-label="${dark?"Moon: switch to light mode":"Sun: switch to dark mode"}"><title>${dark?"Click the moon for light mode":"Click the sun for dark mode"}</title><circle cx="70" cy="70" r="66" fill="transparent"/>`;
+  if(dark)k+=`<circle cx="70" cy="70" r="52" fill="#f4ecc8" opacity=".10"/><circle cx="70" cy="70" r="42" fill="#f4ecc8" opacity=".14"/><circle cx="70" cy="70" r="33" fill="#f1e8c4" stroke="#2b2140" stroke-width="3"/><circle cx="59" cy="60" r="7" fill="#ddd2a6"/><circle cx="81" cy="80" r="5" fill="#ddd2a6"/><circle cx="77" cy="54" r="3.5" fill="#ddd2a6"/><circle cx="58" cy="83" r="3" fill="#ddd2a6"/><circle cx="90" cy="65" r="2.5" fill="#ddd2a6"/>`;
+  else{k+=`<g class="sunrays">`;for(let i=0;i<12;i++){const a=i*Math.PI/6;k+=`<line x1="${70+42*Math.cos(a)}" y1="${70+42*Math.sin(a)}" x2="${70+60*Math.cos(a)}" y2="${70+60*Math.sin(a)}" stroke="var(--sunc)" stroke-width="7" stroke-linecap="round"/>`}
+    k+=`</g><circle cx="70" cy="70" r="46" fill="var(--sunc)" opacity=".18"/><circle cx="70" cy="70" r="33" fill="var(--sunc)" stroke="#2b2140" stroke-width="3"/>`}
+  $("sky").innerHTML=k+`</g>`;
+  let h="";
   h+=`<g fill="#fff" opacity="${dark?.15:.85}" stroke="#2b2140" stroke-width="2"><path d="M140 70 a18 18 0 0 1 34 -8 a14 14 0 0 1 26 6 a12 12 0 0 1 2 24 h-60 a12 12 0 0 1 -2 -22z"/><path d="M820 40 a14 14 0 0 1 27 -6 a11 11 0 0 1 20 5 a9 9 0 0 1 1 18 h-46 a9 9 0 0 1 -2 -17z"/></g>`;
   h+=`<path d="M0 120 C150 70 300 90 420 110 S700 60 860 95 S1100 80 1200 100 V190 H0Z" fill="var(--hill1)" stroke="#2b2140" stroke-width="3"/>`;
   const FRONT=[["mushroom","candy","dots",30],["rocket","sky","none",108],["castle","sunset","none",186],["beach","teal","none",264],["can","sunset","none",470],["soup","candy","none",600],["moss","moss","none",740]];
@@ -1902,6 +1916,32 @@ function drawHero(){
   const sun=$("sun");if(sun){sun.onclick=e=>{e.stopPropagation();window.toggleTheme&&toggleTheme()};sun.onkeydown=k=>{if(k.key==="Enter"||k.key===" "){k.preventDefault();sun.onclick(k)}}}
   document.dispatchEvent(new Event("herodrawn"));
 }
+/* ---------- soil background with hidden things ---------- */
+(function(){
+  const R=seeded(42),W=720,H=720;
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
+  for(let i=0;i<520;i++)s+=`<circle cx="${(R()*W)|0}" cy="${(R()*H)|0}" r="${(R()*1.6+.4).toFixed(1)}" fill="${R()<.55?"#000":"#fff"}" opacity="${(.05+R()*.08).toFixed(2)}"/>`;
+  for(let i=0;i<46;i++){const x=(R()*W)|0,y=(R()*H)|0,rx=3+R()*9,ry=rx*(.5+R()*.4);s+=`<ellipse cx="${x}" cy="${y}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}" fill="#000" opacity=".09" transform="rotate(${(R()*180)|0} ${x} ${y})"/><ellipse cx="${x-rx*.3}" cy="${y-ry*.3}" rx="${(rx*.4).toFixed(1)}" ry="${(ry*.3).toFixed(1)}" fill="#fff" opacity=".08"/>`}
+  for(let i=0;i<6;i++){let x=(R()*W)|0,y=-10,p=`M${x} ${y}`;for(let j=0;j<5;j++){const nx=x+(R()*80-40),ny=y+40+R()*50;p+=` Q${(x+nx)/2+(R()*30-15)} ${(y+ny)/2} ${nx|0} ${ny|0}`;x=nx;y=ny}s+=`<path d="${p}" fill="none" stroke="#3b2a1c" stroke-width="${(1.5+R()*2).toFixed(1)}" opacity=".18" stroke-linecap="round"/>`}
+  const T={
+    bone:`<g fill="#efe6d2"><rect x="-14" y="-3" width="28" height="6" rx="3"/><circle cx="-14" cy="-4" r="4"/><circle cx="-14" cy="4" r="4"/><circle cx="14" cy="-4" r="4"/><circle cx="14" cy="4" r="4"/></g>`,
+    cap:`<polygon points="${[...Array(32)].map((_,i)=>{const a=i*Math.PI/16,r=i%2?6:7.5;return (r*Math.cos(a)).toFixed(1)+","+(r*Math.sin(a)).toFixed(1)}).join(" ")}" fill="#c9ced3"/><circle r="4" fill="#e8473f"/>`,
+    corn:`<ellipse rx="4" ry="5.5" fill="#f6c94a"/><ellipse cx="-1" cy="-2" rx="1.4" ry="2" fill="#fff3b0"/>`,
+    ring:`<circle r="6" fill="none" stroke="#e9b44c" stroke-width="2.2"/><circle cy="-7" r="2.6" fill="#5cc8ff"/>`,
+    coin:`<circle r="7" fill="#d9a21f"/><circle r="4.8" fill="none" stroke="#f6d36b" stroke-width="1.2"/>`,
+    beetle:`<g stroke="#2b2140" stroke-width="1.2">${[-4,0,4].map(y=>`<line x1="-8" y1="${y}" x2="8" y2="${y+2}"/>`).join("")}</g><ellipse rx="5" ry="7" fill="#3a6e5a"/><line x1="0" y1="-7" x2="0" y2="7" stroke="#1d3a30"/><circle cy="-8" r="2.6" fill="#2b2140"/>`,
+    fossil:`<path d="M0 0 m0 -1 a1 1 0 1 1 0 2 a2.5 2.5 0 1 1 0 -5 a4 4 0 1 1 0 8 a5.5 5.5 0 1 1 0 -11 a7 7 0 1 1 0 14" fill="none" stroke="#e8dcc6" stroke-width="1.6"/>`,
+    worm:`<path d="M-14 0 q4 -6 8 0 t8 0 t8 0 t8 0" fill="none" stroke="#ff8fb1" stroke-width="4" stroke-linecap="round"/>`,
+    seed:`<path d="M0 -7 C5 -3 5 4 0 7 C-5 4 -5 -3 0 -7Z" fill="#8a6440"/><path d="M0 -5 V5" stroke="#5e3a17"/>`,
+    skull:`<circle r="6" fill="#efe6d2"/><rect x="-3.5" y="4" width="7" height="4" rx="1" fill="#efe6d2"/><circle cx="-2.2" cy="-.5" r="1.6" fill="#3b2a1c"/><circle cx="2.2" cy="-.5" r="1.6" fill="#3b2a1c"/>`,
+    key:`<circle cx="-7" r="4" fill="none" stroke="#c9a24a" stroke-width="2"/><path d="M-3 0 H9 M5 0 V4 M8 0 V3" stroke="#c9a24a" stroke-width="2"/>`,
+    chest:`<rect x="-8" y="-5" width="16" height="11" rx="2" fill="#7a4a24"/><path d="M-8 -1 H8" stroke="#e9b44c" stroke-width="1.6"/><rect x="-1.5" y="-2" width="3" height="4" fill="#e9b44c"/>`,
+    tab:`<path d="M-5 -3 a4 4 0 0 1 8 0 v1 h3 a3 3 0 0 1 0 6 h-11 a3 3 0 0 1 0 -6z" fill="#c9ced3"/><circle cx="-1" cy="-2" r="1.8" fill="#000" opacity=".5"/>`
+  };
+  Object.values(T).forEach((g,i)=>{for(let j=0;j<2;j++)s+=`<g transform="translate(${(R()*(W-40)+20)|0} ${(R()*(H-40)+20)|0}) rotate(${(R()*360)|0})" opacity="${(.38+R()*.2).toFixed(2)}">${g}</g>`});
+  s+=`</svg>`;
+  document.documentElement.style.setProperty("--soilimg",`url("data:image/svg+xml,${encodeURIComponent(s)}")`);
+})();
 drawHero();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!document.documentElement.dataset.theme)drawHero()});
 /* ---------- hidden worm game ---------- */
