@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="build" content="20261021180254">
+<meta name="build" content="20261021180607">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <title>SHITCREW fucks your burn</title>
@@ -230,7 +230,6 @@ main{zoom:var(--zoom,1)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .stat{filter:saturate(.75) brightness(.86)}}
 :root[data-theme="dark"] .stat{filter:saturate(.75) brightness(.86)}
 html.calm *,html.calm *::before,html.calm *::after{animation:none!important;transition:none!important}
-html.calm body{background-image:none}
 html.calm .card,html.calm .stat,html.calm .issue,html.calm .mo,html.calm .btn,html.calm nav button,html.calm .flow .step,html.calm .sw,html.calm .chipz span,html.calm .kicker{box-shadow:none!important}
 html.calm nav button.on,html.calm .kicker,html.calm .mo.ev,html.calm .stat:hover,html.calm nav button:hover,html.calm .sw:hover,html.calm .chk input:hover,html.calm .btn:hover{transform:none!important}
 html.calm .stat{background:var(--soft)!important;color:var(--ink)!important}
@@ -260,6 +259,10 @@ html.calm .cf{display:none}
 #eel.gulp .eelhead{transform-box:fill-box;transform-origin:0 50%;animation:gulp .25s ease-in-out 3}
 @keyframes gulp{50%{transform:scale(1.2)}}
 
+.underground{position:relative;height:clamp(84px,9vw,150px);overflow:hidden;border-bottom:3px solid #2b2140;background:#5e4128}
+.underground svg{width:100%;height:100%;display:block}
+.ugworm{animation:ugw .7s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+@keyframes ugw{to{transform:scaleX(.86)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{nav,.noprint,.hero .hills,.bunting{display:none}section{display:block!important;page-break-after:always}body{background:#fff}.card,.stat,.issue,.mo{box-shadow:none}}
 </style>
@@ -275,6 +278,7 @@ html.calm .cf{display:none}
   </div>
   <svg class="hills" id="hills" viewBox="0 0 1200 190" preserveAspectRatio="xMinYMax slice"></svg>
 </header>
+<div class="underground" aria-hidden="true"><svg id="ants" viewBox="0 0 1200 130" preserveAspectRatio="xMinYMid slice"></svg></div>
 <nav><div class="in" id="tabs"></div></nav>
 <main>
 
@@ -2010,6 +2014,37 @@ function drawHero(){
   Object.values(T).forEach((g,i)=>{for(let j=0;j<2;j++)s+=`<g transform="translate(${(R()*(W-40)+20)|0} ${(R()*(H-40)+20)|0}) rotate(${(R()*360)|0})" opacity="${(.38+R()*.2).toFixed(2)}">${g}</g>`});
   s+=`</svg>`;
   document.documentElement.style.setProperty("--soilimg",`url("data:image/svg+xml,${encodeURIComponent(s)}")`);
+})();
+/* ---------- underground strip under the banner: always soil, with an ant nest and a burrowing worm ---------- */
+(function(){
+  const sv=$("ants");if(!sv)return;const R=seeded(7),W=1200,H=130;
+  let s=`<defs><linearGradient id="ugSoil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a5634"/><stop offset="1" stop-color="#46301e"/></linearGradient></defs>`;
+  s+=`<rect width="${W}" height="${H}" fill="url(#ugSoil)"/>`;
+  for(let i=0;i<260;i++)s+=`<circle cx="${(R()*W)|0}" cy="${(R()*H)|0}" r="${(R()*1.5+.4).toFixed(1)}" fill="${R()<.6?"#000":"#e9d5b5"}" opacity="${(.08+R()*.12).toFixed(2)}"/>`;
+  for(let i=0;i<26;i++){const x=(R()*W)|0,y=(12+R()*(H-16))|0,rx=3+R()*8;s+=`<ellipse cx="${x}" cy="${y}" rx="${rx.toFixed(1)}" ry="${(rx*.6).toFixed(1)}" fill="#8f7a64" opacity=".55"/>`}
+  for(let i=0;i<5;i++){let x=(80+R()*1050)|0,y=0,p=`M${x} 0`;for(let j=0;j<3;j++){const nx=x+(R()*50-25),ny=y+18+R()*22;p+=` Q${((x+nx)/2+(R()*16-8))|0} ${((y+ny)/2)|0} ${nx|0} ${ny|0}`;x=nx;y=ny}s+=`<path d="${p}" fill="none" stroke="#2e1e12" stroke-width="2" opacity=".45" stroke-linecap="round"/>`}
+  // the nest: tunnels + chambers
+  const T="#3e2a19";
+  const tunnels=["M300 0 C300 20 260 30 232 52","M300 0 C305 30 360 50 398 82","M398 82 C450 70 510 60 560 54","M232 52 C200 70 170 80 148 98","M560 54 C600 40 640 30 690 30"];
+  tunnels.forEach(d=>s+=`<path d="${d}" fill="none" stroke="${T}" stroke-width="11" stroke-linecap="round"/>`);
+  [[232,56,30,13],[398,86,34,14],[562,56,30,12],[146,102,36,15],[692,32,22,10]].forEach(([x,y,rx,ry])=>s+=`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${T}"/>`);
+  s+=`<path d="M286 0 q14 -1 28 0" stroke="#24160c" stroke-width="5"/>`;
+  // eggs in the nursery, corn in the pantry, the queen at home
+  for(let i=0;i<7;i++)s+=`<ellipse cx="${382+i*6}" cy="${92-(i%2)*4}" rx="3" ry="2" fill="#fff8e6"/>`;
+  for(let i=0;i<4;i++)s+=`<ellipse cx="${548+i*8}" cy="${60-(i%2)*3}" rx="3.4" ry="4.4" fill="#f6c94a"/>`;
+  s+=`<g transform="translate(146 104)"><ellipse cx="-12" cy="0" rx="12" ry="6" fill="#3a2414"/><circle cx="2" cy="0" r="4.5" fill="#1a0f08"/><circle cx="10" cy="0" r="4" fill="#1a0f08"/><path d="M-6 -5 l-4 -6 M0 -4 l2 -7 M-6 5 l-4 6 M0 4 l2 7" stroke="#1a0f08" stroke-width="1.4"/><path d="M8 -6 l3 -6 l4 4" fill="#ffd04e"/></g>`;
+  // ants: each walks a loop (down a tunnel and back up the other side of it)
+  const ant=`<g transform="scale(1.7)"><circle cx="-5" r="2.6" fill="#120a05"/><circle cx="0" r="2" fill="#120a05"/><circle cx="4.5" r="2.2" fill="#120a05"/><path d="M-1 0 l-2 4 M-1 0 l-2 -4 M1 0 l2 4 M1 0 l2 -4 M0 0 l0 4.5 M0 0 l0 -4.5" stroke="#120a05" stroke-width=".9"/></g>`;
+  const loops=["M300 0 C300 20 260 30 232 52 C200 70 170 80 150 98 C172 84 202 74 236 56 C264 34 304 22 304 0Z","M300 0 C305 30 360 50 398 82 C450 70 510 60 560 54 C512 64 452 74 400 86 C356 54 300 32 296 0Z","M560 54 C600 40 640 30 690 30 C640 34 602 44 562 58Z","M232 52 C250 58 230 62 214 58 C222 52 228 50 232 52Z"];
+  for(let i=0;i<9;i++){const p=loops[i%loops.length],dur=(10+R()*12).toFixed(1);
+    s+=`<g>${ant}<animateMotion dur="${dur}s" begin="-${(R()*dur).toFixed(1)}s" repeatCount="indefinite" rotate="auto" path="${p}"/></g>`}
+  for(let i=0;i<3;i++){const dur=(18+R()*10).toFixed(1);s+=`<g transform="translate(0 0)">${ant}<animateMotion dur="${dur}s" begin="-${(R()*dur).toFixed(1)}s" repeatCount="indefinite" rotate="auto" path="M240 7 C340 4 460 9 620 6 C460 11 340 9 240 7Z"/></g>`}
+  // the extra worm, burrowing slowly through the soil
+  const wp="M820 40 C900 90 980 20 1060 70 S1160 110 1180 60 C1120 20 1040 110 960 80 S860 10 820 40Z";
+  s+=`<g><g class="ugworm"><path d="M-22 0 q5 -6 10 0 t10 0 t10 0 t10 0" fill="none" stroke="#ff8fb1" stroke-width="7" stroke-linecap="round"/><path d="M-22 0 q5 -6 10 0 t10 0 t10 0 t10 0" fill="none" stroke="#2b2140" stroke-width="1.2" opacity=".5"/><circle cx="18" cy="-1.5" r="1.4" fill="#2b2140"/></g><animateMotion dur="46s" repeatCount="indefinite" rotate="auto" path="${wp}"/></g>`;
+  sv.innerHTML=s;
+  const sync=()=>{try{document.documentElement.classList.contains("calm")||matchMedia("(prefers-reduced-motion: reduce)").matches?sv.pauseAnimations():sv.unpauseAnimations()}catch(e){}};
+  new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:["class"]});sync();
 })();
 drawHero();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!document.documentElement.dataset.theme)drawHero()});
