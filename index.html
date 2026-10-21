@@ -17,13 +17,13 @@
   --warnbg:#ffe8ea;--tipbg:#e2f8f4;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#17132b;--dot:#241e44;--panel:#221d3b;--ink:#f3eeff;--muted:#b3a9d1;--line:#3a3260;--edge:#0b0818;
-  --soft:#2d2650;--chip:#2d2650;--accent:#3fd8c6;--warn:#ff7a72;--ok:#7fd56f;--soil:#8a6440;--soil2:#a57d55;--ply:#b89b6c;--ply2:#9c8256;
+  --bg:#1c192f;--dot:#26213f;--panel:#262139;--ink:#e7e2f1;--muted:#aaa2c2;--line:#3b3558;--edge:#0d0b1a;
+  --soft:#2f2a4c;--chip:#2f2a4c;--accent:#62c8bb;--warn:#ff7a72;--ok:#7fd56f;--soil:#8a6440;--soil2:#a57d55;--ply:#b89b6c;--ply2:#9c8256;
   --sky1:#1b1640;--sky2:#2b1f5c;--sky3:#43307a;--sunc:#fff3c4;--hill1:#2f5d3a;--hill2:#244d2f;--hill3:#1a3b24;
   --warnbg:#3a1f33;--tipbg:#173a3a;}}
 :root[data-theme="dark"]{
-  --bg:#17132b;--dot:#241e44;--panel:#221d3b;--ink:#f3eeff;--muted:#b3a9d1;--line:#3a3260;--edge:#0b0818;
-  --soft:#2d2650;--chip:#2d2650;--accent:#3fd8c6;--warn:#ff7a72;--ok:#7fd56f;--soil:#8a6440;--soil2:#a57d55;--ply:#b89b6c;--ply2:#9c8256;
+  --bg:#1c192f;--dot:#26213f;--panel:#262139;--ink:#e7e2f1;--muted:#aaa2c2;--line:#3b3558;--edge:#0d0b1a;
+  --soft:#2f2a4c;--chip:#2f2a4c;--accent:#62c8bb;--warn:#ff7a72;--ok:#7fd56f;--soil:#8a6440;--soil2:#a57d55;--ply:#b89b6c;--ply2:#9c8256;
   --sky1:#1b1640;--sky2:#2b1f5c;--sky3:#43307a;--sunc:#fff3c4;--hill1:#2f5d3a;--hill2:#244d2f;--hill3:#1a3b24;
   --warnbg:#3a1f33;--tipbg:#173a3a;}
 *{box-sizing:border-box}
@@ -212,6 +212,27 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
 @keyframes splash{to{transform:translate(var(--dx),calc(var(--dy) + 200px)) rotate(var(--r));opacity:0}}
 html.inverted{filter:invert(1)}
 #invtimer{position:fixed;z-index:103;top:10px;right:10px;font:800 14px Fredoka,sans-serif;background:#2b2140;color:#ffc93c;border-radius:999px;padding:4px 12px;pointer-events:none}
+/* comfort: calm mode, text size, focus */
+.skip{position:absolute;left:-999px;top:8px;z-index:200;background:var(--sun);color:#2b2140;padding:8px 14px;border-radius:10px;font-weight:800}
+.skip:focus{left:12px}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.comfort{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+.comfort .btn{font-size:14px;padding:5px 12px}
+.comfort .btn[aria-pressed="true"]{background:var(--leaf);color:#13210f}
+.tldr{background:var(--chip);border:2px dashed var(--edge);border-radius:14px;padding:8px 14px;margin:-4px 0 16px;font-weight:700}
+.tldr::before{content:"In short: ";color:var(--muted);font-weight:800}
+main{zoom:var(--zoom,1)}
+#sun{cursor:pointer}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .stat{filter:saturate(.75) brightness(.86)}}
+:root[data-theme="dark"] .stat{filter:saturate(.75) brightness(.86)}
+html.calm *,html.calm *::before,html.calm *::after{animation:none!important;transition:none!important}
+html.calm body{background-image:none}
+html.calm .card,html.calm .stat,html.calm .issue,html.calm .mo,html.calm .btn,html.calm nav button,html.calm .flow .step,html.calm .sw,html.calm .chipz span,html.calm .kicker{box-shadow:none!important}
+html.calm nav button.on,html.calm .kicker,html.calm .mo.ev,html.calm .stat:hover,html.calm nav button:hover,html.calm .sw:hover,html.calm .chk input:hover,html.calm .btn:hover{transform:none!important}
+html.calm .stat{background:var(--soft)!important;color:var(--ink)!important}
+html.calm h2 span.hl{background:none;border-bottom:4px solid var(--sun)}
+html.calm h1 .wob{text-shadow:none}
+html.calm .cf{display:none}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{nav,.noprint,.hero .hills,.bunting{display:none}section{display:block!important;page-break-after:always}body{background:#fff}.card,.stat,.issue,.mo{box-shadow:none}}
 </style>
@@ -225,7 +246,7 @@ html.inverted{filter:invert(1)}
     <p>Festival composting toilets that feed a worm farm. One month of loos, twelve months of happy worms, built from plywood and Mitre 10 bits.</p>
     <div class="chipz"><span>🚽 1 month of loos</span><span>🪣 50 L buckets</span><span>🪱 12 months of worms</span><span>🌳 compost for trees</span></div>
   </div>
-  <svg class="hills" id="hills" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice"></svg>
+  <svg class="hills" id="hills" viewBox="0 0 1200 190" preserveAspectRatio="xMinYMax slice"></svg>
 </header>
 <nav><div class="in" id="tabs"></div></nav>
 <main>
@@ -334,6 +355,7 @@ html.inverted{filter:invert(1)}
 <li><b>Bucket access from the back.</b> A hatch in the back wall lets crew swap buckets without going inside. It's quicker, more hygienic and keeps the queue moving.</li>
 <li><b>Character fronts:</b> the fun lives on one extra 12 mm sheet cut into a mushroom cap, rocket nose, castle battlements or chalet gable, screwed onto the front wall. It costs about $100–130 extra per cubicle, and the box underneath never changes.</li>
 <li><b>Kiwiburn fronts:</b> the <b>DoBro can</b> is a nod to Double Brown ("DoBro"), the cheap DB bitter every Kiwi paddock party knows. Paint the band gold with a red pinstripe, and cut the ring-pull from an offcut so it sits above the roofline. <b>Moss &amp; Microchips</b> follows the Kiwiburn 2027 theme: green ply "moss" blobs drip over the roof, and the cut-outs are circuit traces routed as 12 mm slots, backed with opal polycarbonate so they glow at night. Hand-paint the lettering yourself rather than copying the real DB logo.</li>
+<li><b>Moss &amp; Microchips versions (M&amp;M):</b> every original character also comes in a Kiwiburn 2027 version: Mossy Mainframe, Glowshroom, Moss Rocket, Circuit Citadel, Faerie Chalet, Motherboard Gingerbread and Pixel Beach Hut. They keep the same shape, but get deep moss-green walls, ply moss blobs dripping off the eaves and up from the ground, routed circuit traces backed with opal polycarbonate or a solar LED strip, and a row of little "status lights".</li>
 <li><b>Kitchen fronts:</b> the <b>Soup-er Bowl</b> is a giant bowl of tomato soup across the lower front, with veg "croutons", a ladle poking above the roof, and steam swirls cut out above the bowl. <b>The Potty Pot</b> is an enamel stock pot, with a domed lid sitting on the roof, loop handles made from bent poly pipe, and glowing bubble cut-outs. Both are good next to the camp kitchen.</li>
 <li><b>Glow at night:</b> back the cut-outs (spots, portholes, hearts) with offcuts of opal polycarbonate. They look white by day, and with a solar light inside they glow like lanterns after dark. Add a string of solar fairy lights along the roofline.</li>
 <li><b>Bright paint, oiled inside:</b> a bold colour and pattern outside (exterior acrylic sample pots are cheap for the dots and stripes), and natural oiled ply inside so it's light and wipeable.</li>
@@ -914,6 +936,8 @@ const MONTHS=["January","February","March","April","May","June","July","August",
 const FACTOR=[1,1,.9,.7,.5,.35,.3,.35,.5,.65,.8,.95];
 const CLIMATE=["Warm, dry spells, heat risk","Warmest, heat risk","Mild, good","Cooling","Cool, first frosts","Cold, frosts","Coldest, frosts","Cold, frosts","Cool, wet","Warming, wet","Mild, good","Warm, good"];
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+if(store.get("theme",null))document.documentElement.dataset.theme=store.get("theme");
+const isDark=()=>{const t=document.documentElement.dataset.theme;return t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches};
 
 /* ---------- tabs ---------- */
 const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["access","♿ Accessible loo","#b9a6ff"],["wash","🚿 Bucket wash","#7ee0c8"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"],["team","🧹 Sanitation team","#ffb3c7"],["notes","📝 My notes","#ffe066"]];
@@ -993,7 +1017,7 @@ const MOTIFS={
 };
 function star(cx,cy,r){let p="";for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.45:r;p+=(i?"L":"M")+(cx+rr*Math.cos(a)).toFixed(1)+" "+(cy+rr*Math.sin(a)).toFixed(1)}return `<path d="${p}Z" fill="var(--hole)"/>`}
 const COLOURS={candy:["Candy pop","#ff6fa8","#7fe3d8"],teal:["Teal & ochre","#2f7d6d","#f0a83a"],neon:["Neon rave","#3a1f7a","#39ff9a"],sunset:["Sunset","#e2552f","#ffd04e"],sky:["Sky & lemon","#3d8fe0","#ffe14d"],forest:["Forest & cream","#3e5b3a","#f3e3b8"],natural:["Natural oiled ply","#d8bb88","#7a4a24"],moss:["Moss & chrome","#2f5a35","#9ff3ff"]};
-const SHAPES={classic:"Classic box",mushroom:"Magic mushroom",rocket:"Poo-nar rocket",castle:"The Throne (castle)",chalet:"Alpine chalet",ginger:"Gingerbread house",beach:"Beach hut",can:"DoBro can (Kiwiburn)",soup:"Soup-er Bowl",pot:"The Potty Pot",moss:"Moss & Microchips (Kiwiburn 2027)"};
+const SHAPES={classic:"Classic box",mushroom:"Magic mushroom",rocket:"Poo-nar rocket",castle:"The Throne (castle)",chalet:"Alpine chalet",ginger:"Gingerbread house",beach:"Beach hut",can:"DoBro can (Kiwiburn)",soup:"Soup-er Bowl",pot:"The Potty Pot",moss:"Moss & Microchips (Kiwiburn 2027)",mm_classic:"Mossy Mainframe (M&M)",mm_mushroom:"Glowshroom (M&M)",mm_rocket:"Moss Rocket (M&M)",mm_castle:"Circuit Citadel (M&M)",mm_chalet:"Faerie Chalet (M&M)",mm_ginger:"Motherboard Gingerbread (M&M)",mm_beach:"Pixel Beach Hut (M&M)"};
 const PATTERNS={none:"Plain",dots:"Polka dots",stripes:"Stripes",zigzag:"Zigzag",confetti:"Confetti"};
 const NAMES=["The Throne Zone","Poo-topia","Sit Happens","Royal Flush","Dunny Disco","Worm Buffet","Loo-cy in the Sky","Number Two Lounge","Long Drop Deluxe","Poo-nar Lander","Throne of Games","The Little Office","Hunterville Hilton","The Drop Zone","Wormhole","Moon Base Poo","The Compost-ment","Shroom With a View","Soup of the Day","The Potty Pot","Pot Luck","DoBro Dunny","Leave No Trace","Moss & Microchips","Chur Chamber","The Paddock Palace","Hunterville Haven"];
 const BULBS=["#ff5d73","#ffd04e","#4be3a0","#5cc8ff","#c58bff"];
@@ -1002,7 +1026,7 @@ if(!COLOURS[colour])colour="candy";if(!SHAPES[shape])shape="mushroom";if(!PATTER
 function seeded(n){let x=n||1;return()=>(x=(x*16807)%2147483647)/2147483647}
 function bez(p0,p1,p2,p3,n){const a=[];for(let i=0;i<=n;i++){const t=i/n,u=1-t,f=(k)=>u*u*u*p0[k]+3*u*u*t*p1[k]+3*u*t*t*p2[k]+t*t*t*p3[k];a.push([f(0),f(1)])}return a}
 function heart(x,y,k){return `M${x} ${y+10*k} C${x-16*k} ${y-2*k} ${x-10*k} ${y-14*k} ${x} ${y-6*k} C${x+10*k} ${y-14*k} ${x+16*k} ${y-2*k} ${x} ${y+10*k}Z`}
-function filters(u){return `<filter id="gl${u}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="dm${u}"><feComponentTransfer><feFuncR type="linear" slope=".38"/><feFuncG type="linear" slope=".42"/><feFuncB type="linear" slope=".62"/></feComponentTransfer></filter>`}
+function filters(u){return `<filter id="gl${u}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="dm${u}"><feComponentTransfer><feFuncR type="linear" slope=".38"/><feFuncG type="linear" slope=".42"/><feFuncB type="linear" slope=".62"/></feComponentTransfer></filter>`}
 function skyStars(x,y,w,h){let s=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#141a36"/>`;const R=seeded(7);for(let i=0;i<w*h/5000;i++)s+=`<circle cx="${(x+R()*w).toFixed(1)}" cy="${(y+R()*h*.8).toFixed(1)}" r="${(R()*1.6+.4).toFixed(1)}" fill="#fff" opacity="${(.4+R()*.6).toFixed(2)}"/>`;return s}
 function patternSvg(kind,trim,clip,x0,T,W,g,seed){
   let s="";
@@ -1021,8 +1045,9 @@ function lightString(pts,o){
   return s+(o.night?`<g filter="url(#gl${o.uid})">${b}</g>`:b);
 }
 function renderCubicle(o){
+  if(o.shape&&o.shape.startsWith("mm_"))return renderMM(o);
   const s=.175,x0=45,g=455,W=210,H=420,T=g-H,cx=x0+W/2,dw=700*s,dh=1980*s,dx=x0+500*s,dTop=g-dh,u=o.uid,clip="c"+u;
-  const hc=day=>`style="--hole:${o.night?"#ffd56b":day}"`;
+  const hc=day=>`style="--hole:${o.night?"#f1d59c":day}"`;
   let wall=o.body,doorC=o.body,base="",holes="",line=[[x0-12,T-2],[x0+W+12,T-2]];
   if(o.shape==="mushroom")wall="#f6ead0";
   if(o.shape==="ginger"){wall="#b97a3e";doorC="#8a5426"}
@@ -1182,7 +1207,7 @@ function drawCubicle(){
   drawVillage();
 }
 function drawVillage(){
-  const keys=Object.keys(SHAPES),pal=["teal","candy","neon","sunset","sky","forest","natural","sunset","candy","sky","moss"],pats=["none","dots","confetti","stripes","zigzag","none","none","none","none","dots","none"],step=340,w=keys.length*step+20;
+  const keys=Object.keys(SHAPES),pal=["teal","candy","neon","sunset","sky","forest","natural","sunset","candy","sky","moss","moss","moss","moss","moss","moss","moss","moss"],pats=["none","dots","confetti","stripes","zigzag","none","none","none","none","dots","none","none","none","none","none","none","none","none"],step=340,w=keys.length*step+20;
   let sv=night?skyStars(-40,-190,w,760):"";
   keys.forEach((k,i)=>{const c=COLOURS[pal[i]];sv+=`<g transform="translate(${i*step},0)" data-s="${k}" data-c="${pal[i]}" data-p="${pats[i]}" style="cursor:pointer"><rect x="-20" y="-180" width="340" height="760" fill="transparent"/>${renderCubicle({shape:k,body:c[1],trim:c[2],pattern:pats[i],motif,night,lights,uid:"v"+i,noSky:true,label:SHAPES[k].split(" (")[0]})}</g>`});
   $("village").setAttribute("viewBox",`-40 -190 ${w} 760`);
@@ -1197,6 +1222,20 @@ $("lightsBtn").onclick=()=>{lights=!lights;store.set("lights",lights);swatches()
 $("mixBtn").onclick=()=>{const pick=o=>{const k=Object.keys(o);return k[Math.random()*k.length|0]};shape=pick(SHAPES);colour=pick(COLOURS);pattern=pick(PATTERNS);store.set("shape",shape);store.set("colour",colour);store.set("pattern",pattern);$("dice").onclick()};
 const EXTRA={classic:[],soup:[["12 mm ply façade sheet","bowl + ladle",1,88],["Opal polycarbonate offcuts","glowing steam swirls",1,15],["Sample pots: tomato red, veg colours","soup + croutons",1,35]],pot:[["12 mm ply façade sheet","lid + handles",1,88],["25 mm poly pipe or rope, 2 m","loop handles",1,20],["Opal polycarbonate offcuts","glowing bubbles + steam",1,15]],can:[["12 mm ply façade sheet","can top + ring-pull",1,88],["Exterior paint: gold, red, silver sample pots","DoBro band + rims",1,45]],moss:[["12 mm ply façade sheet","moss drips + ferns",1,88],["Opal polycarbonate offcuts","glowing circuit slots",1,20],["Green exterior paint, 2 shades","moss",1,40]],beach:[["Bunting + white exterior paint","beach-hut stripes",1,35]],mushroom:[["12 mm ply façade sheet","mushroom cap",1,88],["Opal polycarbonate offcuts","glowing spots",1,15]],rocket:[["12 mm ply façade sheet","nose cone + fins",1,88],["Polycarbonate discs + rubber edging","2 portholes",1,30]],castle:[["12 mm ply façade sheet","battlements",1,88],["Dowel pole + fabric flag","flag",1,25]],chalet:[["12 mm ply façade sheet","gable + scallops",1,88]],ginger:[["12 mm ply façade sheet","gable",1,88],["White exterior paint 1 L","icing + candy stripes",1,30]]};
 
+Object.keys(SHAPES).filter(k=>k.startsWith("mm_")).forEach(k=>EXTRA[k]=(EXTRA[k.slice(3)]||[]).concat([["Green exterior paint, 2 shades","moss drips",1,40],["Opal polycarbonate offcuts or a solar LED strip","glowing circuit traces",1,35]]));
+// Moss & Microchips (Kiwiburn 2027) versions of the original characters: same shape, mossy + glowing circuits
+function renderMM(o){
+  const base=o.shape.slice(3),k=Object.keys(SHAPES).indexOf(o.shape),trims=["#9ff3ff","#b6ff5c","#ff9ae0","#ffd36b"],bodies=["#2f5a35","#3a4a2c","#24493d"];
+  const s=renderCubicle({...o,shape:base,body:bodies[k%3],trim:trims[k%4],pattern:"none"});
+  const x0=45,g=455,W=210,T=35,R=seeded(k*13+5),greens=["#3f7d3a","#5aa548","#2f6b2c","#7cc05a"],led=o.night?"#bff6ff":trims[k%4];
+  let m="",c="";
+  for(let i=0;i<16;i++){const x=x0-6+i*(W+12)/15;m+=`<circle cx="${x.toFixed(1)}" cy="${(T+2+R()*8).toFixed(1)}" r="${(7+R()*8).toFixed(1)}" fill="${greens[i%4]}"/>`}
+  for(let i=0;i<6;i++){const x=x0+6+R()*(W-12),h=14+R()*30;m+=`<path d="M${(x-5).toFixed(1)} ${T+6} Q${x.toFixed(1)} ${(T+6+h*1.4).toFixed(1)} ${(x+5).toFixed(1)} ${T+6}Z" fill="${greens[i%4]}"/>`}
+  for(let i=0;i<6;i++){const x=x0+R()*W;m+=`<path d="M${x.toFixed(1)} ${g} c-8 -14 -3 -28 5 -32 c3 10 2 21 -5 32z" fill="${greens[(i+1)%4]}"/>`}
+  c+=`<path d="M${x0+10} ${T+170} H${x0+40} V${T+210} H${x0+70} M${x0+40} ${T+210} V${T+260} H${x0+20} M${x0+70} ${T+210} V${T+300}" fill="none" stroke="${led}" stroke-width="3"/>`+[[10,170],[70,210],[20,260],[70,300]].map(([a,b])=>`<circle cx="${x0+a}" cy="${T+b}" r="5" fill="${led}"/>`).join("");
+  ["#ff5d73","#4be3a0","#5cc8ff","#ffd04e","#c58bff"].forEach((col,i)=>c+=`<circle cx="${x0+16+i*14}" cy="${g-30}" r="3" fill="${col}"/>`);
+  return s+m+(o.night?`<g filter="url(#gl${o.uid})">${c}</g>`:c);
+}
 function drawSheets(){
   const s=.09,w=1200*s,h=2400*s,y=40;
   const sheet=(x,label,inner)=>`<g transform="translate(${x},${y})"><rect width="${w}" height="${h}" fill="var(--ply)" stroke="var(--ply2)"/>${inner||""}<text x="${w/2}" y="${h+16}" text-anchor="middle">${label}</text></g>`;
@@ -1790,6 +1829,23 @@ function calcTrap(){
 }
 ["tPeople","tLpp","tSoil","tSink","tRun","tDrop","tPlinth"].forEach(id=>$(id).addEventListener("input",calcTrap));
 swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();calcTrap();drawAccess();calcRamp();drawFraming();drawTowing();calcWash();buildTeam();
+/* ---------- comfort: dark mode (also the sun), calm mode, text size, quick summaries ---------- */
+(function(){
+  const root=document.documentElement;
+  const TLDR={overview:"Poo + sawdust go in a bucket. Buckets rest 6–8 weeks, then feed the worms. Wee goes separately. The compost is for trees.",planner:"Put in your numbers and it tells you how many toilets, buckets, sawdust and worms you need.",toilet:"One cheap plywood box, with a fun fake front you can swap. The cost list is at the bottom.",access:"A bigger 2.4 m box with grab rails, a sliding door and a ramp, laid out to NZS 4121. Test it with real users.",wash:"The bucket goes upside down over a spinning nozzle. Waste goes into an IBC for the sucker truck.",worms:"Lined, lidded wooden bays with tiger worms. Feed thin layers and keep them shady and damp.",trap:"The kitchen sink drains into a blue barrel of sand strapped to a tree. Only clean water reaches the paddock.",calendar:"What to do each month, starting from the festival.",checklists:"Tick things off. Your ticks save on this device.",issues:"Search a problem to find its signs, cause and fix.",safety:"Gloves, hand-washing and time keep everyone safe. Check the council rules.",team:"The Kiwiburn Sanitation Co-Lead role: four shared areas and four portfolios.",notes:"Your private notes, saved on this device. Download them to keep them."};
+  Object.entries(TLDR).forEach(([id,t])=>{const s=$(id),h=s&&s.querySelector("h2");if(h&&!s.querySelector(".tldr"))h.insertAdjacentHTML("afterend",`<p class="tldr">${t}</p>`)});
+  const main=document.querySelector("main");
+  main.insertAdjacentHTML("afterbegin",`<div class="comfort noprint" role="group" aria-label="Comfort settings"><button class="btn" id="cDark" aria-pressed="false"></button><button class="btn" id="cCalm" aria-pressed="false">🧘 Calm mode</button><button class="btn" id="cSmall" aria-label="Smaller text">A−</button><button class="btn" id="cBig" aria-label="Bigger text">A+</button><span class="small muted">Calm mode stops things moving and turns off surprises.</span></div>`);
+  main.id="content";document.body.insertAdjacentHTML("afterbegin",`<a class="skip" href="#content">Skip to content</a>`);
+  const paint=()=>{const d=isDark();$("cDark").textContent=d?"☀️ Light mode":"🌙 Dark mode";$("cDark").setAttribute("aria-pressed",d);$("cCalm").setAttribute("aria-pressed",root.classList.contains("calm"))};
+  window.toggleTheme=()=>{root.dataset.theme=isDark()?"light":"dark";store.set("theme",root.dataset.theme);drawHero();paint()};
+  $("cDark").onclick=toggleTheme;
+  const calm=on=>{root.classList.toggle("calm",on);store.set("calm",on);paint()};
+  $("cCalm").onclick=()=>calm(!root.classList.contains("calm"));
+  let z=store.get("zoom",1);const setZ=v=>{z=Math.min(1.5,Math.max(.85,+v.toFixed(2)));root.style.setProperty("--zoom",z);store.set("zoom",z)};setZ(z);
+  $("cSmall").onclick=()=>setZ(z-.1);$("cBig").onclick=()=>setZ(z+.1);
+  calm(store.get("calm",matchMedia("(prefers-reduced-motion: reduce)").matches));
+})();
 /* ---------- my notes (saved in this browser only) ---------- */
 (function(){
   let editing=null;
@@ -1824,27 +1880,32 @@ swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();cal
 
 /* ---------- fun UI bits ---------- */
 const CF=["#ff5d8f","#ffc93c","#13b5a5","#7b5cff","#5cbf4a","#ff8a3d","#4cb8ff"];
-function confetti(x,y,n){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;for(let i=0;i<(n||24);i++){const e=document.createElement("i"),a=Math.random()*Math.PI*2,d=40+Math.random()*(n>40?220:90);e.className="cf";e.style.cssText=`left:${x}px;top:${y}px;background:${CF[i%7]};--dx:${(Math.cos(a)*d).toFixed(0)}px;--dy:${(Math.sin(a)*d-50).toFixed(0)}px;--r:${Math.random()*900|0}deg`;document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}}
+function confetti(x,y,n){if(matchMedia("(prefers-reduced-motion: reduce)").matches||document.documentElement.classList.contains("calm"))return;for(let i=0;i<(n||24);i++){const e=document.createElement("i"),a=Math.random()*Math.PI*2,d=40+Math.random()*(n>40?220:90);e.className="cf";e.style.cssText=`left:${x}px;top:${y}px;background:${CF[i%7]};--dx:${(Math.cos(a)*d).toFixed(0)}px;--dy:${(Math.sin(a)*d-50).toFixed(0)}px;--r:${Math.random()*900|0}deg`;document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}}
 function burstAt(el,n){const r=el.getBoundingClientRect();confetti(r.left+r.width/2,r.top+r.height/2,n)}
 function drawHero(){
   let b=`<path d="M0 6 Q600 62 1200 6" fill="none" stroke="#2b2140" stroke-width="2"/>`;
   for(let i=0;i<30;i++){const x=i*40+20,t=x/1200,y=6+56*t*(1-t);b+=`<polygon points="${x-14},${y} ${x+14},${y} ${x},${y+22}" fill="${CF[i%7]}" stroke="#2b2140" stroke-width="1.5"/>`}
   $("bunting").innerHTML=b;
-  const dark=matchMedia("(prefers-color-scheme: dark)").matches;
-  let h=`<g class="sunrays">`;for(let i=0;i<12;i++){const a=i*Math.PI/6;h+=`<line x1="${1060+40*Math.cos(a)}" y1="${52+40*Math.sin(a)}" x2="${1060+58*Math.cos(a)}" y2="${52+58*Math.sin(a)}" stroke="var(--sunc)" stroke-width="6" stroke-linecap="round"/>`}
-  h+=`</g><circle cx="1060" cy="52" r="30" fill="var(--sunc)" stroke="#2b2140" stroke-width="3"/>`;
+  const dark=isDark();
+  let h=`<g id="sun" role="button" tabindex="0" aria-label="${dark?"Moon: switch to light mode":"Sun: switch to dark mode"}"><title>${dark?"Click the moon for light mode":"Click the sun for dark mode"}</title><circle cx="1060" cy="52" r="62" fill="transparent"/>`+(dark?"":`<g class="sunrays">`);if(!dark)for(let i=0;i<12;i++){const a=i*Math.PI/6;h+=`<line x1="${1060+40*Math.cos(a)}" y1="${52+40*Math.sin(a)}" x2="${1060+58*Math.cos(a)}" y2="${52+58*Math.sin(a)}" stroke="var(--sunc)" stroke-width="6" stroke-linecap="round"/>`}
+  h+=dark?`<circle cx="1060" cy="52" r="30" fill="#f4ecc8" stroke="#2b2140" stroke-width="3"/><circle cx="1074" cy="44" r="26" fill="var(--sky2)"/><circle cx="1048" cy="62" r="3" fill="#ddd2a6"/><circle cx="1056" cy="40" r="2" fill="#ddd2a6"/></g>`:`</g><circle cx="1060" cy="52" r="30" fill="var(--sunc)" stroke="#2b2140" stroke-width="3"/></g>`;
   h+=`<g fill="#fff" opacity="${dark?.15:.85}" stroke="#2b2140" stroke-width="2"><path d="M140 70 a18 18 0 0 1 34 -8 a14 14 0 0 1 26 6 a12 12 0 0 1 2 24 h-60 a12 12 0 0 1 -2 -22z"/><path d="M820 40 a14 14 0 0 1 27 -6 a11 11 0 0 1 20 5 a9 9 0 0 1 1 18 h-46 a9 9 0 0 1 -2 -17z"/></g>`;
   h+=`<path d="M0 120 C150 70 300 90 420 110 S700 60 860 95 S1100 80 1200 100 V190 H0Z" fill="var(--hill1)" stroke="#2b2140" stroke-width="3"/>`;
+  const FRONT=[["mushroom","candy","dots",30],["rocket","sky","none",108],["castle","sunset","none",186],["beach","teal","none",264],["can","sunset","none",420],["soup","candy","none",505],["pot","sky","dots",590],["moss","moss","none",675]];
+  const BACK=["mm_classic","mm_mushroom","mm_rocket","mm_castle","mm_chalet","mm_ginger","mm_beach"];
+  BACK.forEach((sh,j)=>{h+=`<g transform="translate(${330+j*86},${128-455*.13}) scale(.13)">${renderCubicle({shape:sh,body:"#2f5a35",trim:"#9ff3ff",pattern:"none",motif:"dots",night:dark,lights:true,uid:"hb"+j,noSky:true})}</g>`});
   h+=`<path d="M0 150 C200 110 380 160 560 140 S900 120 1200 140 V190 H0Z" fill="var(--hill2)" stroke="#2b2140" stroke-width="3"/>`;
-  [["mushroom","candy","dots",600],["rocket","sky","none",690],["castle","sunset","none",780],["beach","teal","none",870]].forEach(([sh,co,pa,x],i)=>{const c=COLOURS[co];
+  FRONT.forEach(([sh,co,pa,x],i)=>{const c=COLOURS[co];
     h+=`<g data-hero="${i}" transform="translate(${x},${158-455*.2}) scale(.2)">${renderCubicle({shape:sh,body:c[1],trim:c[2],pattern:pa,motif:"koru",night:dark,lights:true,uid:"h"+i,noSky:true})}</g>`});
   h+=`<path d="M0 178 C300 152 500 186 700 170 S1000 152 1200 166 V190 H0Z" fill="var(--hill3)" stroke="#2b2140" stroke-width="3"/>`;
   h+=`<g class="worm">`;for(let i=0;i<8;i++)h+=`<circle cx="${i*10}" cy="174" r="${i===7?7:6}" fill="#ff8fb1" stroke="#2b2140" stroke-width="2" style="animation-delay:${i*.08}s"/>`;
   h+=`<circle cx="73" cy="172" r="1.6" fill="#2b2140"/></g>`;
   $("hills").innerHTML=h;
+  const sun=$("sun");if(sun){sun.onclick=e=>{e.stopPropagation();window.toggleTheme&&toggleTheme()};sun.onkeydown=k=>{if(k.key==="Enter"||k.key===" "){k.preventDefault();sun.onclick(k)}}}
+  document.dispatchEvent(new Event("herodrawn"));
 }
 drawHero();
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(!document.documentElement.dataset.theme)drawHero()});
 /* ---------- hidden worm game ---------- */
 (function(){
   let stage=-1,el=null,pos={x:0,y:0},tgt={x:0,y:0},face=1,raf=0,lastChaos=0,meal=null,mealT=0;
@@ -1922,7 +1983,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
   function heroSpray(){
     const hs=$("hills");if(!hs||hs.querySelector("#heroSpray"))return;
     const rocket=hs.querySelector('g[data-hero="1"]');
-    hs.insertAdjacentHTML("beforeend",`<g id="heroSpray" style="cursor:pointer"><g class="rise"><rect x="752" y="118" width="26" height="54" rx="4" fill="#e8473f" stroke="#2b2140" stroke-width="2.5"/><rect x="752" y="132" width="26" height="22" fill="#ffd04e"/><text x="765" y="147" text-anchor="middle" style="font:800 7px Fredoka,sans-serif;fill:#2b2140">FLY</text><path d="M754 118 q11 -12 22 0z" fill="#c9ced3" stroke="#2b2140" stroke-width="2"/><rect x="760" y="100" width="10" height="8" rx="2" fill="#333"/></g>${[...Array(9)].map((_,i)=>`<circle class="dirt" cx="${750+i*4}" cy="172" r="${3+i%3}" fill="#6b4a2f" style="--dx:${(i-4)*9}px"/>`).join("")}</g>`);
+    hs.insertAdjacentHTML("beforeend",`<g id="heroSpray" style="cursor:pointer" transform="translate(-578,0)"><g class="rise"><rect x="752" y="118" width="26" height="54" rx="4" fill="#e8473f" stroke="#2b2140" stroke-width="2.5"/><rect x="752" y="132" width="26" height="22" fill="#ffd04e"/><text x="765" y="147" text-anchor="middle" style="font:800 7px Fredoka,sans-serif;fill:#2b2140">FLY</text><path d="M754 118 q11 -12 22 0z" fill="#c9ced3" stroke="#2b2140" stroke-width="2"/><rect x="760" y="100" width="10" height="8" rx="2" fill="#333"/></g>${[...Array(9)].map((_,i)=>`<circle class="dirt" cx="${750+i*4}" cy="172" r="${3+i%3}" fill="#6b4a2f" style="--dx:${(i-4)*9}px"/>`).join("")}</g>`);
     const g=hs.querySelector("#heroSpray");g.onclick=e=>{e.stopPropagation();kill(g)};
     if(rocket){let w=rocket.parentNode;if(!w.classList.contains("tipwrap")){w=document.createElementNS("http://www.w3.org/2000/svg","g");w.setAttribute("class","tipwrap");rocket.parentNode.insertBefore(w,rocket);w.appendChild(rocket)}setTimeout(()=>w.classList.add("tipover"),550)}
   }
@@ -1956,7 +2017,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
     if(stage>=0)w.style.visibility="hidden"}
   hook();
   window.__worm={get el(){return el},get pos(){return pos},W,H,halt(){cancelAnimationFrame(raf)},reset:restore};
-  matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>setTimeout(hook,0));
+  document.addEventListener("herodrawn",()=>setTimeout(hook,0));
 })();
 /* ---------- stick insect: pops up, dances at the sun, eats the worm and fixes the damage ---------- */
 (function(){
@@ -1979,8 +2040,9 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
     b.querySelector("i").style.width=Math.min(100,hits/NEED*100)+"%";b.querySelector("span").textContent=`🦗 ${hits}/${NEED}`;
   }
   function plus(x,y){const p=document.createElement("i");p.className="plus1";p.textContent="+1";p.style.left=x+"px";p.style.top=y+"px";document.body.appendChild(p);setTimeout(()=>p.remove(),950)}
-  function appear(){
+  function appear(force){
     if(el||booming)return;
+    if(document.documentElement.classList.contains("calm")&&force!==true)return schedule();
     el=document.createElement("div");el.id="stick";el.className="peek";el.setAttribute("role","button");el.setAttribute("aria-label","a dancing stick insect");el.tabIndex=0;el.innerHTML=svg();
     el.style.left=Math.max(10,Math.random()*(innerWidth-W-20))+"px";el.style.top=(innerHeight-H-4)+"px";
     el.onclick=click;el.onkeydown=k=>{if(k.key==="Enter"||k.key===" "){k.preventDefault();click(k)}};
@@ -2036,7 +2098,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
   schedule(15000+Math.random()*20000);
   // when the worm gets loose, the stick insect comes hunting sooner
   document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest(".hills .worm")&&!el)schedule(9000+Math.random()*9000)},true);
-  window.__stick=appear;
+  window.__stick=()=>appear(true);
 })();
 
 
