@@ -121,6 +121,24 @@ svg text{fill:var(--ink);font:12px "Nunito",-apple-system,sans-serif}
 .cf{position:fixed;width:9px;height:13px;border-radius:2px;pointer-events:none;z-index:99;animation:cf 1.1s cubic-bezier(.2,.7,.4,1) forwards}
 @keyframes cf{40%{transform:translate(var(--dx),var(--dy)) rotate(calc(var(--r)/2))}100%{transform:translate(calc(var(--dx)*1.3),calc(var(--dy) + 160px)) rotate(var(--r));opacity:0}}
 footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:700}
+/* phones */
+@media (max-width:600px){
+  .hero{min-height:0}.hero-in{padding:44px 16px 120px}.hero p{font-size:16px}
+  .chipz span{font-size:13px;padding:2px 10px}
+  nav .in{padding:8px 12px;gap:6px;scrollbar-width:none}nav .in::-webkit-scrollbar{display:none}
+  nav button{font-size:14px;padding:5px 11px}
+  main{padding:16px 12px 32px}
+  .card{padding:14px;border-radius:18px;box-shadow:4px 4px 0 var(--edge)}
+  .grid{grid-template-columns:1fr;gap:14px}
+  .form{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  label.f input,label.f select{min-width:0;width:100%}
+  .stats{grid-template-columns:1fr 1fr}.stat b{font-size:24px}
+  .flow .arr{transform:rotate(90deg);width:100%;text-align:center;animation:none;font-size:22px;line-height:1}
+  .flow .step{flex-basis:100%}
+  .issue dl{grid-template-columns:1fr}.issue dt{margin-top:4px}
+  table{font-size:13.5px}
+}
+@media (max-width:380px){.form{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{nav,.noprint,.hero .hills,.bunting{display:none}section{display:block!important;page-break-after:always}body{background:#fff}.card,.stat,.issue,.mo{box-shadow:none}}
 </style>
@@ -168,6 +186,7 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
     <li><b>Planner</b>: enter the number of people and days. It works out toilets, buckets, sawdust, holding bays, worm bed area, worms to buy and a month-by-month feeding plan.</li>
     <li><b>Toilet cubicle</b>: a plywood festival cubicle built from 4½ sheets with almost no waste. It flat-packs for the 11-month off-season, has a choice of cut-out motif and colour, and includes a cost estimate.</li>
     <li><b>Worm farm</b>: lined timber bays with insulated lids, a leachate tap, drawings and a cut list.</li>
+    <li><b>Kitchen sand trap</b>: the camp kitchen sink drains through a buried blue barrel of sand, so only clean water reaches the paddock. Includes a drawing, a sizing tool and where to buy everything near Hunterville and Palmy.</li>
     <li><b>Year calendar</b>: what to do each month, starting from your festival month.</li>
     <li><b>Checklists</b>: build, pre-event, daily, post-event, worm care and harvest. Ticks are saved in this browser.</li>
     <li><b>Problems &amp; fixes</b>: every failure mode we could think of, searchable.</li>
@@ -321,6 +340,102 @@ A 20 L water container with a tap (or a foot-pump), a timber stand, a soap pump 
 <p style="margin:0">Twice a year, best in late spring and late summer. Stop feeding one end of a bay for 6 weeks and feed only the other end, so worms migrate across. Then shovel out the finished end. Alternatively, tip the cast into heaps in bright light; worms dive down, and you scrape off the top. Cure the harvested cast in a covered heap or bags for <b>6 more months</b> (12 months total from toilet to use is the safety target). Sieve it through 6–10 mm mesh and return any worms to the bed.</p></div>
 </section>
 
+<!-- ============ KITCHEN SAND TRAP ============ -->
+<section id="trap">
+<h2><span class="hl">🚰 Kitchen sand trap</span></h2>
+<div class="card">
+  <div class="flow">
+    <div class="step"><b>🍽️ Kitchen sink</b>A sink with a <i>basket strainer</i> in the 40 mm waste. The strainer catches food scraps before they leave the sink.</div><div class="arr">→</div>
+    <div class="step"><b>〰️ 40 mm trap</b>A P-trap or bottle trap stops barrel smells coming back up the sink.</div><div class="arr">→</div>
+    <div class="step"><b>➰ Solid Nov coil</b>A 40 mm → 65 mm adaptor onto <b>unslotted</b> coil (Novacoil), falling all the way to the barrel.</div><div class="arr">→</div>
+    <div class="step"><b>🛢️ Blue barrel</b>A 200 L drum half-buried and filled with wood chip over coarse sand and gravel. Fat, food and grit stay in the barrel.</div><div class="arr">→</div>
+    <div class="step"><b>🌾 Paddock</b>Only filtered water leaves the bottom, through <b>slotted</b> coil in a gravel trench. It soaks in below the grass.</div>
+  </div>
+  <p class="small muted" style="margin-top:10px">The barrel is a catchment, not a treatment plant. It keeps solids, fat and food out of the paddock, and the soil does the rest. Never run toilet waste or urine through it.</p>
+</div>
+
+<div class="card"><h3 style="margin-top:0">How it fits together (cross-section)</h3>
+<div class="tw"><svg id="trapsvg" viewBox="0 90 900 375" style="min-width:620px"></svg></div>
+<p class="small muted">The heights are to scale and the lengths are shortened. On a phone, scroll sideways to see the whole drawing.</p></div>
+
+<div class="card"><h3 style="margin-top:0">🧮 Size it</h3>
+<div class="form">
+  <label class="f">People eating from the kitchen<input id="tPeople" type="number" min="1" value="60"></label>
+  <label class="f">Wash water per person per day (L)<input id="tLpp" type="number" step="0.5" min="0.5" value="3"></label>
+  <label class="f">Paddock soil<select id="tSoil"><option value="25">Sandy / gravelly (drains fast)</option><option value="15" selected>Loam (most Hunterville paddocks)</option><option value="10">Clay loam</option><option value="5">Heavy clay (puddles after rain)</option></select></label>
+  <label class="f">Sink outlet height, after the trap (mm above ground)<input id="tSink" type="number" step="10" value="650"></label>
+  <label class="f">Pipe run, sink → barrel (m)<input id="tRun" type="number" step="0.5" min="0.5" value="5"></label>
+  <label class="f">Barrel buried (mm below ground)<input id="tBury" type="number" step="10" min="0" max="800" value="450"></label>
+</div>
+<div class="stats" id="tStats" style="margin-top:14px"></div>
+<div id="tWarn"></div>
+<p class="small muted" style="margin:10px 0 0">Rough rules of thumb: about 100 L/day per barrel before the chip layer blinds up too fast, and trench soakage of 5–25 L per m² of trench floor per day depending on soil. Pipe fall needs to be at least 1:40 (25 mm per metre). Watch how it behaves on day one and add a second barrel if water sits on top for more than an hour.</p>
+</div>
+
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">Inside the barrel (top → bottom)</h3>
+<ol style="margin:0;padding-left:20px">
+<li><b>Lid:</b> the drum's clamp lid, or ply with fly mesh. It keeps rain, kids, dogs and flies out. The inlet pipe goes through it.</li>
+<li><b>Air gap ~150 mm:</b> room for a dump of water to pond for a moment.</li>
+<li><b>Splash plate:</b> a paver or tile under the inlet so the stream doesn't dig a hole in the chip.</li>
+<li><b>Untreated wood chip or bark, 100 mm:</b> the "sacrificial" layer. It catches the fat and food. Rake it daily and swap it when it goes slimy.</li>
+<li><b>Shade cloth or geotextile disc:</b> lets you lift the chip off without taking the sand with it.</li>
+<li><b>Coarse washed sand, 400 mm:</b> concrete or "plasterer's coarse" sand. Not fine builder's sand, and not beach sand (salt).</li>
+<li><b>Pea gravel 7–10 mm, 100 mm:</b> stops sand washing into the gravel below.</li>
+<li><b>Drainage gravel 20 mm, 100 mm:</b> around the outlet fitting.</li>
+<li><b>Outlet:</b> a 50 mm tank outlet (bulkhead) fitting, 50 mm above the drum floor, into the slotted coil.</li>
+</ol></div>
+<div class="card"><h3 style="margin-top:0">Build steps</h3>
+<ol style="margin:0;padding-left:20px">
+<li>Pick the spot downhill of the kitchen, at least <b>20 m from any stream, drain or water trough</b>, and away from where people camp or walk.</li>
+<li>Drill the barrel side with a hole saw 50 mm up from the floor, fit the tank outlet with its seals, and silicone it. Fill it with a bucket of water to check it doesn't leak.</li>
+<li>Dig the hole about 150 mm wider than the barrel and to the burial depth. Dig the trench from the outlet across the paddock along the contour, 450 mm wide, with an almost level floor (a slight fall away is fine). This spreads the water along its full length.</li>
+<li>Stand the barrel on a bed of gravel and level it. Push the slotted, socked coil onto the outlet, lay it in the trench on 100 mm of gravel, cover it with 200 mm more gravel and shade cloth, then put the soil and turf back. Cap the far end.</li>
+<li>Fill the barrel with the layers above, then backfill around the outside.</li>
+<li>At the sink, fit the basket strainer waste and the 40 mm trap. Use the adaptor to go onto the unslotted coil. Run it to the barrel <b>with a steady fall and no dips</b>, through a hole in the lid, ending 50 mm above the splash plate. Peg the coil every metre so it can't sag.</li>
+<li>Test: pour 3 buckets of water down the sink. It should drain freely, nothing should pond above the chip after a few minutes, and the trench end should stay dry on top.</li>
+</ol></div>
+</div>
+
+<div class="grid">
+<div class="card tip"><h3 style="margin-top:0">Keep it working</h3>
+<ul style="margin:0;padding-left:18px">
+<li><b>Fat is the enemy.</b> Wipe greasy pans and plates with paper towel or bread into the bin <i>before</i> washing, and never pour hot fat or oil down the sink. Collect it in a tin and take it to waste.</li>
+<li>Empty the sink strainer into the food scraps bin after every wash-up. Vegetable scraps can go to the worm farm (no meat, dairy, citrus, onion or oil).</li>
+<li>Use biodegradable, phosphate-free dish liquid. No bleach, caustic drain cleaners or disinfectant down the sink.</li>
+<li>Every morning: lift the lid, rake the chip, and check for ponding. If water sits on top for more than an hour, swap the chip layer.</li>
+<li>Have a bag of spare chip on site, at about 30 L per barrel for every 3–4 days.</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">After the festival</h3>
+<ul style="margin:0;padding-left:18px">
+<li>Let the barrel drain for a day, then lift off the chip layer and the top 50 mm of sand and add them to the toilet holding bay or a hot compost heap. Never put them in the worm beds directly, because of the fat.</li>
+<li>Top up with fresh sand, put the lid on and leave the barrel in the ground for next year. Mark the trench line with a waratah so nobody drives over it.</li>
+<li>Replace all the sand every 2–3 years, or sooner if it drains slowly.</li>
+</ul></div>
+</div>
+
+<div class="card"><h3 style="margin-top:0">🛒 Shopping list &amp; where to get it</h3>
+<div class="tw"><table id="tBom"></table></div>
+<p class="small muted">Prices are rough NZD guesses, so confirm them in store. Stock changes, so ring ahead for the pipe and fittings before driving to Palmy. Take the barrel's outlet fitting and the sink waste with you so the counter staff can match the adaptors.</p></div>
+
+<div class="card"><h3 style="margin-top:0">📍 Stores near Hunterville &amp; Palmerston North</h3>
+<div class="tw"><table>
+<tr><th>Store</th><th>Good for</th><th>Where</th></tr>
+<tr><td><b>Challenge Hunterville</b></td><td>The rural general store in town. Good for last-minute bits: hose clamps, tape, silicone, buckets. Small stock, so ring first.</td><td>Hunterville</td></tr>
+<tr><td><b>Bunnings Warehouse</b></td><td>Drums, sink wastes and traps, Reln unslotted ag pipe, Marley Drainflo slotted coil, tank outlets, bagged sand and gravel, shade cloth, bark</td><td>Cnr Tremaine Ave &amp; Railway Rd, Palmerston North · 06 355 6800</td></tr>
+<tr><td><b>Mitre 10 MEGA</b></td><td>Much the same range as Bunnings: wastes, traps, drain coil, bagged sand and gravel, chip</td><td>250/270 Featherston St, Palmerston North</td></tr>
+<tr><td><b>PlaceMakers</b></td><td>Trade drainage: <b>Novacoil</b> (unslotted) and <b>Novaflo</b> (slotted) coil and their couplers</td><td>Cnr Railway Rd &amp; Francis Way, Palmerston North · 06 353 5777</td></tr>
+<tr><td><b>Chesters Plumbing &amp; Bathroom</b></td><td>Plumbing merchant: 40 mm wastes and traps, step-down couplings, tank outlets. Good counter advice on matching the 40 mm to the coil</td><td>Check chesters.co.nz for the nearest branch</td></tr>
+<tr><td><b>Hynds Pipe Systems</b></td><td>Pipe, fittings, tanks and septic and drainage gear in bulk</td><td>847 Tremaine Ave, Palmerston North</td></tr>
+<tr><td><b>Landscape supply yards</b></td><td>Bulk washed sand, pea gravel and 20 mm drainage gravel by the trailer load. Much cheaper than bags for the trench</td><td>Palmerston North / Feilding: ask about trailer hire</td></tr>
+<tr><td><b>Trade Me / local food factories</b></td><td>Second-hand 200 L blue food-grade drums, often $20–50. Ask what was in them and avoid chemical drums</td><td>Search "200L drum" Manawatū</td></tr>
+</table></div>
+<p class="small muted">Store details were checked online in October 2026 and can change.</p></div>
+
+<div class="card warn"><h3 style="margin-top:0">Rules</h3>
+Kitchen wash water counts as <b>greywater</b>. Under Horizons' One Plan, small greywater discharges to land are usually allowed when they soak in below the surface, don't pond or run off, and are kept well back from water. Confirm the setback with Horizons and include the sand trap in the event plan. Never let it run onto the surface or into a drain or stream.</div>
+</section>
+
 <!-- ============ CALENDAR ============ -->
 <section id="calendar">
 <h2><span class="hl">📅 Year calendar</span></h2>
@@ -388,8 +503,8 @@ const CLIMATE=["Warm, dry spells, heat risk","Warmest, heat risk","Mild, good","
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 
 /* ---------- tabs ---------- */
-const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["worms","🪱 Worm farm","#ffa77a"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"]];
-function showTab(id){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id));document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));store.set("tab",id)}
+const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"]];
+function showTab(id){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id));document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));store.set("tab",id);const b=document.querySelector(`#tabs button[data-t="${id}"]`),n=$("tabs");if(b&&n.scrollWidth>n.clientWidth)n.scrollLeft=b.offsetLeft-(n.clientWidth-b.offsetWidth)/2}
 TABS.forEach(([id,n,c])=>{const b=document.createElement("button");b.textContent=n;b.style.setProperty("--c",c);b.dataset.t=id;b.onclick=()=>{showTab(id);history.replaceState(null,"","#"+id)};$("tabs").appendChild(b)});
 showTab((location.hash.slice(1)&&$(location.hash.slice(1)))?location.hash.slice(1):store.get("tab","overview"));
 
@@ -779,7 +894,9 @@ const LISTS=[
 ["Harvest & cure (twice a year)",[
 "Stop feeding one end for 6 weeks","Shovel the finished end into a covered curing heap (label the date)","Sieve and return the worms to the bed","Re-bed the empty end with manure + cardboard","Curing heap: 6 months more, lid or tarp, kept just damp","Use only on trees/ornamentals and keep a record of where","Gloves on, wash hands after"]],
 ["Every year (off-season)",[
-"Inspect the cubicle panels: delaminating ply edges? Repaint","Check bolts, hinges and roofing screws","Replace corroded buckets","Check the worm bay liners and timber for rot/leaks","Review the log: did volumes match the plan? Adjust the bay count","Re-check council requirements before the next event"]]
+"Inspect the cubicle panels: delaminating ply edges? Repaint","Check bolts, hinges and roofing screws","Replace corroded buckets","Check the worm bay liners and timber for rot/leaks","Review the log: did volumes match the plan? Adjust the bay count","Re-check council requirements before the next event"]],
+["Kitchen sand trap",[
+"Spot chosen: downhill of the kitchen, ≥ 20 m from streams, drains and troughs, away from tents and paths","Drum is food grade, rinsed, and you know what was in it","Tank outlet fitted 50 mm above the floor, siliconed and leak-tested","Hole and trench dug; trench floor almost level along the contour","Slotted socked coil laid on gravel, covered, far end capped, turf back","Barrel layers in: drainage gravel, pea gravel, 400 mm coarse sand, shade cloth, 100 mm chip, splash plate","Sink has a basket strainer and a 40 mm trap","Unslotted coil runs to the barrel with a steady ≥ 1:40 fall, pegged every metre, no dips","Test: 3 buckets down the sink drain freely with no ponding","Kitchen crew briefed: wipe pans first, no fat or oil, strainer to the scraps bin, biodegradable dish liquid","Spare chip bagged on site","Daily: rake chip, check ponding, swap chip if slimy","After the event: chip + top 50 mm of sand to the holding bay or compost, top up the sand, lid on, mark the trench"]]
 ];
 function buildLists(){
   const st=store.get("checks",{});
@@ -827,18 +944,121 @@ const ISS=[
 ["Health","Compost used on vegetables",1,"Pathogen risk","Misunderstanding","Don't eat raw crops from that ground this season","Label the compost; tree/ornamental use only; 12 months minimum"],
 ["Environment","Contamination of a stream or bore",1,"Discoloured runoff, E. coli in water tests","Setbacks ignored, unlined bays, urine dumped in one spot","Stop discharge, contact Horizons","Lined bays, collected leachate, setbacks, spread urine diluted and widely"],
 ["Environment","Council compliance issue",0,"Notice from council / event health officer","No consent or event plan coverage","Contact the council early, show the log book","Get advice before building; keep records"],
+["Sand trap","Water ponds on top of the barrel",1,"Sink drains slowly, water sits on the chip for hours","Fat and food have blinded the chip or the sand surface","Lift and replace the chip layer; scrape off the top 20–50 mm of sand if it is grey and greasy","Wipe pans before washing, keep the strainer in, add a second barrel for big crowds"],
+["Sand trap","Barrel or sink smells",0,"Sour or rotten smell at the sink or barrel","No trap at the sink, or rotting food in the chip","Fit or refill the trap; change the chip; leave the lid vent open","Strainer emptied every wash-up, chip changed every few days"],
+["Sand trap","Wet, smelly patch on the paddock",1,"Soggy ground or grey water on the surface along the trench","Trench too short for the soil, or water all going to one end","Stop using the sink for a day, lengthen the trench or add a second line","Size the trench with the calculator, keep its floor level along the contour"],
+["Sand trap","Pipe blocks between sink and barrel",0,"Sink backs up; the barrel is dry","Dip or sag in the coil, fall too flat, no strainer","Flush with a hose from the barrel end; re-lay with a steady fall","≥ 1:40 fall, peg every metre, basket strainer always in"],
 ["People","Volunteers don't know the process",0,"Wrong buckets, no sawdust, skipped logs","No briefing","On-the-spot briefing with this page printed","Laminated checklists at the holding bay and the crew tent"]
 ];
 const areas=[...new Set(ISS.map(i=>i[0]))];areas.forEach(a=>{const o=document.createElement("option");o.textContent=a;$("area").appendChild(o)});
 function renderIssues(){
   const q=$("q").value.toLowerCase(),a=$("area").value;
   const list=ISS.filter(i=>(!a||i[0]===a)&&(!q||i.join(" ").toLowerCase().includes(q)));
-  const AC={Toilet:"var(--pink)",Buckets:"var(--sky)","Holding bay":"var(--orange)",Worms:"var(--leaf)",Health:"var(--purple)",Environment:"var(--teal)",People:"var(--sun)"};
+  const AC={Toilet:"var(--pink)",Buckets:"var(--sky)","Holding bay":"var(--orange)",Worms:"var(--leaf)",Health:"var(--purple)",Environment:"var(--teal)",People:"var(--sun)","Sand trap":"var(--sky)"};
   $("issueList").innerHTML=list.map(([ar,t,h,s,c,f,p])=>`<div class="issue" style="border-left-color:${AC[ar]||"var(--edge)"}"><h4>${t}<span class="tag">${ar}</span>${h?'<span class="tag hot">🔥 high risk</span>':""}</h4><dl><dt>Signs</dt><dd>${s}</dd><dt>Cause</dt><dd>${c}</dd><dt>Fix now</dt><dd>${f}</dd><dt>Prevent</dt><dd>${p}</dd></dl></div>`).join("")||`<p class="muted">No matches.</p>`;
 }
 $("q").oninput=renderIssues;$("area").onchange=renderIssues;
 
-swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();
+/* ---------- kitchen sand trap ---------- */
+function drawTrap(){
+  const S=.17,g=300,bury=Math.min(800,Math.max(0,num("tBury"))),sinkH=Math.max(100,num("tSink")||650);
+  const bx=430,bw=100,bh=880*S,bt=g-(880-bury)*S,bb=bt+bh;
+  const L=(x1,y1,x2,y2,t,anchor)=>`<path class="lbl" d="M${x1} ${y1} L${x2} ${y2}"/><text x="${x2+(anchor==="end"?-4:4)}" y="${y2+4}" text-anchor="${anchor||"start"}">${t}</text>`;
+  let o=`<rect x="0" y="${g}" width="900" height="130" fill="var(--soil)" opacity=".55"/><rect x="0" y="${g-4}" width="900" height="6" fill="var(--hill2)"/>`;
+  // backfill around the barrel
+  o+=`<rect x="${bx-14}" y="${g}" width="${bw+28}" height="${bb-g+12}" fill="#9a9488" opacity=".6"/>`;
+  // sink bench
+  const top=g-900*S,so=g-sinkH*S;
+  o+=`<rect x="40" y="${top}" width="170" height="10" fill="var(--ply)" stroke="var(--ply2)"/>`;
+  [48,196].forEach(x=>o+=`<rect x="${x}" y="${top+10}" width="8" height="${g-top-10}" fill="var(--ply)" stroke="var(--ply2)"/>`);
+  o+=`<path d="M85 ${top} v34 q0 8 8 8 h54 q8 0 8 -8 v-34" fill="#cfd6dc" stroke="#7d8a94" stroke-width="2"/>`;
+  o+=`<path d="M100 ${top-6} q20 -10 40 0" fill="none" stroke="var(--water)" stroke-width="3" stroke-linecap="round"/>`;
+  o+=`<rect x="114" y="${top+42}" width="12" height="8" fill="#7d8a94"/>`;
+  // 40 mm waste + P-trap
+  const ty=Math.max(top+70,so);
+  o+=`<path d="M120 ${top+50} V${ty+14} q0 12 12 12 q12 0 12 -12 V${ty} H170" fill="none" stroke="#e8e8e8" stroke-width="7" stroke-linejoin="round"/>`;
+  o+=`<path d="M120 ${top+50} V${ty+14} q0 12 12 12 q12 0 12 -12 V${ty} H170" fill="none" stroke="#999" stroke-width="1"/>`;
+  o+=`<rect x="168" y="${ty-6}" width="14" height="12" fill="#444"/>`;
+  // solid coil run
+  const ix=bx+30,iy=bt-12;
+  o+=`<path d="M182 ${ty} L${ix} ${iy}" fill="none" stroke="#222" stroke-width="9" stroke-linejoin="round"/>`;
+  for(let i=0;i<18;i++){const t=i/18,x=182+(ix-182)*t,y=ty+(iy-ty)*t;o+=`<line x1="${x}" y1="${y-5}" x2="${x}" y2="${y+5}" stroke="#555" stroke-width="1"/>`}
+  [0.3,0.6].forEach(t=>{const x=182+(ix-182)*t,y=ty+(iy-ty)*t;o+=`<line x1="${x}" y1="${y+5}" x2="${x}" y2="${g}" stroke="#8a6b3e" stroke-width="3"/>`});
+  // barrel
+  o+=`<rect x="${bx}" y="${bt}" width="${bw}" height="${bh}" rx="6" fill="#2f6fd6" stroke="#1d3f7a" stroke-width="2"/>`;
+  [bt+bh*.3,bt+bh*.7].forEach(y=>o+=`<rect x="${bx-2}" y="${y}" width="${bw+4}" height="4" fill="#25569f"/>`);
+  const ins=(y0,h,fill)=>`<rect x="${bx+5}" y="${y0}" width="${bw-10}" height="${h}" fill="${fill}"/>`;
+  const lay=[[100,"#7d776c"],[100,"#b9b1a1"],[400,"#e6cf8f"],[100,"#8a5a2b"]];let y=bb-5;const ys=[];
+  lay.forEach(([mm,c])=>{const h=mm*S;y-=h;o+=ins(y,h,c);ys.push(y+h/2)});
+  for(let i=0;i<18;i++)o+=`<circle cx="${bx+10+(i%9)*10}" cy="${bb-12-(i>8?7:0)}" r="3.2" fill="#5f5a52"/>`;
+  for(let i=0;i<27;i++)o+=`<circle cx="${bx+9+(i%13)*6.5}" cy="${ys[1]-5+(i/13|0)*5}" r="1.8" fill="#8f8777"/>`;
+  for(let i=0;i<12;i++)o+=`<rect x="${bx+9+i*7}" y="${ys[3]-3+(i%3)*2}" width="6" height="2.5" fill="#5e3a17" transform="rotate(${(i*37)%50-25} ${bx+12+i*7} ${ys[3]})"/>`;
+  const cloth=ys[3]+50*S;o+=`<line x1="${bx+5}" y1="${cloth}" x2="${bx+bw-5}" y2="${cloth}" stroke="#2c6e2c" stroke-width="2" stroke-dasharray="5 3"/>`;
+  o+=`<rect x="${bx+18}" y="${ys[3]-50*S-4}" width="26" height="4" fill="#c25b4a"/>`;
+  o+=`<rect x="${bx-6}" y="${bt-6}" width="${bw+12}" height="8" rx="2" fill="#1d3f7a"/>`;
+  o+=`<path d="M${ix} ${iy} V${bt+30}" fill="none" stroke="#222" stroke-width="9"/>`;
+  o+=`<path d="M${ix} ${bt+32} v8" stroke="var(--water)" stroke-width="3" stroke-dasharray="2 3"/>`;
+  // outlet + slotted coil in trench
+  const oy=bb-50*S-8,tx=bx+bw,tEnd=880;
+  o+=`<rect x="${tx}" y="${oy-6}" width="10" height="12" fill="#444"/>`;
+  o+=`<rect x="${tx+18}" y="${oy-22}" width="${tEnd-tx-18}" height="42" fill="#9a9488"/>`;
+  for(let i=0;i<60;i++)o+=`<circle cx="${tx+24+(i%30)*11.5}" cy="${oy-14+(i/30|0)*26}" r="3" fill="#77716a"/>`;
+  o+=`<line x1="${tx+18}" y1="${oy-23}" x2="${tEnd}" y2="${oy-23}" stroke="#2c6e2c" stroke-width="2" stroke-dasharray="5 3"/>`;
+  o+=`<path d="M${tx+10} ${oy} H${tEnd-6}" stroke="#d9c53f" stroke-width="9"/>`;
+  for(let i=0;i<26;i++)o+=`<rect x="${tx+22+i*12.5}" y="${oy-1}" width="5" height="2" fill="#222"/>`;
+  o+=`<rect x="${tEnd-8}" y="${oy-6}" width="6" height="12" fill="#222"/>`;
+  for(let i=0;i<9;i++){const x=tx+40+i*38;o+=`<path d="M${x} ${oy+22} q-5 10 0 20 q5 10 0 18" fill="none" stroke="var(--water)" stroke-width="2" opacity=".7"/>`}
+  // labels
+  o+=L(150,top-8,170,top-40,"sink + basket strainer");
+  o+=L(132,ty+26,90,ty+70,"40 mm P-trap","end");
+  o+=L(178,ty+4,206,ty+40,"40 → 65 mm adaptor");
+  const mx=182+(ix-182)*.45,my=ty+(iy-ty)*.45;
+  o+=L(mx,my-6,mx+20,my-56,"unslotted Novacoil, steady fall ≥ 1:40");
+  o+=L(182+(ix-182)*.3,ty+50,182+(ix-182)*.3+24,ty+72,"peg every 1 m");
+  o+=L(bx+bw/2,bt-6,bx+bw+40,bt-46,"lid (rain + fly proof)");
+  o+=L(bx+bw-8,ys[3],bx+bw+70,ys[3]-20,"wood chip 100 mm (swap when slimy)");
+  o+=L(bx+5,cloth,bx-40,cloth-14,"shade cloth","end");
+  o+=L(bx+bw-8,ys[2],bx+bw+70,ys[2]+20,"coarse washed sand 400 mm");
+  o+=L(bx+5,ys[1],bx-40,ys[1]+30,"pea gravel 100 mm","end");
+  o+=L(bx+5,ys[0],bx-40,ys[0]+60,"drainage gravel 100 mm","end");
+  o+=L(tx+5,oy+6,tx+20,bb+70,"50 mm tank outlet");
+  o+=L(tEnd-60,oy+4,tEnd-70,bb+45,"slotted socked coil in a gravel trench","end");
+  o+=L(bx+22,ys[3]-50*S-2,bx-30,bt-30,"splash plate","end");
+  o+=`<text x="${tEnd}" y="${g-12}" text-anchor="end" style="fill:var(--muted)">paddock: water soaks in below the grass ↓</text>`;
+  o+=`<text x="${bx+bw/2}" y="${bb+28}" text-anchor="middle" style="fill:var(--muted)">200 L drum, ${bury} mm buried</text>`;
+  $("trapsvg").innerHTML=o;
+}
+function calcTrap(){
+  const P=Math.max(1,num("tPeople")),Lpp=Math.max(.5,num("tLpp")),dlr=+$("tSoil").value,sink=num("tSink"),run=Math.max(.5,num("tRun")),bury=Math.min(800,Math.max(0,num("tBury")));
+  const day=P*Lpp,barrels=Math.max(1,Math.ceil(day/100)),inlet=880-bury+40,fall=sink-inlet,grad=fall>0?run*1000/fall:Infinity;
+  const trench=Math.max(6,Math.ceil(day/(dlr*.45))),sandKg=Math.round(.264*.4*1600)*barrels,peaKg=Math.round(.264*.1*1600)*barrels;
+  const trenchM3=Math.round(trench*.45*.3*10)/10+Math.round(.264*.1*barrels*100)/100;
+  const st=[[Math.round(day)+" L","wash water per day"],[barrels,barrels>1?"barrels (side by side, split the inlet)":"barrel"],[fall>0?"1:"+Math.round(grad):"uphill!","pipe fall ("+Math.max(0,Math.round(fall))+" mm over "+run+" m)"],[trench+" m","soakage trench length (450 wide)"],[sandKg+" kg","coarse sand (~"+Math.ceil(sandKg/25)+" × 25 kg bags)"],[peaKg+" kg","pea gravel"],[trenchM3+" m³","20 mm drainage gravel (trench + barrel)"],[Math.ceil(run+1)+" m","unslotted coil to buy"]];
+  $("tStats").innerHTML=st.map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+  let w="";
+  if(fall<=0)w=`The barrel inlet (${inlet} mm above ground) is higher than the sink outlet. Bury the barrel deeper, raise the sink bench, or move the barrel downhill.`;
+  else if(grad>40)w=`The fall is only 1:${Math.round(grad)}. It needs at least 1:40 (${Math.round(run*25)} mm over ${run} m) or food and fat will settle in the pipe. Bury the barrel deeper, raise the sink, or shorten the run.`;
+  $("tWarn").innerHTML=w?`<div class="card warn" style="margin:12px 0 0;box-shadow:none"><h3 style="margin-top:0">Check the fall</h3>${w}</div>`:"";
+  const R=[
+    ["200 L blue HDPE drum with clamp lid (food grade)",barrels,"Trade Me / local food factories (second-hand), Bunnings, farm stores","$25–80"],
+    ["Sink with 40 mm basket strainer waste","1","Bunnings, Mitre 10 MEGA, Chesters; second-hand on Trade Me","$20–60 (strainer)"],
+    ["40 mm P-trap or bottle trap","1","Bunnings, Mitre 10 MEGA, Chesters, PlaceMakers","$15–30"],
+    ["40 mm waste → 65 mm coil adaptor (rubber step-down coupling + 2 clamps)","1","Chesters, PlaceMakers, Hynds; Bunnings/Mitre 10 plumbing aisle","$15–35"],
+    ["65 mm UNSLOTTED coil: Novacoil, or Reln unslotted ag pipe",Math.ceil(run+1)+" m","PlaceMakers (Novacoil), Bunnings (Reln unslotted 65 mm × 7 m ≈ $39)","$40–90"],
+    ["50 mm tank outlet / bulkhead fitting with seals",barrels,"Bunnings, Mitre 10 MEGA, Chesters, farm stores","$15–35 each"],
+    ["65 mm SLOTTED, socked coil: Novaflo or Marley Drainflo",trench+" m","PlaceMakers (Novaflo), Bunnings (Drainflo 15 m ≈ $152, 30 m ≈ $254), Mitre 10","$150–260"],
+    ["Coarse washed sand",sandKg+" kg","Bulk from a landscape yard (cheapest), or bagged at Bunnings / Mitre 10","$60–150"],
+    ["Pea gravel 7–10 mm",peaKg+" kg","Landscape yard or bagged at Bunnings / Mitre 10","$15–40"],
+    ["20 mm drainage gravel",trenchM3+" m³","Landscape yard by the trailer load","$60–150"],
+    ["Untreated wood chip / bark (+ spares for the festival)","~100 L per barrel","Bunnings / Mitre 10 bagged bark, or free chip from a local arborist","$0–40"],
+    ["Shade cloth or geotextile (barrel disc + trench cover)",Math.ceil(trench+2)+" m","Bunnings, Mitre 10, farm stores","$20–60"],
+    ["Paver or tile for the splash plate",barrels,"Anywhere, or an offcut","$0–5"],
+    ["Hole saws 65 + 50 mm, outdoor silicone, hose clamps, tent pegs","—","Bunnings, Mitre 10; clamps and silicone at Challenge Hunterville","$40–80"]];
+  $("tBom").innerHTML=`<tr><th>Item</th><th>Qty</th><th>Where (Hunterville / Palmy)</th><th>Rough NZD</th></tr>`+R.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("");
+  drawTrap();
+}
+["tPeople","tLpp","tSoil","tSink","tRun","tBury"].forEach(id=>$(id).addEventListener("input",calcTrap));
+swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();calcTrap();
 /* ---------- fun UI bits ---------- */
 const CF=["#ff5d8f","#ffc93c","#13b5a5","#7b5cff","#5cbf4a","#ff8a3d","#4cb8ff"];
 function confetti(x,y,n){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;for(let i=0;i<(n||24);i++){const e=document.createElement("i"),a=Math.random()*Math.PI*2,d=40+Math.random()*(n>40?220:90);e.className="cf";e.style.cssText=`left:${x}px;top:${y}px;background:${CF[i%7]};--dx:${(Math.cos(a)*d).toFixed(0)}px;--dy:${(Math.sin(a)*d-50).toFixed(0)}px;--r:${Math.random()*900|0}deg`;document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}}
