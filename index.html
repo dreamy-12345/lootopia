@@ -185,6 +185,7 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
   <ul style="margin:0;padding-left:18px">
     <li><b>Planner</b>: enter the number of people and days. It works out toilets, buckets, sawdust, holding bays, worm bed area, worms to buy and a month-by-month feeding plan.</li>
     <li><b>Toilet cubicle</b>: a plywood festival cubicle built from 4½ sheets with almost no waste. It flat-packs for the 11-month off-season, has a choice of cut-out motif and colour, and includes a cost estimate.</li>
+    <li><b>Accessible cubicle</b>: a 2.4 × 2.4 m wheelchair-accessible version of the same flat-pack box, laid out to NZS 4121. It has grab rails, a 1500 mm turning circle, a sliding door and a ramp calculator, plus an ambulant upgrade for crutch users.</li>
     <li><b>Worm farm</b>: lined timber bays with insulated lids, a leachate tap, drawings and a cut list.</li>
     <li><b>Kitchen sand trap</b>: the camp kitchen sink drains through a buried blue barrel of sand, so only clean water reaches the paddock. Includes a drawing, a sizing tool and where to buy everything near Hunterville and Palmy.</li>
     <li><b>Year calendar</b>: what to do each month, starting from your festival month.</li>
@@ -256,6 +257,7 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
 <li><b>Raised floor on skids</b> (two 100 × 75 H4 skids). No digging, it sits level on paddocks, and it can be dragged or forklifted.</li>
 <li><b>Bucket access from the back.</b> A hatch in the back wall lets crew swap buckets without going inside. It's quicker, more hygienic and keeps the queue moving.</li>
 <li><b>Character fronts:</b> the fun lives on one extra 12 mm sheet cut into a mushroom cap, rocket nose, castle battlements or chalet gable, screwed onto the front wall. It costs about $100–130 extra per cubicle, and the box underneath never changes.</li>
+<li><b>Kiwiburn fronts:</b> the <b>DoBro can</b> is a nod to Double Brown ("DoBro"), the cheap DB bitter every Kiwi paddock party knows. Paint the band gold with a red pinstripe, and cut the ring-pull from an offcut so it sits above the roofline. <b>Moss &amp; Microchips</b> follows the Kiwiburn 2027 theme: green ply "moss" blobs drip over the roof, and the cut-outs are circuit traces routed as 12 mm slots, backed with opal polycarbonate so they glow at night. Hand-paint the lettering yourself rather than copying the real DB logo.</li>
 <li><b>Glow at night:</b> back the cut-outs (spots, portholes, hearts) with offcuts of opal polycarbonate. They look white by day, and with a solar light inside they glow like lanterns after dark. Add a string of solar fairy lights along the roofline.</li>
 <li><b>Bright paint, oiled inside:</b> a bold colour and pattern outside (exterior acrylic sample pots are cheap for the dots and stripes), and natural oiled ply inside so it's light and wipeable.</li>
 </ul>
@@ -300,6 +302,83 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
 <div class="card"><h3 style="margin-top:0">Hand-wash station</h3>
 A 20 L water container with a tap (or a foot-pump), a timber stand, a soap pump and a 20 L grey-water bucket underneath, emptied onto a gravel soak pit away from the beds. Allow about 1 station per 2 cubicles. Refill it every day and check the soap twice a day. Hand washing is the single most important health control on site.</div>
 </div>
+</section>
+
+<!-- ============ ACCESSIBLE CUBICLE ============ -->
+<section id="access">
+<h2><span class="hl">♿ Accessible cubicle</span></h2>
+<div class="card">
+<p style="margin-top:0">This is a bigger version of the same flat-pack plywood box. It is built for wheelchair users and works well for people on crutches, walking frames, or with a carer. It is <b>2.4 × 2.4 m</b> outside, which is two whole ply sheets per wall again, so there are still almost no offcuts. Inside there is about <b>2.19 × 2.19 m</b> of clear floor. That is well over the NZS 4121 minimum compartment (1900 × 1600 mm) and leaves room for a <b>1500 mm turning circle</b>, so a wheelchair can turn round in one go.</p>
+<div class="stats">
+<div class="stat"><b>460 mm</b><span>seat height</span></div>
+<div class="stat"><b>450 mm</b><span>pan centreline to the rail wall</span></div>
+<div class="stat"><b>700–750</b><span>mm, front of seat from the back wall</span></div>
+<div class="stat"><b>700 mm</b><span>L-shaped grab rail height</span></div>
+<div class="stat"><b>≥ 850 mm</b><span>clear transfer space beside the pan</span></div>
+<div class="stat"><b>900 mm</b><span>clear door opening (sliding)</span></div>
+<div class="stat"><b>Ø 1500</b><span>turning circle, clear of everything</span></div>
+</div>
+<p class="small muted" style="margin:10px 0 0">The dimensions follow NZS 4121:2001 <i>Design for access and mobility</i> as summarised by Taupō District Council and the Auckland Design Manual. Buy or borrow the Standard to confirm them, and above all <b>get a wheelchair user and a crutch user to try it before the event</b>.</p>
+</div>
+
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">Plan (from above)</h3><svg id="accPlan" viewBox="-40 -40 560 560"></svg>
+<p class="small muted">The pan sits in one corner with the grab rail wall beside it. The door slides open onto the big clear side, so a wheelchair rolls straight into the transfer space.</p></div>
+<div class="card"><h3 style="margin-top:0">Rail wall (elevation)</h3><svg id="accElev" viewBox="-60 -20 520 420"></svg>
+<p class="small muted">This is the left wall, seen from inside. The rails need solid timber behind them, because ply alone will tear out.</p></div>
+</div>
+
+<div class="card"><h3 style="margin-top:0">🧮 Ramp &amp; path</h3>
+<p class="small muted" style="margin-top:0">The cubicle floor sits up on skids, so it needs a ramp. NZS 4121 allows <b>1:12 at most</b>. On a festival paddock, aim for <b>1:14 or gentler</b>, because grass and mud make every slope harder.</p>
+<div class="form"><label class="f">Floor height above ground (mm)<input id="aFloor" type="number" step="10" min="0" value="180"></label>
+<label class="f">Ramp slope 1 :<select id="aSlope"><option value="12">12 (steepest allowed)</option><option value="14" selected>14 (recommended)</option><option value="16">16</option><option value="20">20 (gentle, no handrails needed)</option></select></label></div>
+<div class="stats" id="aStats" style="margin-top:14px"></div>
+<div class="tw" style="margin-top:12px"><svg id="accRamp" viewBox="0 0 900 200" style="min-width:560px"></svg></div>
+<ul style="margin:10px 0 0;padding-left:18px">
+<li><b>Ramp:</b> 1200 mm wide between handrails, made of 17 mm ply on 90 × 45 bearers with anti-slip paint. Fit 75 mm <b>kerb rails</b> along both edges so wheels can't drop off.</li>
+<li><b>Handrails</b> both sides at 900–1000 mm high, running 300 mm past the bottom of the ramp. You can skip them if the ramp is 1:20 or gentler.</li>
+<li><b>Landings:</b> a level 1500 × 1500 mm landing at the door (the sliding door means no swing to dodge) and a level, firm pad at the bottom.</li>
+<li><b>Lowest-effort option:</b> dig the skids into the ground so the floor sits about 50 mm up, then a short wedge ramp is all you need.</li>
+<li><b>The path matters as much as the loo.</b> A wheelchair can't cross a wet Hunterville paddock. Lay a firm path 1.2 m wide from the nearest main track, using ply panels on bearers, rubber ground mats or hired trackway. Kiwiburn's own accessible portaloos are by the medics and in the middle of the lower paddock, so put this one near a main track too.</li>
+</ul></div>
+
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">Inside the cubicle</h3>
+<ul style="margin:0;padding-left:18px">
+<li><b>Pedestal box:</b> the same bucket box as the standard loo, built so the <b>seat top is 460 mm</b> above the floor (with a 50 L bucket, make the box taller or sit the bucket in a recess). Put the front edge of the seat 700–750 mm from the back wall and the centreline 450 mm from the rail wall. Fit a lid and a <b>backrest</b> (a padded board on the box or the back wall), since there's no cistern to lean on.</li>
+<li><b>L-shaped grab rail</b> on the side wall: the horizontal part at 700 mm, the vertical part 150–250 mm in front of the seat, up to about 1500 mm.</li>
+<li><b>Optional fold-down rail</b> on the open side of the pan, fixed to the back wall. It helps people who push up with both arms, and folds out of the way for side transfers.</li>
+<li><b>Transfer space:</b> keep at least 850 mm beside the pan <b>completely clear</b>: no bins, no sawdust bucket, no shelves on the floor.</li>
+<li><b>Within reach of the seat:</b> toilet paper on the rail wall at about 700 mm, a little in front of the seat. Put the <b>sawdust bin on a 750 mm shelf</b> on the back wall on the open side, with a long-handled scoop. Put sanitiser and a sanitary bin on the rail wall.</li>
+<li><b>Door:</b> a sliding "barn" door on an outside track, light enough to move with one finger. Fit a long horizontal pull rail on the inside at 900 mm, D-pulls outside, and a <b>lever or large-knob lock</b> you can work with a closed fist. Mark it with a clear engaged/vacant indicator.</li>
+<li><b>Help cord:</b> a red cord hanging to 100 mm above the floor and running to a loud bell or buzzer outside, with a sign saying who responds (the nearest camp or the medics).</li>
+<li><b>Hooks</b> at 1200 mm and 1600 mm, a <b>mirror</b> from 900 mm up, a motion-sensing solar light, and contrasting colours on the rails, seat and door edge for low-vision users.</li>
+<li><b>Floor:</b> anti-slip paint, no step at the door (threshold under 10 mm), and a drop of grit in the paint.</li>
+<li>The <b>bucket hatch</b> stays in the back wall, so crew never need to go inside.</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">🩼 Ambulant upgrade (crutches, walking frames)</h3>
+<p style="margin-top:0">Lots of people who use crutches or a stick don't need a wheelchair-size loo, but they do need something to hold on to. Convert <b>about 1 in 4 of the standard cubicles</b>:</p>
+<ul style="margin:0;padding-left:18px">
+<li><b>Horizontal grab rails on both side walls</b> at about 800 mm, running from 200 mm behind the seat front to 400 mm in front of it, with solid timber behind them.</li>
+<li>Seat height 460–480 mm, with a backrest.</li>
+<li>The door <b>opens outward</b> (so it can't trap someone who falls) and has a pull rail on the inside.</li>
+<li>Fit a short ramp or one low, wide step (under 150 mm) with a rail, rather than a high step-up.</li>
+<li>Give them a different door sign, e.g. "🩼 rails inside", so people can find them.</li>
+</ul>
+<h3>Rails that won't let anyone down</h3>
+<ul style="margin:0;padding-left:18px">
+<li>Grab rails must carry <b>1.1 kN (about 110 kg) in any direction</b>. Use 32–38 mm stainless or galvanised tube, set 50 mm off the wall.</li>
+<li>Behind every rail, add <b>90 × 45 dwangs</b> (horizontal blocking) at rail height inside the wall frame, and <b>through-bolt</b> the rail flanges with M8 bolts and large washers. Don't use screws into 12 mm ply alone.</li>
+<li>Test each rail by hanging your full weight off it before the event, and again every morning.</li>
+</ul></div>
+</div>
+
+<div class="card"><h3 style="margin-top:0">🛒 Extra materials &amp; where to get them</h3>
+<div class="tw"><table id="aBom"></table></div>
+<p class="small muted">This is on top of a standard cubicle's hardware (seat, diverter, vent, solar light and so on: see the Toilet cubicle tab). Prices are rough NZD guesses, so confirm them in store. The stores are listed on the Kitchen sand trap tab.</p></div>
+
+<div class="card tip"><h3 style="margin-top:0">How many?</h3>
+Plan on <b>at least one accessible cubicle per toilet bank</b> (more if you know participants who need them), placed at the end nearest the track, plus the ambulant upgrade on about a quarter of the standard cubicles. Tell the Kiwiburn organisers where it is so they can add it to the map and let participants who asked about access know.</div>
 </section>
 
 <!-- ============ WORM FARM ============ -->
@@ -503,7 +582,7 @@ const CLIMATE=["Warm, dry spells, heat risk","Warmest, heat risk","Mild, good","
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 
 /* ---------- tabs ---------- */
-const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"]];
+const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["access","♿ Accessible loo","#b9a6ff"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"]];
 function showTab(id){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id));document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));store.set("tab",id);const b=document.querySelector(`#tabs button[data-t="${id}"]`),n=$("tabs");if(b&&n.scrollWidth>n.clientWidth)n.scrollLeft=b.offsetLeft-(n.clientWidth-b.offsetWidth)/2}
 TABS.forEach(([id,n,c])=>{const b=document.createElement("button");b.textContent=n;b.style.setProperty("--c",c);b.dataset.t=id;b.onclick=()=>{showTab(id);history.replaceState(null,"","#"+id)};$("tabs").appendChild(b)});
 showTab((location.hash.slice(1)&&$(location.hash.slice(1)))?location.hash.slice(1):store.get("tab","overview"));
@@ -579,10 +658,10 @@ const MOTIFS={
   dots:{n:"Simple circles",d:(x,y,w)=>{let s="";for(let i=0;i<6;i++)s+=`<circle cx="${x+w*(i+.5)/6}" cy="${y+22}" r="${i%2?6:10}" fill="var(--hole)"/>`;return s}}
 };
 function star(cx,cy,r){let p="";for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.45:r;p+=(i?"L":"M")+(cx+rr*Math.cos(a)).toFixed(1)+" "+(cy+rr*Math.sin(a)).toFixed(1)}return `<path d="${p}Z" fill="var(--hole)"/>`}
-const COLOURS={candy:["Candy pop","#ff6fa8","#7fe3d8"],teal:["Teal & ochre","#2f7d6d","#f0a83a"],neon:["Neon rave","#3a1f7a","#39ff9a"],sunset:["Sunset","#e2552f","#ffd04e"],sky:["Sky & lemon","#3d8fe0","#ffe14d"],forest:["Forest & cream","#3e5b3a","#f3e3b8"],natural:["Natural oiled ply","#d8bb88","#7a4a24"]};
-const SHAPES={classic:"Classic box",mushroom:"Magic mushroom",rocket:"Poo-nar rocket",castle:"The Throne (castle)",chalet:"Alpine chalet",ginger:"Gingerbread house",beach:"Beach hut"};
+const COLOURS={candy:["Candy pop","#ff6fa8","#7fe3d8"],teal:["Teal & ochre","#2f7d6d","#f0a83a"],neon:["Neon rave","#3a1f7a","#39ff9a"],sunset:["Sunset","#e2552f","#ffd04e"],sky:["Sky & lemon","#3d8fe0","#ffe14d"],forest:["Forest & cream","#3e5b3a","#f3e3b8"],natural:["Natural oiled ply","#d8bb88","#7a4a24"],moss:["Moss & chrome","#2f5a35","#9ff3ff"]};
+const SHAPES={classic:"Classic box",mushroom:"Magic mushroom",rocket:"Poo-nar rocket",castle:"The Throne (castle)",chalet:"Alpine chalet",ginger:"Gingerbread house",beach:"Beach hut",can:"DoBro can (Kiwiburn)",moss:"Moss & Microchips (Kiwiburn 2027)"};
 const PATTERNS={none:"Plain",dots:"Polka dots",stripes:"Stripes",zigzag:"Zigzag",confetti:"Confetti"};
-const NAMES=["The Throne Zone","Poo-topia","Sit Happens","Royal Flush","Dunny Disco","Worm Buffet","Loo-cy in the Sky","Number Two Lounge","Long Drop Deluxe","Poo-nar Lander","Throne of Games","The Little Office","Hunterville Hilton","The Drop Zone","Wormhole","Moon Base Poo","The Compost-ment","Shroom With a View"];
+const NAMES=["The Throne Zone","Poo-topia","Sit Happens","Royal Flush","Dunny Disco","Worm Buffet","Loo-cy in the Sky","Number Two Lounge","Long Drop Deluxe","Poo-nar Lander","Throne of Games","The Little Office","Hunterville Hilton","The Drop Zone","Wormhole","Moon Base Poo","The Compost-ment","Shroom With a View","DoBro Dunny","Leave No Trace","Moss & Microchips","Chur Chamber","The Paddock Palace","Hunterville Haven"];
 const BULBS=["#ff5d73","#ffd04e","#4be3a0","#5cc8ff","#c58bff"];
 let motif=store.get("motif","koru"),colour=store.get("colour","candy"),shape=store.get("shape","mushroom"),pattern=store.get("pattern","dots"),night=store.get("night",false),lights=store.get("lights",true);
 if(!COLOURS[colour])colour="candy";if(!SHAPES[shape])shape="mushroom";if(!PATTERNS[pattern])pattern="none";if(!MOTIFS[motif])motif="koru";
@@ -613,6 +692,7 @@ function renderCubicle(o){
   let wall=o.body,doorC=o.body,base="",holes="",line=[[x0-12,T-2],[x0+W+12,T-2]];
   if(o.shape==="mushroom")wall="#f6ead0";
   if(o.shape==="ginger"){wall="#b97a3e";doorC="#8a5426"}
+  if(o.shape==="can"){wall="#5b3319";doorC="#3e220f"}
   if(o.shape==="castle")doorC="#7a4a24";
   const defs=`<defs><clipPath id="${clip}"><rect x="${x0}" y="${T}" width="${W}" height="${H}"/></clipPath>${filters(u)}</defs>`;
   const sky=o.night&&!o.noSky?skyStars(-30,-170,360,660):"";
@@ -624,6 +704,31 @@ function renderCubicle(o){
   base+=`<rect x="${x0}" y="${T}" width="${W}" height="${H}" fill="${wall}" stroke="#0005"/>`;
   base+=patternSvg(o.shape==="beach"?"beach":o.pattern,o.shape==="mushroom"?o.body:o.trim,clip,x0,T,W,g,u.length*31+7);
   switch(o.shape){
+  case "can":{
+    // tall beer can: body + rolled rims + ring-pull on the lid
+    const sh=`<linearGradient id="cg${u}" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset=".3" stop-color="#fff" stop-opacity=".18"/><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".4"/></linearGradient>`;
+    base+=`<defs>${sh}</defs><path d="M${x0} ${T} Q${x0} ${T-26} ${x0+16} ${T-36} H${x0+W-16} Q${x0+W} ${T-26} ${x0+W} ${T}Z" fill="#c9ced3" stroke="#0005"/>`;
+    base+=`<ellipse cx="${cx}" cy="${T-36}" rx="${W/2-16}" ry="9" fill="#e3e7ea" stroke="#0005"/>`;
+    base+=`<path d="M${cx-8} ${T-40} q-34 -6 -40 -26 q-2 -10 10 -12 q30 0 34 26z" fill="#d6dbe0" stroke="#0006"/>`;
+    base+=`<rect x="${x0}" y="${T+18}" width="${W}" height="64" fill="#e9b44c"/><rect x="${x0}" y="${T+18}" width="${W}" height="5" fill="#8a1f1a"/><rect x="${x0}" y="${T+77}" width="${W}" height="5" fill="#8a1f1a"/>`;
+    base+=`<text x="${cx}" y="${T+46}" text-anchor="middle" style="font:800 20px Fredoka,sans-serif;fill:#8a1f1a;letter-spacing:1px">DOUBLE</text><text x="${cx}" y="${T+70}" text-anchor="middle" style="font:800 20px Fredoka,sans-serif;fill:#5b3319;letter-spacing:1px">BROWN</text>`;
+    base+=`<rect x="${x0}" y="${g-22}" width="${W}" height="22" fill="#c9ced3"/><rect x="${x0}" y="${T-2}" width="${W}" height="${H+2}" fill="url(#cg${u})"/>`;
+    holes+=`<g ${hc("#1d1a16")}><ellipse cx="${cx-30}" cy="${T-56}" rx="9" ry="6" fill="var(--hole)"/>`;
+    for(let i=0;i<7;i++)holes+=`<circle cx="${x0+18+i*29}" cy="${T+102+(i%2)*12}" r="${4+(i%3)*2}" fill="var(--hole)"/>`;
+    holes+=`</g>`;
+    line=[[x0,T],[x0+16,T-36],[x0+W-16,T-36],[x0+W,T]];break;}
+  case "moss":{
+    // Kiwiburn 2027 "Moss & Microchips": moss drips over the roofline, circuit traces glow
+    const R=seeded(11),greens=["#3f7d3a","#5aa548","#2f6b2c","#7cc05a"];
+    base+=`<rect x="${x0-12}" y="${T-4}" width="${W+24}" height="8" fill="#5c6670"/>`;
+    for(let i=0;i<26;i++){const x=x0-14+i*(W+28)/25,r=9+R()*12;base+=`<circle cx="${x.toFixed(1)}" cy="${(T-2+R()*10).toFixed(1)}" r="${r.toFixed(1)}" fill="${greens[i%4]}"/>`}
+    for(let i=0;i<9;i++){const x=x0+8+R()*(W-16),h=18+R()*46;base+=`<path d="M${(x-7).toFixed(1)} ${T+4} Q${x.toFixed(1)} ${(T+4+h*1.4).toFixed(1)} ${(x+7).toFixed(1)} ${T+4}Z" fill="${greens[i%4]}"/>`}
+    for(let i=0;i<5;i++){const x=x0-6+R()*(W+12);base+=`<path d="M${x.toFixed(1)} ${g} c-10 -18 -4 -34 6 -40 c4 12 2 26 -6 40z" fill="${greens[(i+1)%4]}"/>`}
+    let c="";const pins=[[24,40],[60,28],[150,36],[186,52],[40,120],[170,140],[110,90]];
+    c+=`<path d="M${x0+24} ${T+40} H${x0+60} V${T+28} H${x0+150} V${T+36} L${x0+186} ${T+52} M${x0+110} ${T+28} V${T+90} H${x0+40} V${T+120} M${x0+110} ${T+90} H${x0+170} V${T+140}" fill="none" stroke="var(--hole)" stroke-width="5" stroke-linejoin="round"/>`;
+    pins.forEach(([a,b])=>c+=`<circle cx="${x0+a}" cy="${T+b}" r="7" fill="var(--hole)"/>`);
+    holes+=`<g ${hc("#1d1a16")}>${c}</g>`;
+    line=[[x0-14,T-6],[x0+W+14,T-6]];break;}
   case "classic":
     base+=`<rect x="${x0-12}" y="${T-4}" width="${W+24}" height="8" fill="${o.trim}"/>`;
     holes+=`<g ${hc("#1d1a16")}>${MOTIFS[o.motif].d(x0+8,T+12,W-16)}</g>`;break;
@@ -692,7 +797,7 @@ function renderCubicle(o){
   return out;
 }
 function renderSide(o){
-  const s=.175,x0=45,g=455,W=210,H=420,HB=2100*s,T=g-H,u=o.uid,wall=o.shape==="mushroom"?"#f6ead0":o.shape==="ginger"?"#b97a3e":o.body;
+  const s=.175,x0=45,g=455,W=210,H=420,HB=2100*s,T=g-H,u=o.uid,wall=o.shape==="mushroom"?"#f6ead0":o.shape==="ginger"?"#b97a3e":o.shape==="can"?"#5b3319":o.body;
   let base=`<rect x="${x0-10}" y="${g}" width="${W+20}" height="10" fill="#6b4a2f"/><polygon points="${x0},${g} ${x0},${T} ${x0+W},${g-HB} ${x0+W},${g}" fill="${wall}" stroke="#0005"/>`;
   base+=patternSvg(o.shape==="beach"?"beach":o.pattern,o.shape==="mushroom"?o.body:o.trim,"cs"+u,x0,T,W,g,77);
   base+=`<polygon points="${x0-30},${T-6} ${x0+W+18},${g-HB-4} ${x0+W+18},${g-HB+2} ${x0-30},${T}" fill="#cfe6f2" stroke="#7aa" opacity=".9"/>`;
@@ -721,7 +826,7 @@ function drawCubicle(){
   drawVillage();
 }
 function drawVillage(){
-  const keys=Object.keys(SHAPES),pal=["teal","candy","neon","sunset","sky","forest","natural"],pats=["none","dots","confetti","stripes","zigzag","none","none"],step=340,w=keys.length*step+20;
+  const keys=Object.keys(SHAPES),pal=["teal","candy","neon","sunset","sky","forest","natural","sunset","moss"],pats=["none","dots","confetti","stripes","zigzag","none","none","none","none"],step=340,w=keys.length*step+20;
   let sv=night?skyStars(-40,-190,w,760):"";
   keys.forEach((k,i)=>{const c=COLOURS[pal[i]];sv+=`<g transform="translate(${i*step},0)" data-s="${k}" data-c="${pal[i]}" data-p="${pats[i]}" style="cursor:pointer"><rect x="-20" y="-180" width="340" height="760" fill="transparent"/>${renderCubicle({shape:k,body:c[1],trim:c[2],pattern:pats[i],motif,night,lights,uid:"v"+i,noSky:true,label:SHAPES[k].split(" (")[0]})}</g>`});
   $("village").setAttribute("viewBox",`-40 -190 ${w} 760`);
@@ -734,7 +839,7 @@ $("dice").onclick=()=>{let n;do{n=NAMES[Math.random()*NAMES.length|0]}while(n===
 $("nightBtn").onclick=()=>{night=!night;store.set("night",night);swatches();drawCubicle()};
 $("lightsBtn").onclick=()=>{lights=!lights;store.set("lights",lights);swatches();drawCubicle()};
 $("mixBtn").onclick=()=>{const pick=o=>{const k=Object.keys(o);return k[Math.random()*k.length|0]};shape=pick(SHAPES);colour=pick(COLOURS);pattern=pick(PATTERNS);store.set("shape",shape);store.set("colour",colour);store.set("pattern",pattern);$("dice").onclick()};
-const EXTRA={classic:[],beach:[["Bunting + white exterior paint","beach-hut stripes",1,35]],mushroom:[["12 mm ply façade sheet","mushroom cap",1,88],["Opal polycarbonate offcuts","glowing spots",1,15]],rocket:[["12 mm ply façade sheet","nose cone + fins",1,88],["Polycarbonate discs + rubber edging","2 portholes",1,30]],castle:[["12 mm ply façade sheet","battlements",1,88],["Dowel pole + fabric flag","flag",1,25]],chalet:[["12 mm ply façade sheet","gable + scallops",1,88]],ginger:[["12 mm ply façade sheet","gable",1,88],["White exterior paint 1 L","icing + candy stripes",1,30]]};
+const EXTRA={classic:[],can:[["12 mm ply façade sheet","can top + ring-pull",1,88],["Exterior paint: gold, red, silver sample pots","DoBro band + rims",1,45]],moss:[["12 mm ply façade sheet","moss drips + ferns",1,88],["Opal polycarbonate offcuts","glowing circuit slots",1,20],["Green exterior paint, 2 shades","moss",1,40]],beach:[["Bunting + white exterior paint","beach-hut stripes",1,35]],mushroom:[["12 mm ply façade sheet","mushroom cap",1,88],["Opal polycarbonate offcuts","glowing spots",1,15]],rocket:[["12 mm ply façade sheet","nose cone + fins",1,88],["Polycarbonate discs + rubber edging","2 portholes",1,30]],castle:[["12 mm ply façade sheet","battlements",1,88],["Dowel pole + fabric flag","flag",1,25]],chalet:[["12 mm ply façade sheet","gable + scallops",1,88]],ginger:[["12 mm ply façade sheet","gable",1,88],["White exterior paint 1 L","icing + candy stripes",1,30]]};
 
 function drawSheets(){
   const s=.09,w=1200*s,h=2400*s,y=40;
@@ -896,7 +1001,9 @@ const LISTS=[
 ["Every year (off-season)",[
 "Inspect the cubicle panels: delaminating ply edges? Repaint","Check bolts, hinges and roofing screws","Replace corroded buckets","Check the worm bay liners and timber for rot/leaks","Review the log: did volumes match the plan? Adjust the bay count","Re-check council requirements before the next event"]],
 ["Kitchen sand trap",[
-"Spot chosen: downhill of the kitchen, ≥ 20 m from streams, drains and troughs, away from tents and paths","Drum is food grade, rinsed, and you know what was in it","Tank outlet fitted 50 mm above the floor, siliconed and leak-tested","Hole and trench dug; trench floor almost level along the contour","Slotted socked coil laid on gravel, covered, far end capped, turf back","Barrel layers in: drainage gravel, pea gravel, 400 mm coarse sand, shade cloth, 100 mm chip, splash plate","Sink has a basket strainer and a 40 mm trap","Unslotted coil runs to the barrel with a steady ≥ 1:40 fall, pegged every metre, no dips","Test: 3 buckets down the sink drain freely with no ponding","Kitchen crew briefed: wipe pans first, no fat or oil, strainer to the scraps bin, biodegradable dish liquid","Spare chip bagged on site","Daily: rake chip, check ponding, swap chip if slimy","After the event: chip + top 50 mm of sand to the holding bay or compost, top up the sand, lid on, mark the trench"]]
+"Spot chosen: downhill of the kitchen, ≥ 20 m from streams, drains and troughs, away from tents and paths","Drum is food grade, rinsed, and you know what was in it","Tank outlet fitted 50 mm above the floor, siliconed and leak-tested","Hole and trench dug; trench floor almost level along the contour","Slotted socked coil laid on gravel, covered, far end capped, turf back","Barrel layers in: drainage gravel, pea gravel, 400 mm coarse sand, shade cloth, 100 mm chip, splash plate","Sink has a basket strainer and a 40 mm trap","Unslotted coil runs to the barrel with a steady ≥ 1:40 fall, pegged every metre, no dips","Test: 3 buckets down the sink drain freely with no ponding","Kitchen crew briefed: wipe pans first, no fat or oil, strainer to the scraps bin, biodegradable dish liquid","Spare chip bagged on site","Daily: rake chip, check ponding, swap chip if slimy","After the event: chip + top 50 mm of sand to the holding bay or compost, top up the sand, lid on, mark the trench"]],
+["Build: accessible cubicle",[
+"Site: firm, level, next to a main track, close to the medics or the toilet bank","Firm 1.2 m path laid from the track (ply panels, mats or trackway)","Dwangs fitted in the wall frames behind every grab rail position","Pedestal built to a 460 mm seat height, centreline 450 mm from the rail wall, front 700–750 mm off the back wall","Backrest fitted","L rail bolted at 700 mm with M8 bolts; full-weight test passed","Fold-down rail (if fitted) tested up and down","Transfer side clear: ≥ 850 mm, nothing on the floor","Sliding door moves with one finger; lock works with a closed fist; pull rail inside","Ramp at 1:14 or gentler, kerb rails, handrails, level landing at the door","Anti-slip paint on the floor and ramp","Paper, sanitiser and the sawdust shelf all reachable from the seat","Help cord to 100 mm off the floor; bell tested; sign says who responds","Accessible sign inside and out; location given to the Kiwiburn organisers for the map","Ambulant upgrade done on ~1 in 4 standard cubicles (rails both sides, outward door)","A wheelchair user and a crutch user have tried it out and signed it off"]]
 ];
 function buildLists(){
   const st=store.get("checks",{});
@@ -948,17 +1055,110 @@ const ISS=[
 ["Sand trap","Barrel or sink smells",0,"Sour or rotten smell at the sink or barrel","No trap at the sink, or rotting food in the chip","Fit or refill the trap; change the chip; leave the lid vent open","Strainer emptied every wash-up, chip changed every few days"],
 ["Sand trap","Wet, smelly patch on the paddock",1,"Soggy ground or grey water on the surface along the trench","Trench too short for the soil, or water all going to one end","Stop using the sink for a day, lengthen the trench or add a second line","Size the trench with the calculator, keep its floor level along the contour"],
 ["Sand trap","Pipe blocks between sink and barrel",0,"Sink backs up; the barrel is dry","Dip or sag in the coil, fall too flat, no strainer","Flush with a hose from the barrel end; re-lay with a steady fall","≥ 1:40 fall, peg every metre, basket strainer always in"],
+["Accessible","Wheelchair can't get to the loo",1,"Wheels sink or slide on the way, or the user gives up","Grass/mud path, steep or slippery ramp, step at the door","Lay mats/panels now; add grit to the ramp; fix the threshold","Firm 1.2 m path from the main track, ramp 1:14 or gentler, no lip at the door"],
+["Accessible","Grab rail loose or pulling out",1,"Rail moves or creaks under load","Screwed into ply only, no blocking behind","Close the cubicle until it's fixed; through-bolt into dwangs","Dwangs + M8 through-bolts; hang-test every morning"],
+["Accessible","Transfer space filled with stuff",0,"Bins, buckets or the sawdust tub on the floor beside the pan","Crew or users putting things down","Clear it and put things on the shelf","Sign: keep this side clear; shelf for the sawdust; morning check"],
+["Accessible","Door or lock too hard to use",0,"User can't open, close or lock it","Heavy door, sticky track, small twist lock","Clean and grease the track; swap to a lever or large thumb-turn lock","Test with a closed fist and one finger during setup"],
 ["People","Volunteers don't know the process",0,"Wrong buckets, no sawdust, skipped logs","No briefing","On-the-spot briefing with this page printed","Laminated checklists at the holding bay and the crew tent"]
 ];
 const areas=[...new Set(ISS.map(i=>i[0]))];areas.forEach(a=>{const o=document.createElement("option");o.textContent=a;$("area").appendChild(o)});
 function renderIssues(){
   const q=$("q").value.toLowerCase(),a=$("area").value;
   const list=ISS.filter(i=>(!a||i[0]===a)&&(!q||i.join(" ").toLowerCase().includes(q)));
-  const AC={Toilet:"var(--pink)",Buckets:"var(--sky)","Holding bay":"var(--orange)",Worms:"var(--leaf)",Health:"var(--purple)",Environment:"var(--teal)",People:"var(--sun)","Sand trap":"var(--sky)"};
+  const AC={Toilet:"var(--pink)",Buckets:"var(--sky)","Holding bay":"var(--orange)",Worms:"var(--leaf)",Health:"var(--purple)",Environment:"var(--teal)",People:"var(--sun)","Sand trap":"var(--sky)",Accessible:"var(--purple)"};
   $("issueList").innerHTML=list.map(([ar,t,h,s,c,f,p])=>`<div class="issue" style="border-left-color:${AC[ar]||"var(--edge)"}"><h4>${t}<span class="tag">${ar}</span>${h?'<span class="tag hot">🔥 high risk</span>':""}</h4><dl><dt>Signs</dt><dd>${s}</dd><dt>Cause</dt><dd>${c}</dd><dt>Fix now</dt><dd>${f}</dd><dt>Prevent</dt><dd>${p}</dd></dl></div>`).join("")||`<p class="muted">No matches.</p>`;
 }
 $("q").oninput=renderIssues;$("area").onchange=renderIssues;
 
+/* ---------- accessible cubicle ---------- */
+function drawAccess(){
+  const k=.2,I=2190,wt=102*k,X=v=>v*k,o=[];
+  const dim=(x1,y1,x2,y2,t,off)=>{const v=x1===x2,ox=v?off:0,oy=v?0:off;return `<path d="M${x1+ox} ${y1+oy} L${x2+ox} ${y2+oy}" stroke="var(--muted)" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/><text x="${(x1+x2)/2+ox+(v?6:0)}" y="${(y1+y2)/2+oy+(v?4:-4)}" text-anchor="${v?"start":"middle"}" style="font-size:11px;fill:var(--muted)">${t}</text>`};
+  o.push(`<defs><marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 2 L10 5 L0 8z" fill="var(--muted)"/></marker><pattern id="hat" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="var(--teal)" stroke-width="2" opacity=".5"/></pattern></defs>`);
+  // floor + walls (back wall at top)
+  o.push(`<rect x="0" y="0" width="${X(I)}" height="${X(I)}" fill="var(--ply)" opacity=".35"/>`);
+  const d0=X(1150),d1=X(2050);
+  o.push(`<path d="M${-wt} ${-wt} H${X(I)+wt} V${X(I)+wt} H${d1} M${d0} ${X(I)+wt} H${-wt} Z" fill="none" stroke="var(--ply2)" stroke-width="${wt}" stroke-linejoin="miter"/>`);
+  // hatch in back wall
+  o.push(`<rect x="${X(200)}" y="${-wt-3}" width="${X(550)}" height="6" fill="var(--orange)"/><text x="${X(475)}" y="${-wt-10}" text-anchor="middle" style="font-size:11px">bucket hatch (outside)</text>`);
+  // transfer zone + turning circle
+  o.push(`<rect x="${X(760)}" y="0" width="${X(900)}" height="${X(1300)}" fill="url(#hat)" stroke="var(--teal)" stroke-dasharray="4 3"/><text x="${X(1210)}" y="${X(420)}" text-anchor="middle" style="font-size:12px;font-weight:800;fill:var(--teal)">transfer space</text><text x="${X(1210)}" y="${X(420)+14}" text-anchor="middle" style="font-size:11px;fill:var(--teal)">≥ 850 wide, keep clear</text>`);
+  o.push(`<circle cx="${X(1400)}" cy="${X(1380)}" r="${X(750)}" fill="none" stroke="var(--purple)" stroke-width="2" stroke-dasharray="7 5"/><text x="${X(1400)}" y="${X(1380)+X(560)}" text-anchor="middle" style="font-size:12px;font-weight:800;fill:var(--purple)">Ø 1500 turning circle</text>`);
+  // pedestal box + seat
+  o.push(`<rect x="${X(190)}" y="0" width="${X(520)}" height="${X(650)}" rx="4" fill="var(--panel)" stroke="var(--edge)" stroke-width="2"/><ellipse cx="${X(450)}" cy="${X(470)}" rx="${X(190)}" ry="${X(240)}" fill="#fff" stroke="var(--edge)" stroke-width="2"/><ellipse cx="${X(450)}" cy="${X(490)}" rx="${X(100)}" ry="${X(150)}" fill="var(--soft)"/><rect x="${X(250)}" y="${X(8)}" width="${X(400)}" height="${X(70)}" fill="var(--sky)" opacity=".7"/><text x="${X(450)}" y="${X(55)}" text-anchor="middle" style="font-size:10px">backrest</text>`);
+  // L rail on the left wall (plan) + fold-down rail
+  o.push(`<line x1="${X(50)}" y1="${X(250)}" x2="${X(50)}" y2="${X(950)}" stroke="var(--pink)" stroke-width="6" stroke-linecap="round"/><circle cx="${X(50)}" cy="${X(950)}" r="6" fill="var(--pink)"/>`);
+  o.push(`<line x1="${X(800)}" y1="${X(30)}" x2="${X(800)}" y2="${X(750)}" stroke="var(--pink)" stroke-width="5" stroke-dasharray="3 4" stroke-linecap="round"/>`);
+  // shelf + paper
+  o.push(`<rect x="${X(1700)}" y="0" width="${X(400)}" height="${X(250)}" fill="var(--sun)" opacity=".8" stroke="var(--edge)"/><text x="${X(1900)}" y="${X(140)}" text-anchor="middle" style="font-size:10px">sawdust shelf</text>`);
+  o.push(`<rect x="${X(0)}" y="${X(1000)}" width="${X(60)}" height="${X(120)}" fill="#fff" stroke="var(--edge)"/>`);
+  // door
+  o.push(`<rect x="${d0}" y="${X(I)+wt+3}" width="${d1-d0}" height="6" fill="var(--leaf)"/><rect x="${d1}" y="${X(I)+wt+3}" width="${d1-d0}" height="6" fill="var(--leaf)" opacity=".35"/><text x="${(d0+d1)/2}" y="${X(I)+wt+24}" text-anchor="middle" style="font-size:11px">sliding door, 900 clear →</text>`);
+  o.push(`<path d="M${(d0+d1)/2} ${X(I)+wt+40} v-30" stroke="var(--ink)" stroke-width="2" marker-end="url(#ar)"/>`);
+  // labels
+  const L=(x1,y1,x2,y2,t,a)=>`<path class="lbl" d="M${x1} ${y1} L${x2} ${y2}"/><text x="${x2+(a==="end"?-4:4)}" y="${y2+4}" text-anchor="${a||"start"}" style="font-size:11px">${t}</text>`;
+  o.push(L(X(50),X(600),X(-150)/1.2,X(1300),"L grab rail","start"));
+  o.push(L(X(30),X(1060),X(300),X(1650),"paper"));
+  o.push(L(X(800),X(400),X(900),X(900),"fold-down rail (optional)"));
+  // dims
+  o.push(dim(0,X(I)+wt+48,X(I),X(I)+wt+48,"2190 inside (2400 outside)",0));
+  o.push(dim(X(I)+wt+12,0,X(I)+wt+12,X(I),"2190",0));
+  o.push(dim(0,X(700),X(450),X(700),"450",14));
+  o.push(dim(X(150),0,X(150),X(720),"720",0));
+  $("accPlan").innerHTML=o.join("");
+  // elevation of rail wall: x = distance from back wall, y = height
+  const e=.17,G=380,Y=h=>G-h*e,Z=v=>v*e,q=[];
+  q.push(`<rect x="0" y="${Y(2400)}" width="${Z(2190)}" height="${Z(2400)}" fill="var(--ply)" opacity=".35" stroke="var(--ply2)"/>`);
+  q.push(`<line x1="-40" y1="${G}" x2="${Z(2190)+20}" y2="${G}" stroke="var(--edge)" stroke-width="3"/>`);
+  [700,1500].forEach(h=>q.push(`<rect x="${Z(150)}" y="${Y(h)-4}" width="${Z(1000)}" height="8" fill="var(--soil2)" opacity=".45"/>`));
+  q.push(`<rect x="${Z(880)}" y="${Y(1600)}" width="8" height="${Z(1000)}" fill="var(--soil2)" opacity=".45"/>`);
+  q.push(`<rect x="0" y="${Y(410)}" width="${Z(650)}" height="${Z(410)}" fill="var(--panel)" stroke="var(--edge)" stroke-width="2"/><rect x="0" y="${Y(460)}" width="${Z(720)}" height="${Z(50)}" rx="5" fill="#fff" stroke="var(--edge)" stroke-width="2"/><rect x="${Z(20)}" y="${Y(900)}" width="${Z(60)}" height="${Z(420)}" fill="var(--sky)" opacity=".7"/>`);
+  q.push(`<path d="M${Z(250)} ${Y(700)} H${Z(920)} V${Y(1500)}" fill="none" stroke="var(--pink)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`);
+  q.push(`<rect x="${Z(1000)}" y="${Y(760)}" width="${Z(120)}" height="${Z(120)}" rx="3" fill="#fff" stroke="var(--edge)"/>`);
+  q.push(`<line x1="${Z(1900)}" y1="${Y(2300)}" x2="${Z(1900)}" y2="${Y(100)}" stroke="#d33" stroke-width="2"/><circle cx="${Z(1900)}" cy="${Y(100)}" r="4" fill="#d33"/>`);
+  const D=(x,h1,h2,t)=>`<path d="M${x} ${Y(h1)} L${x} ${Y(h2)}" stroke="var(--muted)" marker-start="url(#ar2)" marker-end="url(#ar2)"/><text x="${x-4}" y="${(Y(h1)+Y(h2))/2+4}" text-anchor="end" style="font-size:11px;fill:var(--muted)">${t}</text>`;
+  q.unshift(`<defs><marker id="ar2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 2 L10 5 L0 8z" fill="var(--muted)"/></marker></defs>`);
+  q.push(D(-12,0,460,"460 seat"),D(Z(1250),0,700,"700 rail"),D(Z(780),700,1500,"up to 1500"));
+  const L2=(x1,y1,x2,y2,t,a)=>`<path class="lbl" d="M${x1} ${y1} L${x2} ${y2}"/><text x="${x2+(a==="end"?-4:4)}" y="${y2+4}" text-anchor="${a||"start"}" style="font-size:11px">${t}</text>`;
+  q.push(L2(Z(920),Y(1300),Z(150),Y(1800),"L rail: Ø 32–38 tube, 50 mm off the wall","start"));
+  q.push(L2(Z(1100),Y(1500),Z(1000),Y(2250),"90 × 45 dwangs behind the rails"));
+  q.push(L2(Z(1100),Y(820),Z(1300),Y(1050),"paper"));
+  q.push(L2(Z(1900),Y(1300),Z(1950),Y(1700),"help cord","start"));
+  q.push(L2(Z(50),Y(700),Z(-60)/1,Y(1200),"backrest","start"));
+  q.push(`<text x="${Z(1095)}" y="${G+18}" text-anchor="middle" style="font-size:11px;fill:var(--muted)">back wall ← → front (door wall)</text>`);
+  $("accElev").innerHTML=q.join("");
+}
+function calcRamp(){
+  const h=Math.max(0,num("aFloor")),sl=+$("aSlope").value,len=h*sl,land=len>9000?Math.floor(len/9000):0;
+  $("aStats").innerHTML=[[(len/1000).toFixed(2)+" m","ramp length at 1:"+sl],[Math.ceil(len/2400)+" sheets","17 mm ply for the ramp deck (1200 wide)"],[sl>=20?"none needed":"both sides","handrails, 900–1000 high"],[land?land+" mid landing"+(land>1?"s":""):"none","extra landings (every 9 m)"]].map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+  const S=Math.min(.12,640/Math.max(1,len)),x0=40,gy=170,x1=x0+len*S,top=gy-Math.max(4,h*S*3);
+  let r=`<rect x="0" y="${gy}" width="900" height="30" fill="var(--soil)" opacity=".55"/><rect x="0" y="${gy-3}" width="900" height="4" fill="var(--hill2)"/>`;
+  r+=`<polygon points="${x0},${gy} ${x1},${top} ${x1},${gy}" fill="var(--ply)" stroke="var(--ply2)"/>`;
+  r+=`<rect x="${x1}" y="${top}" width="${1500*S}" height="${gy-top}" fill="var(--ply2)" opacity=".6"/><rect x="${x1+1500*S}" y="${top-110}" width="70" height="${gy-top+110}" fill="var(--pink)" opacity=".75"/>`;
+  r+=`<path d="M${x0-300*S} ${gy-55} L${x0} ${gy-55} L${x1} ${top-55} H${x1+1500*S}" fill="none" stroke="var(--edge)" stroke-width="3"/>`;
+  r+=`<text x="${(x0+x1)/2}" y="${gy+20}" text-anchor="middle">${(len/1000).toFixed(2)} m at 1:${sl}</text><text x="${x1+750*S}" y="${top-8}" text-anchor="middle" style="font-size:11px">landing 1.5 m</text><text x="${x1+1500*S+35}" y="${top-118}" text-anchor="middle" style="font-size:11px">cubicle</text><text x="${x0}" y="${gy-62}" style="font-size:11px">handrail 900–1000</text>`;
+  r+=`<text x="890" y="20" text-anchor="end" style="font-size:11px;fill:var(--muted)">height exaggerated ×3</text>`;
+  $("accRamp").innerHTML=r;
+  const B=[
+    ["12 mm H3.2 ply (2 sheets per wall, 4 walls)","8 sheets","Bunnings, Mitre 10 MEGA, PlaceMakers","$85–110 each"],
+    ["17 mm H3.2 ply: floor 2.4 × 2.4 + ramp deck",2+Math.ceil(len/2400)+" sheets","PlaceMakers, Bunnings, Mitre 10 MEGA","$110–140 each"],
+    ["90 × 45 H3.2 framing + dwangs behind the rails","~40 m","PlaceMakers, Bunnings, Mitre 10 MEGA","$6–8 /m"],
+    ["100 × 75 H4 skids, 2.6 m","3","PlaceMakers, Bunnings","$45–60 each"],
+    ["Polycarbonate roofing, 2.7 m","3 sheets","Bunnings, Mitre 10 MEGA (Suntuf)","$60–90 each"],
+    ["Stainless L-shaped grab rail, ~700 × 700 (or 900 × 700)","1","Bunnings / Mitre 10 bathroom aisle, Chesters","$120–300"],
+    ["Fold-down (hinged) grab rail (optional)","1","Chesters, PlaceMakers, mobility suppliers in Palmy","$300–600"],
+    ["Straight grab rails 600–900 mm (ambulant upgrades: 2 per cubicle)","2 × ambulant cubicles","Bunnings, Mitre 10, Chesters","$50–120 each"],
+    ["M8 bolts, big washers and nuts for the rail flanges","~24","Bunnings, Mitre 10, Challenge Hunterville","$20–40"],
+    ["Sliding barn-door track kit (2 m) + D-pulls + pull rail","1","Bunnings, Mitre 10 MEGA","$150–350"],
+    ["Lever / thumb-turn privacy lock with indicator","1","Bunnings, Mitre 10, Chesters","$40–90"],
+    ["Ramp: 90 × 45 bearers, 75 mm kerb boards, handrail timber or pipe","~"+Math.ceil(len/1000*4+6)+" m","PlaceMakers, Bunnings","$80–250"],
+    ["Anti-slip floor/deck paint or grit additive","4 L","Bunnings, Mitre 10 MEGA, Resene in Palmy","$60–120"],
+    ["Bell or wireless buzzer + red cord (help call)","1","Bunnings, Mitre 10","$20–60"],
+    ["Accessible-toilet sign (ISA symbol), inside and out","2","Bunnings, Mitre 10, or print it","$10–30"],
+    ["Path: ply panels, rubber ground mats or hired trackway, 1.2 m wide","from the track","Bunnings/Mitre 10 (mats), event hire firms in Palmy (trackway)","varies"]];
+  $("aBom").innerHTML=`<tr><th>Item</th><th>Qty</th><th>Where (Hunterville / Palmy)</th><th>Rough NZD</th></tr>`+B.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("");
+}
+["aFloor","aSlope"].forEach(id=>$(id).addEventListener("input",calcRamp));
 /* ---------- kitchen sand trap ---------- */
 function drawTrap(){
   const S=.17,g=300,bury=Math.min(800,Math.max(0,num("tBury"))),sinkH=Math.max(100,num("tSink")||650);
@@ -1058,7 +1258,7 @@ function calcTrap(){
   drawTrap();
 }
 ["tPeople","tLpp","tSoil","tSink","tRun","tBury"].forEach(id=>$(id).addEventListener("input",calcTrap));
-swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();calcTrap();
+swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();calcTrap();drawAccess();calcRamp();
 /* ---------- fun UI bits ---------- */
 const CF=["#ff5d8f","#ffc93c","#13b5a5","#7b5cff","#5cbf4a","#ff8a3d","#4cb8ff"];
 function confetti(x,y,n){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;for(let i=0;i<(n||24);i++){const e=document.createElement("i"),a=Math.random()*Math.PI*2,d=40+Math.random()*(n>40?220:90);e.className="cf";e.style.cssText=`left:${x}px;top:${y}px;background:${CF[i%7]};--dx:${(Math.cos(a)*d).toFixed(0)}px;--dy:${(Math.sin(a)*d-50).toFixed(0)}px;--r:${Math.random()*900|0}deg`;document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}}
