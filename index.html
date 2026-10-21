@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="build" content="20261021185203">
+<meta name="build" content="20261021185846">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <title>SHITCREW fucks your burn</title>
@@ -108,6 +108,8 @@ tr:hover td{background:var(--chip)}
 @keyframes nudge{50%{transform:translateX(4px)}}
 svg{max-width:100%;height:auto;display:block}
 svg text{fill:var(--ink);font:12px "Nunito",-apple-system,sans-serif}
+svg.udiag text{fill:#2b2140;font-size:11px;font-weight:700}
+svg.udiag text.red{fill:#e34948}
 .lbl{stroke:var(--muted);stroke-width:1;fill:none}
 .chk{padding:0;margin:0}.chk li{list-style:none;margin:0 0 8px;padding:0}
 .chk label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
@@ -539,6 +541,105 @@ A 20 L water container with a tap (or a foot-pump), a timber stand, a soap pump 
 </div>
 </section>
 
+<!-- ============ URINE ============ -->
+<section id="urine">
+<h2><span class="hl">💧 Urine (wee)</span></h2>
+<div class="card"><h3 style="margin-top:0">How much wee</h3>
+  <div class="form">
+    <label class="f">Wee per person per day (L)<input id="uLpp" type="number" step="0.1" min="0.3" value="1.2"></label>
+    <label class="f">Share that goes down the diverters (%)<input id="uShare" type="number" min="10" max="100" value="85"></label>
+    <label class="f">Tank size (L, IBC = 1000)<input id="uTank" type="number" step="50" min="100" value="1000"></label>
+  </div>
+  <p class="small muted" id="uFrom" style="margin:8px 0 0"></p>
+  <div class="stats" id="u1"></div>
+</div>
+
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">The catch: wee can't flow uphill</h3>
+  <svg class="udiag" viewBox="0 0 420 200" style="width:100%;height:auto" role="img" aria-label="A cubicle with its diverter outlet at about 0.5 m and an IBC with its top inlet at about 1.15 m: the hose would have to run uphill">
+    <rect width="420" height="200" rx="12" fill="#fff8ec"/><path d="M10 180 H410" stroke="#2b2140" stroke-width="3"/>
+    <rect x="30" y="40" width="110" height="140" rx="6" fill="#ffd6e4" stroke="#2b2140" stroke-width="3"/><path d="M30 40 L85 14 L140 40" fill="#ff8fb1" stroke="#2b2140" stroke-width="3"/>
+    <rect x="62" y="112" width="46" height="30" rx="6" fill="#fff" stroke="#2b2140" stroke-width="2"/><text x="85" y="104" text-anchor="middle" font-size="11" font-weight="700" fill="#2b2140">seat</text>
+    <circle cx="140" cy="132" r="5" fill="#ffc93c" stroke="#2b2140" stroke-width="2"/><text x="85" y="166" text-anchor="middle" font-size="11" fill="#2b2140">diverter out ≈ 0.5 m</text>
+    <rect x="270" y="58" width="110" height="122" rx="4" fill="#f4f7fb" stroke="#2b2140" stroke-width="3"/><path d="M270 80 H380 M270 110 H380 M270 140 H380 M300 58 V180 M350 58 V180" stroke="#9aa7b0" stroke-width="2"/>
+    <rect x="312" y="48" width="26" height="10" rx="3" fill="#ffc93c" stroke="#2b2140" stroke-width="2"/><text x="325" y="40" text-anchor="middle" font-size="11" font-weight="700" fill="#2b2140">IBC inlet ≈ 1.15 m</text>
+    <path d="M146 132 C200 132 230 60 306 54" fill="none" stroke="#e34948" stroke-width="3" stroke-dasharray="7 6"/>
+    <text x="214" y="122" text-anchor="middle" font-size="22">🚫</text><text class="red" x="214" y="150" text-anchor="middle" font-size="11" font-weight="700">uphill</text>
+  </svg>
+  <p class="small" style="margin:6px 0 0">A diverter hose needs a steady fall all the way. An IBC's filler is on top, about 1.15 m up, so a hose from the toilets can't reach it on flat ground. Pick one of the five fixes below.</p>
+</div>
+<div class="card"><h3 style="margin-top:0">Pick a fix</h3>
+  <ul style="margin:0;padding-left:18px">
+    <li><b>Easiest to start:</b> A (carry), with a 12 V pump to save backs.</li>
+    <li><b>Best everyday setup:</b> B (low sump + pump) or D (low tank beside the toilets).</li>
+    <li><b>No moving parts:</b> C (tank downhill or in a pit), if the site has a slope.</li>
+    <li><b>Last resort:</b> E (raise the cubicles), because of all the steps and ramps.</li>
+  </ul>
+</div>
+</div>
+
+<div class="card"><h3 style="margin-top:0">Five ways to get the wee into the tank</h3>
+<div class="tw"><table>
+<tr><th>Fix</th><th>How it works</th><th>Good</th><th>Watch out</th><th>Rough cost (NZD)</th></tr>
+<tr><td><b>A · Carry</b></td><td>A 20 L container under each cubicle. The crew pours full ones into the IBC through a big funnel, or with a 12 V transfer pump.</td><td>No plumbing. Cheapest. Works anywhere.</td><td>A full container is 20 kg. Splashes and smell when pouring. Several runs a day at peak.</td><td>$15–25 per container, $60 funnel, $150–300 pump</td></tr>
+<tr><td><b>B · Low sump + pump</b></td><td>Every cubicle hose falls into one low tank (a 200 L drum dug half into the ground). A float-switch 12 V pump lifts it into the IBC.</td><td>Nobody carries wee. The IBC can sit anywhere nearby.</td><td>Needs a pump that copes with urine (a diaphragm type), a battery or solar, and a weekly rinse.</td><td>$300–600</td></tr>
+<tr><td><b>C · Tank downhill or in a pit</b></td><td>Put the IBC where its top is lower than the lowest diverter outlet: downhill, or dug in about 0.8 m.</td><td>Pure gravity. Nothing to break or power.</td><td>Needs a real slope or a big hole with safe edges, a drain and room for the truck hose. A pit can fill with rain.</td><td>Digger hire, $300–600 a day</td></tr>
+<tr><td><b>D · Low tank beside the toilets</b></td><td>A squat low-line tank or a flat bladder tank with its inlet under 0.4 m, right beside the cubicles. Pump or truck it out when it's full.</td><td>Gravity without digging.</td><td>Fewer litres per tank. Bladders can be punctured, so fence them.</td><td>$400–1,200</td></tr>
+<tr><td><b>E · Raise the cubicles</b></td><td>Stand the toilets on a deck about 0.8 m high, so hoses fall into an IBC on the ground.</td><td>Gravity.</td><td>Steps for every cubicle, and the accessible loo needs a long 1:12 ramp (about 10 m).</td><td>Deck timber and labour</td></tr>
+</table></div>
+</div>
+
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">Setting up the IBC</h3>
+<ul style="margin:0;padding-left:18px">
+  <li><b>Clean, food-grade IBC.</b> Ask what was in it. Never one that held chemicals.</li>
+  <li><b>Cover it</b> with black plastic or shade cloth. Sun makes algae and weakens the plastic.</li>
+  <li><b>Closed lid.</b> Wee smells and loses its nitrogen if the tank is open. Bring the hose in through a sealed fitting in the lid, with the end <b>below the liquid line</b> once there's some in it, so smell can't come back up the pipe.</li>
+  <li><b>Small vent</b> (20 mm) to let air out as it fills, ideally into the toilet vent stack.</li>
+  <li><b>Outlet valve with a camlock</b> to match the sucker truck, the same as the bucket-wash IBC.</li>
+  <li><b>Firm, level base.</b> A full IBC is 1 tonne. Put a bund or liner under it in case of a leak.</li>
+  <li><b>At least 20 m from streams, drains and bores.</b></li>
+  <li><b>Label it</b> "URINE – NOT FOR DRINKING", and keep it separate from the wash-water IBC.</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">Pipe rules</h3>
+<ul style="margin:0;padding-left:18px">
+  <li><b>40 mm PVC or HDPE</b> for the shared line. 25 mm hose is fine from each diverter to it.</li>
+  <li><b>Steady fall</b> of at least 20–30 mm per metre, with no dips where wee can sit.</li>
+  <li><b>Short and straight.</b> Wee leaves a hard crust (struvite) that blocks long, flat pipes.</li>
+  <li><b>Cleanout caps</b> at every bend, so you can rod it.</li>
+  <li><b>Weekly flush</b> with hot water and vinegar.</li>
+  <li><b>No galvanised or steel</b> parts: urine salts eat them. Plastic, or brass at a pinch.</li>
+</ul></div>
+</div>
+
+<div class="card"><h3 style="margin-top:0">What to do with the wee after</h3>
+<div class="tw"><table>
+<tr><th>Option</th><th>What you do</th><th>Feeds the worms?</th><th>Council</th><th>Effort</th></tr>
+<tr><td><b>1 · Pee bales → worm food</b></td><td>Pour stored wee onto straw bales (RD1 / Farmlands) a few litres at a time. Leave them under cover to rot for 2–3 months, then feed the rotted straw to the worms in thin layers. Roughly 40–60 L per small bale (estimate). Test a small patch of the worm bed first.</td><td>✅ Yes, off-season food</td><td>Low: it stays in your bales</td><td>Medium</td></tr>
+<tr><td><b>2 · Store, then spread on trees or pasture</b></td><td>Keep the tank shut for at least a month: wee turns alkaline and most germs die. (WHO guidance is about 1 month before use on fodder crops and 6 months for food crops.) Dilute 1 part wee to 3–10 parts water and spread it widely, never twice in the same spot, not on wet ground.</td><td>❌ No (feeds the trees)</td><td>Ask Horizons: discharging human waste to land has conditions</td><td>Medium</td></tr>
+<tr><td><b>3 · Truck it away</b></td><td>The sucker truck empties the IBC through the camlock, the same as the wash water.</td><td>❌ No</td><td>None for you</td><td>Low, but pay per load</td></tr>
+<tr><td><b>4 · Worm filter bed</b></td><td>A separate woodchip bed with its own worms, fed wee diluted about 1:10 with water. Worm filters are an established way to treat toilet wastewater.</td><td>✅ A special bed only</td><td>Needs consent</td><td>High</td></tr>
+<tr><td><b>5 · Soak pit or trench</b></td><td>Lets it soak away into gravel.</td><td>❌ No, and the nutrients are lost</td><td>Needs consent</td><td>Low</td></tr>
+</table></div>
+<p class="small muted" style="margin:8px 0 0">You can mix these: some to pee bales for the worms, the rest spread or trucked.</p>
+</div>
+
+<div class="card" style="border-color:#e34948"><h3 style="margin-top:0">Never</h3>
+<ul style="margin:0;padding-left:18px">
+  <li>Pour wee straight onto the worm beds. The salt and ammonia kill worms.</li>
+  <li>Let it reach streams, drains or bores.</li>
+  <li>Store it in galvanised or steel drums.</li>
+  <li>Mix it into the bucket-wash water tank.</li>
+</ul></div>
+
+<details class="card"><summary><b>For comparison: no diverters at all</b></summary>
+<ul style="margin:8px 0 0;padding-left:18px">
+  <li><b>Mixed buckets:</b> all wee goes in the bucket. Buckets fill about 3 times faster and get much heavier, need about 1 L extra sawdust per person-day, smell of ammonia and bring flies. The holding bay becomes too wet and salty for worms, so it needs about 12 months of hot composting instead of 2. Set "Urine diverting?" to "No" in the Planner to see the numbers.</li>
+  <li><b>Waterless urinals into straw bales</b> (instead of diverters): simple toilets, and the urinals feed pee bales directly. People who sit to wee still add some urine to the buckets, so add a "wee in the urinal first" sign, and include urinals for women.</li>
+</ul>
+</details>
+</section>
+
 <!-- ============ ACCESSIBLE CUBICLE ============ -->
 <section id="access">
 <h2><span class="hl">♿ Accessible cubicle</span></h2>
@@ -749,6 +850,29 @@ Plan on <b>at least one accessible cubicle per toilet bank</b> (more if you know
 <li><b>Year-round food:</b> aged horse or cow manure (<b>never from animals drenched in the last 4–6 weeks</b>, because ivermectin-type dewormers in dung kill worms), cardboard, leaves, coffee grounds, and festival food scraps (no meat, dairy, citrus, onion or oil).</li>
 </ul></div>
 </div>
+<div class="card"><h3 style="margin-top:0">Off-season food from RD1 or Farmlands</h3>
+<p class="small muted" style="margin:0 0 8px">For the 11 months with no toilet material. Both stores usually carry these; check stock and prices.</p>
+<div class="tw"><table>
+<tr><th>Buy</th><th>What it does</th><th>How to use it</th></tr>
+<tr><td><b>Sheep pellets</b> (dried sheep manure)</td><td>Main food</td><td>Soak first, then spread thinly over half the bed</td></tr>
+<tr><td><b>Lucerne chaff, hay or pea straw</b></td><td>Bedding, and slow food once it rots</td><td>Soak, or leave it to rot for a few weeks first</td></tr>
+<tr><td><b>Calf meal, layer pellets or bran</b></td><td>Protein boost</td><td>A light sprinkle, soaked. Too much heats up, goes sour and brings mites</td></tr>
+<tr><td><b>Garden lime or dolomite</b></td><td>Stops the bed going acid (not food)</td><td>A light dusting once a month</td></tr>
+<tr><td><b>Untreated wood shavings</b></td><td>Carbon and bedding</td><td>Mix in when the bed is too wet</td></tr>
+<tr><td><b>Straw bales</b></td><td>Pee bales: rotted, wee-soaked straw (see the 💧 Urine tab)</td><td>Feed only after 2–3 months of rotting</td></tr>
+</table></div>
+<p class="small" style="margin:8px 0 4px"><b>Free extras:</b> manure from Hunterville farms (ask when the stock were last drenched, and wait 4–6 weeks), spent grain from a brewery, coffee grounds from cafés.</p>
+<p class="small" style="margin:0"><b>Avoid:</b> anything salted, treated sawdust, and stock minerals with copper in them.</p>
+</div>
+<div class="card"><h3 style="margin-top:0">Straw as well as sawdust</h3>
+<ul style="margin:0;padding-left:18px">
+  <li><b>Why:</b> sawdust packs down and breaks down slowly (pine especially). Straw keeps the bed open so air gets in, holds water, and the worms get through it faster. A mix of both works best.</li>
+  <li><b>Where:</b> keep <b>sawdust in the toilets</b> (it covers poo better than straw). Add <b>straw in the holding bay and the worm beds</b>.</li>
+  <li><b>How much:</b> about <b>1 bucket of chopped straw for every 2–3 buckets</b> of toilet material when you feed, plus a <b>5–10 cm straw blanket</b> on top of the beds.</li>
+  <li><b>Holding bay:</b> cap each load with straw instead of (or as well as) sawdust. It lets air in and cuts the smell.</li>
+  <li><b>Prep:</b> chop it short (run the mower over it, or buy chaff) and wet it first. Dry straw floats on top and does nothing.</li>
+  <li><b>Which straw:</b> pea, barley or wheat straw from RD1 or Farmlands. <b>Ask if it was sprayed with a long-lasting weedkiller</b> (clopyralid or aminopyralid): it survives composting and stunts whatever the compost goes on.</li>
+</ul></div>
 <div class="card"><h3 style="margin-top:0">How to feed the toilet material</h3>
 <ol style="margin:0;padding-left:20px">
 <li>Only feed material that has <b>rested 6–8 weeks</b> in the holding bay and no longer smells strongly of ammonia. Sniff test: earthy or mild is OK, while sharp, eye-watering or rotten is not ready.</li>
@@ -1077,11 +1201,11 @@ if(store.get("theme",null))document.documentElement.dataset.theme=store.get("the
 const isDark=()=>{const t=document.documentElement.dataset.theme;return t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches};
 
 /* ---------- tabs ---------- */
-const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["access","♿ Accessible loo","#b9a6ff"],["wash","🚿 Bucket wash","#7ee0c8"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"],["team","🧹 Sanitation team","#ffb3c7"],["notes","📝 My notes","#ffe066"]];
+const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["urine","💧 Urine","#8fd3ff"],["access","♿ Accessible loo","#b9a6ff"],["wash","🚿 Bucket wash","#7ee0c8"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"],["team","🧹 Sanitation team","#ffb3c7"],["notes","📝 My notes","#ffe066"]];
 function showTab(id){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id));document.querySelectorAll("#tabs [data-t]").forEach(b=>{b.classList.toggle("on",b.dataset.t===id);b.toggleAttribute("aria-current",b.dataset.t===id)});
   document.querySelectorAll("#tabs .dd[data-g]").forEach(d=>{const has=!!d.querySelector(`[data-t="${id}"]`);d.classList.toggle("on",has);d.querySelector(".cur").textContent=has?(TABS.find(t=>t[0]===id)||[0,""])[1].replace(/^\S+\s/,""):""});store.set("tab",id)}
 /* ---------- tabs grouped into dropdown menus ---------- */
-const GROUPS=[["start","🏠 Start","#ffc93c",["overview","planner"]],["build","🔨 Build","#ff8fb1",["toilet","access","wash","trap"]],["compost","🪱 Compost","#ffa77a",["worms","calendar"]],["run","✅ Run it","#9be087",["checklists","issues","safety"]],["people","👥 Team","#ffb3c7",["team","notes"]]];
+const GROUPS=[["start","🏠 Start","#ffc93c",["overview","planner"]],["build","🔨 Build","#ff8fb1",["toilet","urine","access","wash","trap"]],["compost","🪱 Compost","#ffa77a",["worms","calendar"]],["run","✅ Run it","#9be087",["checklists","issues","safety"]],["people","👥 Team","#ffb3c7",["team","notes"]]];
 const tabName=id=>(TABS.find(t=>t[0]===id)||[0,id])[1];
 function closeMenus(except){document.querySelectorAll("#tabs .dd").forEach(d=>{if(d===except)return;d.querySelector(".ddm").hidden=true;d.querySelector(".ddb").setAttribute("aria-expanded","false")})}
 function ddFix(dd){const m=dd.querySelector(".ddm");m.style.left="0";m.style.right="auto";const r=m.getBoundingClientRect();if(r.right>innerWidth-8){m.style.left="auto";m.style.right="0"}}
@@ -1140,7 +1264,7 @@ function calc(){
     stat(sealed,"buckets needed if instead every bucket is sealed &amp; stored (not recommended)")+
     stat("~"+fmt(bucketKg)+" kg","weight of each full bucket at "+Math.round(fill*100)+"%")+
     stat(fmt(coverL/1000,1)+" m³","sawdust / pine shavings for the event")+
-    (div?stat(fmt(urineL)+" L/day","diverted urine to manage ("+Math.ceil(urineL/20)+" × 20 L containers a day)"):"");
+    (div?stat(fmt(urineL)+" L/day","diverted urine to manage ("+Math.ceil(urineL/20)+" × 20 L containers a day, "+Math.ceil(urineL*D/1000)+" IBC"+(Math.ceil(urineL*D/1000)>1?"s":"")+" for the event)"):"");
   $("s2").innerHTML=
     stat(fmt(litres/1000,1)+" m³","total solids collected ("+fmt(kg)+" kg)")+
     stat(holdBays,"holding bays (1.2 × 1.2 × 1.0 m)")+
@@ -1558,7 +1682,9 @@ const LISTS=[
 ["Build: accessible cubicle",[
 "Site: firm, level, next to a main track, close to the medics or the toilet bank","Firm 1.2 m path laid from the track (ply panels, mats or trackway)","Dwangs fitted in the wall frames behind every grab rail position","Pedestal built to a 460 mm seat height, centreline 450 mm from the rail wall, front 700–750 mm off the back wall","Backrest fitted","L rail bolted at 700 mm with M8 bolts; full-weight test passed","Fold-down rail (if fitted) tested up and down","Transfer side clear: ≥ 850 mm, nothing on the floor","Sliding door moves with one finger; lock works with a closed fist; pull rail inside","Ramp at 1:14 or gentler, kerb rails, handrails, level landing at the door","Anti-slip paint on the floor and ramp","Paper, sanitiser and the sawdust shelf all reachable from the seat","Help cord to 100 mm off the floor; bell tested; sign says who responds","Accessible sign inside and out; location given to the Kiwiburn organisers for the map","Ambulant upgrade done on ~1 in 4 standard cubicles (rails both sides, outward door)","A wheelchair user and a crutch user have tried it out and signed it off","Cubicle levelled both ways on its feet/packers before the ramp goes on","Ramp modules set to a string line at the chosen slope; no join lip over 5 mm; cross-fall under 1:40","Every foot on a pad and pegged; nuts locked","Level and joins re-checked each morning and after rain"]],
 ["Bucket wash station",[
-"Sited downwind of camp, away from the kitchen, within truck hose reach of a track that works in the wet","Waste IBC level and lower than the drum, 100 mm pipe falling ≥ 1:20, lid inlet sealed, vent meshed","Camlock on the IBC valve matches the truck (asked the contractor), dust cap on","Clean-water IBC raised; Kärcher suction kit primes and runs","Kärcher on a covered shelf, plugged into an RCD, lead off the ground","Gun zip-tied open; pedal valve stops and starts the pump cleanly (total-stop works)","Nozzle spins and reaches the whole inside of a test bucket","Lid seals; no spray escapes during a 40 s blast","Fill scale painted on the waste IBC","PPE at the station: face shield, gloves, apron, boots; hand-wash beside it","Sign up: LID DOWN · THEN PEDAL"]]
+"Sited downwind of camp, away from the kitchen, within truck hose reach of a track that works in the wet","Waste IBC level and lower than the drum, 100 mm pipe falling ≥ 1:20, lid inlet sealed, vent meshed","Camlock on the IBC valve matches the truck (asked the contractor), dust cap on","Clean-water IBC raised; Kärcher suction kit primes and runs","Kärcher on a covered shelf, plugged into an RCD, lead off the ground","Gun zip-tied open; pedal valve stops and starts the pump cleanly (total-stop works)","Nozzle spins and reaches the whole inside of a test bucket","Lid seals; no spray escapes during a 40 s blast","Fill scale painted on the waste IBC","PPE at the station: face shield, gloves, apron, boots; hand-wash beside it","Sign up: LID DOWN · THEN PEDAL"]],
+["Urine system",[
+"Pick how the wee reaches the tank (fix A–E on the 💧 Urine tab)","Clean food-grade IBC (ask what was in it), covered against the sun","IBC on a firm level base, bund or liner underneath, ≥ 20 m from water","Sealed inlet in the lid, hose end below the liquid line, small vent","Camlock outlet that matches the sucker truck","Label: URINE – NOT FOR DRINKING; kept apart from the wash-water IBC","Pipes: 40 mm plastic, steady fall, cleanout caps, no steel or galvanised","Weekly hot water + vinegar flush of every diverter and line","Decide where the wee goes after: pee bales, trees, truck (check Horizons)","Straw bales bought and stacked under cover if making pee bales","Check the tank level every day; book the truck or switch tanks at 80%"]]
 ];
 function buildLists(){
   const st=store.get("checks",{});
@@ -2005,7 +2131,16 @@ function calcTrap(){
   drawTrap();
 }
 ["tPeople","tLpp","tSoil","tSink","tRun","tDrop","tPlinth"].forEach(id=>$(id).addEventListener("input",calcTrap));
-swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();calcTrap();drawAccess();calcRamp();drawFraming();drawTowing();calcWash();buildTeam();
+function calcUrine(){
+  const P=Math.max(1,num("people")),D=Math.max(1,num("days")),lpp=Math.max(.1,num("uLpp")),sh=Math.min(100,Math.max(1,num("uShare")))/100,tank=Math.max(50,num("uTank"));
+  const day=P*lpp*sh,total=day*D,tanks=Math.ceil(total/tank);
+  $("uFrom").textContent=`Using the Planner's ${P} people a day for ${D} days (change them on the Planner tab).`;
+  $("u1").innerHTML=stat(fmt(day)+" L","of wee a day down the diverters")+stat(fmt(total)+" L","over the whole event")+
+    stat(tanks,`tank${tanks>1?"s":""} of ${fmt(tank)} L for the event`)+stat(day>0?fmt(tank/day,1):"–","days to fill one tank")+
+    stat(Math.ceil(day/20),"× 20 L containers a day if you carry it (fix A)")+stat(fmt(total/50),"small straw bales to soak it all (≈ 50 L each, estimate)");
+}
+["people","days","uLpp","uShare","uTank"].forEach(id=>$(id)&&$(id).addEventListener("input",calcUrine));
+swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();calcUrine();calcTrap();drawAccess();calcRamp();drawFraming();drawTowing();calcWash();buildTeam();
 /* soil background */
 
 /* ---------- previous / next buttons at the end of every tab ---------- */
@@ -2057,7 +2192,7 @@ document.querySelectorAll(".pager [data-go]").forEach(b=>b.onclick=()=>{showTab(
 /* ---------- comfort: dark mode (also the sun), calm mode, text size, quick summaries ---------- */
 (function(){
   const root=document.documentElement;
-  const TLDR={overview:"Poo + sawdust go in a bucket. Buckets rest 6–8 weeks, then feed the worms. Wee goes separately. The compost is for trees.",planner:"Put in your numbers and it tells you how many toilets, buckets, sawdust and worms you need.",toilet:"One cheap plywood box, with a fun fake front you can swap. The cost list is at the bottom.",access:"A bigger 2.4 m box with grab rails, a sliding door and a ramp, laid out to NZS 4121. Test it with real users.",wash:"The bucket goes upside down over a spinning nozzle. Waste goes into an IBC for the sucker truck.",worms:"Lined, lidded wooden bays with tiger worms. Feed thin layers and keep them shady and damp.",trap:"The kitchen sink drains into a blue barrel of sand strapped to a tree. Only clean water reaches the paddock.",calendar:"What to do each month, starting from the festival.",checklists:"Tick things off. Your ticks save on this device.",issues:"Search a problem to find its signs, cause and fix.",safety:"Gloves, hand-washing and time keep everyone safe. Check the council rules.",team:"The Kiwiburn Sanitation Co-Lead role: four shared areas and four portfolios.",notes:"Your private notes, saved on this device. Download them to keep them."};
+  const TLDR={urine:"Keep the diverters. Wee goes to a tank by the toilets, rests a month, then goes on straw bales (future worm food), on trees, or away on the truck. Never straight onto the worms.",overview:"Poo + sawdust go in a bucket. Buckets rest 6–8 weeks, then feed the worms. Wee goes separately. The compost is for trees.",planner:"Put in your numbers and it tells you how many toilets, buckets, sawdust and worms you need.",toilet:"One cheap plywood box, with a fun fake front you can swap. The cost list is at the bottom.",access:"A bigger 2.4 m box with grab rails, a sliding door and a ramp, laid out to NZS 4121. Test it with real users.",wash:"The bucket goes upside down over a spinning nozzle. Waste goes into an IBC for the sucker truck.",worms:"Lined, lidded wooden bays with tiger worms. Feed thin layers and keep them shady and damp.",trap:"The kitchen sink drains into a blue barrel of sand strapped to a tree. Only clean water reaches the paddock.",calendar:"What to do each month, starting from the festival.",checklists:"Tick things off. Your ticks save on this device.",issues:"Search a problem to find its signs, cause and fix.",safety:"Gloves, hand-washing and time keep everyone safe. Check the council rules.",team:"The Kiwiburn Sanitation Co-Lead role: four shared areas and four portfolios.",notes:"Your private notes, saved on this device. Download them to keep them."};
   Object.entries(TLDR).forEach(([id,t])=>{const s=$(id),h=s&&s.querySelector("h2");if(h&&!s.querySelector(".tldr"))h.insertAdjacentHTML("afterend",`<p class="tldr">${t}</p>`)});
   const main=document.querySelector("main");
   addMenu("comfort","⚙️ Comfort","#c3b3ff",`<button role="menuitem" id="cDark" aria-pressed="false"></button><button role="menuitem" id="cCalm" aria-pressed="false">🧘 Calm mode</button><div class="ddrow"><button role="menuitem" id="cSmall" aria-label="Smaller text">A−</button><button role="menuitem" id="cBig" aria-label="Bigger text">A+</button><span class="small muted">text size</span></div><p class="small muted" style="margin:4px 8px 6px;max-width:220px">Calm mode stops things moving and turns off surprises.</p>`).classList.add("ddright");
