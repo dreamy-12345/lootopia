@@ -139,6 +139,26 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
   table{font-size:13.5px}
 }
 @media (max-width:380px){.form{grid-template-columns:1fr}}
+/* hidden worm game */
+.hero-in{pointer-events:none}.hero-in *{pointer-events:auto}
+.hills .worm{cursor:pointer}
+#bigworm{position:fixed;z-index:98;width:150px;height:120px;left:0;top:0;cursor:pointer;touch-action:manipulation;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.35));transition:transform .2s}
+#bigworm svg{width:100%;height:100%;overflow:visible}
+#bigworm.grow{animation:wgrow .9s cubic-bezier(.3,1.6,.5,1)}
+@keyframes wgrow{from{transform:scale(.1) rotate(-40deg)}}
+#bigworm .wig{animation:wig .5s ease-in-out infinite alternate}
+@keyframes wig{to{transform:translateY(-5px)}}
+#bigworm .staff{transform-origin:118px 66px;animation:spin .45s linear infinite}
+#bigworm .flame{animation:flick .12s steps(2) infinite alternate;transform-box:fill-box;transform-origin:center}
+@keyframes flick{to{transform:scale(1.25,.8)}}
+#bigworm .jaw{transform-origin:150px 44px;animation:chomp .22s ease-in-out infinite alternate}
+@keyframes chomp{to{transform:rotate(26deg)}}
+#bigworm .beer{transform-origin:70px 62px;animation:swig 1.6s ease-in-out infinite}
+@keyframes swig{50%{transform:rotate(-55deg) translate(18px,-22px)}}
+.chaos{transform:rotate(var(--chaos)) translate(var(--cx),var(--cy))!important;transition:transform .5s cubic-bezier(.3,1.7,.5,1)!important}
+.eaten{transform:scale(0) rotate(200deg)!important;opacity:0!important;transition:transform .45s ease-in,opacity .45s!important;pointer-events:none}
+.puke{position:fixed;z-index:99;border-radius:50%;pointer-events:none;animation:puke 1.4s cubic-bezier(.2,.6,.4,1) forwards}
+@keyframes puke{100%{transform:translate(var(--dx),calc(var(--dy) + 260px)) scale(.6);opacity:0}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{nav,.noprint,.hero .hills,.bunting{display:none}section{display:block!important;page-break-after:always}body{background:#fff}.card,.stat,.issue,.mo{box-shadow:none}}
 </style>
@@ -192,6 +212,7 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
     <li><b>Year calendar</b>: what to do each month, starting from your festival month.</li>
     <li><b>Checklists</b>: build, pre-event, daily, post-event, worm care and harvest. Ticks are saved in this browser.</li>
     <li><b>Problems &amp; fixes</b>: every failure mode we could think of, searchable.</li>
+    <li><b>Sanitation team</b>: the Kiwiburn Sanitation Co-Lead role, its four focus areas, the four Co-Lead portfolios, the time commitment, and the original documents.</li>
     <li><b>Safety &amp; rules</b>: hygiene, pathogens, council/regional consent and where the compost can go.</li>
   </ul>
 </div>
@@ -611,6 +632,137 @@ Plan on <b>at least one accessible cubicle per toilet bank</b> (more if you know
 Kitchen wash water counts as <b>greywater</b>. Under Horizons' One Plan, small greywater discharges to land are usually allowed when they soak in below the surface, don't pond or run off, and are kept well back from water. Confirm the setback with Horizons and include the sand trap in the event plan. Never let it run onto the surface or into a drain or stream.</div>
 </section>
 
+<!-- ============ SANITATION TEAM ============ -->
+<section id="team">
+<h2><span class="hl">🧹 Sanitation team</span></h2>
+<div class="card">
+<span class="tag">Kiwiburn · Infrastructure</span> <span class="tag">Revision: September 2026</span>
+<h3>Sanitation Co-Lead: why does this role exist?</h3>
+<p style="margin-top:0">The Infrastructure Department exists to support the planning, development, operation and maintenance of the physical systems and shared infrastructure required for Kiwiburn.</p>
+<p>The Sanitation team within Infrastructure exists to help keep Kiwiburn safe, functional and enjoyable by coordinating toilet and sanitation services, hygiene supplies, composting systems and volunteer operations required before, during and after the event.</p>
+<p>The role of Sanitation Co-Lead exists to collaboratively guide and support the Sanitation team throughout the year and on site. The Co-Leads work together to plan, improve and deliver Sanitation services, support volunteers, maintain team knowledge and systems, coordinate with other Kiwiburn teams, and ensure leadership support throughout Build, the Burn and Packdown.</p>
+<p style="margin-bottom:0">All Sanitation Co-Leads hold equal standing and shared responsibility for the overall success of the team. Co-Leads take the lead in agreed areas of work, while the distribution of responsibilities may change as team capacity, individual interests, availability, capability and the needs of each year's event evolve.</p>
+</div>
+
+<h3>What is the team structure?</h3>
+<p class="muted" style="margin-top:0">The Sanitation team operates through a collaborative Co-Lead structure. The number of Co-Leads may change depending on team capacity and operational requirements. The leadership work currently spans four broad focus areas. These describe where each Co-Lead generally takes the lead, not the limits of what they may contribute to. They are not fixed positions or rigid silos, and responsibilities may be redistributed between Co-Leads by agreement.</p>
+<div class="grid">
+<div class="card" style="border-top:9px solid var(--pink)"><h3 style="margin-top:0">📋 Coordination</h3><p style="margin-top:0">People, planning, communication, volunteer coordination and administrative systems that keep Sanitation organised.</p><p class="small muted" style="margin-bottom:0"><b>Capabilities:</b> strong organisational and administrative capability, including volunteer coordination, communication, rostering, record keeping, documentation, managing competing priorities and putting systems in place that help the wider team operate effectively.</p></div>
+<div class="card" style="border-top:9px solid var(--orange)"><h3 style="margin-top:0">🛠️ Logistics</h3><p style="margin-top:0">Site logistics, Build and Packdown coordination, physical setup, contractor/site requirements and practical delivery of Sanitation assets.</p><p class="small muted" style="margin-bottom:0"><b>Capabilities:</b> practical hands-on capability, such as experience with building, repairs, DIY, tools, site work or similar environments; confidence assessing what materials, equipment and practical support are needed to complete physical tasks safely and effectively.</p></div>
+<div class="card" style="border-top:9px solid var(--leaf)"><h3 style="margin-top:0">🪱 Stewardship</h3><p style="margin-top:0">Care, safe use, maintenance and development of Sanitation assets, composting systems and related resources.</p><p class="small muted" style="margin-bottom:0"><b>Capabilities:</b> knowledge or experience relevant to composting, worm farming, waste systems, compostable toilets, environmental management or related areas. A person taking primary ownership of specialist Stewardship systems must either already hold the necessary knowledge or be willing and able to independently develop it, including seeking reliable external guidance where required.</p></div>
+<div class="card" style="border-top:9px solid var(--purple)"><h3 style="margin-top:0">⚙️ Operations</h3><p style="margin-top:0">Systems, training, knowledge sharing and operational processes required to deliver Sanitation services effectively during the event.</p><p class="small muted" style="margin-bottom:0"><b>Capabilities:</b> strong planning, process-development, knowledge-sharing and people-management capability, ideally with experience in event operations, logistics, training, volunteer coordination or similar environments. This area requires the ability to turn operational knowledge into clear procedures, training and workable systems.</p></div>
+</div>
+<p class="small muted">Co-Leads are not expected to have expertise across every area, but the Co-Lead team collectively needs sufficient capability across all four.</p>
+
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">How are the responsibilities shared?</h3>
+<p style="margin-top:0">The Co-Lead team agrees how responsibilities are distributed each year. Each area should have clear ownership, appropriate cover and enough documentation for another Co-Lead to maintain continuity when the primary owner is unavailable.</p>
+<p>Co-Leads are expected to maintain enough understanding of the wider Sanitation operation to provide continuity and cover where appropriate. Providing cover may include following documented plans, coordinating routine tasks, maintaining communications, supporting volunteers and escalating issues appropriately. It does not require a Co-Lead to undertake specialist or technical work outside their knowledge, training or competence.</p>
+<p>Where a responsibility requires specialist knowledge or judgement, it should only be transferred to another Co-Lead who has, or has developed, the appropriate capability. If specialist expertise is unavailable within Sanitation, the covering Co-Lead should follow documented escalation pathways and seek support from the relevant Kiwiburn team where available.</p>
+<p style="margin-bottom:0">All Co-Leads are expected to keep the procedures, plans, contacts and escalation pathways for the areas they primarily own clear and current so that routine work can continue without relying on one person's memory or availability.</p></div>
+<div class="card"><h3 style="margin-top:0">What does this role entail?</h3>
+<p style="margin-top:0">As a Sanitation Co-Lead, you will:</p>
+<ul style="margin:0;padding-left:18px">
+<li>Lead and support the Sanitation team in achieving its goals for the annual Kiwiburn event.</li>
+<li>Work collaboratively with the other Sanitation Co-Leads, with equal standing in team leadership and decision-making.</li>
+<li>Take primary responsibility for agreed areas of work while maintaining awareness of wider Sanitation activities.</li>
+<li>Collectively ensure that all critical Sanitation functions have clear ownership and adequate cover, including when an individual Co-Lead is unavailable.</li>
+<li>Keep the other Co-Leads informed of decisions, changes, risks or dependencies that may affect the wider Sanitation operation.</li>
+<li>Support or provide cover for other Co-Leads where appropriate, using shared documentation, established procedures and team knowledge to maintain continuity.</li>
+<li>Maintain clear, current and usable documentation for the areas you primarily own, including procedures, plans, task information, relevant contacts and escalation pathways.</li>
+<li>Identify activities that require specialist knowledge or judgement and make sure their safety requirements, limits and escalation pathways are clearly understood and documented.</li>
+<li>Participate in team planning, volunteer selection, event readiness and post-event review.</li>
+<li>Recruit, support and communicate with Sanitation volunteers and help create an inclusive, welcoming and well-organised volunteer experience.</li>
+<li>Communicate and consult with your team and wider Kiwiburn teams, as appropriate, on key decisions that affect them, and feed back to the Infrastructure Facilitator where required.</li>
+<li>Help identify opportunities to improve Sanitation systems, assets, volunteer processes, documentation and event delivery.</li>
+<li>Participate in the shared event Duty Lead/on-call roster, providing operational leadership and escalation support during agreed periods.</li>
+<li>Contribute to the annual Sanitation Afterburn report and post-event review.</li>
+<li>Assist in creating a collaborative and inclusive team culture where people are inspired to contribute and make a difference for the Kiwiburn community.</li>
+</ul></div>
+</div>
+
+<div class="card"><h3 style="margin-top:0">⏱️ How much time will I need to commit?</h3>
+<svg id="teamTime" viewBox="0 0 760 170"></svg>
+<p class="small muted" style="margin:6px 0 0">Time commitments are indicative and vary by focus area and time of year. On average it's approximately 1–3 hours per week year-round. From September to January this may increase to approximately 5–10+ hours per week, while February to April (post-event) may be approximately 2–5 hours per week. <b>December–January</b> is generally the busiest period, particularly around recruitment, planning, Build and final event readiness, at approximately 10+ hours per week. Co-Leads taking significant Build responsibility may be contributing several hours per day while onsite. <b>May–August</b> is generally quieter, at approximately 1–2 hours per fortnight for some Co-Leads, while Stewardship, working-bee or project-based responsibilities may require additional time.</p>
+<div class="grid" style="margin-top:12px">
+<div><b>🏗️ Prebuild</b><br>Not every Co-Lead is expected to attend the entire Build. Onsite responsibilities may be distributed or rotated between Co-Leads from year to year according to availability, interest, experience, capability and team planning. Some Co-Leads may arrive substantially earlier than others where their responsibilities require it.</div>
+<div><b>🔥 Event</b><br>Co-Leads are expected to attend the Kiwiburn event. Where attendance is not possible, this should be discussed in advance and adequate leadership coverage agreed with the wider Co-Lead team and Infrastructure Facilitator should be set up. Attending Co-Leads participate in the shared Duty Lead/on-call roster, training and operational support. Duty Lead allocation should take account of each person's overall year-round, Build, event and Packdown contribution, availability and recovery needs so that workload remains equitable.</div>
+<div><b>📦 Postbuild</b><br>Sufficient Sanitation leadership is expected to remain onsite while services continue and Sanitation assets are cleaned, collected or stored. Not every Co-Lead is expected to remain for the full Packdown period.</div>
+<div><b>🐝 Other</b><br>Co-Leads may attend working bees, planning visits or other site activities relevant to their focus area. Appropriate coverage is agreed within the Co-Lead team.</div>
+</div></div>
+
+<h3>👥 The four Co-Lead portfolios</h3>
+<div class="grid">
+<div class="card" style="border-left:10px solid var(--pink)"><h3 style="margin-top:0">People, Planning &amp; Administration</h3>
+<p style="margin-top:0"><b>Job purpose:</b> own the people and administrative systems required to recruit, organise and retain the Sanitation team, ensuring volunteer applications, communications, rostering, records and planning processes remain organised and responsive throughout the year.</p>
+<details><summary><b>Primary ownership</b> (13 areas)</summary><ul style="padding-left:18px"><li>recruitment advertising and volunteer re-engagement</li><li>applicant communications and application management</li><li>Portal administration</li><li>event roster construction</li><li>ticket allocation administration</li><li>volunteer communications</li><li>Sanitation records and Drive organisation</li><li>administrative maintenance of purchasing and procurement records</li><li>volunteer performance/history records</li><li>coordination of volunteer feedback after the event</li><li>general Volunteer Manual ownership</li><li>administrative coordination of documentation</li><li>maintaining visibility of deadlines and outstanding actions across the team</li></ul></details>
+<p class="small">Managing documentation, coordination, applications, communications, the roster and Portal are all assessed as <b>High workload</b>, concentrated across September–January.</p>
+<p class="small"><b>Event contribution:</b> this person still rotates through Duty Lead coverage, participates in training and can act operationally onsite. The role should never become office-centric with no paddock understanding/experience.</p>
+<details><summary><b>Expected contribution profile</b></summary><ul style="padding-left:18px"><li>Active year-round, with the heaviest workload generally falling between September and January.</li><li>High contribution through recruitment, applicant management, volunteer communications, rostering, Portal administration and planning administration.</li><li>Expected to participate onsite during final event readiness, volunteer/Shift Lead training, Burn operations and Duty Lead coverage.</li><li>Expected to retain practical paddock familiarity rather than operating as an office-only role.</li></ul><p class="small muted">2027 current-holder availability: approximately 4–5 days before the Burn to support final Build and event-readiness activities.</p></details></div>
+
+<div class="card" style="border-left:10px solid var(--orange)"><h3 style="margin-top:0">Build &amp; Site Logistics</h3>
+<p style="margin-top:0"><b>Job purpose:</b> lead Sanitation's physical Build and site logistics programme, ensuring toilets, Sanitation-owned physical assets and site facilities are positioned, prepared, functional and ready before the event. This role coordinates closely with Infrastructure, Plumbing, Town Planning, contractors and the other Sanitation Co-Leads where specialist or cross-department support is required.</p>
+<details><summary><b>Primary ownership</b> (15 areas)</summary><ul style="padding-left:18px"><li>Build task planning</li><li>supervision of Build volunteers</li><li>deployment of Kiwiburn-owned portaloos</li><li>handwashing station setup and placement</li><li>menstruation station physical setup and placement</li><li>physical renovations and repairs</li><li>conduct the physical onsite stocktake during Build</li><li>identify missing or broken physical equipment and Build-specific requirements, and record these gaps in the shared stock/asset register</li><li>physical improvement projects</li><li>Town Planning coordination on placement/access</li><li>coordinate onsite contractor access, drop-off and physical positioning of rented portaloos</li><li>physical movement/placement of compostable toilet blocks in consultation with the Compost Co-Lead</li><li>Build &amp; Packdown period coordination of specialist support</li></ul></details>
+<p class="small">The workload profile is very concentrated. Build volunteer supervision is rated as <b>Very High</b> workload, with portaloo deployment, menstruation-station setup and toilet placement also carrying significant Build-period workload. Significant Build and Packdown contributions will be taken into account when allocating Duty Lead coverage during the Burn.</p>
+<details><summary><b>Expected contribution profile</b></summary><ul style="padding-left:18px"><li>Moderate year-round planning and coordination, with a highly concentrated workload during the January Build period.</li><li>Expected to have significant early-January onsite availability and to coordinate Build volunteers and physical site setup.</li><li>Expected to participate in Burn operations and Duty Lead coverage, with substantial Build and Packdown contribution recognised when Duty coverage is allocated.</li><li>Maintains enough year-round visibility to plan Build requirements, site dependencies and physical improvement work before arriving onsite.</li></ul></details></div>
+
+<div class="card" style="border-left:10px solid var(--leaf)"><h3 style="margin-top:0">Compost, Assets &amp; Stewardship</h3>
+<p style="margin-top:0"><b>Job purpose:</b> maintain the long-term health, safety and functionality of Sanitation's composting systems and physical assets, with particular responsibility for the worm farm, compostable toilets, working bees and year-round asset stewardship.</p>
+<details><summary><b>Primary ownership</b> (16 areas)</summary><ul style="padding-left:18px"><li>worm farm stewardship</li><li>worm farm inspections and maintenance planning</li><li>compostable toilet systems</li><li>barrel condition and readiness</li><li>compost toilet preparation and shutdown</li><li>compost procedures and training</li><li>sanitation-specific contamination/H&amp;S procedures in collaboration with Site Safety</li><li>asset condition assessments</li><li>asset register ownership</li><li>planned maintenance</li><li>working-bee Sanitation priorities</li><li>physical asset storage condition</li><li>compost-related improvement projects</li><li>long-term maintenance requirements</li></ul></details>
+<p class="small">This role also carries specialist event-readiness responsibilities such as compost training and safe handling procedures.</p>
+<div class="tip" style="border-radius:12px;padding:8px 12px;font-size:14px"><b>Relationship with Build:</b> Build owns <i>how</i> physical infrastructure gets installed or repaired. Compost/Assets owns <i>what condition</i> the compost/assets systems need to be in and how those systems should operate. Moving a compost toilet block = Build primary. Determining where/how that compost system needs to operate = Compost primary. Designing a better physical movement system = joint project.</div>
+<details><summary><b>Expected contribution profile</b></summary><ul style="padding-left:18px"><li>Periodic year-round onsite responsibility to perform inspections at working bees, maintenance planning and asset stewardship.</li><li>High contribution around working bees and Build, particularly for worm-farm condition, compost-system readiness and sanitation asset maintenance.</li><li>Carries specialist event-readiness responsibilities including compost procedures, training and safe-handling requirements.</li><li>Expected to participate in Burn operations, Duty Lead coverage and Packdown, particularly where compost systems and Sanitation-owned assets require specialist oversight.</li></ul></details></div>
+
+<div class="card" style="border-left:10px solid var(--purple)"><h3 style="margin-top:0">Event Operations &amp; Logistics</h3>
+<p style="margin-top:0"><b>Job purpose:</b> design and coordinate Sanitation's event operating system so that Shift Leads and volunteers can run routine sanitation services independently, with Co-Leads required primarily for exceptions, escalations and higher-level decisions.</p>
+<details><summary><b>Primary ownership</b> (18 areas)</summary><ul style="padding-left:18px"><li>Event Operating Plan</li><li>Shift Lead development</li><li>Shift Lead Handbook</li><li>Shift Lead briefings</li><li>Duty Lead roster coordination</li><li>Can-Am operating/induction system</li><li>radio procedures</li><li>shift escalation rules</li><li>overall stock forecast, event consumable quantities and routine stock-cache system</li><li>consolidation of Build stocktake findings and operational needs into the shared procurement plan</li><li>coordination of operational procurement requirements within the approved budget and purchasing process</li><li>portaloo contractor relationship management, including requirements, booking, quantities, servicing schedule, contact details and additional servicing</li><li>live servicing arrangements</li><li>event logistics</li><li>Duty Lead handover/logging system</li><li>operational incident logging</li><li>Packdown coverage planning</li><li>portaloo contractor Packdown collection and handover</li></ul></details>
+<p class="small">This role must own the operating system, not personally operate everything. The Event Operations Co-Lead is responsible for designing, maintaining and coordinating these systems; routine delivery should be delegated to trained Shift Leads, volunteers and the current Duty Lead wherever appropriate. The Event Operating Plan and Duty Lead coverage are both high-intensity responsibilities, with the operational workload peaking in the final planning period, during the Burn and into Packdown.</p>
+<details><summary><b>Expected contribution profile</b></summary><ul style="padding-left:18px"><li>Increasing workload from late in the year through the Burn, with particularly high responsibility during final event planning and readiness.</li><li>Strong onsite involvement during the event, focused on maintaining the systems that allow Shift Leads and volunteers to operate independently.</li><li>Owns preparation of live operational systems but does not become the default person executing routine shift work or carrying all Duty Lead coverage.</li><li>Expected to contribute to Packdown planning and contractor/service handover after the Burn.</li></ul></details></div>
+</div>
+
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">What shared experience and qualities are needed?</h3>
+<ul style="margin:0;padding-left:18px">
+<li>Strong communication and collaboration skills, with the ability to work constructively as part of a shared leadership team.</li>
+<li>Comfortable taking ownership of agreed responsibilities while keeping others informed and asking for support where required.</li>
+<li>Good organisational, planning and problem-solving skills.</li>
+<li>Able to manage changing priorities and make practical decisions in a busy volunteer environment.</li>
+<li>Project and time management skills for yourself and the people or projects you support.</li>
+<li>Willingness to learn about the wider Sanitation operation, follow established procedures and provide appropriate cover outside your usual focus area when required.</li>
+<li>Comfortable working with volunteers with different levels of experience, confidence and availability.</li>
+<li>Aware and proactive in managing your own capacity, including communicating early when workload or life commitments affect your ability to deliver.</li>
+<li>Comfortable learning and using systems such as Google Drive, Slack and Kiwiburn Portal, as well as other volunteer/rostering tools, with regular access to a computer and internet.</li>
+<li>Available and responsive regularly year-round via email and Slack, or able to ensure there is adequate cover when unavailable.</li>
+<li>Willing to work collaboratively with Infrastructure and other Kiwiburn departments.</li>
+<li>Understanding of Te Tiriti o Waitangi (Treaty of Waitangi) and how it relates to the Kiwiburn Organisation. Please refer to the Memorandum of Understanding for more information.</li>
+<li>A positive, motivated, inspired attitude and a cheeky twinkle in your eye!</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">What would be helpful to bring?</h3>
+<ul style="margin:0;padding-left:18px">
+<li>Previous experience coordinating, leading or supporting a team of people with different workloads and priorities. Bonus points if they are volunteers!</li>
+<li>Prior volunteering for Kiwiburn, onsite or year-round.</li>
+<li>Familiarity with Kiwiburn's organisational structure and event environment.</li>
+<li>Experience in event operations, volunteer coordination, practical site work, environmental systems, documentation, training or other areas relevant to the Co-Lead focus you are interested in.</li>
+<li>Experience creating clear processes, documentation or training material.</li>
+<li>Interest in improving systems rather than simply repeating how things have previously been done.</li>
+<li>Desire to serve the burner community.</li>
+</ul>
+<h3>On site capability</h3>
+<p style="margin-top:0">Co-Leads are expected to develop a broad working understanding of Sanitation operations and undertake relevant training so they can support the wider team, follow established procedures and provide continuity across focus areas where appropriate.</p>
+<p>Some Sanitation responsibilities require specialist technical or practical knowledge. Co-Leads are not expected to undertake work outside their competence simply to provide cover. Where specialist expertise is required, the appropriate Co-Lead or another suitably experienced Kiwiburn team should be consulted.</p>
+<p>Individual physical ability should not prevent someone from contributing effectively as a Co-Lead. Tasks may be shared or allocated according to skills, accessibility requirements, training and capacity, provided the Co-Lead team collectively maintains appropriate operational coverage.</p>
+<h3>Who else will I be working with?</h3>
+<ul style="margin:0;padding-left:18px"><li>Infrastructure Facilitator</li><li>Other Sanitation Co-Leads</li><li>Infrastructure teams including Town Planning, Plumbing and MPW</li><li>Crew Support, Volunteer and other teams whose work overlaps with Sanitation</li><li>Sanitation Shift Leads and event volunteers</li><li>Site Office and relevant onsite operations teams</li><li>Site Safety / Health &amp; Safety teams where required</li><li>External contractors and suppliers as required</li></ul>
+<p class="small muted" style="margin-bottom:0">The relevant Co-Lead may communicate directly with another team or department regarding their area of work; communication does not need to be routed through a single Sanitation representative.</p></div>
+</div>
+
+
+
+<div class="card"><h3 style="margin-top:0">📄 Team documents</h3>
+<div id="teamDocs"></div>
+<p class="small muted" style="margin-bottom:0">To add another document, save it into Downloads and ask Claude to "add it to the Sanitation team documents". It gets copied into the site and listed here.</p></div>
+</section>
+
 <!-- ============ CALENDAR ============ -->
 <section id="calendar">
 <h2><span class="hl">📅 Year calendar</span></h2>
@@ -678,7 +830,7 @@ const CLIMATE=["Warm, dry spells, heat risk","Warmest, heat risk","Mild, good","
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 
 /* ---------- tabs ---------- */
-const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["access","♿ Accessible loo","#b9a6ff"],["wash","🚿 Bucket wash","#7ee0c8"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"]];
+const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["access","♿ Accessible loo","#b9a6ff"],["wash","🚿 Bucket wash","#7ee0c8"],["worms","🪱 Worm farm","#ffa77a"],["trap","🚰 Kitchen sand trap","#8fd3ff"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"],["team","🧹 Sanitation team","#ffb3c7"]];
 function showTab(id){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id));document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));store.set("tab",id);const b=document.querySelector(`#tabs button[data-t="${id}"]`),n=$("tabs");if(b&&n.scrollWidth>n.clientWidth)n.scrollLeft=b.offsetLeft-(n.clientWidth-b.offsetWidth)/2}
 TABS.forEach(([id,n,c])=>{const b=document.createElement("button");b.textContent=n;b.style.setProperty("--c",c);b.dataset.t=id;b.onclick=()=>{showTab(id);history.replaceState(null,"","#"+id)};$("tabs").appendChild(b)});
 showTab((location.hash.slice(1)&&$(location.hash.slice(1)))?location.hash.slice(1):store.get("tab","overview"));
@@ -1314,6 +1466,21 @@ function calcWash(){
   $("wBom").innerHTML=`<tr><th>Item</th><th>Qty</th><th>Where</th><th>Rough NZD</th></tr>`+R.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("");
 }
 ["wB","wL","wD","wI","wDrop","wRun"].forEach(id=>$(id).addEventListener("input",calcWash));
+/* ---------- sanitation team ---------- */
+const TEAM_DOCS=[
+  ["Sanitation Team Co-Lead – Job Description 2026","docs/sanitation-co-lead-job-description-2026.pdf","PDF · 8 pages · Kiwiburn Infrastructure, rev. Sept 2026"],
+  ["Co-Lead Portfolios","docs/co-lead-portfolios.pdf","PDF · 8 pages · the four Co-Lead portfolios"]
+];
+function buildTeam(){
+  $("teamDocs").innerHTML=TEAM_DOCS.map(([t,h,d])=>`<p style="margin:0 0 10px"><a class="btn" href="${h}" target="_blank" rel="noopener">📄 ${t}</a> <span class="small muted">${d}</span></p>`).join("");
+  // hours per week by month, Jan..Dec (indicative, from the job description)
+  const H=[10,4,3,2.5,.75,.75,.75,.75,6,7,8,10],lab=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],note=["Build · Burn","post-event 2–5","2–5","2–5","quiet","1–2 h/fortnight","quiet","quiet","5–10+","5–10+","5–10+","busiest 10+"];
+  let o=`<line x1="40" y1="130" x2="750" y2="130" stroke="var(--edge)" stroke-width="2"/>`;
+  [0,5,10].forEach(v=>o+=`<line x1="40" y1="${130-v*10}" x2="750" y2="${130-v*10}" stroke="var(--line)" stroke-dasharray="3 4"/><text x="34" y="${134-v*10}" text-anchor="end" style="font-size:10px;fill:var(--muted)">${v}h</text>`);
+  H.forEach((h,i)=>{const x=50+i*58,c=h>=8?"var(--pink)":h>=4?"var(--orange)":h>=2?"var(--sun)":"var(--leaf)";o+=`<rect x="${x}" y="${130-h*10}" width="42" height="${h*10}" rx="5" fill="${c}"/><text x="${x+21}" y="146" text-anchor="middle" style="font-size:11px;font-weight:700">${lab[i]}</text><text x="${x+21}" y="160" text-anchor="middle" style="font-size:9px;fill:var(--muted)">${note[i]}</text>`});
+  o+=`<text x="40" y="14" style="font-size:11px;fill:var(--muted)">indicative hours per week</text>`;
+  $("teamTime").innerHTML=o;
+}
 /* ---------- accessible cubicle ---------- */
 function drawAccess(){
   const k=.2,I=2190,wt=102*k,X=v=>v*k,o=[];
@@ -1521,7 +1688,7 @@ function calcTrap(){
   drawTrap();
 }
 ["tPeople","tLpp","tSoil","tSink","tRun","tDrop","tPlinth"].forEach(id=>$(id).addEventListener("input",calcTrap));
-swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();calcTrap();drawAccess();calcRamp();drawFraming();drawTowing();calcWash();
+swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();calcTrap();drawAccess();calcRamp();drawFraming();drawTowing();calcWash();buildTeam();
 /* ---------- fun UI bits ---------- */
 const CF=["#ff5d8f","#ffc93c","#13b5a5","#7b5cff","#5cbf4a","#ff8a3d","#4cb8ff"];
 function confetti(x,y,n){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;for(let i=0;i<(n||24);i++){const e=document.createElement("i"),a=Math.random()*Math.PI*2,d=40+Math.random()*(n>40?220:90);e.className="cf";e.style.cssText=`left:${x}px;top:${y}px;background:${CF[i%7]};--dx:${(Math.cos(a)*d).toFixed(0)}px;--dy:${(Math.sin(a)*d-50).toFixed(0)}px;--r:${Math.random()*900|0}deg`;document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}}
@@ -1545,6 +1712,83 @@ function drawHero(){
 }
 drawHero();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
+/* ---------- hidden worm game ---------- */
+(function(){
+  let stage=-1,el=null,pos={x:0,y:0},tgt={x:0,y:0},face=1,raf=0,lastChaos=0,meal=null,mealT=0;
+  const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const W=150,H=120,vw=()=>innerWidth,vh=()=>innerHeight;
+  function svg(){
+    let s=`<svg viewBox="0 0 200 160"><g class="wig">`;
+    for(let i=0;i<9;i++){const x=10+i*14,y=100+Math.sin(i*.9)*8;s+=`<circle cx="${x}" cy="${y}" r="${13-Math.abs(i-4)*.6}" fill="#ff8fb1" stroke="#2b2140" stroke-width="3"/>`}
+    s+=`</g>`;
+    // arms
+    s+=`<path d="M78 96 Q66 74 70 62" fill="none" stroke="#ff8fb1" stroke-width="7" stroke-linecap="round"/><path d="M78 96 Q66 74 70 62" fill="none" stroke="#2b2140" stroke-width="1.5"/>`;
+    s+=`<path d="M108 94 Q120 78 118 66" fill="none" stroke="#ff8fb1" stroke-width="7" stroke-linecap="round"/><path d="M108 94 Q120 78 118 66" fill="none" stroke="#2b2140" stroke-width="1.5"/>`;
+    // beer (a DoBro can) in the left hand
+    if(stage<1)s+=`<g class="beer"><rect x="60" y="40" width="20" height="30" rx="3" fill="#5b3319" stroke="#2b2140" stroke-width="2"/><rect x="60" y="48" width="20" height="9" fill="#e9b44c"/><ellipse cx="70" cy="40" rx="10" ry="3" fill="#c9ced3" stroke="#2b2140"/></g>`;
+    else s+=`<g><rect x="52" y="44" width="20" height="30" rx="3" fill="#5b3319" stroke="#2b2140" stroke-width="2" transform="rotate(-20 62 60)"/><rect x="52" y="52" width="20" height="9" fill="#e9b44c" transform="rotate(-20 62 60)"/></g>`;
+    // flaming dragon staff in the right hand
+    if(stage>=1){s+=`<g class="staff"><line x1="64" y1="66" x2="172" y2="66" stroke="#6b4a2f" stroke-width="6" stroke-linecap="round"/>`;
+      [64,172].forEach(x=>s+=`<circle cx="${x}" cy="66" r="7" fill="#444"/><path class="flame" d="M${x-12} 66 q4 -22 12 -26 q-2 12 6 14 q6 -6 2 -16 q12 10 4 28z" fill="#ff8a3d"/><path class="flame" d="M${x-6} 66 q2 -12 6 -14 q4 8 4 14z" fill="#ffd04e"/>`);
+      [118].forEach(x=>{for(let k=0;k<3;k++)s+=`<line x1="${x-8+k*8}" y1="60" x2="${x-8+k*8}" y2="72" stroke="#2b2140" stroke-width="1"/>`});s+=`</g>`;}
+    // skull head
+    s+=`<g><circle cx="152" cy="34" r="26" fill="#f4f1e8" stroke="#2b2140" stroke-width="3"/><ellipse cx="143" cy="30" rx="7" ry="8" fill="#2b2140"/><ellipse cx="162" cy="30" rx="7" ry="8" fill="#2b2140"/>`;
+    s+=`<circle cx="143" cy="31" r="2" fill="${stage>=2?"#ff3b3b":"#ff8fb1"}"/><circle cx="162" cy="31" r="2" fill="${stage>=2?"#ff3b3b":"#ff8fb1"}"/><path d="M152 38 l-4 7 h8z" fill="#2b2140"/>`;
+    s+=`<g class="${stage===2?"jaw":""}"><rect x="138" y="48" width="30" height="12" rx="4" fill="#f4f1e8" stroke="#2b2140" stroke-width="3"/>`;for(let i=0;i<4;i++)s+=`<line x1="${143+i*7}" y1="48" x2="${143+i*7}" y2="56" stroke="#2b2140" stroke-width="1.5"/>`;s+=`</g>`;
+    if(stage===0)s+=`<text x="128" y="8" style="font:800 13px Fredoka,sans-serif;fill:#ff5d8f">CHUR!</text>`;
+    if(stage===1)s+=`<text x="118" y="8" style="font:800 13px Fredoka,sans-serif;fill:#ff8a3d">🔥 FLOW 🔥</text>`;
+    if(stage===2)s+=`<text x="128" y="8" style="font:800 13px Fredoka,sans-serif;fill:#e8473f">NOM NOM</text>`;
+    s+=`</g></svg>`;return s;
+  }
+  function render(){el.innerHTML=svg();el.style.transform=`scaleX(${face})`}
+  function place(){el.style.left=pos.x+"px";el.style.top=pos.y+"px"}
+  function pick(){tgt={x:Math.random()*(vw()-W),y:60+Math.random()*(vh()-H-60)}}
+  const chaosPool=()=>[...document.querySelectorAll("section.on .card,section.on .stat,section.on .step,section.on h2,nav button,.hero h1,.hero .kicker,.chipz span,section.on .issue,section.on .mo")].filter(e=>{const r=e.getBoundingClientRect();return r.bottom>0&&r.top<vh()&&!e.classList.contains("eaten")});
+  function tick(t){
+    const dx=tgt.x-pos.x,dy=tgt.y-pos.y,d=Math.hypot(dx,dy),sp=stage===1?9:stage===2?6:5;
+    if(d<sp){if(stage===2&&meal){meal.classList.add("eaten");burst(pos.x+W*.8,pos.y+H*.3,10);meal=null}
+      if(stage===2){const pool=chaosPool();meal=pool.sort((a,b)=>dist(a)-dist(b))[0]||null;if(meal){const r=meal.getBoundingClientRect();tgt={x:Math.min(vw()-W,Math.max(0,r.left+r.width/2-W*.8)),y:Math.min(vh()-H,Math.max(0,r.top+r.height/2-H*.3))}}else pick()}else pick()}
+    else{pos.x+=dx/d*sp;pos.y+=dy/d*sp;const f=dx<0?-1:1;if(f!==face){face=f;el.style.transform=`scaleX(${face})`}}
+    place();
+    if(stage<2&&t-lastChaos>(stage===1?220:420)){lastChaos=t;const pool=chaosPool();const e=pool[Math.random()*pool.length|0];
+      if(e){e.classList.add("chaos");e.style.setProperty("--chaos",(Math.random()*30-15).toFixed(1)+"deg");e.style.setProperty("--cx",(Math.random()*30-15|0)+"px");e.style.setProperty("--cy",(Math.random()*20-10|0)+"px")}
+      if(stage===1)burst(pos.x+W*.5,pos.y+H*.4,6)}
+    raf=requestAnimationFrame(tick);
+  }
+  const dist=e=>{const r=e.getBoundingClientRect();return Math.hypot(r.left+r.width/2-pos.x-W*.8,r.top+r.height/2-pos.y-H*.3)};
+  function burst(x,y,n){if(typeof confetti==="function")confetti(x,y,n)}
+  function puke(){
+    const mx=pos.x+(face>0?W*.85:W*.15),my=pos.y+H*.42,cols=["#7cc05a","#b5d84a","#e9d44c","#c8a45a","#ff8fb1","#ffd04e","#13b5a5"];
+    for(let i=0;i<160;i++){const p=document.createElement("i"),a=(face>0?-.6:Math.PI-.6)+Math.random()*1.2*(face>0?1:-1),v=80+Math.random()*420,r=4+Math.random()*9;
+      p.className="puke";p.style.cssText=`left:${mx}px;top:${my}px;width:${r}px;height:${r}px;background:${cols[i%7]};--dx:${(Math.cos(a)*v*(face>0?1:-1)).toFixed(0)}px;--dy:${(Math.sin(a)*v*.4-60).toFixed(0)}px;animation-delay:${(i*6)}ms`;
+      document.body.appendChild(p);setTimeout(()=>p.remove(),1500+i*6)}
+    const back=[...document.querySelectorAll(".eaten,.chaos")];
+    back.forEach((e,i)=>setTimeout(()=>{e.classList.remove("eaten","chaos");e.style.removeProperty("--chaos");e.style.removeProperty("--cx");e.style.removeProperty("--cy")},300+Math.min(i*25,1200)));
+    setTimeout(()=>{cancelAnimationFrame(raf);el.style.transition="transform .5s ease-in";el.style.transform="scale(0) rotate(360deg)";
+      setTimeout(()=>{el.remove();el=null;stage=-1;document.querySelector(".hills .worm")?.style.removeProperty("visibility");scrollTo({top:0,behavior:"smooth"});burst(innerWidth/2,120,90)},520)},1500);
+  }
+  function click(e){
+    e.stopPropagation();
+    if(stage===3)return;
+    stage++;
+    if(stage===0){const w=document.querySelector(".hills .worm"),r=w.getBoundingClientRect();w.style.visibility="hidden";
+      el=document.createElement("div");el.id="bigworm";el.className="grow";el.setAttribute("role","button");el.setAttribute("aria-label","the worm");el.tabIndex=0;
+      el.onclick=click;el.onkeydown=k=>{if(k.key==="Enter"||k.key===" "){k.preventDefault();click(k)}};
+      document.body.appendChild(el);pos={x:Math.max(0,r.left-W/2),y:Math.max(0,r.top-H/2)};place();render();burst(r.left,r.top,40);
+      if(!still){pick();raf=requestAnimationFrame(tick)}
+      return}
+    render();
+    if(stage===2){meal=null;tgt={...pos}}
+    if(stage===3){puke()}
+  }
+  function hook(){const w=document.querySelector(".hills .worm");if(!w)return;w.setAttribute("role","button");w.setAttribute("tabindex","0");w.setAttribute("aria-label","a worm");
+    w.onclick=click;w.onkeydown=k=>{if(k.key==="Enter"||k.key===" "){k.preventDefault();click(k)}};
+    if(!w.querySelector("rect.hit"))w.insertAdjacentHTML("afterbegin",`<rect class="hit" x="-12" y="158" width="100" height="32" fill="transparent"/>`);
+    if(stage>=0)w.style.visibility="hidden"}
+  hook();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>setTimeout(hook,0));
+})();
+
 {const d=$("dice").onclick;$("dice").onclick=e=>{d(e);if(e)burstAt(e.currentTarget,18)}}
 {const m=$("mixBtn").onclick;$("mixBtn").onclick=e=>{m(e);burstAt(e.currentTarget,40)}}
 
