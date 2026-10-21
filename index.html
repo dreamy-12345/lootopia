@@ -182,6 +182,36 @@ footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:7
 #wasted .can.in{transform:none}
 #wasted .glasses{transform:translateY(-120vh);transition:transform 1.4s linear}
 #wasted .glasses.in{transform:translateY(0)}
+/* stick insect */
+#stick{position:fixed;z-index:97;width:170px;height:124px;cursor:pointer;transition:left 1.3s ease-in-out,top 1.3s ease-in-out,opacity .5s;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.35));touch-action:manipulation}
+#stick svg{width:100%;height:100%;overflow:visible}
+#stick.peek{animation:srise .9s cubic-bezier(.3,1.5,.5,1)}
+@keyframes srise{from{transform:translateY(140px)}}
+#stick .dance{transform-box:view-box;transform-origin:85px 118px;animation:sdance .55s ease-in-out infinite alternate}
+@keyframes sdance{from{transform:rotate(-7deg)}to{transform:rotate(7deg) translateY(-6px)}}
+#stick .leg{transform-box:fill-box;transform-origin:50% 0;animation:sleg .28s ease-in-out infinite alternate}
+#stick .leg:nth-child(even){animation-delay:.14s}
+@keyframes sleg{to{transform:rotate(14deg)}}
+#stick .ant{transform-box:fill-box;transform-origin:0 100%;animation:sant .4s ease-in-out infinite alternate}
+@keyframes sant{to{transform:rotate(-12deg)}}
+#stick.bonk{animation:bonk .25s}
+@keyframes bonk{50%{transform:scale(1.15) rotate(-6deg)}}
+.plus1{position:fixed;z-index:99;pointer-events:none;font:800 18px Fredoka,sans-serif;color:#ffc93c;text-shadow:2px 2px 0 #2b2140;animation:plus1 .9s ease-out forwards}
+@keyframes plus1{to{transform:translateY(-60px);opacity:0}}
+.mend{outline:3px dashed #5cbf4a;outline-offset:3px;transition:outline-color 1s}
+#stickbar{position:relative;max-width:420px;height:22px;margin:8px 0 4px;border:2.5px solid var(--edge);border-radius:999px;background:var(--panel);overflow:hidden;box-shadow:3px 3px 0 var(--edge)}
+#stickbar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(45deg,#f2a900 0 10px,#ffc93c 10px 20px);transition:width .3s}
+#stickbar span{position:relative;display:block;text-align:center;font:700 12px/17px Fredoka,sans-serif;color:var(--ink)}
+.shard{display:inline-block;transition:transform 1.4s cubic-bezier(.2,.7,.3,1),opacity 1.4s}
+#beerflood{position:fixed;inset:0;z-index:101;pointer-events:none;background:linear-gradient(180deg,#fff7e0 0,#fff7e0 7%,#f6c445 9%,#e8a317 45%,#c97a0a 100%);transform:translateY(100%);animation:flood 1.3s cubic-bezier(.3,.8,.4,1) forwards}
+@keyframes flood{to{transform:none}}
+#beerflood.drain{transition:opacity 1.2s;opacity:0}
+#beerflood b{position:absolute;bottom:-20px;border-radius:50%;background:rgba(255,255,255,.55);animation:bub linear infinite}
+@keyframes bub{to{transform:translateY(-110vh)}}
+.splash{position:fixed;z-index:102;border-radius:50% 50% 50% 0;pointer-events:none;background:#f2a900;animation:splash 1.2s cubic-bezier(.2,.6,.4,1) forwards}
+@keyframes splash{to{transform:translate(var(--dx),calc(var(--dy) + 200px)) rotate(var(--r));opacity:0}}
+html.inverted{filter:invert(1)}
+#invtimer{position:fixed;z-index:103;top:10px;right:10px;font:800 14px Fredoka,sans-serif;background:#2b2140;color:#ffc93c;border-radius:999px;padding:4px 12px;pointer-events:none}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{nav,.noprint,.hero .hills,.bunting{display:none}section{display:block!important;page-break-after:always}body{background:#fff}.card,.stat,.issue,.mo{box-shadow:none}}
 </style>
@@ -1866,10 +1896,10 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
     b.innerHTML=`<span class="tip">spray the worm!</span><svg viewBox="0 0 62 118"><rect x="22" y="2" width="14" height="10" rx="2" fill="#333"/><rect x="34" y="5" width="10" height="4" fill="#555"/><path d="M14 22 Q14 12 29 12 Q44 12 44 22Z" fill="#c9ced3" stroke="#2b2140" stroke-width="2"/><rect x="10" y="22" width="38" height="90" rx="6" fill="#e8473f" stroke="#2b2140" stroke-width="2.5"/><rect x="10" y="44" width="38" height="40" fill="#ffd04e"/><text x="29" y="60" text-anchor="middle" style="font:800 9px Fredoka,sans-serif;fill:#2b2140">FLY</text><text x="29" y="72" text-anchor="middle" style="font:800 9px Fredoka,sans-serif;fill:#2b2140">SPRAY</text><g transform="translate(29 98)"><ellipse rx="5" ry="3.4" fill="#2b2140"/><ellipse cx="-4" cy="-3" rx="3.5" ry="2" fill="#fff" opacity=".8"/><ellipse cx="4" cy="-3" rx="3.5" ry="2" fill="#fff" opacity=".8"/></g></svg>`;
     b.onclick=e=>{e.stopPropagation();kill(b)};document.body.appendChild(b);heroSpray();
   }
-  function restore(){
+  function restore(quiet){
     document.querySelectorAll(".eaten,.chaos").forEach(e=>{e.classList.remove("eaten","chaos");e.style.removeProperty("--chaos");e.style.removeProperty("--cx");e.style.removeProperty("--cy")});
     document.getElementById("flyspray")?.remove();document.getElementById("wasted")?.remove();document.getElementById("heroSpray")?.remove();document.querySelector(".tipover")?.classList.remove("tipover");
-    if(el){el.remove();el=null}stage=-1;document.querySelector(".hills .worm")?.style.removeProperty("visibility");scrollTo({top:0,behavior:"smooth"});
+    if(el){el.remove();el=null}stage=-1;document.querySelector(".hills .worm")?.style.removeProperty("visibility");if(!quiet)scrollTo({top:0,behavior:"smooth"});
   }
   function kill(src){
     if(!el||el.classList.contains("dead"))return;
@@ -1925,8 +1955,90 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
     if(!w.querySelector("rect.hit"))w.insertAdjacentHTML("afterbegin",`<rect class="hit" x="-12" y="158" width="100" height="32" fill="transparent"/>`);
     if(stage>=0)w.style.visibility="hidden"}
   hook();
+  window.__worm={get el(){return el},get pos(){return pos},W,H,halt(){cancelAnimationFrame(raf)},reset:restore};
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>setTimeout(hook,0));
 })();
+/* ---------- stick insect: pops up, dances at the sun, eats the worm and fixes the damage ---------- */
+(function(){
+  const NEED=12;let hits=0,el=null,leaveT=0,busy=false,booming=false;
+  const W=170,H=124;
+  function svg(){
+    let s=`<svg viewBox="0 0 170 124"><g class="dance">`;
+    // legs (3 pairs, long and jointed)
+    [[46,64],[74,66],[104,64]].forEach(([x,y],i)=>{s+=`<g class="leg"><path d="M${x} ${y} L${x-14} ${y-26} L${x-24} ${118}" fill="none" stroke="#6f8f3a" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/></g><g class="leg"><path d="M${x} ${y} L${x+12} ${y-24} L${x+20} ${118}" fill="none" stroke="#5c7a2e" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/></g>`});
+    // stick body
+    s+=`<path d="M18 70 Q60 60 110 62 L138 56" fill="none" stroke="#7a9a40" stroke-width="9" stroke-linecap="round"/><path d="M18 70 Q60 60 110 62 L138 56" fill="none" stroke="#2b2140" stroke-width="1.4" stroke-dasharray="1 9"/>`;
+    // head looking up-right at the sun + antennae
+    s+=`<ellipse cx="146" cy="50" rx="12" ry="8" fill="#8db04a" stroke="#2b2140" stroke-width="2" transform="rotate(-28 146 50)"/><circle cx="151" cy="45" r="2.6" fill="#2b2140"/><circle cx="152" cy="44.2" r=".9" fill="#fff"/>`;
+    s+=`<g class="ant"><path d="M152 42 Q160 20 168 4" fill="none" stroke="#5c7a2e" stroke-width="2"/></g><g class="ant" style="animation-delay:.2s"><path d="M146 42 Q148 22 156 6" fill="none" stroke="#5c7a2e" stroke-width="2"/></g>`;
+    s+=`<text x="96" y="30" text-anchor="middle" style="font:800 12px Fredoka,sans-serif;fill:#ffc93c">♪ ☀️ ♫</text></g></svg>`;return s;
+  }
+  function bar(){
+    let b=$("stickbar");
+    if(!b){document.querySelector(".hero h1").insertAdjacentHTML("afterend",`<div id="stickbar" aria-label="stick insect meter"><i></i><span></span></div>`);b=$("stickbar")}
+    b.querySelector("i").style.width=Math.min(100,hits/NEED*100)+"%";b.querySelector("span").textContent=`🦗 ${hits}/${NEED}`;
+  }
+  function plus(x,y){const p=document.createElement("i");p.className="plus1";p.textContent="+1";p.style.left=x+"px";p.style.top=y+"px";document.body.appendChild(p);setTimeout(()=>p.remove(),950)}
+  function appear(){
+    if(el||booming)return;
+    el=document.createElement("div");el.id="stick";el.className="peek";el.setAttribute("role","button");el.setAttribute("aria-label","a dancing stick insect");el.tabIndex=0;el.innerHTML=svg();
+    el.style.left=Math.max(10,Math.random()*(innerWidth-W-20))+"px";el.style.top=(innerHeight-H-4)+"px";
+    el.onclick=click;el.onkeydown=k=>{if(k.key==="Enter"||k.key===" "){k.preventDefault();click(k)}};
+    document.body.appendChild(el);
+    const w=window.__worm;
+    if(w&&w.el&&!w.el.classList.contains("dead"))setTimeout(eatWorm,900);else stay(12000);
+  }
+  function stay(ms){clearTimeout(leaveT);leaveT=setTimeout(leave,ms)}
+  function leave(){if(!el||busy)return;const e=el;e.style.top=(innerHeight+20)+"px";e.style.opacity="0";setTimeout(()=>e.remove(),1400);el=null;schedule()}
+  function click(e){
+    e.stopPropagation();if(!el||booming)return;
+    hits++;bar();const r=el.getBoundingClientRect();plus(r.left+r.width/2,r.top);el.classList.remove("bonk");void el.offsetWidth;el.classList.add("bonk");
+    if(!busy)stay(6000);
+    if(hits>=NEED)boom();
+  }
+  function eatWorm(){
+    const w=window.__worm;if(!el||!w||!w.el)return stay(10000);
+    busy=true;w.halt();
+    el.style.left=Math.max(0,Math.min(innerWidth-W,w.pos.x+w.W*.6))+"px";el.style.top=Math.max(0,Math.min(innerHeight-H,w.pos.y-30))+"px";
+    setTimeout(()=>{if(!w.el){busy=false;return stay(8000)}
+      w.el.style.transition="transform .6s ease-in,opacity .6s";w.el.style.transform="scale(.05) rotate(-90deg)";w.el.style.opacity="0";
+      const r=el.getBoundingClientRect();const t=document.createElement("i");t.className="plus1";t.textContent="CRUNCH!";t.style.left=(r.left+60)+"px";t.style.top=(r.top-10)+"px";document.body.appendChild(t);setTimeout(()=>t.remove(),950);
+      setTimeout(rebuild,700)},1400);
+  }
+  function rebuild(){
+    // walk round the damage, fixing each bit
+    const bits=[...document.querySelectorAll(".eaten,.chaos")];let i=0;
+    const next=()=>{
+      if(!el){busy=false;return}
+      if(i>=bits.length){window.__worm&&window.__worm.reset(true);busy=false;stay(9000);return}
+      const b=bits[i++],r=b.getBoundingClientRect();
+      if(r.bottom>0&&r.top<innerHeight){el.style.left=Math.max(0,Math.min(innerWidth-W,r.left+r.width/2-W/2))+"px";el.style.top=Math.max(0,Math.min(innerHeight-H,r.top-H/2))+"px"}
+      setTimeout(()=>{b.classList.add("mend");b.classList.remove("eaten","chaos");["--chaos","--cx","--cy"].forEach(p=>b.style.removeProperty(p));if(typeof confetti==="function"){const q=b.getBoundingClientRect();confetti(q.left+q.width/2,q.top+q.height/2,8)}setTimeout(()=>b.classList.remove("mend"),900);next()},r.bottom>0&&r.top<innerHeight?700:60);
+    };
+    next();
+  }
+  function boom(){
+    booming=true;clearTimeout(leaveT);
+    const h=document.querySelector(".hero h1"),orig=h.innerHTML,txt=h.textContent.trim();
+    h.innerHTML=[...txt].map(c=>`<span class="shard">${c===" "?"&nbsp;":c}</span>`).join("");
+    const hr=h.getBoundingClientRect();
+    requestAnimationFrame(()=>h.querySelectorAll(".shard").forEach(s=>{s.style.transform=`translate(${(Math.random()*2-1)*innerWidth*.6|0}px,${(Math.random()*-1.2+.4)*innerHeight|0}px) rotate(${Math.random()*720-360|0}deg) scale(${(.5+Math.random()*2).toFixed(2)})`;s.style.opacity="0"}));
+    for(let i=0;i<90;i++){const p=document.createElement("i"),a=Math.random()*Math.PI*2,v=80+Math.random()*380,r=8+Math.random()*18;p.className="splash";p.style.cssText=`left:${hr.left+Math.random()*hr.width}px;top:${hr.top+hr.height/2}px;width:${r}px;height:${r}px;background:${i%5?"#f2a900":"#fff7e0"};--dx:${Math.cos(a)*v|0}px;--dy:${Math.sin(a)*v-120|0}px;--r:${Math.random()*360|0}deg`;document.body.appendChild(p);setTimeout(()=>p.remove(),1300)}
+    const f=document.createElement("div");f.id="beerflood";f.innerHTML=[...Array(40)].map(()=>`<b style="left:${Math.random()*100}%;width:${4+Math.random()*12}px;height:${4+Math.random()*12}px;animation-duration:${2+Math.random()*4}s;animation-delay:${-Math.random()*4}s"></b>`).join("");
+    setTimeout(()=>document.body.appendChild(f),250);
+    if(el){const e=el;el=null;setTimeout(()=>e.remove(),300)}
+    setTimeout(()=>{document.documentElement.classList.add("inverted");f.classList.add("drain");setTimeout(()=>f.remove(),1300);
+      let left=30;const t=document.createElement("div");t.id="invtimer";t.textContent=`🍺 ${left}s`;document.body.appendChild(t);
+      const iv=setInterval(()=>{left--;t.textContent=`🍺 ${left}s`;if(left<=0){clearInterval(iv);t.remove();document.documentElement.classList.remove("inverted");h.innerHTML=orig;hits=0;$("stickbar")?.remove();booming=false;schedule()}},1000)},3200);
+  }
+  let sched=0;
+  function schedule(ms){clearTimeout(sched);sched=setTimeout(appear,ms||20000+Math.random()*40000)}
+  schedule(15000+Math.random()*20000);
+  // when the worm gets loose, the stick insect comes hunting sooner
+  document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest(".hills .worm")&&!el)schedule(9000+Math.random()*9000)},true);
+  window.__stick=appear;
+})();
+
 
 {const d=$("dice").onclick;$("dice").onclick=e=>{d(e);if(e)burstAt(e.currentTarget,18)}}
 {const m=$("mixBtn").onclick;$("mixBtn").onclick=e=>{m(e);burstAt(e.currentTarget,40)}}
