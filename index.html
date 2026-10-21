@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<title>Festival Toilet & Worm Farm</title>
+<style>
+:root{
+  --bg:#fff6e6;--dot:#f1dcb8;--panel:#ffffff;--ink:#2b2140;--muted:#6d6385;--line:#e8dcc6;--edge:#2b2140;
+  --soft:#f3ecff;--chip:#fbf1df;
+  --pink:#ff5d8f;--teal:#13b5a5;--sun:#ffc93c;--purple:#7b5cff;--leaf:#5cbf4a;--orange:#ff8a3d;--sky:#4cb8ff;
+  --accent:#13b5a5;--accent2:#ff8a3d;--warn:#e8473f;--ok:#3f9a35;
+  --soil:#6b4a2f;--soil2:#8a6440;--ply:#e2c99a;--ply2:#cfb27c;--water:#4a86b5;
+  --sky1:#ffd6a5;--sky2:#ffb3c7;--sky3:#c8b6ff;--sunc:#ffd23f;--hill1:#9bd770;--hill2:#6cc04a;--hill3:#47a03a;
+  --warnbg:#ffe8ea;--tipbg:#e2f8f4;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17132b;--dot:#241e44;--panel:#221d3b;--ink:#f3eeff;--muted:#b3a9d1;--line:#3a3260;--edge:#0b0818;
+  --soft:#2d2650;--chip:#2d2650;--accent:#3fd8c6;--warn:#ff7a72;--ok:#7fd56f;--soil:#8a6440;--soil2:#a57d55;--ply:#b89b6c;--ply2:#9c8256;
+  --sky1:#1b1640;--sky2:#2b1f5c;--sky3:#43307a;--sunc:#fff3c4;--hill1:#2f5d3a;--hill2:#244d2f;--hill3:#1a3b24;
+  --warnbg:#3a1f33;--tipbg:#173a3a;}}
+:root[data-theme="dark"]{
+  --bg:#17132b;--dot:#241e44;--panel:#221d3b;--ink:#f3eeff;--muted:#b3a9d1;--line:#3a3260;--edge:#0b0818;
+  --soft:#2d2650;--chip:#2d2650;--accent:#3fd8c6;--warn:#ff7a72;--ok:#7fd56f;--soil:#8a6440;--soil2:#a57d55;--ply:#b89b6c;--ply2:#9c8256;
+  --sky1:#1b1640;--sky2:#2b1f5c;--sky3:#43307a;--sunc:#fff3c4;--hill1:#2f5d3a;--hill2:#244d2f;--hill3:#1a3b24;
+  --warnbg:#3a1f33;--tipbg:#173a3a;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);background-image:radial-gradient(var(--dot) 1.3px,transparent 1.5px);background-size:22px 22px;color:var(--ink);font:16px/1.6 "Nunito",-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,h4,nav button,.btn,.sw,.stat b,.kicker,.chipz span{font-family:"Fredoka","Nunito",sans-serif}
+/* hero */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--sky1),var(--sky2) 55%,var(--sky3));border-bottom:3px solid var(--edge);min-height:330px}
+.bunting{position:absolute;top:0;left:0;width:100%;height:46px}
+.hero-in{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:56px 16px 150px}
+.kicker{display:inline-block;background:var(--panel);border:2px solid var(--edge);border-radius:999px;padding:2px 12px;font-size:14px;box-shadow:3px 3px 0 var(--edge);transform:rotate(-2deg)}
+h1{margin:12px 0 4px;font-size:clamp(34px,6vw,58px);line-height:1.05;font-weight:700;letter-spacing:-.5px}
+h1 .wob{display:inline-block;color:var(--pink);text-shadow:3px 3px 0 var(--edge);animation:wob 3s ease-in-out infinite}
+@keyframes wob{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg) scale(1.05)}}
+.hero p{margin:6px 0 0;max-width:640px;font-size:17px}
+.chipz{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chipz span{background:var(--panel);border:2px solid var(--edge);border-radius:999px;padding:3px 12px;font-size:14.5px;box-shadow:3px 3px 0 var(--edge)}
+.hills{position:absolute;left:0;bottom:0;width:100%;height:190px;z-index:1}
+.sunrays{transform-origin:1060px 52px;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.worm{animation:crawl 45s linear infinite}
+@keyframes crawl{from{transform:translateX(-120px)}to{transform:translateX(1320px)}}
+.worm circle{animation:bob .6s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateY(-4px)}}
+/* nav */
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:3px solid var(--edge)}
+nav .in{max-width:1100px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 16px}
+nav button{flex:0 0 auto;border:2.5px solid var(--edge);background:var(--panel);color:var(--ink);padding:6px 14px;border-radius:999px;cursor:pointer;font-size:15.5px;font-weight:600;box-shadow:3px 3px 0 var(--edge);transition:transform .15s}
+nav button:hover{transform:translateY(-2px) rotate(-2deg)}
+nav button.on{background:var(--c);color:#2b2140;transform:rotate(-2deg)}
+main{max-width:1100px;margin:0 auto;padding:22px 16px 40px}
+section{display:none}section.on{display:block;animation:pop .35s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}}
+h2{font-size:clamp(26px,4vw,34px);margin:6px 0 16px;font-weight:700}
+h2 span.hl{background:linear-gradient(transparent 60%,var(--sun) 60%);padding:0 4px}
+h3{font-size:19px;margin:18px 0 8px;font-weight:600}
+.card{background:var(--panel);border:2.5px solid var(--edge);border-radius:22px;padding:18px;margin:0 0 18px;box-shadow:5px 5px 0 var(--edge)}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.grid>.card{margin:0}
+.muted{color:var(--muted)}.small{font-size:13.5px}
+.warn{background:var(--warnbg)}.tip{background:var(--tipbg)}
+.warn h3::before{content:"⚠️ "}.tip h3::before{content:"💡 "}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13.5px;color:var(--muted);font-weight:700}
+label.f input,label.f select{font:inherit;font-size:16px;font-weight:600;padding:8px 11px;border:2.5px solid var(--edge);border-radius:12px;background:var(--bg);color:var(--ink);outline:none}
+label.f input:focus,label.f select:focus{box-shadow:0 0 0 4px var(--sun)}
+.form{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(155px,1fr))}
+.stat{border:2.5px solid var(--edge);border-radius:16px;padding:12px 14px;color:#2b2140;box-shadow:3px 3px 0 var(--edge);transition:transform .15s}
+.stat:hover{transform:rotate(-1.5deg) scale(1.03)}
+.stat:nth-child(7n+1){background:#ffd1df}.stat:nth-child(7n+2){background:#c4f1ea}.stat:nth-child(7n+3){background:#ffe9a6}.stat:nth-child(7n+4){background:#ddd3ff}.stat:nth-child(7n+5){background:#d3f2c8}.stat:nth-child(7n+6){background:#ffd8bf}.stat:nth-child(7n+7){background:#cdeaff}
+.stat b{display:block;font-size:30px;font-weight:700;line-height:1.1}.stat span{font-size:13px;opacity:.8;font-weight:600}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:7px 9px;border-bottom:1.5px dashed var(--line);vertical-align:top}
+th{background:var(--soft);font-weight:800;font-size:13px}
+th:first-child{border-radius:10px 0 0 10px}th:last-child{border-radius:0 10px 10px 0}
+tr:hover td{background:var(--chip)}
+.tw{overflow-x:auto}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;counter-reset:st}
+.flow .step{flex:1 1 160px;background:var(--panel);border:2.5px solid var(--edge);border-radius:18px;padding:12px 14px;box-shadow:3px 3px 0 var(--edge);border-top-width:9px}
+.flow .step:nth-of-type(1){border-top-color:var(--pink)}.flow .step:nth-of-type(2){border-top-color:var(--sky)}.flow .step:nth-of-type(3){border-top-color:var(--orange)}.flow .step:nth-of-type(4){border-top-color:var(--leaf)}.flow .step:nth-of-type(5){border-top-color:var(--purple)}
+.flow .step b{display:block;font-family:"Fredoka",sans-serif;font-size:18px;font-weight:600;margin-bottom:2px}
+.flow .arr{align-self:center;color:var(--pink);font-size:28px;font-weight:900;animation:nudge 1.2s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(4px)}}
+svg{max-width:100%;height:auto;display:block}
+svg text{fill:var(--ink);font:12px "Nunito",-apple-system,sans-serif}
+.lbl{stroke:var(--muted);stroke-width:1;fill:none}
+.chk{padding:0;margin:0}.chk li{list-style:none;margin:0 0 8px;padding:0}
+.chk label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.chk input{appearance:none;-webkit-appearance:none;margin:1px 0 0;width:24px;height:24px;flex:0 0 auto;border:2.5px solid var(--edge);border-radius:8px;background:var(--panel);cursor:pointer;display:grid;place-items:center;transition:transform .15s,background .15s}
+.chk input:hover{transform:rotate(-8deg)}
+.chk input:checked{background:var(--leaf)}
+.chk input:checked::after{content:"✓";color:#fff;font-weight:900;font-size:15px;line-height:1}
+.chk input:checked+span{color:var(--muted);text-decoration:line-through;text-decoration-thickness:2px}
+.prog{height:12px;background:var(--chip);border:2px solid var(--edge);border-radius:999px;overflow:hidden;margin:4px 0 12px}
+.prog i{display:block;height:100%;background:repeating-linear-gradient(45deg,var(--leaf) 0 10px,#7fd66b 10px 20px);transition:width .4s}
+.card.done{background:var(--tipbg)}
+.issue{background:var(--panel);border:2.5px solid var(--edge);border-radius:16px;padding:12px 16px;margin:0 0 12px;box-shadow:3px 3px 0 var(--edge);border-left-width:10px}
+.issue h4{margin:0 0 6px;font-size:17px;font-weight:600}
+.issue dl{margin:0;display:grid;grid-template-columns:90px 1fr;gap:3px 10px;font-size:14.5px}
+.issue dt{color:var(--muted);font-weight:800}.issue dd{margin:0}
+.tag{display:inline-block;font-size:12px;padding:1px 9px;border-radius:999px;background:var(--soft);color:var(--ink);margin-left:6px;vertical-align:2px;font-family:"Nunito",sans-serif;font-weight:800;border:1.5px solid var(--edge)}
+.tag.hot{background:var(--pink);color:#fff}
+.sev-h{color:inherit}
+.btn{font-size:15px;font-weight:600;border:2.5px solid var(--edge);background:var(--panel);color:var(--ink);padding:7px 14px;border-radius:12px;cursor:pointer;box-shadow:3px 3px 0 var(--edge);transition:transform .1s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--edge)}
+.btn.pri{background:var(--sun);color:#2b2140}
+.months{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px}
+.mo{border:2.5px solid var(--edge);border-radius:16px;padding:10px 12px;background:var(--panel);font-size:14px;box-shadow:3px 3px 0 var(--edge)}
+.mo b{display:block;font-size:17px;font-family:"Fredoka",sans-serif;font-weight:600}
+.mo.ev{background:#ffe9a6;color:#2b2140;transform:rotate(-1.5deg)}.mo.ev .muted{color:#6d6385}
+.pill{display:inline-block;font-size:12px;border-radius:999px;padding:0 8px;margin:3px 3px 0 0;color:#fff;font-weight:800;border:1.5px solid var(--edge)}
+.swatches{display:flex;gap:8px;flex-wrap:wrap}
+.sw{border:2.5px solid var(--edge);border-radius:999px;padding:4px 11px;cursor:pointer;background:var(--panel);font-size:14px;color:var(--ink);box-shadow:2px 2px 0 var(--edge);transition:transform .12s}
+.sw:hover{transform:rotate(-3deg)}
+.sw.on{background:var(--sun);color:#2b2140}
+.cf{position:fixed;width:9px;height:13px;border-radius:2px;pointer-events:none;z-index:99;animation:cf 1.1s cubic-bezier(.2,.7,.4,1) forwards}
+@keyframes cf{40%{transform:translate(var(--dx),var(--dy)) rotate(calc(var(--r)/2))}100%{transform:translate(calc(var(--dx)*1.3),calc(var(--dy) + 160px)) rotate(var(--r));opacity:0}}
+footer{text-align:center;padding:10px 16px 40px;color:var(--muted);font-weight:700}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media print{nav,.noprint,.hero .hills,.bunting{display:none}section{display:block!important;page-break-after:always}body{background:#fff}.card,.stat,.issue,.mo{box-shadow:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <svg class="bunting" id="bunting" viewBox="0 0 1200 46" preserveAspectRatio="none"></svg>
+  <div class="hero-in">
+    <span class="kicker">📍 Hunterville · Rangitīkei · Aotearoa</span>
+    <h1>Loo-topia <span class="wob">🍄</span></h1>
+    <p>Festival composting toilets that feed a worm farm. One month of loos, twelve months of happy worms, built from plywood and Mitre 10 bits.</p>
+    <div class="chipz"><span>🚽 1 month of loos</span><span>🪣 50 L buckets</span><span>🪱 12 months of worms</span><span>🌳 compost for trees</span></div>
+  </div>
+  <svg class="hills" id="hills" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice"></svg>
+</header>
+<nav><div class="in" id="tabs"></div></nav>
+<main>
+
+<!-- ============ OVERVIEW ============ -->
+<section id="overview">
+<h2><span class="hl">🌈 How it all works</span></h2>
+<div class="card">
+  <div class="flow">
+    <div class="step"><b>🚽 Toilet cubicle</b>A flat-pack plywood cubicle with a <i>urine-diverting</i> seat. Wee and poo are kept apart.</div><div class="arr">→</div>
+    <div class="step"><b>🪣 50 L steel bucket</b>Solids plus a scoop of sawdust after each use. Swap the bucket when it is about ⅔ full (~25–30 kg).</div><div class="arr">→</div>
+    <div class="step"><b>⏳ Holding bay</b>Buckets are emptied into a covered, lined bay where the material rests for 6–8 weeks. Ammonia gases off and it starts to break down.</div><div class="arr">→</div>
+    <div class="step"><b>🪱 Worm beds</b>Fed in thin layers (5–8 cm) every 2–4 weeks across the warm months. Tiger worms turn it into vermicast.</div><div class="arr">→</div>
+    <div class="step"><b>🌳 Cure &amp; use</b>Harvested cast cures for 6 more months. Use it on trees and ornamentals, never on raw salad crops.</div>
+  </div>
+  <p class="small muted" style="margin-top:10px">Urine goes separately to a container. Dilute it 1:10 and spread it on pasture or shelter trees, or run it to a soakage trench, subject to council rules.</p>
+</div>
+
+<div class="grid">
+  <div class="card tip"><h3 style="margin-top:0">Why the holding bay matters</h3>
+  Fresh humanure tipped straight onto worms in a thick layer <b>heats itself up and releases ammonia</b>. That kills the worms. Your input is one big month, followed by eleven quiet months. The holding bay soaks up the surge so the worms can be fed at a pace they can handle. The rest of the year they live on manure, cardboard and food scraps.</div>
+  <div class="card tip"><h3 style="margin-top:0">Why divert urine</h3>
+  Most of the smell, weight and ammonia comes from urine. Urine also contains salts that worms can't tolerate. Diverting it makes each bucket about <b>3× slower to fill</b>, much lighter, nearly odourless, and safe to feed to worms.</div>
+  <div class="card warn"><h3 style="margin-top:0">Hunterville climate in short</h3>
+  Warm summers (maxima low–mid 20s °C, occasional 28–30 °C days). Cold, frosty winters (minima around 0–3 °C, frequent frosts June–August). Roughly 900–1100 mm of rain a year. Worms work best at <b>15–25 °C</b>, slow right down below 10 °C, and die above about 30 °C or when frozen. Beds need shade, insulated lids and rain protection. <span class="muted">(Approximate figures. Check NIWA CliFlo for your exact site.)</span></div>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">What's in this page</h3>
+  <ul style="margin:0;padding-left:18px">
+    <li><b>Planner</b>: enter the number of people and days. It works out toilets, buckets, sawdust, holding bays, worm bed area, worms to buy and a month-by-month feeding plan.</li>
+    <li><b>Toilet cubicle</b>: a plywood festival cubicle built from 4½ sheets with almost no waste. It flat-packs for the 11-month off-season, has a choice of cut-out motif and colour, and includes a cost estimate.</li>
+    <li><b>Worm farm</b>: lined timber bays with insulated lids, a leachate tap, drawings and a cut list.</li>
+    <li><b>Year calendar</b>: what to do each month, starting from your festival month.</li>
+    <li><b>Checklists</b>: build, pre-event, daily, post-event, worm care and harvest. Ticks are saved in this browser.</li>
+    <li><b>Problems &amp; fixes</b>: every failure mode we could think of, searchable.</li>
+    <li><b>Safety &amp; rules</b>: hygiene, pathogens, council/regional consent and where the compost can go.</li>
+  </ul>
+</div>
+</section>
+
+<!-- ============ PLANNER ============ -->
+<section id="planner">
+<h2><span class="hl">🧮 Planner</span></h2>
+<div class="card">
+  <div class="form">
+    <label class="f">People on site (average per day)<input id="people" type="number" min="1" value="60"></label>
+    <label class="f">Days of use<input id="days" type="number" min="1" value="30"></label>
+    <label class="f">Festival month<select id="month"></select></label>
+    <label class="f">Poos per person per day<input id="uses" type="number" step="0.1" min="0.1" value="1"></label>
+    <label class="f">Urine diverting?<select id="divert"><option value="1">Yes (recommended)</option><option value="0">No, everything in the bucket</option></select></label>
+    <label class="f">Sawdust per use (L, 1 cup ≈ 0.25)<input id="cover" type="number" step="0.05" min="0" value="0.35"></label>
+    <label class="f">People per toilet<input id="ppt" type="number" min="5" value="30"></label>
+    <label class="f">Fill buckets to (%)<input id="fill" type="number" min="30" max="95" value="65"></label>
+    <label class="f">Holding time before worms (months)<input id="pre" type="number" min="0" max="4" value="2"></label>
+    <label class="f">Worm bed rate, summer (kg/m²/week)<input id="rate" type="number" step="0.5" min="1" value="6"></label>
+    <label class="f">Worm bay inside length (mm)<input id="bayL" type="number" step="50" value="2400"></label>
+    <label class="f">Worm bay inside width (mm)<input id="bayW" type="number" step="50" value="1000"></label>
+  </div>
+</div>
+<div class="card"><h3 style="margin-top:0">Toilets &amp; buckets during the festival</h3><div class="stats" id="s1"></div></div>
+<div class="card"><h3 style="margin-top:0">After the festival</h3><div class="stats" id="s2"></div><div id="prewarn"></div></div>
+<div class="card"><h3 style="margin-top:0">Monthly worm feeding plan</h3>
+<p class="small muted">Feeding is weighted by how warm each month is in Hunterville, so worms get more in summer and very little in winter. The month before the next festival is kept free to harvest and make room.</p>
+<div class="tw"><table id="feed"></table></div></div>
+<div class="card small muted">These are planning estimates, not lab values. Assumptions: settled poo + paper ≈ 0.3 L per use. Diverted-mix density ≈ 0.7 kg/L (0.85 undiverted). Undiverted adds ≈ 1.2 L urine + 1 L extra sawdust per person-day. The holding bay loses ~30% of mass. Outdoor tiger worm beds process roughly 4–8 kg/m²/week at 15–25 °C. Watch the first year and adjust the numbers.</div>
+</section>
+
+<!-- ============ TOILET ============ -->
+<section id="toilet">
+<h2><span class="hl">🚽 Plywood festival cubicle</span></h2>
+<div class="grid">
+<div class="card">
+  <h3 style="margin-top:0">Pick a character</h3>
+  <p class="small muted">Every cubicle is the same cheap flat-pack box. The character is just <b>one extra ply sheet</b> (a false front) cut to shape and screwed onto the front wall. You can mix a whole village and swap the fronts each year.</p>
+  <div class="swatches" id="shapes"></div>
+  <div class="small muted" style="margin:12px 0 4px">Colours</div><div class="swatches" id="colours"></div>
+  <div class="small muted" style="margin:12px 0 4px">Pattern</div><div class="swatches" id="patterns"></div>
+  <div class="small muted" style="margin:12px 0 4px">Vent cut-outs (sides, and the front on classic &amp; chalet)</div><div class="swatches" id="motifs"></div>
+  <div style="display:flex;gap:8px;align-items:flex-end;margin-top:12px"><label class="f" style="flex:1">Door sign<input id="sign" value="Long Drop Deluxe" maxlength="22"></label><button class="btn" id="dice" title="Random name">🎲 Name</button></div>
+  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn" id="nightBtn">🌙 Night view</button><button class="btn" id="lightsBtn">✨ Fairy lights</button><button class="btn" id="mixBtn">🎪 Surprise me</button></div>
+</div>
+<div class="card">
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+  <figure style="margin:0;text-align:center"><svg id="front" viewBox="-30 -170 360 660" style="width:215px;max-width:42vw"></svg><figcaption class="small muted">Front</figcaption></figure>
+  <figure style="margin:0;text-align:center"><svg id="side" viewBox="-30 -170 360 660" style="width:215px;max-width:42vw"></svg><figcaption class="small muted">Side (the same on every character)</figcaption></figure>
+  </div>
+</div>
+</div>
+<div class="card"><h3 style="margin-top:0">Toilet village</h3>
+<p class="small muted">Tap one to edit it. A row of different characters turns the toilets into a landmark: "meet me at the rocket".</p>
+<div class="tw"><svg id="village" style="min-width:880px;width:100%"></svg></div></div>
+
+<div class="card">
+<h3 style="margin-top:0">Design principles (cheap + good-looking)</h3>
+<ul style="margin:0;padding-left:18px">
+<li><b>1.2 × 1.2 m footprint, sized to whole sheets.</b> Each wall is one 2400 × 1200 sheet, so there are almost no cuts or offcuts.</li>
+<li><b>Flat-pack panels.</b> Each wall is a sheet screwed to a 90 × 45 perimeter frame. Panels bolt together at the corners with M10 coach bolts. It packs flat into a ute and stores dry for the other 11 months. Two people can put one up in about 20 minutes.</li>
+<li><b>Skillion roof</b> of clear or opal polycarbonate (e.g. Suntuf). It gives daylight inside, is cheap and light, and the fall to the back keeps rain off the door.</li>
+<li><b>Raised floor on skids</b> (two 100 × 75 H4 skids). No digging, it sits level on paddocks, and it can be dragged or forklifted.</li>
+<li><b>Bucket access from the back.</b> A hatch in the back wall lets crew swap buckets without going inside. It's quicker, more hygienic and keeps the queue moving.</li>
+<li><b>Character fronts:</b> the fun lives on one extra 12 mm sheet cut into a mushroom cap, rocket nose, castle battlements or chalet gable, screwed onto the front wall. It costs about $100–130 extra per cubicle, and the box underneath never changes.</li>
+<li><b>Glow at night:</b> back the cut-outs (spots, portholes, hearts) with offcuts of opal polycarbonate. They look white by day, and with a solar light inside they glow like lanterns after dark. Add a string of solar fairy lights along the roofline.</li>
+<li><b>Bright paint, oiled inside:</b> a bold colour and pattern outside (exterior acrylic sample pots are cheap for the dots and stripes), and natural oiled ply inside so it's light and wipeable.</li>
+</ul>
+</div>
+
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">Sheet layout (one cubicle)</h3><svg id="sheets" viewBox="0 0 520 300"></svg>
+<p class="small muted">Side walls are raked (2400 at the front → 2100 at the back). Each raked offcut becomes a roof gusset. The floor sheet's spare half makes the pedestal box.</p></div>
+<div class="card"><h3 style="margin-top:0">Pedestal box &amp; bucket (section)</h3><svg id="pedestal" viewBox="0 0 520 420"></svg></div>
+</div>
+
+<div class="card"><h3 style="margin-top:0">Materials &amp; rough cost</h3>
+<div class="form" style="margin-bottom:10px"><label class="f">Number of cubicles<input id="nCub" type="number" min="1" value="2"></label>
+<label class="f">Bucket diameter (mm)<input id="bD" type="number" value="400"></label>
+<label class="f">Bucket height (mm)<input id="bH" type="number" value="450"></label></div>
+<div class="tw"><table id="bom"></table></div>
+<p class="small muted">Prices are rough NZD guesses for 2026 hardware-shop retail, so confirm them in store. Trade accounts, second-hand ply and buying sheets in bulk can cut this by 20–40%.</p></div>
+
+<div class="card">
+<h3 style="margin-top:0">Build steps</h3>
+<ol style="margin:0;padding-left:20px">
+<li><b>Base:</b> two 1500 mm H4 100 × 75 skids, with four 90 × 45 H3.2 joists across at 400 centres. Screw the 17 mm ply floor on top and seal its edges with paint.</li>
+<li><b>Wall frames:</b> each wall is a 90 × 45 perimeter frame with one mid rail. Glue and screw the 12 mm ply on every 150 mm. Paint all edges before assembly, because end grain is where ply fails.</li>
+<li><b>Side walls:</b> rake the top from 2400 (front) to 2100 (back). The cut line is a straight chalk line.</li>
+<li><b>Cut-out band:</b> mark the motif 150–350 mm below the top on the front and side walls. Drill a 10 mm start hole and jigsaw it out. Staple <b>fly mesh</b> behind every opening (essential, because flies are the main way disease spreads).</li>
+<li><b>Front wall:</b> rip the sheet into a 700 mm door and a 500 mm fixed panel. Frame the door, hang it on 3 tee hinges, and fit a self-closing spring hinge or bungee, a pull handle and an inside barrel bolt. An outside "vacant/engaged" slider is a nice touch.</li>
+<li><b>Back wall:</b> cut a 550 × 600 hatch at the bottom, behind the pedestal, and hang it on hinges with a padlock hasp. Crew-only.</li>
+<li><b>Assemble:</b> stand the walls, clamp, drill and bolt the corners with 4 × M10 × 120 coach bolts per corner. Bolt the walls to the floor.</li>
+<li><b>Roof:</b> fit two 90 × 45 purlins on the raked tops and fix the polycarbonate with the proper roofing screws and washers. Overhang 150 mm at the back and sides, and 300 mm at the front over the door.</li>
+<li><b>Pedestal:</b> build the 17 mm ply box (see section), fit the urine diverter and seat, and run the 25 mm urine hose out the back wall to the container. Fit a 100 mm PVC vent from the top of the box up past the roof by 300 mm, with fly mesh + cowl.</li>
+<li><b>Fit-out:</b> sawdust bin + scoop, a toilet roll holder, a hook, a mirror, a small sign with the 3 rules, and a solar light. Put a hand-wash station outside (see below).</li>
+<li><b>Finish:</b> exterior acrylic outside (2 coats), and decking oil or clear water-based poly inside so walls can be wiped down.</li>
+<li><b>Character front:</b> draw a 100 mm grid on the extra sheet and copy the shape from the drawing above. Jigsaw it out, sand the edges, seal and paint them. Screw it to the front wall frame every 300 mm, with a 90 × 45 brace behind anything that sticks up more than 600 mm (rocket nose, flag). Rocket fins screw to the side-wall corners. Tall fronts catch wind, so stake every cubicle.</li>
+<li><b>Patterns:</b> mask the stripes with tape. Do polka dots with a sponge roller cut into a circle, or a tin lid as a stencil. Do confetti freehand with sample pots (a great volunteer job).</li>
+</ol>
+</div>
+
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">Toilet rules sign (inside)</h3>
+<ol style="margin:0;padding-left:20px"><li>Sit down, everyone (even for a wee). It keeps the wee in the front bowl.</li><li>After a poo: <b>1 scoop of sawdust</b> to cover it completely.</li><li>Paper is fine. <b>Nothing else</b>: no wipes, pads, tampons, nappies, rubbish, cleaning sprays or water.</li><li>Lid down, door shut, wash your hands.</li></ol></div>
+<div class="card"><h3 style="margin-top:0">Cheap fun extras</h3><ul style="margin:0;padding-left:18px"><li>A chalkboard-paint panel inside the door, with chalk on a string, as a guestbook or graffiti wall.</li><li>An engaged/vacant spinner: a ply disc on a bolt with 😊 / 😬 faces.</li><li>Label the sawdust bin <b>"Magic Dust"</b> or <b>"Poo Glitter"</b>. People use it more.</li><li>A mirror with "you look great today" painted above it.</li><li>A tiny shelf with a succulent or a jar of festival flowers.</li><li>A "Poo-etry" corner: a laminated sheet of jokes or short poems, changed daily.</li><li>A sign about the worm farm: <b>"Your donation feeds 10,000 worms 🪱"</b>. People love knowing where it goes.</li><li>Name every cubicle (🎲 above) so people can say "meet at the rocket".</li></ul></div>
+<div class="card"><h3 style="margin-top:0">Hand-wash station</h3>
+A 20 L water container with a tap (or a foot-pump), a timber stand, a soap pump and a 20 L grey-water bucket underneath, emptied onto a gravel soak pit away from the beds. Allow about 1 station per 2 cubicles. Refill it every day and check the soap twice a day. Hand washing is the single most important health control on site.</div>
+</div>
+</section>
+
+<!-- ============ WORM FARM ============ -->
+<section id="worms">
+<h2><span class="hl">🪱 Worm farm</span></h2>
+<div class="card"><svg id="wormsvg" viewBox="-70 40 800 340"></svg></div>
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">Design</h3>
+<ul style="margin:0;padding-left:18px">
+<li><b>Lined timber bays</b>, raised on concrete blocks, about 600 mm of bedding depth. Bay size and count come from the Planner.</li>
+<li><b>Timber:</b> use <b>untreated macrocarpa</b> (or other untreated timber) wherever wood touches bedding. CCA/ACQ-treated pine leaches copper and arsenic that harm worms and end up in the compost. Treated H4 timber is fine for the legs and the outer frame <i>outside</i> the liner.</li>
+<li><b>Liner:</b> 250 µm black polythene or pond liner, stapled to the inside walls. The floor <b>falls 1:50</b> to a 20 mm tank outlet + tap at one corner. Leachate is collected, not let into the soil. That matters with human waste.</li>
+<li><b>Drainage layer:</b> 50 mm of coarse wood chip, with shade cloth on top so bedding doesn't block it.</li>
+<li><b>Lid:</b> 12 mm ply with 50 mm polystyrene glued underneath. It keeps out rain and frost in winter and heat in summer. Hinge it at the back, and fit a prop stick and a <b>fly-meshed vent</b> slot.</li>
+<li><b>Rodent proofing:</b> fit 6 mm galvanised mesh over vents, and keep the lid tight-fitting.</li>
+<li><b>Site:</b> full or afternoon shade (under deciduous trees is ideal: shade in summer, sun in winter). Keep it out of hollows that flood and sheltered from the prevailing westerly. Allow at least 20 m from streams/drains and 50 m from bores (confirm with Horizons).</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">Worms</h3>
+<ul style="margin:0;padding-left:18px">
+<li><b>Tiger worms</b> (<i>Eisenia fetida</i>) and <b>red worms</b> (<i>Lumbricus rubellus</i> / <i>Dendrobaena</i>), sold by NZ worm farms by the kg. Garden earthworms won't live in compost.</li>
+<li>Start the beds <b>at least 3 months before the first festival</b> on aged horse/cow manure + shredded cardboard. The population roughly doubles every 2–3 months in good conditions.</li>
+<li>Stock at about 1 kg/m² minimum (2 kg/m² is better). The Planner shows how much to buy.</li>
+<li><b>Ideal conditions:</b> 15–25 °C, as moist as a wrung-out sponge, pH 6.5–7.5, dark, and plenty of air.</li>
+<li><b>Year-round food:</b> aged horse or cow manure (<b>never from animals drenched in the last 4–6 weeks</b>, because ivermectin-type dewormers in dung kill worms), cardboard, leaves, coffee grounds, and festival food scraps (no meat, dairy, citrus, onion or oil).</li>
+</ul></div>
+</div>
+<div class="card"><h3 style="margin-top:0">How to feed the toilet material</h3>
+<ol style="margin:0;padding-left:20px">
+<li>Only feed material that has <b>rested 6–8 weeks</b> in the holding bay and no longer smells strongly of ammonia. Sniff test: earthy or mild is OK, while sharp, eye-watering or rotten is not ready.</li>
+<li>Spread it in a <b>5–8 cm layer</b> over <b>half the bed only</b>. The worms then have a safe half to retreat to if it heats up.</li>
+<li>Mix in a little shredded cardboard if it's wet, and cover with damp cardboard or straw.</li>
+<li>Check after 3–5 days. If worms have moved into it, good. If the layer is hot (above 30 °C on a probe thermometer), don't add more.</li>
+<li>Only add the next layer once the last one is mostly eaten (2–4 weeks in summer, 6–8+ in winter). Use the monthly plan as a guide.</li>
+</ol></div>
+<div class="card"><h3 style="margin-top:0">Cut list (per bay)</h3><div class="tw"><table id="wormcut"></table></div>
+<p class="small muted">Includes a single holding bay of the same construction (1.2 × 1.2 × 1.0 m) in the Planner's count. It's built like a worm bay, just deeper and with no worms.</p></div>
+<div class="card"><h3 style="margin-top:0">Harvesting</h3>
+<p style="margin:0">Twice a year, best in late spring and late summer. Stop feeding one end of a bay for 6 weeks and feed only the other end, so worms migrate across. Then shovel out the finished end. Alternatively, tip the cast into heaps in bright light; worms dive down, and you scrape off the top. Cure the harvested cast in a covered heap or bags for <b>6 more months</b> (12 months total from toilet to use is the safety target). Sieve it through 6–10 mm mesh and return any worms to the bed.</p></div>
+</section>
+
+<!-- ============ CALENDAR ============ -->
+<section id="calendar">
+<h2><span class="hl">📅 Year calendar</span></h2>
+<p class="muted">Starts from the festival month set in the Planner. The coloured tags show what happens each month.</p>
+<div class="months" id="cal"></div>
+</section>
+
+<!-- ============ CHECKLISTS ============ -->
+<section id="checklists">
+<h2><span class="hl">✅ Checklists</span></h2>
+<div class="noprint" style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap"><button class="btn pri" onclick="window.print()">Print</button><button class="btn" id="resetChk">Clear all ticks</button></div>
+<div id="lists"></div>
+</section>
+
+<!-- ============ ISSUES ============ -->
+<section id="issues">
+<h2><span class="hl">🛠️ Problems &amp; fixes</span></h2>
+<div class="card noprint"><div class="form"><label class="f">Search<input id="q" placeholder="smell, flies, worms dying…"></label><label class="f">Area<select id="area"><option value="">All</option></select></label></div></div>
+<div id="issueList"></div>
+</section>
+
+<!-- ============ SAFETY ============ -->
+<section id="safety">
+<h2><span class="hl">🧤 Safety, health &amp; rules</span></h2>
+<div class="card warn"><h3 style="margin-top:0">Pathogens: why handling and timing matter</h3>
+<p style="margin:0">Human faeces can carry E. coli, Salmonella, Campylobacter, norovirus, Hepatitis A, Giardia, Cryptosporidium and worm eggs (e.g. <i>Ascaris</i>, the hardiest). Vermicomposting reduces them a lot but doesn't sterilise. Time is the main safety factor: aim for <b>12 months or more</b> from the toilet to using the compost. Use it only around trees, shrubs, ornamentals and pasture margins, <b>not on vegetables eaten raw</b>, and not within a month of grazing.</p></div>
+<div class="grid">
+<div class="card"><h3 style="margin-top:0">Crew handling rules</h3>
+<ul style="margin:0;padding-left:18px">
+<li>Wear nitrile or heavy rubber gloves, long sleeves, and closed shoes or gumboots. Wear eye protection when tipping buckets.</li>
+<li>Two people per full bucket, or use a sack trolley. A full 50 L bucket can weigh 40+ kg, which is why the planner fills to ~65%.</li>
+<li>Use a dedicated "dirty" wheelbarrow, shovel and fork, painted a different colour, and never use them for food areas.</li>
+<li>Wash hands with soap after every handling session and before eating or smoking.</li>
+<li>Keep vaccinations current: tetanus, and consider Hepatitis A for regular handlers.</li>
+<li>Keep a spill kit: sawdust, a shovel, bags, gloves and diluted bleach for <b>hard surfaces only</b> (never into the buckets or beds).</li>
+<li>Anyone with diarrhoea or vomiting should stay off handling duty. Report gastro outbreaks on site to the festival medic and the public health unit.</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">Steel buckets</h3>
+<ul style="margin:0;padding-left:18px">
+<li><b>Galvanised steel</b> corrodes from urine salts and acidic compost. The zinc ends up in the compost and the buckets rust through within a few seasons. Prefer <b>stainless (food-grade 304)</b>, or epoxy-paint the inside of galvanised buckets.</li>
+<li>Put a 3–5 cm layer of sawdust in the bottom of every empty bucket. It stops sticking and soaks up liquid.</li>
+<li>Use tight lids for transport. Never stack full buckets more than 2 high.</li>
+<li>Wash after emptying: hose them out <i>into the holding bay</i>, scrub, and leave them upside down in the sun to dry.</li>
+<li>Number every bucket and log its fill date, so the holding bay can be loaded in order.</li>
+</ul></div>
+</div>
+<div class="card"><h3 style="margin-top:0">Council &amp; regional rules (check before building)</h3>
+<ul style="margin:0;padding-left:18px">
+<li><b>Rangitīkei District Council:</b> composting toilets are normally covered by the NZ Building Code (clauses G1 Personal hygiene and G13 Foul water) and the AS/NZS 1546.2 standard for waterless composting toilets. Temporary event toilets may be handled under the <b>event permit</b> instead. Ask the council's building and environmental health teams early.</li>
+<li><b>Horizons Regional Council (One Plan):</b> discharging human waste, urine or leachate to land has setback and volume conditions. The lined bays with collected leachate are designed to make compliance easy, but confirm before the first event.</li>
+<li><b>Event health requirements</b> usually set the number of toilets per attendee and the hand-wash requirements. Your festival's event management plan should reference this system.</li>
+<li>Keep a simple <b>log book</b> (bucket counts, holding-bay dates, feeding dates, harvest dates, where compost was used). Council officers like it, and it makes troubleshooting easy.</li>
+</ul>
+<p class="small muted" style="margin:8px 0 0">This page is planning guidance, not legal advice. Rules and setback distances differ by site, so confirm them with both councils.</p></div>
+</section>
+</main>
+<footer>Made with 🪱 for Hunterville · Wash your hands! 🧼</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+// Approx Hunterville worm-activity factor (1 = ideal warm month)
+const FACTOR=[1,1,.9,.7,.5,.35,.3,.35,.5,.65,.8,.95];
+const CLIMATE=["Warm, dry spells, heat risk","Warmest, heat risk","Mild, good","Cooling","Cool, first frosts","Cold, frosts","Coldest, frosts","Cold, frosts","Cool, wet","Warming, wet","Mild, good","Warm, good"];
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+/* ---------- tabs ---------- */
+const TABS=[["overview","🌈 Overview","#ffc93c"],["planner","🧮 Planner","#7cc8ff"],["toilet","🚽 Toilet cubicle","#ff8fb1"],["worms","🪱 Worm farm","#ffa77a"],["calendar","📅 Year calendar","#c3b3ff"],["checklists","✅ Checklists","#9be087"],["issues","🛠️ Problems & fixes","#ffd166"],["safety","🧤 Safety & rules","#6fdccd"]];
+function showTab(id){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id));document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));store.set("tab",id)}
+TABS.forEach(([id,n,c])=>{const b=document.createElement("button");b.textContent=n;b.style.setProperty("--c",c);b.dataset.t=id;b.onclick=()=>{showTab(id);history.replaceState(null,"","#"+id)};$("tabs").appendChild(b)});
+showTab((location.hash.slice(1)&&$(location.hash.slice(1)))?location.hash.slice(1):store.get("tab","overview"));
+
+MONTHS.forEach((m,i)=>{const o=document.createElement("option");o.value=i;o.textContent=m;$("month").appendChild(o)});
+$("month").value=1;
+
+/* ---------- planner ---------- */
+const num=id=>parseFloat($(id).value)||0;
+const fmt=(n,d=0)=>n.toLocaleString("en-NZ",{maximumFractionDigits:d,minimumFractionDigits:d});
+const stat=(v,l)=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`;
+let plan={};
+function calc(){
+  const P=Math.max(1,num("people")),D=Math.max(1,num("days")),U=num("uses"),div=$("divert").value==="1",
+        C=num("cover"),fill=Math.min(.95,Math.max(.3,num("fill")/100)),pre=Math.round(num("pre")),
+        rate=num("rate"),ev=+$("month").value,ppt=Math.max(5,num("ppt"));
+  const uses=P*D*U;
+  let litres=uses*(0.3+C), urineL=P*1.2;
+  if(!div){litres+=P*D*(1.2+1.0)}
+  const dens=div?0.7:0.85, kg=litres*dens;
+  const usable=50*fill, bucketKg=usable*dens+4;
+  const toilets=Math.ceil(P/ppt);
+  const perDay=litres/D/usable;
+  const rotation=Math.ceil(toilets+perDay*2)+2;
+  const sealed=Math.ceil(litres/usable*1.1);
+  const coverL=uses*C+(div?0:P*D*1.0)+P*D*0.1; // + bucket base layers
+  const holdBays=Math.ceil(litres/(1440*0.85));
+  const fedKg=kg*(pre>0?0.7:1);
+  // feeding months: from ev+1+pre up to ev+10 (month ev+11 = harvest/prep)
+  const fm=[];for(let k=1+pre;k<=10;k++)fm.push((ev+k)%12);
+  const cap=fm.reduce((s,m)=>s+rate*4.33*FACTOR[m],0);
+  const area=Math.max(2,cap>0?fedKg/cap:0);
+  const bayA=num("bayL")/1000*num("bayW")/1000;
+  const bays=Math.ceil(area/bayA);
+  const realA=bays*bayA;
+  plan={P,D,toilets,ev,pre,fm,bays,holdBays,area:realA,fedKg,cap,rate};
+  $("s1").innerHTML=
+    stat(toilets,"toilet cubicles ("+ppt+" people each)")+
+    stat(fmt(perDay,1),"buckets filled per day")+
+    stat(rotation,"buckets needed if emptying daily into the holding bay")+
+    stat(sealed,"buckets needed if instead every bucket is sealed &amp; stored (not recommended)")+
+    stat("~"+fmt(bucketKg)+" kg","weight of each full bucket at "+Math.round(fill*100)+"%")+
+    stat(fmt(coverL/1000,1)+" m³","sawdust / pine shavings for the event")+
+    (div?stat(fmt(urineL)+" L/day","diverted urine to manage ("+Math.ceil(urineL/20)+" × 20 L containers a day)"):"");
+  $("s2").innerHTML=
+    stat(fmt(litres/1000,1)+" m³","total solids collected ("+fmt(kg)+" kg)")+
+    stat(holdBays,"holding bays (1.2 × 1.2 × 1.0 m)")+
+    stat(fmt(fedKg)+" kg","to feed to worms after holding")+
+    stat(fmt(realA,1)+" m²","worm bed area ("+bays+" bay"+(bays>1?"s":"")+" of "+fmt(bayA,1)+" m²)")+
+    stat(fmt(realA*1)+"–"+fmt(realA*2)+" kg","tiger worms to buy at the start")+
+    stat(fmt(realA*0.3,1)+" m³","starter bedding (manure + cardboard) at 300 mm");
+  $("prewarn").innerHTML=pre<1?`<div class="card warn" style="margin:12px 0 0">With no holding time, fresh material goes straight to the worms. Expect heating and ammonia, and feed only 2–3 cm layers. A holding period of at least 1–2 months is strongly recommended.</div>`:"";
+  let rows=`<tr><th>Month</th><th>Worm activity</th><th>Feed (kg)</th><th>≈ buckets</th><th>Layers</th></tr>`;
+  for(let k=1;k<=12;k++){const m=(ev+k)%12, idx=fm.indexOf(m);
+    let feed=0,note="";
+    if(k===12)note="Festival month: toilets in use, holding bay fills";
+    else if(k<=pre)note="Holding bay resting; worms on manure/cardboard";
+    else if(k===11)note="Stop toilet feeding, harvest, make room";
+    if(idx>=0){feed=fedKg*rate*4.33*FACTOR[m]/cap}
+    const lay=feed>0?Math.max(1,Math.round(4.33*FACTOR[m]/1.5)):0;
+    rows+=`<tr><td>${MONTHS[m]}</td><td>${Math.round(FACTOR[m]*100)}%</td><td>${feed?fmt(feed):"–"}</td><td>${feed?fmt(feed/(usable*dens),1):"–"}</td><td>${feed?lay+" thin layer"+(lay>1?"s":""):note}</td></tr>`}
+  $("feed").innerHTML=rows;
+  drawWormCut();buildCal();drawBom();
+}
+document.querySelectorAll("#planner input,#planner select").forEach(e=>e.addEventListener("input",calc));
+
+/* ---------- toilet styling ---------- */
+const MOTIFS={
+  koru:{n:"Koru / fern",d:(x,y,w)=>{let s="";const n=3;for(let i=0;i<n;i++){const cx=x+w*(i+.5)/n,cy=y+22;s+=`<path d="M${cx-14} ${cy+14} C${cx-20} ${cy-10} ${cx+18} ${cy-18} ${cx+16} ${cy+2} C${cx+14} ${cy+14} ${cx-2} ${cy+12} ${cx} ${cy+2} C${cx+2} ${cy-4} ${cx+8} ${cy} ${cx+6} ${cy+4}" fill="none" stroke="var(--hole)" stroke-width="6" stroke-linecap="round"/>`}return s}},
+  moon:{n:"Moon & stars",d:(x,y,w)=>{const cx=x+w/2,cy=y+22;let s=`<path d="M${cx+4} ${cy-16} A17 17 0 1 0 ${cx+4} ${cy+16} A13 13 0 1 1 ${cx+4} ${cy-16}Z" fill="var(--hole)"/>`;[[.15,-8],[.3,8],[.72,-6],[.86,9]].forEach(([f,o])=>{s+=star(x+w*f,cy+o,7)});return s}},
+  mount:{n:"Ruapehu ridge",d:(x,y,w)=>`<path d="M${x+6} ${y+40} L${x+w*.22} ${y+16} L${x+w*.34} ${y+28} L${x+w*.55} ${y+4} L${x+w*.62} ${y+12} L${x+w*.68} ${y+8} L${x+w*.82} ${y+24} L${x+w-6} ${y+40}Z" fill="var(--hole)"/>`},
+  sun:{n:"Sunburst",d:(x,y,w)=>{const cx=x+w/2,cy=y+24;let s=`<circle cx="${cx}" cy="${cy}" r="10" fill="var(--hole)"/>`;for(let i=0;i<12;i++){const a=i*Math.PI/6;s+=`<line x1="${cx+15*Math.cos(a)}" y1="${cy+15*Math.sin(a)}" x2="${cx+(i%2?22:30)*Math.cos(a)}" y2="${cy+(i%2?22:30)*Math.sin(a)}" stroke="var(--hole)" stroke-width="4" stroke-linecap="round"/>`}return s}},
+  dots:{n:"Simple circles",d:(x,y,w)=>{let s="";for(let i=0;i<6;i++)s+=`<circle cx="${x+w*(i+.5)/6}" cy="${y+22}" r="${i%2?6:10}" fill="var(--hole)"/>`;return s}}
+};
+function star(cx,cy,r){let p="";for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.45:r;p+=(i?"L":"M")+(cx+rr*Math.cos(a)).toFixed(1)+" "+(cy+rr*Math.sin(a)).toFixed(1)}return `<path d="${p}Z" fill="var(--hole)"/>`}
+const COLOURS={candy:["Candy pop","#ff6fa8","#7fe3d8"],teal:["Teal & ochre","#2f7d6d","#f0a83a"],neon:["Neon rave","#3a1f7a","#39ff9a"],sunset:["Sunset","#e2552f","#ffd04e"],sky:["Sky & lemon","#3d8fe0","#ffe14d"],forest:["Forest & cream","#3e5b3a","#f3e3b8"],natural:["Natural oiled ply","#d8bb88","#7a4a24"]};
+const SHAPES={classic:"Classic box",mushroom:"Magic mushroom",rocket:"Poo-nar rocket",castle:"The Throne (castle)",chalet:"Alpine chalet",ginger:"Gingerbread house",beach:"Beach hut"};
+const PATTERNS={none:"Plain",dots:"Polka dots",stripes:"Stripes",zigzag:"Zigzag",confetti:"Confetti"};
+const NAMES=["The Throne Zone","Poo-topia","Sit Happens","Royal Flush","Dunny Disco","Worm Buffet","Loo-cy in the Sky","Number Two Lounge","Long Drop Deluxe","Poo-nar Lander","Throne of Games","The Little Office","Hunterville Hilton","The Drop Zone","Wormhole","Moon Base Poo","The Compost-ment","Shroom With a View"];
+const BULBS=["#ff5d73","#ffd04e","#4be3a0","#5cc8ff","#c58bff"];
+let motif=store.get("motif","koru"),colour=store.get("colour","candy"),shape=store.get("shape","mushroom"),pattern=store.get("pattern","dots"),night=store.get("night",false),lights=store.get("lights",true);
+if(!COLOURS[colour])colour="candy";if(!SHAPES[shape])shape="mushroom";if(!PATTERNS[pattern])pattern="none";if(!MOTIFS[motif])motif="koru";
+function seeded(n){let x=n||1;return()=>(x=(x*16807)%2147483647)/2147483647}
+function bez(p0,p1,p2,p3,n){const a=[];for(let i=0;i<=n;i++){const t=i/n,u=1-t,f=(k)=>u*u*u*p0[k]+3*u*u*t*p1[k]+3*u*t*t*p2[k]+t*t*t*p3[k];a.push([f(0),f(1)])}return a}
+function heart(x,y,k){return `M${x} ${y+10*k} C${x-16*k} ${y-2*k} ${x-10*k} ${y-14*k} ${x} ${y-6*k} C${x+10*k} ${y-14*k} ${x+16*k} ${y-2*k} ${x} ${y+10*k}Z`}
+function filters(u){return `<filter id="gl${u}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="dm${u}"><feComponentTransfer><feFuncR type="linear" slope=".38"/><feFuncG type="linear" slope=".42"/><feFuncB type="linear" slope=".62"/></feComponentTransfer></filter>`}
+function skyStars(x,y,w,h){let s=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#141a36"/>`;const R=seeded(7);for(let i=0;i<w*h/5000;i++)s+=`<circle cx="${(x+R()*w).toFixed(1)}" cy="${(y+R()*h*.8).toFixed(1)}" r="${(R()*1.6+.4).toFixed(1)}" fill="#fff" opacity="${(.4+R()*.6).toFixed(2)}"/>`;return s}
+function patternSvg(kind,trim,clip,x0,T,W,g,seed){
+  let s="";
+  if(kind==="stripes"||kind==="beach")for(let x=x0;x<x0+W;x+=30)s+=`<rect x="${x}" y="${T-200}" width="15" height="${g-T+200}" fill="${kind==="beach"?"#fff":trim}" opacity="${kind==="beach"?.85:.55}"/>`;
+  if(kind==="dots"){let r=0;for(let y=T+20;y<g;y+=28,r++)for(let x=x0+(r%2?14:0);x<x0+W+10;x+=28)s+=`<circle cx="${x}" cy="${y}" r="6" fill="${trim}" opacity=".6"/>`}
+  if(kind==="zigzag")[g-100,g-72].forEach((y,i)=>{let p="";for(let x=x0-10,k=0;x<=x0+W+14;x+=14,k++)p+=`${x},${y+(k%2?9:-9)} `;s+=`<polyline points="${p}" fill="none" stroke="${i?"#fff":trim}" stroke-width="7" opacity=".85"/>`});
+  if(kind==="confetti"){const R=seeded(seed),cols=[trim,"#fff","#ff6fa8","#39c0ff","#ffd04e"];for(let i=0;i<60;i++){const x=(x0+R()*W).toFixed(1),y=(T+R()*(g-T)).toFixed(1);s+=`<rect x="${x}" y="${y}" width="8" height="4" fill="${cols[i%5]}" transform="rotate(${R()*180|0} ${x} ${y})" opacity=".9"/>`}}
+  return `<g clip-path="url(#${clip})">${s}</g>`;
+}
+function lightString(pts,o){
+  if(!o.lights||pts.length<2)return "";
+  let s=`<path d="M${pts.map(p=>p[0].toFixed(1)+" "+(p[1]+3).toFixed(1)).join(" L")}" fill="none" stroke="#2a2a2a" stroke-width="1.2"/>`,b="",acc=0,k=0;
+  for(let i=1;i<pts.length;i++){const [x1,y1]=pts[i-1],[x2,y2]=pts[i],L=Math.hypot(x2-x1,y2-y1);
+    while(acc<=L){const t=L?acc/L:0;b+=`<circle cx="${(x1+(x2-x1)*t).toFixed(1)}" cy="${(y1+(y2-y1)*t+7).toFixed(1)}" r="3.4" fill="${BULBS[k++%5]}"/>`;acc+=15}
+    acc-=L}
+  return s+(o.night?`<g filter="url(#gl${o.uid})">${b}</g>`:b);
+}
+function renderCubicle(o){
+  const s=.175,x0=45,g=455,W=210,H=420,T=g-H,cx=x0+W/2,dw=700*s,dh=1980*s,dx=x0+500*s,dTop=g-dh,u=o.uid,clip="c"+u;
+  const hc=day=>`style="--hole:${o.night?"#ffd56b":day}"`;
+  let wall=o.body,doorC=o.body,base="",holes="",line=[[x0-12,T-2],[x0+W+12,T-2]];
+  if(o.shape==="mushroom")wall="#f6ead0";
+  if(o.shape==="ginger"){wall="#b97a3e";doorC="#8a5426"}
+  if(o.shape==="castle")doorC="#7a4a24";
+  const defs=`<defs><clipPath id="${clip}"><rect x="${x0}" y="${T}" width="${W}" height="${H}"/></clipPath>${filters(u)}</defs>`;
+  const sky=o.night&&!o.noSky?skyStars(-30,-170,360,660):"";
+  base+=`<rect x="${x0-14}" y="${g}" width="${W+28}" height="10" fill="#6b4a2f"/>`;
+  if(o.shape==="rocket"){
+    [[x0,-1],[x0+W,1]].forEach(([x,d])=>base+=`<polygon points="${x},${g-170} ${x+d*48},${g-20} ${x+d*48},${g} ${x},${g}" fill="${o.trim}" stroke="#0004"/>`);
+    [x0-24,x0+W+24].forEach(x=>base+=`<path d="M${x-14} ${g+10} Q${x} ${g+52} ${x+14} ${g+10}Z" fill="#ff7a1a"/><path d="M${x-7} ${g+10} Q${x} ${g+32} ${x+7} ${g+10}Z" fill="#ffd04e"/>`);
+  }
+  base+=`<rect x="${x0}" y="${T}" width="${W}" height="${H}" fill="${wall}" stroke="#0005"/>`;
+  base+=patternSvg(o.shape==="beach"?"beach":o.pattern,o.shape==="mushroom"?o.body:o.trim,clip,x0,T,W,g,u.length*31+7);
+  switch(o.shape){
+  case "classic":
+    base+=`<rect x="${x0-12}" y="${T-4}" width="${W+24}" height="8" fill="${o.trim}"/>`;
+    holes+=`<g ${hc("#1d1a16")}>${MOTIFS[o.motif].d(x0+8,T+12,W-16)}</g>`;break;
+  case "beach":{
+    base+=`<polygon points="${x0-14},${T+4} ${cx},${T-55} ${x0+W+14},${T+4}" fill="${o.trim}" stroke="#0004"/>`;
+    base+=`<path d="M${x0+4} ${T+16} Q${cx} ${T+48} ${x0+W-4} ${T+16}" fill="none" stroke="#333"/>`;
+    for(let i=0;i<9;i++){const t=i/8,x=x0+8+t*(W-16),y=T+16+Math.sin(t*Math.PI)*16;base+=`<polygon points="${x-9},${y} ${x+9},${y} ${x},${y+16}" fill="${BULBS[i%5]}"/>`}
+    holes+=`<g ${hc("#1d1a16")}><circle cx="${cx}" cy="${T-16}" r="10" fill="var(--hole)"/></g>`;
+    line=[[x0-14,T+4],[cx,T-55],[x0+W+14,T+4]];break;}
+  case "mushroom":{
+    const L=x0-55,R=x0+W+55,yb=T+55;
+    base+=`<path d="M${L} ${yb} C${L} ${T-160} ${R} ${T-160} ${R} ${yb} Q${cx} ${yb-28} ${L} ${yb}Z" fill="${o.body}" stroke="#0005"/>`;
+    for(let i=0;i<9;i++){const x=x0+15+i*(W-30)/8;base+=`<line x1="${x}" y1="${T+44}" x2="${cx+(x-cx)*.6}" y2="${T+30}" stroke="#0003" stroke-width="2"/>`}
+    holes+=`<g ${hc("#fff6e0")}>`+[[-75,-25,15],[-30,-72,14],[25,-85,10],[45,-40,19],[92,-2,11],[-5,-20,11],[-100,28,8],[98,30,7]].map(([a,b,r])=>`<circle cx="${cx+a}" cy="${T+b}" r="${r}" fill="var(--hole)"/>`).join("")+`</g>`;
+    line=bez([L,yb],[L,T-160],[R,T-160],[R,yb],18);break;}
+  case "rocket":{
+    base+=`<path d="M${x0} ${T} C${x0} ${T-70} ${cx-14} ${T-140} ${cx} ${T-170} C${cx+14} ${T-140} ${x0+W} ${T-70} ${x0+W} ${T}Z" fill="${o.trim}" stroke="#0005"/>`;
+    base+=`<rect x="${x0-4}" y="${T-7}" width="${W+8}" height="14" fill="#e8e8e8" stroke="#0004"/>`;
+    for(let x=x0+6;x<x0+W;x+=16)base+=`<circle cx="${x}" cy="${T}" r="2" fill="#999"/>`;
+    base+=`<circle cx="${cx}" cy="${T-72}" r="21" fill="#d9d9d9"/><circle cx="${x0+44}" cy="${T+80}" r="26" fill="#d9d9d9"/>`;
+    holes+=`<g ${hc("#22303f")}><circle cx="${cx}" cy="${T-72}" r="15" fill="var(--hole)"/><circle cx="${x0+44}" cy="${T+80}" r="19" fill="var(--hole)"/></g>`;
+    line=bez([x0,T],[x0,T-70],[cx-14,T-140],[cx,T-170],10).concat(bez([cx,T-170],[cx+14,T-140],[x0+W,T-70],[x0+W,T],10).slice(1));break;}
+  case "castle":{
+    const n=7,mw=(W+16)/n;
+    let br="";for(let y=T+14,r=0;y<g;y+=22,r++)for(let x=x0+(r%2?-15:0);x<x0+W;x+=30)br+=`<rect x="${x}" y="${y}" width="30" height="22" fill="none" stroke="#000" opacity=".13"/>`;
+    base+=`<g clip-path="url(#${clip})">${br}</g>`;
+    base+=`<line x1="${cx}" y1="${T-6}" x2="${cx}" y2="${T-130}" stroke="#777" stroke-width="3"/><path d="M${cx} ${T-130} Q${cx+28} ${T-136} ${cx+56} ${T-120} Q${cx+28} ${T-112} ${cx} ${T-106}Z" fill="${o.trim}"/>`;
+    base+=`<rect x="${x0-8}" y="${T-6}" width="${W+16}" height="14" fill="${o.trim}" stroke="#0004"/>`;
+    for(let i=0;i<n;i+=2)base+=`<rect x="${x0-8+i*mw}" y="${T-38}" width="${mw}" height="33" fill="${o.body}" stroke="#0005"/>`;
+    holes+=`<g ${hc("#1d1a16")}><rect x="${x0+40}" y="${T+40}" width="8" height="44" fill="var(--hole)"/><rect x="${x0+32}" y="${T+58}" width="24" height="8" fill="var(--hole)"/><rect x="${x0+W-30}" y="${T+22}" width="8" height="30" fill="var(--hole)"/></g>`;
+    line=[];for(let i=0;i<n;i++){const x=x0-8+i*mw,y=i%2?T-6:T-38;line.push([x,y],[x+mw,y])}break;}
+  case "chalet": case "ginger":{
+    const L=x0-24,R=x0+W+24,top=T-100,gi=o.shape==="ginger";
+    base+=`<polygon points="${L},${T+10} ${cx},${top} ${R},${T+10}" fill="${gi?"#8a5426":o.trim}" stroke="#0005"/>`;
+    base+=`<polygon points="${L+28},${T+4} ${cx},${top+24} ${R-28},${T+4}" fill="${gi?"#b97a3e":o.body}"/>`;
+    const edges=[[[L,T+10],[cx,top]],[[cx,top],[R,T+10]]];
+    if(!gi){
+      edges.forEach(([a,b])=>{for(let i=0;i<9;i++){const t=(i+.5)/9;base+=`<circle cx="${a[0]+(b[0]-a[0])*t}" cy="${a[1]+(b[1]-a[1])*t+10}" r="6" fill="${o.trim}"/>`}});
+      holes+=`<g ${hc("#1d1a16")}><path d="${heart(cx,T-40,1.6)}" fill="var(--hole)"/>${MOTIFS[o.motif].d(x0+8,T+18,W-16)}</g>`;
+    } else {
+      edges.forEach(([a,b])=>{let p="";for(let i=0;i<=16;i++){const t=i/16;p+=`${a[0]+(b[0]-a[0])*t},${a[1]+(b[1]-a[1])*t+(i%2?9:2)} `}base+=`<polyline points="${p}" fill="none" stroke="#fff7ee" stroke-width="5" stroke-linejoin="round"/>`});
+      base+=`<rect x="${x0}" y="${T}" width="${W}" height="9" fill="#fff7ee"/>`;
+      for(let i=0;i<11;i++)base+=`<circle cx="${x0+8+i*(W-16)/10}" cy="${T+9}" r="${i%2?4:7}" fill="#fff7ee"/>`;
+      const gum=[o.trim,o.body,"#ff6fa8","#7fe3d8","#ffd04e"];
+      [T+90,T+150,T+210].forEach((y,i)=>base+=`<circle cx="${x0+44}" cy="${y}" r="11" fill="${gum[i]}" stroke="#fff7ee" stroke-width="3"/>`);
+      base+=`<circle cx="${cx}" cy="${T-34}" r="21" fill="#fff7ee"/>`;
+      holes+=`<g ${hc("#1d1a16")}><circle cx="${cx}" cy="${T-34}" r="15" fill="var(--hole)"/><path d="M${cx-15} ${T-34} H${cx+15} M${cx} ${T-49} V${T-19}" stroke="#fff7ee" stroke-width="3"/></g>`;
+    }
+    line=[[L,T+10],[cx,top],[R,T+10]];break;}
+  }
+  // door
+  const arched=["mushroom","castle","ginger"].includes(o.shape),rnd=o.shape==="rocket"?18:0;
+  const dPath=arched?`M${dx} ${g} V${dTop+dw/2} A${dw/2} ${dw/2} 0 0 1 ${dx+dw} ${dTop+dw/2} V${g}Z`:`M${dx+rnd} ${dTop} H${dx+dw-rnd} Q${dx+dw} ${dTop} ${dx+dw} ${dTop+rnd} V${g} H${dx} V${dTop+rnd} Q${dx} ${dTop} ${dx+rnd} ${dTop}Z`;
+  base+=`<path d="${dPath}" fill="${doorC}" stroke="${o.shape==="ginger"?"#fff7ee":o.trim}" stroke-width="${o.shape==="ginger"?7:3}"/>`;
+  if(o.shape==="ginger")base+=`<path d="${dPath}" fill="none" stroke="#e23b3b" stroke-width="7" stroke-dasharray="9 9"/>`;
+  if(o.shape==="castle"){for(let x=dx+20;x<dx+dw;x+=20)base+=`<line x1="${x}" y1="${dTop+dw/2}" x2="${x}" y2="${g}" stroke="#0003"/>`;[dTop+110,g-60].forEach(y=>base+=`<rect x="${dx}" y="${y}" width="${dw*.7}" height="7" fill="#333"/>`)}
+  if(o.shape==="rocket")for(let y=dTop+20;y<g-10;y+=40)[dx+7,dx+dw-7].forEach(x=>base+=`<circle cx="${x}" cy="${y}" r="2" fill="#0006"/>`);
+  const sy=dTop+(arched?78:62);
+  if(o.sign){base+=`<rect x="${dx+8}" y="${sy}" width="${dw-16}" height="26" rx="6" fill="${o.shape==="ginger"?"#fff7ee":o.trim}"/>`;
+    base+=`<text x="${dx+dw/2}" y="${sy+17}" text-anchor="middle" style="font-size:${o.sign.length>16?8.5:o.sign.length>12?10:12}px;font-weight:800;fill:${o.shape==="ginger"?"#8a5426":doorC}">${o.sign}</text>`}
+  base+=`<rect x="${dx+8}" y="${dTop+dh/2}" width="5" height="30" rx="2" fill="${o.trim}"/><circle cx="${dx+dw-14}" cy="${sy+44}" r="5" fill="#3ddc84" stroke="#0004"/>`;
+  let out=defs+sky+(o.night?`<g filter="url(#dm${u})">${base}</g>`:base);
+  out+=o.night?`<g filter="url(#gl${u})">${holes}<rect x="${dx+4}" y="${g-3}" width="${dw-8}" height="3" fill="#ffd56b"/></g>`:holes;
+  out+=lightString(line,o);
+  if(o.label)out+=`<text x="${cx}" y="${g+64}" text-anchor="middle" style="font-size:34px;font-weight:700;fill:${o.night?"#f3ecff":"var(--ink)"}">${o.label}</text>`;
+  return out;
+}
+function renderSide(o){
+  const s=.175,x0=45,g=455,W=210,H=420,HB=2100*s,T=g-H,u=o.uid,wall=o.shape==="mushroom"?"#f6ead0":o.shape==="ginger"?"#b97a3e":o.body;
+  let base=`<rect x="${x0-10}" y="${g}" width="${W+20}" height="10" fill="#6b4a2f"/><polygon points="${x0},${g} ${x0},${T} ${x0+W},${g-HB} ${x0+W},${g}" fill="${wall}" stroke="#0005"/>`;
+  base+=patternSvg(o.shape==="beach"?"beach":o.pattern,o.shape==="mushroom"?o.body:o.trim,"cs"+u,x0,T,W,g,77);
+  base+=`<polygon points="${x0-30},${T-6} ${x0+W+18},${g-HB-4} ${x0+W+18},${g-HB+2} ${x0-30},${T}" fill="#cfe6f2" stroke="#7aa" opacity=".9"/>`;
+  base+=`<rect x="${x0+W-6}" y="${g-HB-50}" width="10" height="${HB+40-600*s}" fill="#ccc" stroke="#888"/><path d="M${x0+W-10} ${g-HB-50} h18 l-4 -8 h-10z" fill="#999"/>`;
+  const holes=`<g style="--hole:${o.night?"#ffd56b":"#1d1a16"}">${MOTIFS[o.motif].d(x0+8,T+40,W-40)}</g>`;
+  let out=`<defs><clipPath id="cs${u}"><polygon points="${x0},${g} ${x0},${T} ${x0+W},${g-HB} ${x0+W},${g}"/></clipPath>${filters(u)}</defs>`;
+  if(o.night)out+=skyStars(-30,-170,360,660);
+  out+=o.night?`<g filter="url(#dm${u})">${base}</g><g filter="url(#gl${u})">${holes}</g>`:base+holes;
+  return out+lightString([[x0-30,T-4],[x0+W+18,g-HB-2]],o);
+}
+function setStyle(k,v){if(k==="shape")shape=v;if(k==="colour")colour=v;if(k==="pattern")pattern=v;if(k==="motif")motif=v;store.set(k,v);swatches();drawCubicle();drawBom()}
+function swatches(){
+  const chip=c=>`<span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${c};vertical-align:-1px"></span>`;
+  $("shapes").innerHTML=Object.entries(SHAPES).map(([k,v])=>`<button class="sw${k===shape?" on":""}" data-k="shape" data-v="${k}">${v}</button>`).join("");
+  $("colours").innerHTML=Object.entries(COLOURS).map(([k,v])=>`<button class="sw${k===colour?" on":""}" data-k="colour" data-v="${k}">${chip(v[1])} ${chip(v[2])} ${v[0]}</button>`).join("");
+  $("patterns").innerHTML=Object.entries(PATTERNS).map(([k,v])=>`<button class="sw${k===pattern?" on":""}" data-k="pattern" data-v="${k}">${v}</button>`).join("");
+  $("motifs").innerHTML=Object.entries(MOTIFS).map(([k,v])=>`<button class="sw${k===motif?" on":""}" data-k="motif" data-v="${k}">${v.n}</button>`).join("");
+  document.querySelectorAll("#toilet .sw[data-k]").forEach(b=>b.onclick=()=>setStyle(b.dataset.k,b.dataset.v));
+  $("nightBtn").classList.toggle("pri",night);$("lightsBtn").classList.toggle("pri",lights);
+}
+function drawCubicle(){
+  const c=COLOURS[colour],sign=($("sign").value||"").replace(/[<&>]/g,"");
+  const o={shape,body:c[1],trim:c[2],pattern,motif,night,lights,sign,uid:"f"};
+  $("front").innerHTML=renderCubicle(o);
+  $("side").innerHTML=renderSide({...o,uid:"s"});
+  drawVillage();
+}
+function drawVillage(){
+  const keys=Object.keys(SHAPES),pal=["teal","candy","neon","sunset","sky","forest","natural"],pats=["none","dots","confetti","stripes","zigzag","none","none"],step=340,w=keys.length*step+20;
+  let sv=night?skyStars(-40,-190,w,760):"";
+  keys.forEach((k,i)=>{const c=COLOURS[pal[i]];sv+=`<g transform="translate(${i*step},0)" data-s="${k}" data-c="${pal[i]}" data-p="${pats[i]}" style="cursor:pointer"><rect x="-20" y="-180" width="340" height="760" fill="transparent"/>${renderCubicle({shape:k,body:c[1],trim:c[2],pattern:pats[i],motif,night,lights,uid:"v"+i,noSky:true,label:SHAPES[k].split(" (")[0]})}</g>`});
+  $("village").setAttribute("viewBox",`-40 -190 ${w} 760`);
+  $("village").innerHTML=sv;
+  $("village").querySelectorAll("g[data-s]").forEach(el=>el.onclick=()=>{shape=el.dataset.s;colour=el.dataset.c;pattern=el.dataset.p;store.set("shape",shape);store.set("colour",colour);store.set("pattern",pattern);swatches();drawCubicle();drawBom();$("front").scrollIntoView({behavior:"smooth",block:"center"})});
+}
+$("sign").value=store.get("sign",$("sign").value);
+$("sign").addEventListener("input",()=>{store.set("sign",$("sign").value);drawCubicle()});
+$("dice").onclick=()=>{let n;do{n=NAMES[Math.random()*NAMES.length|0]}while(n===$("sign").value);$("sign").value=n;store.set("sign",n);drawCubicle()};
+$("nightBtn").onclick=()=>{night=!night;store.set("night",night);swatches();drawCubicle()};
+$("lightsBtn").onclick=()=>{lights=!lights;store.set("lights",lights);swatches();drawCubicle()};
+$("mixBtn").onclick=()=>{const pick=o=>{const k=Object.keys(o);return k[Math.random()*k.length|0]};shape=pick(SHAPES);colour=pick(COLOURS);pattern=pick(PATTERNS);store.set("shape",shape);store.set("colour",colour);store.set("pattern",pattern);$("dice").onclick()};
+const EXTRA={classic:[],beach:[["Bunting + white exterior paint","beach-hut stripes",1,35]],mushroom:[["12 mm ply façade sheet","mushroom cap",1,88],["Opal polycarbonate offcuts","glowing spots",1,15]],rocket:[["12 mm ply façade sheet","nose cone + fins",1,88],["Polycarbonate discs + rubber edging","2 portholes",1,30]],castle:[["12 mm ply façade sheet","battlements",1,88],["Dowel pole + fabric flag","flag",1,25]],chalet:[["12 mm ply façade sheet","gable + scallops",1,88]],ginger:[["12 mm ply façade sheet","gable",1,88],["White exterior paint 1 L","icing + candy stripes",1,30]]};
+
+function drawSheets(){
+  const s=.09,w=1200*s,h=2400*s,y=40;
+  const sheet=(x,label,inner)=>`<g transform="translate(${x},${y})"><rect width="${w}" height="${h}" fill="var(--ply)" stroke="var(--ply2)"/>${inner||""}<text x="${w/2}" y="${h+16}" text-anchor="middle">${label}</text></g>`;
+  let o="";
+  o+=sheet(10,"Back (12 mm)",`<rect y="0" width="${w}" height="${300*s}" fill="var(--chip)" stroke="var(--ply2)" stroke-dasharray="3 3"/><text x="${w/2}" y="${300*s/2+4}" text-anchor="middle" style="font-size:10px">cut 300</text><rect x="${325*s}" y="${h-600*s}" width="${550*s}" height="${600*s}" fill="none" stroke="var(--ink)" stroke-dasharray="4 3"/><text x="${w/2}" y="${h-25}" text-anchor="middle" style="font-size:10px">hatch</text>`);
+  o+=sheet(140,"Side ×2 (12 mm)",`<polygon points="0,0 ${w},${300*s} ${w},0" fill="var(--chip)" stroke="var(--ply2)"/><text x="${w*.7}" y="12" style="font-size:9px">gusset</text>`);
+  o+=sheet(270,"Front (12 mm)",`<line x1="${500*s}" y1="0" x2="${500*s}" y2="${h}" stroke="var(--ink)"/><line x1="${500*s}" y1="${420*s}" x2="${w}" y2="${420*s}" stroke="var(--ink)" stroke-dasharray="4 3"/><text x="${250*s}" y="${h/2}" text-anchor="middle" style="font-size:10px">500 panel</text><text x="${850*s}" y="${h/2+20}" text-anchor="middle" style="font-size:10px">door 700</text>`);
+  o+=`<g transform="translate(400,${y})"><rect width="${w}" height="${h}" fill="var(--ply2)" stroke="var(--ply2)"/><line x1="0" y1="${h/2}" x2="${w}" y2="${h/2}" stroke="var(--ink)"/><text x="${w/2}" y="${h/4+4}" text-anchor="middle" style="font-size:10px">floor 1200²</text><text x="${w/2}" y="${h*.75+4}" text-anchor="middle" style="font-size:10px">pedestal parts</text><text x="${w/2}" y="${h+16}" text-anchor="middle">17 mm sheet</text></g>`;
+  o+=`<text x="10" y="20" style="font-weight:600">4 × 12 mm + 1 × 17 mm sheets, each 2400 × 1200</text>`;
+  $("sheets").innerHTML=o;
+}
+function drawPedestal(){
+  const bD=num("bD")||400,bH=num("bH")||450;
+  const Hbox=bH+40,s=.42,g=390,x0=70;
+  const D=Math.max(650,bD+250)*s,Hh=Hbox*s;
+  let o=`<line x1="20" y1="${g}" x2="500" y2="${g}" stroke="var(--ink)" stroke-width="2"/>`;
+  o+=`<rect x="${x0}" y="${g-Hh-7}" width="${D}" height="${Hh+7}" fill="var(--ply)" stroke="var(--ply2)" stroke-width="2" opacity=".55"/>`;
+  o+=`<rect x="${x0}" y="${g-Hh-7}" width="${D}" height="7" fill="var(--ply2)"/>`;
+  const bx=x0+D-bD*s-40;
+  o+=`<path d="M${bx} ${g-bH*s} L${bx+bD*s} ${g-bH*s} L${bx+bD*s-8} ${g} L${bx+8} ${g}Z" fill="#9aa3ab" stroke="#6b7680"/>`;
+  o+=`<rect x="${bx+8}" y="${g-bH*s*.55}" width="${bD*s-16}" height="${bH*s*.55-3}" fill="var(--soil)"/>`;
+  o+=`<rect x="${bx+8}" y="${g-bH*s*.55}" width="${bD*s-16}" height="6" fill="#e6d3a8"/>`;
+  o+=`<rect x="${bx-6}" y="${g-Hh-16}" width="${bD*s+12}" height="9" rx="4" fill="#f4f4f4" stroke="#999"/>`;
+  o+=`<path d="M${bx-4} ${g-Hh-7} L${bx+38} ${g-Hh-7} L${bx+22} ${g-Hh+18}Z" fill="#f2e05a" stroke="#a99a20"/>`;
+  o+=`<path d="M${bx+22} ${g-Hh+18} C${bx+22} ${g-60} ${x0+30} ${g-50} ${x0-30} ${g-30}" fill="none" stroke="#e1b400" stroke-width="4"/>`;
+  o+=`<rect x="${x0-62}" y="${g-48}" width="34" height="48" fill="#f7ecb0" stroke="#a99a20"/>`;
+  const vx=x0+D-22;o+=`<rect x="${vx}" y="${g-Hh-210}" width="16" height="203" fill="#dfe3e6" stroke="#8a949c"/><path d="M${vx-6} ${g-Hh-210} h28 l-5 -12 h-18z" fill="#8a949c"/>`;
+  o+=`<line x1="${x0+D+2}" y1="${g-Hh}" x2="${x0+D+2}" y2="${g}" stroke="var(--accent2)" stroke-width="3" stroke-dasharray="6 4"/>`;
+  const lab=(x1,y1,x2,y2,t)=>`<path class="lbl" d="M${x1} ${y1} L${x2} ${y2}"/><text x="${x2+(x2>x1?4:-4)}" y="${y2+4}" text-anchor="${x2>x1?"start":"end"}">${t}</text>`;
+  o+=`<path class="lbl" d="M${bx+10} ${g-Hh-12} L40 ${g-Hh-70}"/><text x="20" y="${g-Hh-76}">seat + urine diverter</text>`;
+  o+=lab(x0-45,g-48,x0-30,g-Hh-40,"urine to 20 L container");
+  o+=lab(vx+8,g-Hh-150,vx-70,g-Hh-150,"100 mm PVC vent + cowl");
+  o+=lab(bx+bD*s/2,g-bH*s*.3,bx+bD*s/2+150,g-bH*s*.3,"");
+  o+=`<text x="${bx+bD*s+8}" y="${g-bH*s*.3-6}" style="font-size:11px">50 L steel bucket</text>`;
+  o+=lab(x0+D+2,g-40,x0+D+40,g-110,"rear hatch (crew)");
+  o+=`<text x="${x0+D/2}" y="${g+18}" text-anchor="middle" style="fill:var(--muted)">box ${Math.round(Math.max(650,bD+250))} deep × ${Math.round(Hbox+17)} high (seat ≈ ${Math.round(Hbox+17+25)} mm)</text>`;
+  $("pedestal").innerHTML=o;
+}
+function drawBom(){
+  const n=Math.max(1,num("nCub")), handwash=Math.ceil(n/2);
+  const items=[
+    ["12 mm H3.2 CD exterior ply 2400×1200","walls, door",4,88],
+    ["17 mm H3.2 ply 2400×1200","floor + pedestal box",1,110],
+    ["90×45 H3.2 radiata 2.4 m","wall frames, joists, purlins, door frame",16,14],
+    ["100×75 H4 skid 1.5 m (cut from 3.0 m)","base skids",1,38],
+    ["Polycarbonate roofing (e.g. Suntuf) 1.8 m","roof",2,55],
+    ["Roofing screws + washers (pack)","roof",1,22],
+    ["M10×120 coach bolts + nuts + washers","corner + floor joints",20,1.8],
+    ["Tee hinges 150 mm","door ×3, hatch ×2",5,7],
+    ["Barrel bolt, handle, hasp & padlock, spring closer","hardware",1,55],
+    ["Toilet seat + lid","pedestal",1,35],
+    ["Urine diverter (commercial insert or DIY funnel)","pedestal",1,90],
+    ["25 mm hose 3 m + 20 L container","urine line",1,35],
+    ["100 mm PVC DWV pipe 3 m + cowl + 90° bend","vent",1,75],
+    ["Fly mesh (aluminium/fibreglass roll)","vents + cut-outs",1,25],
+    ["Exterior acrylic paint 4 L (shared ÷2) + oil","finish",1,70],
+    ["Exterior screws + PVA glue","assembly",1,40],
+    ["Solar puck / fairy light","night lighting",1,20],
+    ["50 L steel buckets with lids (stainless preferred)","rotation stock",3,65]
+  ].concat(EXTRA[shape]||[]);
+  let tot=0,rows=`<tr><th>Item</th><th>For</th><th>Qty / cubicle</th><th>Qty total</th><th>~ NZD total</th></tr>`;
+  items.forEach(([a,b,q,p])=>{const t=q*n*p;tot+=t;rows+=`<tr><td>${a}</td><td>${b}</td><td>${q}</td><td>${q*n}</td><td>$${fmt(t)}</td></tr>`});
+  const hw=handwash*140;tot+=hw;
+  rows+=`<tr><td>Hand-wash station (20 L tap container, stand, soap pump, grey bucket)</td><td>1 per 2 cubicles</td><td>–</td><td>${handwash}</td><td>$${fmt(hw)}</td></tr>`;
+  rows+=`<tr><th colspan="4">Estimated total for ${n} cubicle${n>1?"s":""}</th><th>$${fmt(tot)} <span class="muted" style="font-weight:400">(≈ $${fmt(tot/n)} each)</span></th></tr>`;
+  $("bom").innerHTML=rows;drawPedestal();
+}
+["nCub","bD","bH"].forEach(id=>$(id).addEventListener("input",drawBom));
+
+/* ---------- worm farm drawing + cut list ---------- */
+function drawWorm(){
+  const g=300,x0=70,x1=500,top=110;
+  let o=`<line x1="10" y1="${g+52}" x2="590" y2="${g+52}" stroke="var(--soil)" stroke-width="3"/>`;
+  [x0+10,x1-40].forEach(x=>o+=`<rect x="${x}" y="${g+16}" width="34" height="36" fill="#a9a9a9" stroke="#777"/>`);
+  o+=`<polygon points="${x0},${g} ${x1},${g+10} ${x1},${g+16} ${x0},${g+6}" fill="var(--ply2)"/>`;
+  o+=`<rect x="${x0-8}" y="${top}" width="8" height="${g-top+6}" fill="var(--ply)" stroke="var(--ply2)"/><rect x="${x1}" y="${top}" width="8" height="${g-top+16}" fill="var(--ply)" stroke="var(--ply2)"/>`;
+  o+=`<polyline points="${x0+2},${top+4} ${x0+2},${g-2} ${x1-2},${g+8} ${x1-2},${top+4}" fill="none" stroke="#222" stroke-width="2"/>`;
+  o+=`<polygon points="${x0+3},${g-30} ${x1-3},${g-22} ${x1-3},${g+7} ${x0+3},${g-3}" fill="#c9a76b"/>`;
+  for(let i=0;i<40;i++){const x=x0+10+i*10.5;o+=`<circle cx="${x}" cy="${g-14+i*.2}" r="2.6" fill="#a88650"/>`}
+  o+=`<line x1="${x0+3}" y1="${g-31}" x2="${x1-3}" y2="${g-23}" stroke="#2c6e2c" stroke-width="2" stroke-dasharray="5 3"/>`;
+  o+=`<polygon points="${x0+3},${g-150} ${x1-3},${g-150} ${x1-3},${g-23} ${x0+3},${g-31}" fill="var(--soil2)"/>`;
+  o+=`<rect x="${x0+3}" y="${g-172}" width="${(x1-x0)/2}" height="22" fill="var(--soil)"/>`;
+  o+=`<rect x="${x0+3}" y="${g-180}" width="${x1-x0-6}" height="8" fill="#d8c48e"/>`;
+  for(let i=0;i<14;i++){const x=x0+30+i*30,y=g-120+(i%3)*25;o+=`<path d="M${x} ${y} q6 -6 12 0 t12 0" fill="none" stroke="#d07a7a" stroke-width="3" stroke-linecap="round"/>`}
+  o+=`<rect x="${x0-14}" y="${top-28}" width="${x1-x0+30}" height="10" fill="var(--ply)" stroke="var(--ply2)"/>`;
+  o+=`<rect x="${x0-8}" y="${top-18}" width="${x1-x0+16}" height="16" fill="#f0f0f0" stroke="#bbb"/>`;
+  o+=`<line x1="${x1+8}" y1="${g+12}" x2="${x1+30}" y2="${g+12}" stroke="#555" stroke-width="5"/><rect x="${x1+26}" y="${g+6}" width="8" height="14" fill="#2a6"/>`;
+  o+=`<path d="M${x1+18} ${g+28} h34 l-4 24 h-26z" fill="#7aa0c0" opacity=".8"/>`;
+  const L=(x1_,y1_,x2_,y2_,t,anchor)=>`<path class="lbl" d="M${x1_} ${y1_} L${x2_} ${y2_}"/><text x="${x2_+(anchor==="end"?-4:4)}" y="${y2_+4}" text-anchor="${anchor||"start"}">${t}</text>`;
+  o+=L(x1-40,top-24,x1+10,top-60,"12 mm ply lid + 50 mm polystyrene");
+  o+=L(x0+60,g-176,x0+20,top-60,"damp cardboard / straw cover","start");
+  o+=L(x0+120,g-160,x0+170,top-40,"new feed: 5–8 cm, half the bed");
+  o+=L(x0+300,g-90,x1+30,g-100,"bedding + worms (300–450 mm)");
+  o+=L(x0+200,g-26,x1+30,g-55,"shade cloth");
+  o+=L(x0+120,g-12,x0-20,g+40,"50 mm coarse chip","end");
+  o+=L(x0+3,g-60,x0-20,g-80,"liner","end");
+  o+=L(x1+36,g+42,x1+60,g+70,"leachate tap → bucket");
+  o+=`<text x="${(x0+x1)/2}" y="${g+30}" text-anchor="middle" style="fill:var(--muted)">floor falls 1:50 to the tap</text>`;
+  o+=`<text x="${(x0+x1)/2}" y="${g+48}" text-anchor="middle" style="fill:var(--muted)">concrete blocks</text>`;
+  $("wormsvg").innerHTML=o;
+}
+function drawWormCut(){
+  const L=num("bayL")||2400,W=num("bayW")||1000,Hh=600;
+  const boardsLong=Math.ceil(Hh/190); // 200x25 boards ~190 cover
+  const rows=[
+    ["Untreated macrocarpa 200×25 (or 150×25)","long walls",boardsLong*2,`${L+50} mm`],
+    ["Untreated macrocarpa 200×25","end walls",boardsLong*2,`${W} mm`],
+    ["90×90 or 100×50 posts (H4 OK, outside liner)","corners",4,`${Hh+150} mm`],
+    ["90×45 H3.2 bearers","under floor",3,`${W+100} mm`],
+    ["17 mm H3.2 ply","floor",Math.ceil(L*W/(2400*1200)*10)/10,"sheets (cut to fit)"],
+    ["12 mm ply + 50 mm polystyrene","lid (2 halves if > 1.5 m)",Math.ceil(L*W/(2400*1200)*10)/10,"sheets"],
+    ["250 µm black polythene / pond liner","liner",1,`${L+1400} × ${W+1400} mm`],
+    ["20 mm tank outlet + tap","leachate drain",1,""],
+    ["Concrete blocks","footings",L>1600?6:4,""],
+    ["Hinges, lid prop, 6 mm galv mesh, shade cloth","fittings",1,"set"],
+    ["Coarse wood chip (untreated)","drainage layer",Math.round(L*W*50/1e6)+" L",""]
+  ];
+  $("wormcut").innerHTML=`<tr><th>Material</th><th>Use</th><th>Qty</th><th>Length / size</th></tr>`+rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")+
+   `<tr><td colspan="4" class="muted">Planner says: <b>${plan.bays||"–"}</b> worm bay(s) of ${L} × ${W} mm + <b>${plan.holdBays||"–"}</b> holding bay(s). Multiply the quantities above.</td></tr>`;
+}
+
+/* ---------- calendar ---------- */
+function buildCal(){
+  const ev=plan.ev,pre=plan.pre;const tags={E:["Festival","var(--accent2)"],H:["Holding bay","#8a6a3a"],F:["Feed worms","var(--accent)"],X:["Harvest","#5a7f3a"],P:["Prep / build","#5a6a9a"],W:["Winter care","#4a86b5"],S:["Heat watch","var(--warn)"]};
+  let o="";
+  for(let k=0;k<12;k++){const m=(ev+k)%12;const t=[];
+    if(k===0)t.push("E");
+    if(k>=1&&k<=pre)t.push("H");
+    if(k>pre&&k<=10)t.push("F");
+    if(k===11){t.push("X");t.push("P")}
+    if([5,6,7].includes(m))t.push("W");
+    if([0,1].includes(m))t.push("S");
+    let note=k===0?"Toilets in use. Empty buckets daily into the holding bay and log every bucket.":
+      k<=pre?"Holding bay rests, covered. Turn once at 4 weeks if it smells. Worms eat manure/cardboard.":
+      k<=10?`Feed rested material in thin layers. Activity ~${Math.round(FACTOR[m]*100)}%.`:"Harvest the finished ends, re-bed with fresh manure, check the toilets and buckets, order sawdust.";
+    if(m>=5&&m<=7)note+=" Close the lids, add straw insulation and cut feeding.";
+    if(m<=1)note+=" Keep in shade, check moisture weekly, open vents.";
+    o+=`<div class="mo${k===0?" ev":""}"><b>${MONTHS[m]}</b><span class="muted small">${CLIMATE[m]}</span><div>${t.map(x=>`<span class="pill" style="background:${tags[x][1]}">${tags[x][0]}</span>`).join("")}</div><div style="margin-top:4px">${note}</div></div>`}
+  $("cal").innerHTML=o;
+}
+
+/* ---------- checklists ---------- */
+const LISTS=[
+["Build: toilet cubicles",[
+"Choose the site: firm, level, out of flood paths, ≥ 20 m from water, accessible to a barrow/trolley","Buy ply and timber; check every sheet is exterior grade (H3.2), not interior","Paint all ply edges before assembly","Frame and sheet all 4 walls; mark and cut the motif band","Fly mesh stapled behind EVERY opening","Hang the door: 3 hinges, self-closer, inside bolt, engaged/vacant sign","Cut and hang the rear hatch with a padlock hasp","Build the pedestal box and check seat height (~450–500 mm)","Fit the urine diverter, then test: pour 1 L water through it and nothing should reach the bucket","Run the urine hose with a continuous fall (no dips where it can pool and smell)","Fit the vent pipe 300 mm above the roof with mesh + cowl","Test-assemble the flat-pack once in the workshop; label the panels and bolt holes","Fit the solar light, hook, paper holder, mirror and rules sign","Build the hand-wash station(s)"]],
+["Build: worm farm",[
+"Site in shade, sheltered, not in a frost hollow, reachable by barrow","Use untreated timber anywhere it touches bedding","Level the blocks, then set the floor fall 1:50 towards the tap corner","Liner stapled high up the walls, with no holes at the floor folds","Fit the tank outlet + tap and test with a bucket of water: no leaks, drains fully","Lay the 50 mm chip drainage layer + shade cloth","Make the insulated lids with a vent slot + mesh; check they close tight","Build the holding bay(s) the same way (deeper, lidded, lined)","Rodent-proof the vents with 6 mm mesh","Fill with 300 mm of aged manure + shredded cardboard, wetted to a squeezed-sponge feel","Add the worms at least 3 months before the festival","Get a probe thermometer and a cheap pH meter or test strips"]],
+["Before the festival (2–4 weeks out)",[
+"Sawdust/shavings stockpiled undercover (see the Planner volume); untreated only","Buckets: counted, numbered, inside-coated or stainless, lids fit","3–5 cm of sawdust in the base of every bucket","Urine containers, a funnel and a dilution plan ready","Holding bay empty, lined and lidded, with straw/sawdust for capping","Crew rostered: 2 per shift, briefed, gloves/boots/eye protection","Spill kit, first aid, soap, paper, hand sanitiser stocked","Dedicated dirty barrow + tools marked","Signs: rules inside, hand-wash pointer outside, directions","Log book printed (bucket #, date, from which toilet, where it went)","Worm beds checked: moist, worms active, room for the coming year"]],
+["Daily during the festival",[
+"Morning: check every cubicle (sawdust bin full, paper, light, clean seat)","Check bucket levels and swap any bucket over ⅔ full","Empty full buckets into the holding bay; cap each load with sawdust/straw","Wash the empty buckets, sun-dry them, add a sawdust base","Check urine containers; empty or dilute before they're full","Wipe seats/handles with a mild cleaner on the cloth (never sprayed into the bowl)","Refill the hand-wash water and soap","Smell check: if a cubicle smells, add sawdust and check urine diversion","Fly check: mesh intact, lids down","Write the bucket count in the log","Evening: final swap so the night starts with empty buckets"]],
+["End of the festival",[
+"Final buckets into the holding bay; cap with a thick 10–15 cm layer of straw/sawdust","Lid the holding bay; note the date (the clock starts now)","Wash, sun-dry and store all buckets with lids off","Flush the urine lines with water; clean the diverters","Disassemble the cubicles, wash the panels, let them dry fully before stacking","Store the panels flat, off the ground, under cover; bag the hardware","Restock or reorder sawdust for next year","Note the total bucket count vs the Planner estimate"]],
+["Worm care: every 1–2 weeks",[
+"Lift the lid: worms active and spread through the bed?","Squeeze test: a few drops = right; streaming = too wet; crumbly = too dry","Temperature 15–25 °C (probe 15 cm down)","Smell: earthy is fine; sour/rotten = overfed or too wet","Previous layer mostly eaten before adding more","Feed: thin layer, half the bed, covered","Drain leachate; dilute 1:10 and use on trees (never on veg)","Check for pests: ants, mites, rats, flies","Hot spells: shade, damp sacks on the lid, open the vent","Frosts: close the lids, straw bales/old carpet around the sides"]],
+["Harvest & cure (twice a year)",[
+"Stop feeding one end for 6 weeks","Shovel the finished end into a covered curing heap (label the date)","Sieve and return the worms to the bed","Re-bed the empty end with manure + cardboard","Curing heap: 6 months more, lid or tarp, kept just damp","Use only on trees/ornamentals and keep a record of where","Gloves on, wash hands after"]],
+["Every year (off-season)",[
+"Inspect the cubicle panels: delaminating ply edges? Repaint","Check bolts, hinges and roofing screws","Replace corroded buckets","Check the worm bay liners and timber for rot/leaks","Review the log: did volumes match the plan? Adjust the bay count","Re-check council requirements before the next event"]]
+];
+function buildLists(){
+  const st=store.get("checks",{});
+  $("lists").innerHTML=LISTS.map((l,i)=>{const done=l[1].filter((_,j)=>st[i+"-"+j]).length;
+    const all=done===l[1].length;return `<div class="card${all?" done":""}"><h3 style="margin-top:0">${l[0]} <span class="tag${all?" hot":""}">${all?"🎉 ":""}${done}/${l[1].length}</span></h3><div class="prog"><i style="width:${done/l[1].length*100}%"></i></div><ul class="chk">${l[1].map((t,j)=>`<li><label><input type="checkbox" data-k="${i}-${j}"${st[i+"-"+j]?" checked":""}><span>${t}</span></label></li>`).join("")}</ul></div>`}).join("");
+  document.querySelectorAll("#lists input").forEach(c=>c.onchange=()=>{const s=store.get("checks",{});if(c.checked)s[c.dataset.k]=1;else delete s[c.dataset.k];store.set("checks",s);const r=c.getBoundingClientRect(),li=+c.dataset.k.split("-")[0],full=LISTS[li][1].every((_,j)=>s[li+"-"+j]);buildLists();if(c.checked)confetti(r.left+12,r.top+12,full?90:14)});
+}
+$("resetChk").onclick=()=>{if(confirm("Clear all ticks?")){store.set("checks",{});buildLists()}};
+
+/* ---------- issues ---------- */
+const ISS=[
+["Toilet","Toilet smells",1,"Ammonia or sewage smell inside the cubicle","Urine getting into the bucket, not enough sawdust, vent blocked, bucket too full","Add sawdust, swap the bucket, check the diverter isn't overflowing, clear the vent cowl","Sitting-down sign, a full sawdust bin, swap at ⅔, vent 300 mm above the roof"],
+["Toilet","Urine diverter blocks or smells",0,"Wee pools in the front bowl, crystal crust","Hair/paper in the outlet, urine scale (struvite), hose dips or kinks","Flush with hot water + vinegar, clear the hose, re-run it with a steady fall","Mesh strainer in the outlet, weekly vinegar flush, short straight hose"],
+["Toilet","Users put rubbish / wipes / pads in",0,"Non-compostables in the buckets","No sign, no bin","Pick them out with tongs when emptying (gloves), add a lidded sanitary bin","Clear rules sign with pictures, a sanitary bin in every cubicle"],
+["Toilet","Cleaning chemicals or bleach poured in",1,"Strong chemical smell; worms die later","Well-meaning cleaners","Keep that bucket's contents separate; let it age 6+ months before worms, or dispose via council advice","Only wipe surfaces with the cloth; no sprays near the bowl; brief the cleaners"],
+["Toilet","Flies in the cubicle",1,"House flies, blowflies on the seat","Missing mesh, no lid, uncovered poo","Repair the mesh, cover with sawdust, lid down; fly traps outside (not inside)","Mesh every opening, self-closing lid, generous sawdust"],
+["Toilet","Queue too long",0,"Long waits, people go in the bushes","Too few cubicles, peak times","Add cubicles or a urinal-only trough (diverted to the urine tank)","Planner ratio ≤ 30 people/cubicle; a separate urinal for peaks"],
+["Toilet","Cubicle tips or moves in wind",1,"Rocks, gaps at the joints","Light ply box, exposed site","Stake the skids with waratahs or ground screws; add guy ropes","Stake every cubicle on setup; face the door away from the wind"],
+["Toilet","Character front catches the wind",1,"Front flexes, cubicle rocks","The mushroom cap, rocket nose or flag adds sail area","Stake the skids, brace the front with 90×45, take the flag down in gales","Screw the front every 300 mm, brace tall parts, stake every cubicle, face it away from the westerly"],
+["Toilet","Ply delaminates / edges swell",0,"Peeling layers, soft edges","Unsealed edges, stored wet","Cut back, seal, repaint; replace bad panels","Paint the edges before assembly, store dry and flat"],
+["Toilet","Dark at night / unsafe",0,"People avoid it, spills","No lighting","Solar light inside + a path light","Charge-check the lights daily"],
+["Buckets","Bucket too heavy / back injury",1,"Crew strain, dropped buckets","Filled to the top, undiverted urine","Two-person lift or sack trolley","Swap at ⅔ (~25–30 kg), divert urine"],
+["Buckets","Buckets rust / leak",0,"Rust stains, pinholes","Galvanised steel + urine salts","Retire the bucket; epoxy-coat the rest","Stainless 304, or epoxy-lined galvanised; a sawdust base layer"],
+["Buckets","Spill while carrying",1,"Material on the ground","Uneven ground, no lid, rushing","Shovel it up with sawdust into the holding bay; disinfect hard surfaces; cover soil with sawdust/lime","Lids on for transport, a trolley, a clear path"],
+["Holding bay","Holding bay stinks",1,"Ammonia or rotten-egg smell","Too wet, not enough carbon, no cap","Mix in dry sawdust/straw/shredded cardboard, re-cap 10–15 cm","Cap every load; divert urine; lid on"],
+["Holding bay","Holding bay full before the festival ends",0,"Nowhere to tip","Under-sized bay, more people than planned","Temporary lidded bins or a second bay","Size from the Planner + 30% spare"],
+["Holding bay","Liquid leaking out",1,"Wet ground around the bay","Torn liner, too much water","Patch the liner, add dry carbon, collect the liquid","Check the liner on build; lid off only when loading"],
+["Holding bay","Rats / dogs digging in",1,"Holes, scattered material","Open bay, food scraps added","Rodent mesh, tight lid, bait stations outside (away from the worms)","No food in the holding bay; mesh + lid"],
+["Worms","Worms dying after feeding",1,"Dead/limp worms, sharp smell","Fresh material, too thick a layer, ammonia, heating","Remove the worst of the feed, add moist cardboard, stop feeding 2 weeks","Rest 6–8 weeks first; 5–8 cm layers over half the bed only"],
+["Worms","Worms escaping / climbing walls",0,"Worms on the lid or outside","Too wet, acidic, too hot, a new bed, heavy rain","Add dry cardboard, check the drain, a pinch of garden lime, leave a light on above the open lid for a night","Lid on, drain clear, don't overfeed"],
+["Worms","Bed too wet / anaerobic",1,"Sour smell, slimy, pooled water","Rain getting in, blocked drain, overfeeding","Open the tap, clear the chip layer, mix in shredded cardboard","Tight lid, fall to the tap, carbon with every feed"],
+["Worms","Bed too dry",0,"Crumbly, worms clumped at the bottom","Summer heat, vent open, no cover","Water gently with rain water until it passes the squeeze test; damp cardboard cover","Check weekly in summer"],
+["Worms","Too hot (above 30 °C)",1,"Worms deep or gone, the bed feels warm","Summer sun, fresh feed composting","Shade, wet sacks on the lid, stop feeding, open the vent","Site in shade, thin layers, white or reflective lid"],
+["Worms","Frozen / too cold",0,"Worms inactive, food untouched","Hunterville winter frosts","Close the lids, straw bales or old carpet round the sides, feed less","Insulated lids; little toilet feeding Jun–Aug"],
+["Worms","Acidic bed",0,"Lots of small white pot worms, sour smell","Overfeeding, wet, acidic scraps","Pause feeding, add crushed eggshell or a handful of garden lime per m²","Balance with cardboard; no citrus/onion"],
+["Worms","Mites (tiny red/white specks)",0,"Moving specks on the surface","Too wet, too much uneaten food","Leave the lid open on a dry day, remove the soggy food, add dry carbon","Moisture and feeding discipline"],
+["Worms","Ants in the bed",0,"Ant nests","Bed too dry","Wet the bed; ring the legs with water/grease","Keep the bed moist"],
+["Worms","Predators (birds, hedgehogs, rats)",0,"Worm numbers falling, disturbance","Open lid, gaps","Close gaps, mesh, keep the lid shut","Tight-fitting insulated lid, mesh vents"],
+["Worms","Manure killed the worms",1,"Worms die soon after adding farm manure","Dewormer (ivermectin, etc.) in dung from recently drenched stock","Remove that manure; re-bed","Only use manure from stock not drenched in the last 4–6 weeks; ask the farmer"],
+["Worms","Population crashed in the off-season",0,"Few worms when the festival comes","Starved over the 11 months","Re-stock, feed manure/cardboard","Monthly manure + cardboard feeds all year"],
+["Worms","Not processing fast enough",0,"Feed piling up, the holding bay never empties","Too small an area, cold months, too few worms","Add bays, buy more worms, extend holding (it keeps breaking down anyway)","Use the Planner's area; start the beds early so worms multiply"],
+["Worms","Leachate overflows",1,"Liquid pooling under the bays","Tap shut, bucket full","Empty, dilute 1:10 and use on trees","Drain weekly, a bigger collection container"],
+["Health","Gastro outbreak on site",1,"Several people with vomiting/diarrhoea","Poor hand washing, flies, contaminated hands","Inform the festival medic and the public health unit; disinfect hard surfaces; add sanitiser stations","Hand-wash stations stocked, fly control, crew hygiene"],
+["Health","Crew contact with waste",1,"Splash on skin or eyes","No PPE, rushed handling","Wash with soap / flush eyes 15 minutes; seek medical advice if eyes or cuts are involved","Gloves, glasses, long sleeves; never rush"],
+["Health","Compost used on vegetables",1,"Pathogen risk","Misunderstanding","Don't eat raw crops from that ground this season","Label the compost; tree/ornamental use only; 12 months minimum"],
+["Environment","Contamination of a stream or bore",1,"Discoloured runoff, E. coli in water tests","Setbacks ignored, unlined bays, urine dumped in one spot","Stop discharge, contact Horizons","Lined bays, collected leachate, setbacks, spread urine diluted and widely"],
+["Environment","Council compliance issue",0,"Notice from council / event health officer","No consent or event plan coverage","Contact the council early, show the log book","Get advice before building; keep records"],
+["People","Volunteers don't know the process",0,"Wrong buckets, no sawdust, skipped logs","No briefing","On-the-spot briefing with this page printed","Laminated checklists at the holding bay and the crew tent"]
+];
+const areas=[...new Set(ISS.map(i=>i[0]))];areas.forEach(a=>{const o=document.createElement("option");o.textContent=a;$("area").appendChild(o)});
+function renderIssues(){
+  const q=$("q").value.toLowerCase(),a=$("area").value;
+  const list=ISS.filter(i=>(!a||i[0]===a)&&(!q||i.join(" ").toLowerCase().includes(q)));
+  const AC={Toilet:"var(--pink)",Buckets:"var(--sky)","Holding bay":"var(--orange)",Worms:"var(--leaf)",Health:"var(--purple)",Environment:"var(--teal)",People:"var(--sun)"};
+  $("issueList").innerHTML=list.map(([ar,t,h,s,c,f,p])=>`<div class="issue" style="border-left-color:${AC[ar]||"var(--edge)"}"><h4>${t}<span class="tag">${ar}</span>${h?'<span class="tag hot">🔥 high risk</span>':""}</h4><dl><dt>Signs</dt><dd>${s}</dd><dt>Cause</dt><dd>${c}</dd><dt>Fix now</dt><dd>${f}</dd><dt>Prevent</dt><dd>${p}</dd></dl></div>`).join("")||`<p class="muted">No matches.</p>`;
+}
+$("q").oninput=renderIssues;$("area").onchange=renderIssues;
+
+swatches();drawCubicle();drawSheets();drawWorm();buildLists();renderIssues();calc();
+/* ---------- fun UI bits ---------- */
+const CF=["#ff5d8f","#ffc93c","#13b5a5","#7b5cff","#5cbf4a","#ff8a3d","#4cb8ff"];
+function confetti(x,y,n){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;for(let i=0;i<(n||24);i++){const e=document.createElement("i"),a=Math.random()*Math.PI*2,d=40+Math.random()*(n>40?220:90);e.className="cf";e.style.cssText=`left:${x}px;top:${y}px;background:${CF[i%7]};--dx:${(Math.cos(a)*d).toFixed(0)}px;--dy:${(Math.sin(a)*d-50).toFixed(0)}px;--r:${Math.random()*900|0}deg`;document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}}
+function burstAt(el,n){const r=el.getBoundingClientRect();confetti(r.left+r.width/2,r.top+r.height/2,n)}
+function drawHero(){
+  let b=`<path d="M0 6 Q600 62 1200 6" fill="none" stroke="#2b2140" stroke-width="2"/>`;
+  for(let i=0;i<30;i++){const x=i*40+20,t=x/1200,y=6+56*t*(1-t);b+=`<polygon points="${x-14},${y} ${x+14},${y} ${x},${y+22}" fill="${CF[i%7]}" stroke="#2b2140" stroke-width="1.5"/>`}
+  $("bunting").innerHTML=b;
+  const dark=matchMedia("(prefers-color-scheme: dark)").matches;
+  let h=`<g class="sunrays">`;for(let i=0;i<12;i++){const a=i*Math.PI/6;h+=`<line x1="${1060+40*Math.cos(a)}" y1="${52+40*Math.sin(a)}" x2="${1060+58*Math.cos(a)}" y2="${52+58*Math.sin(a)}" stroke="var(--sunc)" stroke-width="6" stroke-linecap="round"/>`}
+  h+=`</g><circle cx="1060" cy="52" r="30" fill="var(--sunc)" stroke="#2b2140" stroke-width="3"/>`;
+  h+=`<g fill="#fff" opacity="${dark?.15:.85}" stroke="#2b2140" stroke-width="2"><path d="M140 70 a18 18 0 0 1 34 -8 a14 14 0 0 1 26 6 a12 12 0 0 1 2 24 h-60 a12 12 0 0 1 -2 -22z"/><path d="M820 40 a14 14 0 0 1 27 -6 a11 11 0 0 1 20 5 a9 9 0 0 1 1 18 h-46 a9 9 0 0 1 -2 -17z"/></g>`;
+  h+=`<path d="M0 120 C150 70 300 90 420 110 S700 60 860 95 S1100 80 1200 100 V190 H0Z" fill="var(--hill1)" stroke="#2b2140" stroke-width="3"/>`;
+  h+=`<path d="M0 150 C200 110 380 160 560 140 S900 120 1200 140 V190 H0Z" fill="var(--hill2)" stroke="#2b2140" stroke-width="3"/>`;
+  [["mushroom","candy","dots",600],["rocket","sky","none",690],["castle","sunset","none",780],["beach","teal","none",870]].forEach(([sh,co,pa,x],i)=>{const c=COLOURS[co];
+    h+=`<g transform="translate(${x},${158-455*.2}) scale(.2)">${renderCubicle({shape:sh,body:c[1],trim:c[2],pattern:pa,motif:"koru",night:dark,lights:true,uid:"h"+i,noSky:true})}</g>`});
+  h+=`<path d="M0 178 C300 152 500 186 700 170 S1000 152 1200 166 V190 H0Z" fill="var(--hill3)" stroke="#2b2140" stroke-width="3"/>`;
+  h+=`<g class="worm">`;for(let i=0;i<8;i++)h+=`<circle cx="${i*10}" cy="174" r="${i===7?7:6}" fill="#ff8fb1" stroke="#2b2140" stroke-width="2" style="animation-delay:${i*.08}s"/>`;
+  h+=`<circle cx="73" cy="172" r="1.6" fill="#2b2140"/></g>`;
+  $("hills").innerHTML=h;
+}
+drawHero();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawHero);
+{const d=$("dice").onclick;$("dice").onclick=e=>{d(e);if(e)burstAt(e.currentTarget,18)}}
+{const m=$("mixBtn").onclick;$("mixBtn").onclick=e=>{m(e);burstAt(e.currentTarget,40)}}
+
+</script>
+</body>
+</html>
